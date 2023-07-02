@@ -1,0 +1,144 @@
+{
+    "__meta": {},
+    "Items": {
+        "__meta": {
+            "__desc": ""
+        },
+        "User": {
+            "__meta": {
+                "__desc": "Backs up cognito users, enriching them with additional information. WARNING __REF1 is already in use by the cognito userbase item.",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "email": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "sub": {
+                    "__type": "string",
+                    "__required": true,
+                    "__unique": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "preferredIamRole": {
+                    "__type": "string"
+                },
+                "iamRoles": {
+                    "__type": "string[]"
+                },
+                "cognitoGroups": {
+                    "__type": "string[]"
+                },
+                "userPoolId": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "active_agent": {
+                    "__type": "string",
+                    "__peer": "Agent"
+                },
+                "agents": {
+                    "__type": "string[]",
+                    "__peer": "Agent"
+                }
+            }
+        },
+        "Agent": {
+            "__meta": {
+                "__desc": "",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "name": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "child_agents": {
+                    "__type": "string[]"
+                },
+                "parent_agents": {
+                    "__type": "string[]"
+                },
+                "agt_data_visibility_conf": {
+                    "__type": "enum",
+                    "__values": "ALL|NONE|ONLY_CHILDREN|ONLY_PRENTS|SELECT"
+                }
+            }
+        }
+    },
+    "Commands": {
+        "__meta": {
+            "__desc": ""
+        },
+        "ChangeActiveAgent": {
+            "__meta": {
+                "__desc": ""
+            },
+            "__attributes": {
+                "new_active_agent": {
+                    "__type": "string",
+                    "__required": true
+                }
+            }
+        },
+        "SetUserAgents": {
+            "__meta": {
+                "__desc": ""
+            },
+            "__attributes": {
+                "user": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "agents": {
+                    "__type": "string[]",
+                    "__required": true
+                }
+            }
+        }
+    },
+    "Queries": {
+        "__meta": {
+            "__desc": ""
+        },
+        "GetGraphqlSchema": {
+            "__meta": {
+                "__desc": "returns the Graphql schema for the generated API"
+            },
+            "__attributes": {
+                "definition": {
+                    "__type": "string"
+                }
+            }
+        }
+    },
+    "GlobalSecondaryIndexes": [
+        {
+            "IndexName": "NSHARD-TITEM",
+            "KeySchema": [
+                {
+                    "AttributeName": "NSHARD",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "TITEM",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{%- set curlyopen = '{{' -%}
+{%- set curlyclose = '}}' -%}
+{%- set t = '  '-%}
+{%- set o = ''-%}
+{\n
+{{-t-}}\"id\": \"{{__parent_typename}}|{{curlyopen}}parent_guid{{curlyclose}}#v_0|{{__typename}}|{{curlyopen}}item_guid{{curlyclose}}\",\n
+{{-t-}}\"__typename\": \"{{__typename}}\",\n
+{%- for key, attr in __attributes | withoutMeta | except_system_fields -%}
+{{-t-}}\"{{key}}\": {{ getThunderTestPayloadValueType(__typename, key, attr) -}}
+{{ "," if not loop.last else "" }}\n
+{%- endfor %}
+{{-o}}}

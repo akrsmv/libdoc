@@ -1,0 +1,8 @@
+{%- set curlyopen = '{{' -%}
+{%- set curlyclose = '}}' -%}
+{%- set t = '  '-%}
+{%- set o = ''-%}
+{\n
+{{-t-}}\"id\": \"{{__parent_typename}}|{{curlyopen}}parent_guid{{curlyclose}}#v_0|{{__typename}}|{{curlyopen}}item_guid{{curlyclose}}\",\n
+{{-t-}}\"rev\": {{curlyopen}}revision{{curlyclose}}\n
+{{-o}}\n}

@@ -1,0 +1,13 @@
+{
+    "__meta": {
+        "__desc": "Person Data"
+    },
+    "__attributes": {
+        "fname": {
+            "__type": "string"
+        },
+        "lname": {
+            "__type": "string"
+        }        
+    }
+}

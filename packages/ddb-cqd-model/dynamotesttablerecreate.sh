@@ -1,0 +1,2 @@
+aws dynamodb delete-table --table-name TEST --endpoint-url http://localhost:8000
+aws dynamodb create-table --cli-input-json file://../localdev-api/src/test-ddb-model-generator-output/aws-ddb-table-definition.json --endpoint-url http://localhost:8000

@@ -1,0 +1,12 @@
+import { {{injectedItemsInerfaceName}}, IDdbItemStaticMetadata, setDomainContext } from '{{importLibraryToUseInGeneratedFiles}}';
+{% for item, _ in Items | withoutMeta %}import { {{item}} } from './{{item}}';
+{% endfor %}
+export const {{injectFunctionName}} = () => setDomainContext({
+    jsonDataModel: require('../../data-model.json'),
+    jsonTableModel: require('../../aws-ddb-table-definition.json'),
+    {{dataModelSection}}: new Map<string, IDdbItemStaticMetadata<{{injectedItemsInerfaceName}}>>(
+        [{% for item, _ in Items | withoutMeta %}
+            [{{item}}.__typename, {{item}}]{{ "," if not loop.last else "" }}{% endfor %}
+        ]
+    )
+})

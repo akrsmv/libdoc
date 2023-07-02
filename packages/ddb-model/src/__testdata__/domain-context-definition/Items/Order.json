@@ -1,0 +1,47 @@
+{
+    "__meta": {
+        "__desc": "Customer Order for services (flights, trips, etc)"
+    },
+    "__attributes": {
+        "public_data_ref": {
+            "__type": "string",
+            "__peer": "Person",
+            "__gsiKeys": [
+                "sGSI1"
+            ]
+        },
+        "person": {
+            "__type": "string",
+            "__peer": "Person",
+            "__gsiKeys": [
+                "sGSI2"
+            ]
+        },
+        "status": {
+            "__type": "string"
+        },
+        "items": {
+            "__type": [
+                {
+                    "__meta": {
+                        "__desc": "Customer Order for services (flights, trips, etc)"
+                    },
+                    "__attributes": {
+                        "description": {
+                            "__type": "string"
+                        },
+                        "type": {
+                            "__type": "string"
+                        },
+                        "quantity": {
+                            "__type": "number"
+                        },
+                        "price_no_vat": {
+                            "__type": "number"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

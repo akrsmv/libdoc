@@ -1,0 +1,40 @@
+{
+    "__meta": {
+        "__desc": "Airplanes used for flights"
+    },
+    "__attributes": {
+        "code": {
+            "__type": "string",
+            "__required": true,
+            "__unique": true,
+            "__gsiKeys": ["sGSI1"]
+        },
+        "nr_seats_class_vip": {
+            "__type": "number",
+            "__gsiKeys": ["nGSI1"]
+        },
+        "nr_seats_class1": {
+            "__type": "number",
+            "__gsiKeys": ["nGSI2"]
+        },
+        "nr_seats_class2": {
+            "__type": "number",
+            "__gsiKeys": ["nGSI3"]
+        },
+        "model": {
+            "__type": "string",
+            "__peer": "AirplaneModel",
+            "__gsiKeys": ["sGSI2"]
+        },
+        "manifacturer": {
+            "__type": "string",
+            "__peer": "AirplaneManifacturer",
+            "__gsiKeys": ["sGSI3"]
+        },
+        "country": {
+            "__type": "string",
+            "__peer": "Country",
+            "__gsiKeys": ["sGSI4"]
+        }
+    }
+}

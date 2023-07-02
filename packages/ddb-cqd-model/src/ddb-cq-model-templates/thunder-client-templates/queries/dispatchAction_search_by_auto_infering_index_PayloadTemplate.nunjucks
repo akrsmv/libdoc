@@ -1,0 +1,18 @@
+{%- set curlyopen = '{{' -%}
+{%- set curlyclose = '}}' -%}
+{%- set t = '  '-%}
+{%- set o = ''-%}
+{\n
+{{-t-}}\"meta\": {\n
+{{-t-}}{{-t-}}\"__typename\": \"{{__parent_typename}}\",\n
+{{-t-}}{{-t-}}\"action\": \"search\"\n
+{{-t-}}},\n
+{{-t-}}\"arguments\": {\n
+{{-t-}}{{-t-}}\"filter\":{},\n
+{{-t-}}}\n
+{{-t-}}\"loadPeersInput\": {\n
+{{-t-}}{{-t-}}\"loadPeersLevel\": 1,\n
+{{-t-}}{{-t-}}\"peersPropsToLoad\": [{% for key, attr in __attributes | onlyWithPeerKeys %}\"{{key}}\"{{ ", " if not loop.last else "" }}{% endfor %}],\n
+{{-t-}}{{-t-}}\"projectionExpression\": \"{% for key, attr in __attributes %}{{key}}{{ ", " if not loop.last else "" }}{% endfor %}\"\n
+{{-t-}}}\n
+{{-o}}}

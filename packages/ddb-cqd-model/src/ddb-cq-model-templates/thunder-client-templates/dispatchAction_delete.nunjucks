@@ -1,0 +1,14 @@
+{%- set curlyopen = '{{' -%}
+{%- set curlyclose = '}}' -%}
+{%- set t = '  '-%}
+{%- set o = ''-%}
+{\n
+{{-t-}}\"meta\":{\n
+{{-t-}}{{-t-}}\"__typename\":\"{{__typename}}\",\n
+{{-t-}}{{-t-}}\"action\":\"delete\"\n
+{{-t-}}},\n
+{{-t-}}\"arguments\":{\n
+{{-t-}}{{-t-}}\"id\": \"{{__parent_typename}}|{{curlyopen}}parent_guid{{curlyclose}}#v_0|{{__typename}}|{{curlyopen}}item_guid{{curlyclose}}\",\n
+{{-t-}}{{-t-}}\"rev\": {{curlyopen}}revision{{curlyclose}}\n
+{{-t-}}}
+{{-o}}\n}

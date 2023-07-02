@@ -1,0 +1,42 @@
+{
+    "__meta": {
+        "__desc": "Regions (business domain specific)"
+    },
+    "__attributes": {
+        "name": {
+            "__type": "string",
+            "__gsiKeys": ["sGSI1"]
+        },
+        "airport":{
+            "__type": "string",
+            "__peer": "Airport"
+        },
+        "city":{
+            "__type": "string",
+            "__peer": "City"
+        },
+        "country":{
+            "__type": "string",
+            "__peer": "Country"
+        },
+        "continent":{
+            "__type": "string",
+            "__peer": "Continent"
+        },
+        "regionDetails": {
+            "__type": {
+                "__meta": {
+                    "__desc": "JSON containing details for this region"
+                },
+                "__attributes": {
+                    "size_square_km": {
+                        "__type": "number"
+                    },
+                    "nr_of_countries": {
+                        "__type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

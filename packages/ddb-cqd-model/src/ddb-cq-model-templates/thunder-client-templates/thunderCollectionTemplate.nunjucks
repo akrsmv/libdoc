@@ -1,0 +1,40 @@
+{%- set curlyopen = '{' %}
+{%- set curlyclose = '}' %}
+{%- set doublecurlyopen = '{{' %}
+{%- set doublecurlyclose = '}}' %}
+{{curlyopen}}
+    "client": "Thunder Client",
+    "collectionName": "{{collectionName}}",
+    "dateExported": "{{dateExported}}",
+    "version": "1.1",
+    "folders": [{% for folder in folders %}
+        {{curlyopen}}
+            "_id": "{{folder._id}}",
+            "name": "{{folder.name}}",
+            "containerId": "{{folder.containerId}}",
+            "created": "{{folder.created}}",
+            "sortNum": 10000
+        {{curlyclose}}{{ ", " if not loop.last else "" }}{% endfor %}
+    ],
+    "requests": [{% for req in requests %}
+        {{curlyopen}}
+            "_id": "{{req._id}}",
+            "colId": "{{req.colId}}",
+            "containerId": "{{req.containerId}}",
+            "name": "{{req.name}}",
+            "url": "{{req.url}}",
+            "method": "{{req.method}}",
+            "sortNum": {{req.sortNum}},
+            "created": "{{req.created}}",
+            "modified": "{{req.modified}}",
+            "headers": [],
+            "params": [],
+            "body": {{curlyopen}}
+                "type": "{{req.body.type}}",
+                "raw": "{{req.body.raw}}",
+                "form": []
+            {{curlyclose}},
+            "tests": []
+        {{curlyclose}}{{ ", " if not loop.last else "" }}{% endfor %}
+    ]
+{{curlyclose}}

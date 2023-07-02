@@ -1,0 +1,53 @@
+{
+    "__meta": {
+        "__desc": ""
+    },
+    "__attributes": {
+        "public_data_ref": {
+            "__type": "string",
+            "__peer": "Company",
+            "__gsiKeys": [
+                "sGSI2",
+                "sGSI3"
+            ]
+        },
+        "location1": {
+            "__type": "string",
+            "__gsiKeys": [
+                "sGSI4"
+            ]
+        },
+        "location2": {
+            "__type": "string",
+            "__gsiKeys": [
+                "sGSI5"
+            ]
+        },
+        "location3": {
+            "__type": "string",
+            "__gsiKeys": [
+                "sGSI6"
+            ]
+        },
+        "location4": {
+            "__type": "string",
+            "__gsiKeys": [
+                "sGSI7"
+            ]
+        },
+        "location5": {
+            "__type": "string",
+            "__gsiKeys": [
+                "sGSI8"
+            ]
+        },
+        "code": {
+            "__type": "string",
+            "__required": true,
+            "__gsiKeys": [
+                "sGSI9"
+            ],
+            "__unique": true
+        }
+    }
+}

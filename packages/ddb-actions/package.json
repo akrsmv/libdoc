@@ -1,0 +1,21 @@
+{
+  "name": "@incta/ddb-actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "devDependencies": {
+
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.316.0",
+    "@aws-sdk/util-dynamodb": "^3.319.0",
+    "@incta/common-utils": "^1.0.0",
+    "@incta/ddb-model": "^1.0.0"
+  }
+}

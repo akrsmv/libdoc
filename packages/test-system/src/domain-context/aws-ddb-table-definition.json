@@ -1,0 +1,158 @@
+{
+    "AttributeDefinitions": [
+        {
+            "AttributeName": "HASH",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "RANGE",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "NSHARD",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "TITEM",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "sGSI1",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "sGSI3",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "nGSI1",
+            "AttributeType": "N"
+        },
+        {
+            "AttributeName": "nGSI2",
+            "AttributeType": "N"
+        },
+        {
+            "AttributeName": "sGSI2",
+            "AttributeType": "S"
+        }
+    ],
+    "TableName": "TEST",
+    "KeySchema": [
+        {
+            "AttributeName": "HASH",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "RANGE",
+            "KeyType": "RANGE"
+        }
+    ],
+    "GlobalSecondaryIndexes": [
+        {
+            "IndexName": "NSHARD-TITEM",
+            "KeySchema": [
+                {
+                    "AttributeName": "NSHARD",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "TITEM",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI1-sGSI3",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI1",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "sGSI3",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI1-nGSI1",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI1",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "nGSI1",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI3-nGSI2",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI3",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "nGSI2",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "INCLUDE",
+                "NonKeyAttributes": [
+                    "name",
+                    "code"
+                ]
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI1-sGSI2",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI1",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "sGSI2",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        }
+    ],
+    "BillingMode": "PAY_PER_REQUEST"
+}

@@ -1,0 +1,84 @@
+{
+    "__meta": {
+        "__desc": "Flights which participate in Trips of Tourists \n Also, Flight might be a standalone item (not participating in a Trip) - representing a plain travel from A to B \n without organized tourist trip "
+    },
+    "__attributes": {
+        "from_airport": {
+            "__type": "string",
+            "__peer": "Location",
+            "__gsiKeys": [
+                "sGSI1"
+            ],
+            "__required": true
+        },
+        "to_airport": {
+            "__type": "string",
+            "__peer": "Location",
+            "__gsiKeys": [
+                "sGSI2"
+            ],
+            "__required": true
+        },
+        "start_date": {
+            "__type": "isodatestring",
+            "__required": true,
+            "__gsiKeys": [
+                "sGSI3"
+            ]
+        },
+        "end_date": {
+            "__type": "isodatestring",
+            "__required": true,
+            "__gsiKeys": [
+                "sGSI4"
+            ]
+        },
+        "duration_hours": {
+            "__type": "number"
+        },
+        "tickets_price": {
+            "__type": {
+                "__meta": {
+                    "__desc": "JSON containing ticket price for each class. Prices are calculated based on the current tourist season the flight is in"
+                },
+                "__attributes": {
+                    "class_vip": {
+                        "__type": "number"
+                    },
+                    "class_1": {
+                        "__type": "number"
+                    },
+                    "class_2": {
+                        "__type": "number"
+                    }
+                }
+            }
+        },
+        "touristSeason": {
+            "__type": "string",
+            "__peer": "TouristSeason",
+            "__gsiKeys": [
+                "sGSI5"
+            ],
+            "__required": true
+        },
+        "airplane": {
+            "__type": "string",
+            "__peer": "Airplane",
+            "__gsiKeys": [
+                "sGSI6"
+            ],
+            "__required": true
+        },
+        "date_created": {
+            "__type": "isodatestring",
+            "__gsiKeys": [
+                "sGSI7"
+            ],
+            "__required": true
+        },
+        "date_updated": {
+            "__type": "isodatestring"
+        }
+    }
+}

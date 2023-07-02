@@ -1,0 +1,17 @@
+{%- set curlyopen = '{{' -%}
+{%- set curlyclose = '}}' -%}
+{%- set t = '  '-%}
+{%- set o = ''-%}
+{\n
+{{-t-}}\"id\": [\n
+{{-t-}}{{-t-}}{\n
+{{-t-}}{{-t-}}{{-t-}}\"id\": \"{{__parent_typename}}|{{curlyopen}}parent_guid{{curlyclose}}#v_0|{{__typename}}|{{curlyopen}}item_guid{{curlyclose}}\"\n
+{{-t-}}{{-t-}}}\n  
+{{-t-}}],\n
+{{-t-}}\"loadPeersInput\": {\n
+{{-t-}}{{-t-}}\"loadPeersLevel\": 1,\n
+{{-t-}}{{-t-}}\"peersPropsToLoad\": [
+{%- for key, attr in __attributes | onlyWithPeerKeys -%}\"{{key}}\"{{ ", " if not loop.last else "" }}{% endfor %}],\n
+{{-t-}}{{-t-}}\"projectionExpression\": \"{% for key, attr in __attributes %}{{key}}{{ ", " if not loop.last else "" }}{% endfor %}\"\n
+{{-t-}}}\n
+{{-o}}}

@@ -1,0 +1,53 @@
+import { IClaims, IIdentity, IDdbCommand, staticImplements } from "{{importLibraryToUseInGeneratedFiles}}";
+import { {{__typename}}AsyncCommandDomain } from "../domains/{{__typename}}AsyncCommandDomain";
+import { {{__typename}} } from "../items/commandItems/{{__typename}}";
+import { logdebug } from "@incta/common-utils";
+
+@staticImplements<IDdbAsyncCommand<{{__typename}}>>()
+export class {{__typename}}AsyncCommand extends {{__typename}}AsyncCommandDomain {
+    public static async start({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        await this.validateStart({{__typename | firstCaseLower}}, identity)
+        const {{__typename | firstCaseLower}}Impl = require('../../domain-context-impl/commands-impl/{{__typename}}CommandImpl')
+        if ({{__typename | firstCaseLower}}Impl && {{__typename | firstCaseLower}}Impl.start && typeof {{__typename | firstCaseLower}}Impl.start === 'function') {
+            try {
+                await {{__typename | firstCaseLower}}Impl.start({{__typename | firstCaseLower}}, identity)
+            } catch (error){
+                await this.onCommandErrored({{__typename | firstCaseLower}}, identity, error)
+                throw error
+            }
+            await this.onCommandCompleted({{__typename | firstCaseLower}}, identity)
+        } else {
+            throw new Error('Command implementation not found for {{__typename}}')
+        }
+    }
+    public static async validateStart({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        const {{__typename | firstCaseLower}}Impl = require('../../domain-context-impl/commands-impl/{{__typename}}CommandImpl')
+        if ({{__typename | firstCaseLower}}Impl && {{__typename | firstCaseLower}}Impl.validateStart && typeof {{__typename | firstCaseLower}}Impl.validateStart === 'function') {
+            await {{__typename | firstCaseLower}}Impl.validateStart({{__typename | firstCaseLower}}, identity)
+        } else {
+            logdebug('No validateStart implementation found for {{__typename}}')
+        }
+    }
+    
+    public static async onSingleCommandEventError({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null, error?: any): Promise<void> {
+        // TODO Not imlemented
+    }
+    
+    public static async onCommandCompleted({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        const {{__typename | firstCaseLower}}Impl = require('../../domain-context-impl/commands-impl/{{__typename}}CommandImpl')
+        if ({{__typename | firstCaseLower}}Impl && {{__typename | firstCaseLower}}Impl.onCommandCompleted && typeof {{__typename | firstCaseLower}}Impl.onCommandCompleted === 'function') {
+            await {{__typename | firstCaseLower}}Impl.onCommandCompleted({{__typename | firstCaseLower}}, identity)
+        } else {
+            logdebug('No onCommandCompleted implementation found for {{__typename}}')
+        }
+    }
+
+    public static async onCommandErrored({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null, error?: any): Promise<void> {
+        const {{__typename | firstCaseLower}}Impl = require('../../domain-context-impl/commands-impl/{{__typename}}CommandImpl')
+        if ({{__typename | firstCaseLower}}Impl && {{__typename | firstCaseLower}}Impl.onCommandErrored && typeof {{__typename | firstCaseLower}}Impl.onCommandErrored === 'function') {
+            await {{__typename | firstCaseLower}}Impl.onCommandErrored({{__typename | firstCaseLower}}, identity)
+        } else {
+            logdebug('No onCommandErrored implementation found for {{__typename}}')
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{%- set curlyopen = '{{' -%}
+{%- set curlyclose = '}}' -%}
+{%- set t = '  '-%}
+{%- set o = ''-%}
+{\n
+{{-t-}}\"meta\":{\n
+{{-t-}}{{-t-}}\"__typename\":\"{{__typename}}\",\n
+{{-t-}}{{-t-}}\"action\":\"get\"\n
+{{-t-}}},\n
+{{-t-}}\"arguments\":{\n
+{{-t-}}{{-t-}}\"id\":[\n
+{{-t-}}{{-t-}}{{-t-}}{\n
+{{-t-}}{{-t-}}{{-t-}}{{-t-}}\"id\": \"{{__parent_typename}}|{{curlyopen}}parent_guid{{curlyclose}}#v_0|{{__typename}}|{{curlyopen}}item_guid{{curlyclose}}\",\n
+{{-t-}}{{-t-}}{{-t-}}{{-t-}}\"rev\": {{curlyopen}}revision{{curlyclose}}\n
+{{-t-}}{{-t-}}{{-t-}}}\n
+{{-t-}}{{-t-}}],\n
+{{-t-}}{{-t-}}\"loadPeersInput\":{\n
+{{-t-}}{{-t-}}{{-t-}}\"loadPeersLevel\": 1,\n
+{{-t-}}{{-t-}}{{-t-}}\"peersPropsToLoad\": [{% for key, attr in __attributes | onlyWithPeerKeys %}\"{{key}}\"{{ ", " if not loop.last else "" }}{% endfor %}],\n
+{{-t-}}{{-t-}}{{-t-}}\"projectionExpression\": \"{% for key, attr in __attributes %}{{key}}{{ ", " if not loop.last else "" }}{% endfor %}\"\n
+{{-t-}}{{-t-}}}\n
+{{-t-}}}
+{{-o}}\n}

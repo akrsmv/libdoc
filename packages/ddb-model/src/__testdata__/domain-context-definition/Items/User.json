@@ -1,0 +1,14 @@
+{
+    "__meta": {
+        "__desc": "Backs up cognito users, enriching them with additional information. WARNING __REF1 is already in use by the cognito userbase item."
+    },
+    "__attributes": {
+        "public_data_ref": {
+            "__type": "string",
+            "__peer": "Person",
+            "__gsiKeys": [
+                "sGSI3"
+            ]
+        }
+    }
+}

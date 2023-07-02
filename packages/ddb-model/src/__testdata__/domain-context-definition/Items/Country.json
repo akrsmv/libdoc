@@ -1,0 +1,37 @@
+{
+    "__meta": {
+        "__desc": "countries",
+        "__isPublicItem": true
+    },
+    "__attributes": {
+        "name": {
+            "__type": "string",
+            "__gsiKeys": ["sGSI1"]
+        },
+        "continent":{
+            "__type": "string",
+            "__peer": "Continent"
+        },
+        "countryDetails": {
+            "__type": {
+                "__meta": {
+                    "__desc": "JSON containing geographical details for this country"
+                },
+                "__attributes": {
+                    "hasSeaBorder": {
+                        "__type": "boolean"
+                    },
+                    "currency": {
+                        "__type": "string"
+                    },
+                    "code": {
+                        "__type": "string"
+                    },
+                    "population": {
+                        "__type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

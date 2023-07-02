@@ -1,0 +1,16 @@
+{
+    "__meta": {
+        "__desc": "Base prices for tickets. Each individual Flight has its own ticket price config, derived from here, and modified based on the corresponding TouristSeason's discount percentages"
+    },
+    "__attributes": {
+        "class_vip": {
+            "__type": "number"
+        },
+        "class_1": {
+            "__type": "number"
+        },
+        "class_2": {
+            "__type": "number"
+        }
+    }
+}

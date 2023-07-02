@@ -1,0 +1,26 @@
+{
+  "name": "@incta/infra-ddb-table",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cdk",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.0",
+    "aws-cdk": "2.64.0",
+    "typescript": "^4.9.5",
+    "@jest/globals": "^29.5.0",
+    "ts-jest": "^29.1.0"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.64.0",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.21"
+  },
+  "author": "",
+  "license": "ISC"
+}

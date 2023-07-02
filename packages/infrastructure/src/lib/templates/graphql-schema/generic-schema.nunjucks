@@ -1,0 +1,363 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+{# ###### BEGIN UNION DEFINING ALL ITEMS #### #}
+union AllItemsUnion = ItemIdentifier
+{%- for itemKey, _ in allItems %}{{ " | " if loop.first else "" }}{{itemKey}}{{ " | " if not loop.last else "" }}
+{% endfor -%}
+{%- for itemKey, _ in allItems %}{{ " | " if loop.first else "" }}{{itemKey}}History{{ " | " if not loop.last else "" }}
+{% endfor -%}
+{# ##### END UNION DEFINING ALL ITEMS #### #}
+
+{# ##### BEGIN ENUM DEFINING ALL ACTIONS #### #}
+enum AllActionsEnum {
+    start
+    stop
+    create
+    update
+    patch
+    delete
+    query
+    get
+}
+{# ##### END  ENUM DEFINING ALL ACTIONS #### #}
+
+{# ###### BEGIN UNION DEFINING ALL ITEMS #### #}
+enum AllItemTypesEnum {
+{% for itemKey, _ in allItems -%}
+    {{itemKey}}
+{% endfor %}
+{% for itemKey, _ in allItems -%}
+    {{itemKey}}History
+{% endfor %}
+}
+{# ##### END UNION DEFINING ALL ITEMS #### #}
+
+{# ###### BEGIN SCALAR QUERY INPUT ##### #}
+input BooleanQueryInput {
+    ne: Boolean
+    eq: Boolean
+    attribute_exists: Boolean
+    attribute_not_exists: Boolean
+}
+input FloatQueryInput {
+    ne: Float
+    eq: Float
+    le: Float
+    lt: Float
+    ge: Float
+    gt: Float
+    between: [Float]
+    attribute_exists: Boolean
+    attribute_not_exists: Boolean
+}
+input StringQueryInput {
+    ne: String
+    eq: String
+    le: String
+    lt: String
+    ge: String
+    gt: String
+    contains: String
+    not_contains: String
+    between: [String]
+    begins_with: String
+    attribute_exists: Boolean
+    attribute_not_exists: Boolean
+}
+{# ##### END SCALAR QUERY INPUT ##### #}
+
+{# ##### BEGIN ITEM TYPES #### #}
+interface Item {
+    id: ID
+    
+    rev: Int
+    date_created: AWSDateTime
+    date_updated: AWSDateTime
+
+    TITEM: String
+    checksum: String
+
+    user_created: String
+    user_updated: String
+
+}
+type ItemIdentifier @aws_iam @aws_cognito_user_pools {
+    HASH: String
+    RANGE: String
+}
+{%- for itemKey, attr in allDtos %}
+input {{itemKey}}Input {
+    {# note id is part of all the fields, however it gets filtered by except_system_fields thus the definition outside loop #}
+    id: ID
+    {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes | except_system_fields %}
+        {{ getGraphqlSingleKeyAndInputType (attr.__typename, attr_itemKey, attr_attr)}}
+    {%- endfor %}
+}
+{%- endfor %}
+
+{%- for itemKey, attr in allCommands %}
+input {{itemKey}}Input {
+    {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes | except_system_fields %}
+        {{ getGraphqlSingleKeyAndInputType (attr.__typename, attr_itemKey, attr_attr)}}
+    {%- endfor %}
+}
+{%- endfor %}
+
+{%- for itemKey, attr in allQueries %}
+input {{itemKey}}Input {
+    {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes | except_system_fields %}
+        {{ getGraphqlSingleKeyAndInputType (attr.__typename, attr_itemKey, attr_attr)}}
+    {%- endfor %}
+}
+{%- endfor %}
+
+{%- for itemKey, attr in allItems %}
+type {{itemKey}} implements Item {
+    # interface Item props
+    
+    rev: Int
+
+    TITEM: String
+    checksum: String
+
+        {# 
+    id: ID
+    user_created: String -- these come from merge deep with base domain context
+    user_updated: String
+    date_created:
+    date_udated
+    #}
+
+    #specific props
+    {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes %}
+        {{attr_itemKey}}: {{ getGraphqlType(attr.__typename, attr_itemKey, attr_attr) }}
+        {% if (attr_attr.__peer and attr_attr.__type != 'string[]') %}
+            {{attr_itemKey | firstCaseUpper}}: {{ attr_attr.__peer }}
+        {% endif%}
+        {% if (attr_attr.__peer and attr_attr.__type == 'string[]') %}
+            {{attr_itemKey | firstCaseUpper}}: [{{ attr_attr.__peer }}]
+        {% endif%}
+    {%- endfor %}
+}
+type {{itemKey}}History implements Item {
+    # interface Item props 
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    {# 
+    id: ID
+    user_created: String -- these come from merge deep with base domain context
+    user_updated: String
+    date_created:
+    date_udated
+    #}
+
+    #specific props
+    {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes %}
+            {{attr_itemKey}}: {{ getGraphqlType(attr.__typename, attr_itemKey, attr_attr) }}
+        {%- endfor %}
+}
+
+    {%- for attr_inItemEnumKey, enumVal in attr.inItemStringEnums %}
+enum {{attr_inItemEnumKey}}Enum {
+        {%- for enum in enumVal %}
+                {{ enum }}
+            {%- endfor %}
+} 
+    {% endfor -%}
+
+        {%- for attr_inItemJsonKey, inItemJsonDef in attr.inItemJSONs %}
+type {{attr_inItemJsonKey}}Dto {
+        {%- for inItemJsonDef_itemKey, inItemJsonDef_attr in inItemJsonDef.__attributes %}
+                {{inItemJsonDef_itemKey}}: {{ getGraphqlType(attr.__typename, inItemJsonDef_itemKey, inItemJsonDef_attr) }}
+            {%- endfor %}
+}
+input {{attr_inItemJsonKey}}DtoInput {
+        {%- for inItemJsonDef_itemKey, inItemJsonDef_attr in inItemJsonDef.__attributes %}
+                {{getGraphqlSingleKeyAndInputType(attr.__typename, inItemJsonDef_itemKey, inItemJsonDef_attr)}}
+                {# {{inItemJsonDef_itemKey}}: {{ getGraphqlType(attr.__typename, inItemJsonDef_itemKey, inItemJsonDef_attr) }} #}
+            {%- endfor %}
+}
+    {% endfor -%}
+
+    {% endfor -%}
+    {# ##### END ITEM TYPES #### #}
+
+    {# ### BEGIN MUTATION ###       #}
+type Mutation {
+    start(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools
+    create(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools
+    update(input: AllItemsKeysInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
+    patch(input: AllItemsKeysInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
+    del(id: ID!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
+    {%- for itemKey, attr in allCommands %}
+        {{itemKey}}(input: {{itemKey}}Input!): CommandResult @aws_iam @aws_cognito_user_pools
+    {%- endfor %}
+    {%- for itemKey, attr in allItems %}
+    create{{itemKey}}(input: {{itemKey}}Input!): CommandResult @aws_iam @aws_cognito_user_pools
+    {%- endfor %}
+    {%- for itemKey, attr in allItems %}
+    update{{itemKey}}(input: {{itemKey}}Input!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
+    {%- endfor %}
+    {%- for itemKey, attr in allItems %}
+    patch{{itemKey}}(input: {{itemKey}}Input!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
+    {%- endfor %}
+    {%- for itemKey, attr in allItems %}
+    {# delete{{itemKey}}(id: ID!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools #}
+    {%- endfor %}
+}
+type CommandResult {
+    status: Int
+    errors: [ServerError]
+}
+type ServerError {
+    errorType: String
+    message: String
+    errorStack: String
+}
+{# ### END MUTATION ### #}
+
+    {# #### BEGIN MUTATION INPUT #### #}
+{# input UpdateInput {
+    input: AllItemsKeysInput
+}
+input CreateInput {
+    input: AllItemsKeysInput
+}
+input DeleteInput {
+    input: ItemIdentifierInput
+}
+input StartInput {
+    input: AllItemsKeysInput
+} #}
+{# ### END MUTATION INPUT ### #}
+
+    {# ### BEGIN QUERY ### #}
+type Query {
+    get(id: [ID!]!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools
+    query(input: QueryInputAllItemsFields!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools
+    search(input: QueryInputAllItemsFields!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools
+    {%- for itemKey, attr in allItems %}
+    search{{itemKey | plural}}(input: Search{{itemKey | plural}}Input!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools
+    query{{itemKey | plural}}(input: Query{{itemKey | plural}}Input!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools
+    {# get{{itemKey | plural}}(id: [ID!]!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools #}
+    {%- endfor %}
+    {%- for itemKey, attr in allQueries %}
+        {# TODO do we want every data model query to have also ResultType in data model and alsohere or we can go with AllItemsUnion? #}
+        {{itemKey}}(input: Query{{itemKey | plural}}Input!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools
+    {%- endfor %}
+}
+{# ### END QUERY ### #}
+
+    {# ### BEGIN RESULT CONNECTION ### #}
+type AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools {
+    items: [AllItemsUnion!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+{%- for itemKey, attr in allItems %}
+type {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools {
+    items: [{{itemKey}}!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+{%- endfor %}
+
+    {# ### END RESULT CONNECTION ###  #}
+
+    {# ###### BEGIN QUERY INPUT ##### #}
+
+{# input ItemIdentifierInput {
+    id: ID
+    rev: Int
+} #}
+input QueryInputAllItemsFields {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    rev: Int
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    {# user_created: StringQueryInput -- these should come from merge deep with base domain context
+    user_updated: StringQueryInput #}
+    {{ allItemsUniqueKeysQueryInputDefinitions }}
+    _and: [QueryInputAllItemsFields]
+    _or: [QueryInputAllItemsFields]
+}
+input AllItemsKeysInput {
+    HASH: String
+    RANGE: String
+    rev: Int
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    {# user_created: String --.these and also date_created / date_updated should be removed from the Input
+    user_updated: String #}
+    {{ AllItemsKeysInputDefinitions }}
+}
+{%- for itemKey, attr in allItems %}
+input Query{{itemKey | plural}}FilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    {# user_created: String --.these and also date_created / date_updated should be removed from the Input
+    user_updated: String #}
+        {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes %}
+            {{ getGraphqlSingleKeyAndQueryInputType(attr.__typename, attr_itemKey, attr_attr) }}
+        {%- endfor %}
+    _and: [Query{{itemKey | plural}}FilterInput]
+    _or: [Query{{itemKey | plural}}FilterInput]
+}
+{%- endfor %}
+
+{%- for itemKey, attr in allItems %}
+input Query{{itemKey | plural}}OnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    {# user_created: String --.these and also date_created / date_updated should be removed from the Input
+    user_updated: String #}
+        {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes %}
+            {{ getGraphqlSingleKeyAndQueryInputType(attr.__typename, attr_itemKey, attr_attr) }}
+        {%- endfor %}
+}
+{%- endfor %}
+
+{%- for itemKey, attr in allItems %}
+input Query{{itemKey | plural}}Input {
+    hashKey: Query{{itemKey | plural}}OnlyFieldsInput
+    rangeKey: Query{{itemKey | plural}}OnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: Query{{itemKey | plural}}FilterInput
+}
+input Search{{itemKey | plural}}Input {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: Query{{itemKey | plural}}FilterInput
+}
+{%- endfor %}
+
+{# input GetQueryInput {
+    id: [ID!]!
+    pageToken: String
+} #}
+
+{# ### END ITEM QUERY INPUT ### #}

@@ -1,0 +1,13 @@
+import { DdbQueryItem, IDdbQuery, setDomainContext } from '{{importLibraryToUseInGeneratedFiles}}';
+{% for item, _ in Items | withoutMeta %}import { {{item}} } from '../items/queryItems/{{item}}';
+{% endfor -%}
+{% for item, _ in Items | withoutMeta %}import { {{item}}Query } from './{{item}}Query';
+{% endfor -%}
+
+export const _injectQueries = () => setDomainContext({
+    queriesMap: new Map<string, IDdbQuery<DdbQueryItem>>(
+        [{% for item, _ in Items | withoutMeta  %}
+            [{{item}}.__typename, {{item}}Query]{{ "," if not loop.last else "" }}{% endfor %}
+        ]
+    )
+})

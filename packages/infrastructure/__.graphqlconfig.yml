@@ -1,0 +1,19 @@
+projects:
+  Codegen Project:
+    schemaPath: schema.graphql
+    includes:
+      - ../../VITE/vite-project/src/graphql/generated/**/*.ts
+    excludes: []
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: ../../VITE/vite-project/src/graphql/generated/API.ts
+        docsFilePath: ../../VITE/vite-project/src/graphql/generated
+        region: us-east-1
+        apiId: null
+        frontend: javascript
+        framework: react
+        maxDepth: 10
+extensions:
+  amplify:
+    version: 3

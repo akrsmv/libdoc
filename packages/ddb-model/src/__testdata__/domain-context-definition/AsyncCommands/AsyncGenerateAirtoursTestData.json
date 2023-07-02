@@ -1,0 +1,19 @@
+{
+    "__meta": {
+        "__desc": "Generates test data"
+    },
+    "__attributes": {
+        "forUser": {
+            "__type": "string",
+            "__required": true
+        },
+        "forAgent": {
+            "__type": "string",
+            "__required": true
+        },
+        "test_data_date": {
+            "__type": "isodatestring",
+            "__required": true
+        }
+    }
+}

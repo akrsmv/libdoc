@@ -1,0 +1,1422 @@
+{
+    "Items": {
+        "User": {
+            "__meta": {
+                "__desc": "Backs up cognito users, enriching them with additional information. WARNING __REF1 is already in use by the cognito userbase item.",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "public_data_ref": {
+                    "__type": "string",
+                    "__peer": "Person",
+                    "__gsiKeys": [
+                        "sGSI3"
+                    ]
+                },
+                "email": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "sub": {
+                    "__type": "string",
+                    "__required": true,
+                    "__unique": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "preferredIamRole": {
+                    "__type": "string"
+                },
+                "iamRoles": {
+                    "__type": "string[]"
+                },
+                "cognitoGroups": {
+                    "__type": "string[]"
+                },
+                "userPoolId": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "active_agent": {
+                    "__type": "string",
+                    "__peer": "Agent"
+                },
+                "agents": {
+                    "__type": "string[]",
+                    "__peer": "Agent"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Person": {
+            "__meta": {
+                "__desc": "Person Data"
+            },
+            "__attributes": {
+                "fname": {
+                    "__type": "string"
+                },
+                "lname": {
+                    "__type": "string"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Company": {
+            "__meta": {
+                "__desc": "Company Data"
+            },
+            "__attributes": {
+                "name": {
+                    "__type": "string"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Airport": {
+            "__meta": {
+                "__desc": "Airports",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "name": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "city": {
+                    "__type": "string",
+                    "__peer": "City"
+                },
+                "country": {
+                    "__type": "string",
+                    "__peer": "Country"
+                },
+                "continent": {
+                    "__type": "string",
+                    "__peer": "Continent"
+                },
+                "airpotDetails": {
+                    "__type": {
+                        "__meta": {
+                            "__desc": "JSON containing details for this airport"
+                        },
+                        "__attributes": {
+                            "size_square_km": {
+                                "__type": "number"
+                            },
+                            "nr_of_tracks": {
+                                "__type": "number"
+                            }
+                        }
+                    }
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Invoice": {
+            "__meta": {
+                "__desc": ""
+            },
+            "__attributes": {
+                "invoice_due_date": {
+                    "__type": "isodatestring"
+                },
+                "invoice_issued_date": {
+                    "__type": "isodatestring"
+                },
+                "invoice_number": {
+                    "__type": "string"
+                },
+                "orders": {
+                    "__type": "string[]",
+                    "__peer": "Order"
+                },
+                "total_net": {
+                    "__type": "number"
+                },
+                "total_gross": {
+                    "__type": "number"
+                },
+                "total_vat": {
+                    "__type": "number"
+                },
+                "vat_percent": {
+                    "__type": "number"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "AirtoursTicketPriceConfig": {
+            "__meta": {
+                "__desc": "Base prices for tickets. Each individual Flight has its own ticket price config, derived from here, and modified based on the corresponding TouristSeason's discount percentages"
+            },
+            "__attributes": {
+                "class_vip": {
+                    "__type": "number"
+                },
+                "class_1": {
+                    "__type": "number"
+                },
+                "class_2": {
+                    "__type": "number"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "City": {
+            "__meta": {
+                "__desc": "Cities",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "name": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "country": {
+                    "__type": "string",
+                    "__peer": "Country"
+                },
+                "continent": {
+                    "__type": "string",
+                    "__peer": "Continent"
+                },
+                "cityDetails": {
+                    "__type": {
+                        "__meta": {
+                            "__desc": "JSON containing geographical details for this country"
+                        },
+                        "__attributes": {
+                            "isNearSea": {
+                                "__type": "boolean"
+                            },
+                            "hasAirport": {
+                                "__type": "boolean"
+                            },
+                            "hasAirtoursOffice": {
+                                "__type": "boolean"
+                            },
+                            "isCapital": {
+                                "__type": "boolean"
+                            },
+                            "population": {
+                                "__type": "number"
+                            }
+                        }
+                    }
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Order": {
+            "__meta": {
+                "__desc": "Customer Order for services (flights, trips, etc)"
+            },
+            "__attributes": {
+                "public_data_ref": {
+                    "__type": "string",
+                    "__peer": "Person",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "person": {
+                    "__type": "string",
+                    "__peer": "Person",
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "status": {
+                    "__type": "string"
+                },
+                "items": {
+                    "__type": [
+                        {
+                            "__meta": {
+                                "__desc": "Customer Order for services (flights, trips, etc)"
+                            },
+                            "__attributes": {
+                                "description": {
+                                    "__type": "string"
+                                },
+                                "type": {
+                                    "__type": "string"
+                                },
+                                "quantity": {
+                                    "__type": "number"
+                                },
+                                "price_no_vat": {
+                                    "__type": "number"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Country": {
+            "__meta": {
+                "__desc": "countries",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "name": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "continent": {
+                    "__type": "string",
+                    "__peer": "Continent"
+                },
+                "countryDetails": {
+                    "__type": {
+                        "__meta": {
+                            "__desc": "JSON containing geographical details for this country"
+                        },
+                        "__attributes": {
+                            "hasSeaBorder": {
+                                "__type": "boolean"
+                            },
+                            "currency": {
+                                "__type": "string"
+                            },
+                            "code": {
+                                "__type": "string"
+                            },
+                            "population": {
+                                "__type": "number"
+                            }
+                        }
+                    }
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "AirplaneManifacturer": {
+            "__meta": {
+                "__desc": "represents Airplane Manifacturers"
+            },
+            "__attributes": {
+                "code": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ],
+                    "__required": true,
+                    "__unique": true
+                },
+                "name": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "country": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI3"
+                    ],
+                    "__peer": "Location"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "AirplaneModel": {
+            "__meta": {
+                "__desc": "Represents Airplane Model from a particular Manifacturer. Good example of Parent-Detail or 1-to-many SQL relations: a model can have only one manifacturer. In case there are more manifacturers (joint effort etc) we can list them as array of peers in the manifacturers.",
+                "__parent_typename": "AirplaneManifacturer"
+            },
+            "__attributes": {
+                "capacity": {
+                    "__type": "number",
+                    "__gsiKeys": [
+                        "nGSI1"
+                    ]
+                },
+                "country": {
+                    "__type": "string",
+                    "__peer": "Location"
+                },
+                "name": {
+                    "__type": "string",
+                    "__unique": true
+                },
+                "code": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1",
+                        "sGSI2"
+                    ],
+                    "__unique": true
+                },
+                "manifacturers": {
+                    "__type": "string[]",
+                    "__peer": "AirplaneManifacturer"
+                },
+                "baseAirplaneModel": {
+                    "__type": "string",
+                    "__peer": "AirplaneModel",
+                    "__gsiKeys": [
+                        "sGSI3"
+                    ]
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Region": {
+            "__meta": {
+                "__desc": "Regions (business domain specific)"
+            },
+            "__attributes": {
+                "name": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "airport": {
+                    "__type": "string",
+                    "__peer": "Airport"
+                },
+                "city": {
+                    "__type": "string",
+                    "__peer": "City"
+                },
+                "country": {
+                    "__type": "string",
+                    "__peer": "Country"
+                },
+                "continent": {
+                    "__type": "string",
+                    "__peer": "Continent"
+                },
+                "regionDetails": {
+                    "__type": {
+                        "__meta": {
+                            "__desc": "JSON containing details for this region"
+                        },
+                        "__attributes": {
+                            "size_square_km": {
+                                "__type": "number"
+                            },
+                            "nr_of_countries": {
+                                "__type": "number"
+                            }
+                        }
+                    }
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Agent": {
+            "__meta": {
+                "__desc": "",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "public_data_ref": {
+                    "__type": "string",
+                    "__peer": "Company",
+                    "__gsiKeys": [
+                        "sGSI2",
+                        "sGSI3"
+                    ]
+                },
+                "location1": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI4"
+                    ]
+                },
+                "location2": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI5"
+                    ]
+                },
+                "location3": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI6"
+                    ]
+                },
+                "location4": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI7"
+                    ]
+                },
+                "location5": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI8"
+                    ]
+                },
+                "code": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI9"
+                    ],
+                    "__unique": true
+                },
+                "name": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "child_agents": {
+                    "__type": "string[]"
+                },
+                "parent_agents": {
+                    "__type": "string[]"
+                },
+                "agt_data_visibility_conf": {
+                    "__type": "enum",
+                    "__values": "ALL|NONE|ONLY_CHILDREN|ONLY_PRENTS|SELECT"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Tourist": {
+            "__meta": {
+                "__desc": ""
+            },
+            "__attributes": {
+                "public_data_ref": {
+                    "__type": "string",
+                    "__peer": "Person",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "person": {
+                    "__type": "string",
+                    "__peer": "Person",
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "fname": {
+                    "__type": "string"
+                },
+                "lname": {
+                    "__type": "string"
+                },
+                "id_card": {
+                    "__type": "string",
+                    "required": true,
+                    "__gsiKeys": [
+                        "sGSI3"
+                    ]
+                },
+                "iban": {
+                    "__type": "string",
+                    "required": true,
+                    "__gsiKeys": [
+                        "sGSI4"
+                    ]
+                },
+                "tourist_season": {
+                    "__type": "string",
+                    "__peer": "TouristSeason",
+                    "__gsiKeys": [
+                        "sGSI5"
+                    ]
+                },
+                "ticket_type": {
+                    "__type": "string"
+                },
+                "airplane": {
+                    "__type": "string",
+                    "__peer": "Airplane"
+                },
+                "flight": {
+                    "__type": "string",
+                    "__peer": "Flight"
+                },
+                "from_airport": {
+                    "__type": "string",
+                    "__peer": "Location"
+                },
+                "to_airport": {
+                    "__type": "string",
+                    "__peer": "Location"
+                },
+                "from_country": {
+                    "__type": "string",
+                    "__peer": "Location"
+                },
+                "to_country": {
+                    "__type": "string",
+                    "__peer": "Location"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Airplane": {
+            "__meta": {
+                "__desc": "Airplanes used for flights"
+            },
+            "__attributes": {
+                "code": {
+                    "__type": "string",
+                    "__required": true,
+                    "__unique": true,
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "nr_seats_class_vip": {
+                    "__type": "number",
+                    "__gsiKeys": [
+                        "nGSI1"
+                    ]
+                },
+                "nr_seats_class1": {
+                    "__type": "number",
+                    "__gsiKeys": [
+                        "nGSI2"
+                    ]
+                },
+                "nr_seats_class2": {
+                    "__type": "number",
+                    "__gsiKeys": [
+                        "nGSI3"
+                    ]
+                },
+                "model": {
+                    "__type": "string",
+                    "__peer": "AirplaneModel",
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "manifacturer": {
+                    "__type": "string",
+                    "__peer": "AirplaneManifacturer",
+                    "__gsiKeys": [
+                        "sGSI3"
+                    ]
+                },
+                "country": {
+                    "__type": "string",
+                    "__peer": "Country",
+                    "__gsiKeys": [
+                        "sGSI4"
+                    ]
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Payment": {
+            "__meta": {
+                "__desc": ""
+            },
+            "__attributes": {
+                "invoice_number": {
+                    "__type": "string"
+                },
+                "invoice": {
+                    "__type": "string",
+                    "__peer": "Invoice"
+                },
+                "sender_company": {
+                    "__type": "string",
+                    "__peer": "Company"
+                },
+                "sender_person": {
+                    "__type": "string",
+                    "__peer": "Person"
+                },
+                "recipient_person": {
+                    "__type": "string",
+                    "__peer": "Person"
+                },
+                "recipient_company": {
+                    "__type": "string",
+                    "__peer": "Company"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Flight": {
+            "__meta": {
+                "__desc": "Flights which participate in Trips of Tourists \n Also, Flight might be a standalone item (not participating in a Trip) - representing a plain travel from A to B \n without organized tourist trip "
+            },
+            "__attributes": {
+                "from_airport": {
+                    "__type": "string",
+                    "__peer": "Location",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ],
+                    "__required": true
+                },
+                "to_airport": {
+                    "__type": "string",
+                    "__peer": "Location",
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ],
+                    "__required": true
+                },
+                "start_date": {
+                    "__type": "isodatestring",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI3"
+                    ]
+                },
+                "end_date": {
+                    "__type": "isodatestring",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI4"
+                    ]
+                },
+                "duration_hours": {
+                    "__type": "number"
+                },
+                "tickets_price": {
+                    "__type": {
+                        "__meta": {
+                            "__desc": "JSON containing ticket price for each class. Prices are calculated based on the current tourist season the flight is in"
+                        },
+                        "__attributes": {
+                            "class_vip": {
+                                "__type": "number"
+                            },
+                            "class_1": {
+                                "__type": "number"
+                            },
+                            "class_2": {
+                                "__type": "number"
+                            }
+                        }
+                    }
+                },
+                "touristSeason": {
+                    "__type": "string",
+                    "__peer": "TouristSeason",
+                    "__gsiKeys": [
+                        "sGSI5"
+                    ],
+                    "__required": true
+                },
+                "airplane": {
+                    "__type": "string",
+                    "__peer": "Airplane",
+                    "__gsiKeys": [
+                        "sGSI6"
+                    ],
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring",
+                    "__gsiKeys": [
+                        "sGSI7"
+                    ],
+                    "__required": true
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Continent": {
+            "__meta": {
+                "__desc": "continents",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "name": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "continentDetails": {
+                    "__type": {
+                        "__meta": {
+                            "__desc": "JSON containing geographical details for this continent"
+                        },
+                        "__attributes": {
+                            "population": {
+                                "__type": "number"
+                            }
+                        }
+                    }
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "TouristSeason": {
+            "__meta": {
+                "__desc": "Tourist Season Data"
+            },
+            "__attributes": {
+                "price_flight_per_hour": {
+                    "__type": "number"
+                },
+                "start_date": {
+                    "__type": "isodatestring",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "end_date": {
+                    "__type": "isodatestring",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "code": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI3"
+                    ]
+                },
+                "discounts": {
+                    "__type": {
+                        "__attributes": {
+                            "vip": {
+                                "__type": "number"
+                            },
+                            "class_1": {
+                                "__type": "number"
+                            },
+                            "class_2": {
+                                "__type": "number"
+                            }
+                        }
+                    }
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Location": {
+            "__meta": {
+                "__desc": "Data Visible for all agents (OR, every private data having SYS_PUBLIC_DATA_REF property will pull corresponding record and merge with it before returning to client)"
+            },
+            "__attributes": {
+                "phone1": {
+                    "__type": "string"
+                },
+                "phone2": {
+                    "__type": "string"
+                },
+                "address1": {
+                    "__type": "string"
+                },
+                "address2": {
+                    "__type": "string"
+                },
+                "name": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "type": {
+                    "__type": "enum",
+                    "__values": "city|country|continent|region|airport",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "__meta": {
+            "__desc": "",
+            "__attributes": {}
+        }
+    },
+    "Commands": {
+        "GenerateAirtoursTestData": {
+            "__meta": {
+                "__desc": "Generates test data"
+            },
+            "__attributes": {
+                "forUser": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "forAgent": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "test_data_date": {
+                    "__type": "isodatestring",
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "GenerateAirtoursPublicTestData": {
+            "__meta": {
+                "__desc": "Generates PUBLIC test data"
+            },
+            "__attributes": {
+                "prop1": {
+                    "__type": "string"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "__meta": {
+            "__desc": "",
+            "__attributes": {}
+        },
+        "ChangeActiveAgent": {
+            "__meta": {
+                "__desc": ""
+            },
+            "__attributes": {
+                "new_active_agent": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "SetUserAgents": {
+            "__meta": {
+                "__desc": ""
+            },
+            "__attributes": {
+                "user": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "agents": {
+                    "__type": "string[]",
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        }
+    },
+    "Queries": {
+        "queryBe": {
+            "__meta": {
+                "__desc": "represents Airplane Manifacturers"
+            },
+            "__attributes": {
+                "code": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ],
+                    "__required": true,
+                    "__unique": true
+                },
+                "name": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "__meta": {
+            "__desc": "",
+            "__attributes": {}
+        },
+        "GetGraphqlSchema": {
+            "__meta": {
+                "__desc": "returns the Graphql schema for the generated API"
+            },
+            "__attributes": {
+                "definition": {
+                    "__type": "string"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        }
+    },
+    "GlobalSecondaryIndexes": [
+        {
+            "IndexName": "NSHARD-TITEM",
+            "KeySchema": [
+                {
+                    "AttributeName": "NSHARD",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "TITEM",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI1-sGSI3",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI1",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "sGSI3",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI1-nGSI1",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI1",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "nGSI1",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI3-nGSI2",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI3",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "nGSI2",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "INCLUDE",
+                "NonKeyAttributes": "name,code"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI1-sGSI2",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI1",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "sGSI2",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        }
+    ],
+    "__meta": {}
+}

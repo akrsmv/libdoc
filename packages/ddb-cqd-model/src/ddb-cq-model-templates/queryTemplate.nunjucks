@@ -1,0 +1,14 @@
+import { IClaims, IIdentity, IDdbQuery, staticImplements } from "{{importLibraryToUseInGeneratedFiles}}";
+import { {{__typename}}QueryDomain } from "../domains/{{__typename}}QueryDomain";
+import { {{__typename}} } from "../items/queryItems/{{__typename}}";
+
+@staticImplements<IDdbQuery<{{__typename}}>>()
+export class {{__typename}}Query extends {{__typename}}QueryDomain {
+    public static async start({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+
+    public static async validateStart({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+}

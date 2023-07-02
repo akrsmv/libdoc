@@ -1,0 +1,25 @@
+{
+  "name": "@incta/ddb-cqd-model",
+  "version": "1.0.0",
+  "description": "command query domain patterns backed by dynamodb",
+  "main": "dist/index.js",
+  "files": [
+    "src/**/*"
+  ],
+  "devDependencies": {
+    "@types/nunjucks": "^3.2.2",
+    "@types/pluralize": "^0.0.29"
+  },
+  "scripts": {
+    "build": "tsc && npm run copy-templates",
+    "copy-templates": "cp -r ./src/ddb-cq-model-templates ./dist/.",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@incta/common-utils": "^1.0.0",
+    "nunjucks": "^3.2.3",
+    "pluralize": "^8.0.0"
+  },
+  "author": "akrsmv",
+  "license": "ISC"
+}

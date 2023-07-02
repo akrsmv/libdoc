@@ -1,0 +1,13 @@
+import { DdbCommandItem, IDdbCommand, setDomainContext } from '{{importLibraryToUseInGeneratedFiles}}';
+{% for item, _ in Items | withoutMeta %}import { {{item}} } from '../items/commandItems/{{item}}';
+{% endfor -%}
+{% for item, _ in Items | withoutMeta %}import { {{item}}Command } from './{{item}}Command';
+{% endfor -%}
+
+export const _injectCommands = () => setDomainContext({
+    commandsMap: new Map<string, IDdbCommand<DdbCommandItem>>(
+        [{% for item, _ in Items | withoutMeta %}
+            [{{item}}.__typename, {{item}}Command]{{ "," if not loop.last else "" }}{% endfor %}
+        ]
+    )
+})

@@ -1,0 +1,38 @@
+{%- set doublecurlyopen = '{{' %}
+{%- set doublecurlyclose = '}}' %}
+{
+    "client": "Thunder Client",
+    "collectionName": "{{collectionName}}",
+    "dateExported": "{{dateExported}}",
+    "version": "1.1",
+    "folders": [{% for folder in folders %}
+        {
+            "_id": "{{folder._id}}",
+            "name": "{{folder.name}}",
+            "containerId": "{{folder.containerId}}",
+            "created": "{{folder.created}}",
+            "sortNum": 10000
+        }{{ ", " if not loop.last else "" }}{% endfor %}
+    ],
+    "requests": [{% for req in requests %}
+        {
+            "_id": "{{req._id}}",
+            "colId": "{{req.colId}}",
+            "containerId": "{{req.containerId}}",
+            "name": "{{req.name}}",
+            "url": "{{req.url}}",
+            "method": "{{req.method}}",
+            "sortNum": {{req.sortNum}},
+            "created": "{{req.created}}",
+            "modified": "{{req.modified}}",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "{{req.body.type}}",
+                "raw": "{{req.body.raw}}",
+                "form": []
+            },
+            "tests": []
+        }{{ ", " if not loop.last else "" }}{% endfor %}
+    ]
+}

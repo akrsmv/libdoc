@@ -1,0 +1,111 @@
+{%- for key, attr in __inItemJSONs %} 
+import { {{ key }}Dto } from './dtos/{{key}}Dto'
+{%- endfor %}
+{%- if __typename !== __parent_typename %} 
+import { {{ __parent_typename }} } from './{{__parent_typename}}'
+{%- endif %}
+import { {{__typename}}Dto } from './dtos/{{__typename}}Dto'
+import {
+  IClaims, IIdentity,
+  _sep2,
+  DomainPropertyMetadata,
+  existingPKWithoutPrefix,
+  IDdbItemBaseProps,
+  IDdbItemKey,
+  IDdbItemStaticMetadata,
+  newPK, staticImplements, withPrefix, withoutPrefix, _sep1
+} from '{{importLibraryToUseInGeneratedFiles}}'
+
+{# @staticImplements<IDdbItemStaticMetadata<{{__typename}}>>() #}
+export class {{__typename}} implements IDdbItemBaseProps {
+  static isPublicItem = {{__isPublicItem}}
+  static __typename = "{{__typename}}"
+  static __parent_typename = "{{__parent_typename}}"
+  static keys: Map<string, string> = new Map<string, string>([{% for key, attr in __attributes %}
+    ['{{key}}','{{ getJsType(__typename, key, attr) }}']{{ ", " if not loop.last else "" }}
+    {% endfor %}
+  ])
+  static peerKeys: Map<string, string> = new Map<string, string>([{% for key, attr in __attributes %}
+          {% if attr.__peer %}
+    ['{{key}}','{{attr.__peer}}']{{ ", " if not loop.last else "" }}
+          {% endif %}
+        {% endfor %}
+  ])
+  static uniqueKeys: string[] = [{% for key, attr in __attributes | onlyUnique %}'{{key}}'{{ ", " if not loop.last else "" }}
+        {% endfor %}]
+  static requiredKeys: string[] = [{% for key, attr in __attributes | onlyRequired %}'{{key}}'{{ ", " if not loop.last else "" }}
+        {% endfor %}]
+  static gsiKeys:Map<string, string[]> = new Map<string, string[]>([{% for key, attr in __attributes | onlyWithGsiKeys %}['{{key}}',['{{attr.__gsiKeys | join("','") }}']]{{ ", " if not loop.last else "" }}
+            {% endfor %}])
+  static metadataPerKey:Map<keyof IDdbItemBaseProps | keyof {{__typename}}, DomainPropertyMetadata<{{__typename}}>> = new Map<keyof IDdbItemBaseProps | keyof {{__typename}}, DomainPropertyMetadata<{{__typename}}>>([
+    ['date_created',{
+      key: 'date_created',
+      type: 'isodatestring'
+    }],
+    ['date_updated',{
+      key: 'date_updated',
+      type: 'isodatestring'
+    }],{% for key, attr in __attributes %}
+    ['{{key}}', {
+      key: '{{key}}',
+      {{ getJsTypeForMetadataType(__typename, key, attr) }}
+                  {% if attr.__gsiKeys%}
+      gsiKeys: ['{{attr.__gsiKeys | join("','") }}'],{% endif %}
+                  {% if attr.__peer%}
+      peer: '{{attr.__peer}}',{% endif %}
+                  {% if attr.__id %}
+      HASH: true,{% endif %}
+                  {% if attr.__required%}
+      required: true,{% endif %}
+                  {% if attr.__unique%}
+      unique: true,{% endif %}
+    }]{{ ", " if not loop.last else "" }}
+                {% endfor %}
+  ])
+  //#region the mandatory keys from IDdbItemBaseProps
+  public __typename: string
+  public HASH: string
+  public RANGE: string
+  public id: string
+  public date_created: Date
+  public date_updated: Date
+  //#endregion
+  constructor({ args, identity }: { args?: {{__typename}}Dto & IDdbItemKey & { isPublic?: boolean }, identity: Partial<IIdentity<Partial<IClaims>>> | null}) {
+      
+    Object.assign(this, args)
+//     // commenting below - do not apply restrictions on what can be added in dynamo and need to be present in data model
+//     // TODO make it configurable
+//     Object.assign(this, typeof args === "object"
+//       && Object.keys(args).reduce((validArgs: Record<string, any>, arg: string) => {
+//         if ({{__typename}}.metadataPerKey.has(arg as keyof {{__typename}})
+// 
+//           // commenting bellow because of issue with metadata types and js types, eg 'string[]' is js 'object' and they are not equal, causing valid props to fall off
+//           // && {{__typename}}.metadataPerKey.get(arg as keyof {{__typename}})?.type === typeof args[arg]
+//           ) {
+//           validArgs[arg] = args[arg]
+//         }
+//         return validArgs
+//       }, {})
+//     )
+
+    let pk: IDdbItemKey
+    const timestamp = new Date()
+    if (!!args?.id) {
+      const [HASH, RANGE] = withoutPrefix(String(args.id)).split(_sep2)
+      args = {...args, HASH, RANGE}
+    }
+    if (!!args?.HASH && !!args?.RANGE) {
+      pk = existingPKWithoutPrefix({{__typename}}.__typename, { HASH: args.HASH, RANGE: args.RANGE })
+    } else {
+      pk = newPK({{__parent_typename}}.__typename, {{__typename}}.__typename)
+    }
+    this.__typename = {{__typename}}.__typename
+    this.HASH = withPrefix(pk.HASH, {{__typename}}.isPublicItem || !!args?.isPublic, identity),
+    this.RANGE = withPrefix(pk.RANGE, {{__typename}}.isPublicItem || !!args?.isPublic, identity),
+    this.id = `${this.HASH}${_sep2}${this.RANGE}`
+    this.date_created = timestamp
+    this.date_updated = timestamp
+  }
+  {% for key, attr in __attributes | except_system_fields %}
+  public {{key}}?: {{ getJsType(__typename, key, attr) }}{% endfor%}
+                    }

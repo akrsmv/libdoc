@@ -1,0 +1,18 @@
+import { IClaims, IIdentity } from "{{importLibraryToUseInGeneratedFiles}}";
+import { {{__typename}} } from "../../{{lastDirInDataModelFilesOutDirPath}}/items/commandItems/{{__typename}}";
+
+export const start = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const validateStart = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const onCommandCompleted = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const onCommandErrored = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}

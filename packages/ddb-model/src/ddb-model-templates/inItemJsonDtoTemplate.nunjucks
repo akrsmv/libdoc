@@ -1,0 +1,9 @@
+{%- for key, attr in __inItemJSONs %} 
+import { {{ key }}Dto } from './{{key}}Dto'
+{%- endfor %}
+
+export type {{__typename}}Dto = {  
+  {%- for key, attr in __attributes | except_system_fields %}
+  {{key}}?: {{ getJsType(__typename, key, attr) }}
+  {%- endfor%}
+}

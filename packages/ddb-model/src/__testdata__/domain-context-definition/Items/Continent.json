@@ -1,0 +1,24 @@
+{
+    "__meta": {
+        "__desc": "continents",
+        "__isPublicItem": true
+    },
+    "__attributes": {
+        "name": {
+            "__type": "string",
+            "__gsiKeys": ["sGSI1"]
+        },
+        "continentDetails": {
+            "__type": {
+                "__meta": {
+                    "__desc": "JSON containing geographical details for this continent"
+                },
+                "__attributes": {
+                    "population": {
+                        "__type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "__meta": {
+        "__desc": ""
+    },
+    "__attributes": {
+        "invoice_due_date": {
+            "__type": "isodatestring"
+        },
+        "invoice_issued_date": {
+            "__type": "isodatestring"
+        },
+        "invoice_number": {
+            "__type": "string"
+        },
+        "orders": {
+            "__type": "string[]",
+            "__peer": "Order"
+        },
+        "total_net": {
+            "__type": "number"
+        },
+        "total_gross": {
+            "__type": "number"
+        },
+        "total_vat": {
+            "__type": "number"
+        },
+        "vat_percent": {
+            "__type": "number"
+        }
+    }
+}

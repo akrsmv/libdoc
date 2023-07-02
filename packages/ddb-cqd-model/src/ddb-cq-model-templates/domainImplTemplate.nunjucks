@@ -1,0 +1,44 @@
+import { IClaims, IIdentity } from "{{importLibraryToUseInGeneratedFiles}}";
+import { {{__typename}} } from "../../{{lastDirInDataModelFilesOutDirPath}}/items/{{itemNameSuffix | firstCaseLower}}Items/{{__typename}}";
+
+
+export const validateGet = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const validateQuery = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const validateCreate = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const validateUpdate = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const validatePatch = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const validateDelete = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const onCreate = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const onUpdate = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const onPatch = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+
+export const onDelete = async ({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    
+}
+

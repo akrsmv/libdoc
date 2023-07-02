@@ -1,0 +1,26 @@
+{
+  "name": "@incta/ddb-model",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "files": [
+    "src/**/*"
+  ],
+  "devDependencies": {
+    "@types/nunjucks": "^3.2.2",
+    "@types/pluralize": "^0.0.29"
+  },
+  "scripts": {
+    "build": "tsc && npm run copy-templates && npm run copy-base-domain-context-json",
+    "copy-templates": "cp -r ./src/ddb-model-templates ./dist/.",
+    "copy-base-domain-context-json": "cp ./src/base-domain-context.json ./dist/.",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@incta/common-utils": "^1.0.0",
+    "nunjucks": "^3.2.3",
+    "pluralize": "^8.0.0"
+  },
+  "author": "akrsmv",
+  "license": "ISC"
+}

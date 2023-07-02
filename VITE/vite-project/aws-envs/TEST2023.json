@@ -1,0 +1,10 @@
+{
+  "aws_user_pools_id": "eu-west-1_vlkganUCb",
+  "aws_s3_bucket_operations": "s3-dev-test2023-operations.akrsmv.net",
+  "aws_project_region": "eu-west-1",
+  "aws_user_pools_web_client_id": "5489f7k3ukj8dv69stfc85ks23",
+  "aws_cognito_identity_pool_id": "eu-west-1:26edce8a-2bc9-47ec-935c-40e60a4e1402",
+  "aws_appsync_graphqlEndpoint": "https://2h4mdbxjdfdbxkgv26z6dcholy.appsync-api.eu-west-1.amazonaws.com/graphql",
+  "aws_s3_bucket_resources": "s3-dev-test2023-resource.akrsmv.net",
+  "aws_appsync_api_id": "5rlff3toxvdfbkvwyiog55avou"
+}

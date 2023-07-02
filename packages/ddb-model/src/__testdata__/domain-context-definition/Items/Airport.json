@@ -1,0 +1,39 @@
+{
+    "__meta": {
+        "__desc": "Airports",
+        "__isPublicItem": true
+    },
+    "__attributes": {
+        "name": {
+            "__type": "string",
+            "__gsiKeys": ["sGSI1"]
+        },
+        "city":{
+            "__type": "string",
+            "__peer": "City"
+        },
+        "country":{
+            "__type": "string",
+            "__peer": "Country"
+        },
+        "continent":{
+            "__type": "string",
+            "__peer": "Continent"
+        },
+        "airpotDetails": {
+            "__type": {
+                "__meta": {
+                    "__desc": "JSON containing details for this airport"
+                },
+                "__attributes": {
+                    "size_square_km": {
+                        "__type": "number"
+                    },
+                    "nr_of_tracks": {
+                        "__type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

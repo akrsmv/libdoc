@@ -1,0 +1,46 @@
+{
+    "__meta": {
+        "__desc": "Tourist Season Data"
+    },
+    "__attributes": {
+        "price_flight_per_hour": {
+            "__type": "number"
+        },
+        "start_date": {
+            "__type": "isodatestring",
+            "__required": true,
+            "__gsiKeys": [
+                "sGSI1"
+            ]
+        },
+        "end_date": {
+            "__type": "isodatestring",
+            "__required": true,
+            "__gsiKeys": [
+                "sGSI2"
+            ]
+        },
+        "code": {
+            "__type": "string",
+            "__required": true,
+            "__gsiKeys": [
+                "sGSI3"
+            ]
+        },
+        "discounts" : {
+            "__type": {
+                "__attributes": {
+                    "vip": {
+                        "__type": "number"
+                    },
+                    "class_1": {
+                        "__type": "number"
+                    },
+                    "class_2": {
+                        "__type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

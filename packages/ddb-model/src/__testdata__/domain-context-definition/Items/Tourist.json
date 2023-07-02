@@ -1,0 +1,69 @@
+{
+    "__meta": {
+        "__desc": ""
+    },
+    "__attributes": {
+        "public_data_ref": {
+            "__type": "string",
+            "__peer": "Person",
+            "__gsiKeys": [
+                "sGSI1"
+            ]
+        },
+        "person": {
+            "__type": "string",
+            "__peer": "Person",
+            "__gsiKeys": [
+                "sGSI2"
+            ]
+        },
+        "fname": {
+            "__type": "string"
+        },
+        "lname": {
+            "__type": "string"
+        },
+        "id_card": {
+            "__type": "string",
+            "required": true,
+            "__gsiKeys": ["sGSI3"]
+        },
+        "iban": {
+            "__type": "string",
+            "required": true,
+            "__gsiKeys": ["sGSI4"]
+        },
+        "tourist_season": {
+            "__type": "string",
+            "__peer": "TouristSeason",
+            "__gsiKeys": ["sGSI5"]
+        },
+        "ticket_type": {
+            "__type": "string"
+        },
+        "airplane": {
+            "__type": "string",
+            "__peer": "Airplane"
+        },
+        "flight": {
+            "__type": "string",
+            "__peer": "Flight"
+        },
+        "from_airport": {
+            "__type": "string",
+            "__peer": "Location"
+        },
+        "to_airport": {
+            "__type": "string",
+            "__peer": "Location"
+        },
+        "from_country": {
+            "__type": "string",
+            "__peer": "Location"
+        },
+        "to_country": {
+            "__type": "string",
+            "__peer": "Location"
+        }
+    }
+}

@@ -1,0 +1,47 @@
+import { IClaims, IIdentity, IDdbDomain, staticImplements } from "{{importLibraryToUseInGeneratedFiles}}";
+import { {{__typename}} } from "../items/{{itemNameSuffix | firstCaseLower}}Items/{{__typename}}";
+
+@staticImplements<IDdbDomain<{{__typename}}>>()
+export class {{__typename}}{{itemNameSuffix}}Domain {
+    
+    public static async validateGet({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+
+    public static async validateQuery({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+
+    public static async validateCreate({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+    
+    public static async validateUpdate({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+    
+    public static async validatePatch({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+
+    public static async validateDelete({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+
+    public static async onCreate({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+    
+    public static async onUpdate({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+    
+    public static async onPatch({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+
+    public static async onDelete({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        
+    }
+
+}

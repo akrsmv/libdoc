@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "references": [
+    {
+      "path": "../ddb-model"
+    },
+    {
+      "path": "../ddb-actions"
+    },
+    {
+      "path": "../common-utils"
+    }
+  ],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["**/*.ts","**/schema-introspeciton.json", "**/test-ddb-model-generator-output/data-model.json", "**/test-ddb-model-generator-output/aws-ddb-table-definition.json"],
+  "exclude": [
+    "./dist",
+    "**/*_bakup_previous_generation/**"
+  ]
+}

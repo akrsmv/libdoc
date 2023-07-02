@@ -1,0 +1,14 @@
+{
+    "LOCALDOCKER": {
+        "gct_api": "http://localhost:28080"
+    },
+    "LOCAL": {
+        "gct_api": "http://localhost:8080"
+    },
+    "DEV": {
+        "gct_api": "https://gctapp-api-ehlgqdbr7q-ey.a.run.app"
+    },
+    "TEST": {
+        "gct_api": "https://dir.bg"
+    }
+}

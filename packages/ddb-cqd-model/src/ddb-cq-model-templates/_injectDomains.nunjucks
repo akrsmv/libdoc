@@ -1,0 +1,26 @@
+import { DdbItem, IDdbDomain, setDomainContext } from '{{importLibraryToUseInGeneratedFiles}}';
+{% for item, _ in Items | withoutMeta %}import { {{item}} } from '../items/dataItems/{{item}}';
+{% endfor -%}
+{% for item, _ in Items | withoutMeta %}import { {{item}}DataDomain } from './{{item}}DataDomain';
+{% endfor -%}
+{% for commandItem, _ in Commands | withoutMeta %}import { {{commandItem}} } from '../items/commandItems/{{commandItem}}';
+{% endfor -%}
+{% for commandItem, _ in Commands | withoutMeta %}import { {{commandItem}}Command } from '../commands/{{commandItem}}Command';
+{% endfor -%}
+{% for queryItem, _ in Queries | withoutMeta %}import { {{queryItem}} } from '../items/queryItems/{{queryItem}}';
+{% endfor -%}
+{% for queryItem, _ in Queries | withoutMeta %}import { {{queryItem}}Query } from '../queries/{{queryItem}}Query';
+{% endfor -%}
+
+export const _injectDomains = () => setDomainContext({
+    domainsMap: new Map<string, IDdbDomain<DdbItem>>(
+        [{% for item, _ in Items | withoutMeta %}
+            [{{item}}.__typename, {{item}}DataDomain]{{ "," if not loop.last else "" }}{% endfor -%}
+        {% for commandItem, _ in Commands | withoutMeta %}{{ "," if loop.first else "" }}
+            [{{commandItem}}.__typename, {{commandItem}}Command]{{ "," if not loop.last else "" }}{% endfor -%}
+        {% for queryItem, _ in Queries | withoutMeta %}{{ "," if loop.first else "" }}
+            [{{queryItem}}.__typename, {{queryItem}}Query]{{ "," if not loop.last else "" }}{% endfor %}
+        ]
+        
+    )
+})

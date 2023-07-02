@@ -1,0 +1,22 @@
+{
+  "name": "@incta/test-system",
+  "version": "1.0.0",
+  "description": "testing incta",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.341.0",
+    "@aws-sdk/client-dynamodb": "^3.354.0",
+    "@aws-sdk/client-ses": "^3.363.0",
+    "@incta/common-utils": "^1.0.0",
+    "@incta/ddb-actions": "^1.0.0",
+    "@incta/dispatch-action": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119"
+  }
+}

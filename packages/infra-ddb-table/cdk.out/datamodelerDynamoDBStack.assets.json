@@ -1,0 +1,19 @@
+{
+  "version": "29.0.0",
+  "files": {
+    "38ca59aac03449b3c8fb7411c8a3ff716daf7c91d00daaeafe784f5f1fb1b898": {
+      "source": {
+        "path": "datamodelerDynamoDBStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "38ca59aac03449b3c8fb7411c8a3ff716daf7c91d00daaeafe784f5f1fb1b898.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

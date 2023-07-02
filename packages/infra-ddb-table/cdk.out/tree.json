@@ -1,0 +1,325 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "datamodelerDynamoDBStack": {
+        "id": "datamodelerDynamoDBStack",
+        "path": "datamodelerDynamoDBStack",
+        "children": {
+          "DB": {
+            "id": "DB",
+            "path": "datamodelerDynamoDBStack/DB",
+            "children": {
+              "datamodeler": {
+                "id": "datamodeler",
+                "path": "datamodelerDynamoDBStack/DB/datamodeler",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "datamodelerDynamoDBStack/DB/datamodeler/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                      "aws:cdk:cloudformation:props": {
+                        "keySchema": [
+                          {
+                            "attributeName": "id",
+                            "keyType": "HASH"
+                          },
+                          {
+                            "attributeName": "meta",
+                            "keyType": "RANGE"
+                          }
+                        ],
+                        "attributeDefinitions": [
+                          {
+                            "attributeName": "id",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "meta",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "__SHARD",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "__REF1",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "__sSRCH1",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "__sSRCH2",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "__REF2",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "__sSRCH3",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "__REF3",
+                            "attributeType": "S"
+                          },
+                          {
+                            "attributeName": "__nSRCH1",
+                            "attributeType": "N"
+                          }
+                        ],
+                        "billingMode": "PAY_PER_REQUEST",
+                        "globalSecondaryIndexes": [
+                          {
+                            "indexName": "__SHARD",
+                            "keySchema": [
+                              {
+                                "attributeName": "__SHARD",
+                                "keyType": "HASH"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "ALL"
+                            }
+                          },
+                          {
+                            "indexName": "__REF1-__SHARD",
+                            "keySchema": [
+                              {
+                                "attributeName": "__REF1",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "__SHARD",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "INCLUDE",
+                              "nonKeyAttributes": [
+                                "revisions",
+                                "item_state"
+                              ]
+                            }
+                          },
+                          {
+                            "indexName": "__SHARD-__sSRCH1",
+                            "keySchema": [
+                              {
+                                "attributeName": "__SHARD",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "__sSRCH1",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "ALL"
+                            }
+                          },
+                          {
+                            "indexName": "__SHARD-__sSRCH2",
+                            "keySchema": [
+                              {
+                                "attributeName": "__SHARD",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "__sSRCH2",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "ALL"
+                            }
+                          },
+                          {
+                            "indexName": "__REF2-__SHARD",
+                            "keySchema": [
+                              {
+                                "attributeName": "__REF2",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "__SHARD",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "INCLUDE",
+                              "nonKeyAttributes": [
+                                "revisions",
+                                "item_state"
+                              ]
+                            }
+                          },
+                          {
+                            "indexName": "__SHARD-__sSRCH3",
+                            "keySchema": [
+                              {
+                                "attributeName": "__SHARD",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "__sSRCH3",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "ALL"
+                            }
+                          },
+                          {
+                            "indexName": "__REF3-__SHARD",
+                            "keySchema": [
+                              {
+                                "attributeName": "__REF3",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "__SHARD",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "INCLUDE",
+                              "nonKeyAttributes": [
+                                "revisions",
+                                "item_state"
+                              ]
+                            }
+                          },
+                          {
+                            "indexName": "__SHARD-__nSRCH1",
+                            "keySchema": [
+                              {
+                                "attributeName": "__SHARD",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "__nSRCH1",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "ALL"
+                            }
+                          },
+                          {
+                            "indexName": "__REF2-__sSRCH1",
+                            "keySchema": [
+                              {
+                                "attributeName": "__REF2",
+                                "keyType": "HASH"
+                              },
+                              {
+                                "attributeName": "__sSRCH1",
+                                "keyType": "RANGE"
+                              }
+                            ],
+                            "projection": {
+                              "projectionType": "ALL"
+                            }
+                          }
+                        ],
+                        "streamSpecification": {
+                          "streamViewType": "NEW_AND_OLD_IMAGES"
+                        },
+                        "tableName": "datamodeler"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                      "version": "2.64.0"
+                    }
+                  },
+                  "ScalingRole": {
+                    "id": "ScalingRole",
+                    "path": "datamodelerDynamoDBStack/DB/datamodeler/ScalingRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.64.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+                  "version": "2.64.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.252"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "datamodelerDynamoDBStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "datamodelerDynamoDBStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.64.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "datamodelerDynamoDBStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.64.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.252"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "datamodelerDynamoDBStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.64.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "datamodelerDynamoDBStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.64.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.64.0"
+        }
+      },
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.1.252"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.64.0"
+    }
+  }
+}

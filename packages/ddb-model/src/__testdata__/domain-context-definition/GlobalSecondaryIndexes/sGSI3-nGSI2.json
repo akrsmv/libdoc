@@ -1,0 +1,21 @@
+{
+    "IndexName": "sGSI3-nGSI2",
+    "KeySchema": [
+        {
+            "AttributeName": "sGSI3",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "nGSI2",
+            "KeyType": "RANGE"
+        }
+    ],
+    "Projection": {
+        "ProjectionType": "INCLUDE",
+        "NonKeyAttributes": "name,code"
+    },
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 100,
+        "WriteCapacityUnits": 100
+    }
+}

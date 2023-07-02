@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "references": [{ "path": "../ddb-model" }],
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src/base-domain-context.json",
+    "src/**/*.ts",
+    "src/**/*.nunjucks"
+  ],
+  "exclude": ["./dist", "**/*_bakup_previous_generation/**"]
+}

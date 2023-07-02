@@ -1,0 +1,16 @@
+{
+  "name": "@incta/dispatch-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "akrsmv",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-sns": "^3.360.0",
+    "@incta/ddb-actions": "^1.0.0",
+    "@incta/ddb-cqd-model": "^1.0.0"
+  }
+}

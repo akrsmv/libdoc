@@ -1,0 +1,18 @@
+projects:
+  TEST2023AppSync:
+    schemaPath: packages/infrastructure/src/graphql/schema.json
+    includes:
+      - VITE/vite-project/src/graphql/generated/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: VITE/vite-project/src/graphql/generated/API.ts
+        docsFilePath: VITE/vite-project/src/graphql/generated
+        region: eu-west-1
+        apiId: qzuosiq24jbjjbgtslcptzrynu
+        maxDepth: 3
+extensions:
+  amplify:
+    version: 3

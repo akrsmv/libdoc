@@ -1,0 +1,30 @@
+{
+    "__meta": {
+        "__desc": ""
+    },
+    "__attributes": {
+        "invoice_number": {
+            "__type": "string"
+        },
+        "invoice" : {
+            "__type": "string",
+            "__peer": "Invoice"
+        },
+        "sender_company": {
+            "__type": "string",
+            "__peer": "Company"
+        },
+        "sender_person": {
+            "__type": "string",
+            "__peer": "Person"
+        },
+        "recipient_person": {
+            "__type": "string",
+            "__peer": "Person"
+        },
+        "recipient_company": {
+            "__type": "string",
+            "__peer": "Company"
+        }
+    }
+}

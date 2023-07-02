@@ -1,0 +1,10 @@
+{
+    "__meta": {
+        "__desc": "Company Data"
+    },
+    "__attributes": {
+        "name": {
+            "__type": "string"
+        }      
+    }
+}

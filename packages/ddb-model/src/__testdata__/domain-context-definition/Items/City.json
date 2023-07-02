@@ -1,0 +1,44 @@
+{
+    "__meta": {
+        "__desc": "Cities",
+        "__isPublicItem": true
+    },
+    "__attributes": {
+        "name": {
+            "__type": "string",
+            "__gsiKeys": ["sGSI1"]
+        },
+        "country":{
+            "__type": "string",
+            "__peer": "Country"
+        },
+        "continent":{
+            "__type": "string",
+            "__peer": "Continent"
+        },
+        "cityDetails": {
+            "__type": {
+                "__meta": {
+                    "__desc": "JSON containing geographical details for this country"
+                },
+                "__attributes": {
+                    "isNearSea": {
+                        "__type": "boolean"
+                    },
+                    "hasAirport": {
+                        "__type": "boolean"
+                    },
+                    "hasAirtoursOffice": {
+                        "__type": "boolean"
+                    },
+                    "isCapital": {
+                        "__type": "boolean"
+                    },
+                    "population": {
+                        "__type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

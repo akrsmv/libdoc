@@ -1,0 +1,24 @@
+{
+    "__meta": {
+        "__desc": "represents Airplane Manifacturers"
+    },
+    "__attributes": {
+        "code": {
+            "__type": "string",
+            "__gsiKeys": ["sGSI1"],
+            "__required": true,
+            "__unique": true
+        },
+        "name": {
+            "__type": "string",
+            "__required": true,
+            "__gsiKeys": ["sGSI2"]
+        },
+        "country": {
+            "__type": "string",
+            "__required": true,
+            "__gsiKeys": ["sGSI3"],
+            "__peer": "Location"   
+        }
+    }
+}

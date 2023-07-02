@@ -1,0 +1,11 @@
+export * from "./interfaces"
+export * from "./DynamoDbClient"
+export * from "./interface-methods/getItems"
+export * from "./interface-methods/queryItems"
+export * from "./interface-methods/createItem"
+export * from "./interface-methods/bulkCreateItems"
+export * from "./interface-methods/updateItem"
+export * from "./interface-methods/deleteItem"
+
+// export * from "./query-management/query-interface-methods/getItemById"
+export * from "./query-management/query-interface-methods/searchItems"

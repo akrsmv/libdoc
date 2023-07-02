@@ -1,0 +1,11 @@
+{
+    "__meta": {
+        "__desc": "Generates PUBLIC test data"
+    },
+    "__attributes": {
+        "prop1": {
+            "__type": "string"
+        }
+
+    }
+}

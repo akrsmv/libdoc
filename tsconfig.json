@@ -1,0 +1,15 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/common-utils" },
+    { "path": "packages/ddb-model" },
+    { "path": "packages/ddb-actions" },
+    { "path": "packages/ddb-cqd-model" },
+    { "path": "packages/dispatch-action"},
+    { "path": "packages/cli" },
+    { "path": "packages/infra-ddb-table" },
+    { "path": "packages/test-system" },
+    { "path": "packages/localdev-api" },
+    { "path": "packages/infrastructure" }
+  ]
+}

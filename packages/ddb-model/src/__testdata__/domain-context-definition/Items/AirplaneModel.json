@@ -1,0 +1,34 @@
+{
+    "__meta": {
+        "__desc": "Represents Airplane Model from a particular Manifacturer. Good example of Parent-Detail or 1-to-many SQL relations: a model can have only one manifacturer. In case there are more manifacturers (joint effort etc) we can list them as array of peers in the manifacturers.",
+        "__parent_typename": "AirplaneManifacturer"
+    },
+    "__attributes": {
+        "capacity": {
+            "__type": "number",
+            "__gsiKeys": ["nGSI1"]
+        },
+        "country": {
+            "__type": "string",
+            "__peer": "Location"
+        },
+        "name": {
+            "__type": "string",
+            "__unique": true
+        },
+        "code": {
+            "__type": "string",
+            "__gsiKeys": ["sGSI1", "sGSI2"],
+            "__unique": true
+        },
+        "manifacturers": {
+            "__type": "string[]",
+            "__peer": "AirplaneManifacturer"
+        },
+        "baseAirplaneModel": {
+            "__type": "string",
+            "__peer": "AirplaneModel",
+            "__gsiKeys": ["sGSI3"]
+        }
+    }
+}

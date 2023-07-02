@@ -1,0 +1,20 @@
+{
+    "IndexName": "sGSI1-sGSI3",
+    "KeySchema": [
+        {
+            "AttributeName": "sGSI1",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "sGSI3",
+            "KeyType": "RANGE"
+        }
+    ],
+    "Projection": {
+        "ProjectionType": "KEYS_ONLY"
+    },
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 100,
+        "WriteCapacityUnits": 100
+    }
+}

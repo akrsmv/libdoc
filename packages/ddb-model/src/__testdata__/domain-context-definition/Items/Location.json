@@ -1,0 +1,28 @@
+{
+    "__meta": {
+        "__desc": "Data Visible for all agents (OR, every private data having SYS_PUBLIC_DATA_REF property will pull corresponding record and merge with it before returning to client)"
+    },
+    "__attributes": {
+        "phone1": {
+            "__type": "string"
+        },
+        "phone2": {
+            "__type": "string"
+        },
+        "address1": {
+            "__type": "string"
+        },
+        "address2": {
+            "__type": "string"
+        },
+        "name": {
+            "__type": "string",
+            "__gsiKeys": ["sGSI2"]
+        },
+        "type": {
+            "__type": "enum",
+            "__values": "city|country|continent|region|airport",
+            "__gsiKeys": ["sGSI1"]
+        }
+    }
+}
