@@ -17,7 +17,6 @@ export class EventBusConstruct extends Construct {
 
     public readonly eventBus: sns.Topic
     public readonly controller: lambda.Function
-    public readonly cognitoTrigger: lambda.Function
 
     constructor(scope: Construct, id: string, props: CdkStackProps & DynamoDBConstruct) {
         super(scope, id);
@@ -35,17 +34,7 @@ export class EventBusConstruct extends Construct {
         this.controller.node.addDependency(props.table)
         props.table.grantFullAccess(this.controller)
 
-        this.cognitoTrigger = new nodejs.NodejsFunction(this, 'CognitoTriggerLambda', {
-            runtime: lambda.Runtime.NODEJS_18_X,
-            functionName: `lam-${props.envName}-${props.clientAppName}-cog-trigger`,
-            entry: join(props.clientAppDirName, 'packages', 'test-system', 'src', 'lambda.cognitoTrigger.ts'),
-            environment: {
-                "LOGLEVEL": "DEBUG",
-                'DB_NAME': props.table.tableName
-            }
-        });
-        this.cognitoTrigger.node.addDependency(props.table)
-        props.table.grantFullAccess(this.cognitoTrigger)
+
 
         // this.cognitoTrigger.addToRolePolicy(new iam.PolicyStatement({
         //     effect: iam.Effect.ALLOW,

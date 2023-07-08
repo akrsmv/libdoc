@@ -7,6 +7,7 @@ import {
   CfnOutput,
   aws_lambda as lambda,
   aws_iam as iam,
+  aws_lambda_nodejs as nodejs,
   SymlinkFollowMode, DockerImage, BundlingOutput
 } from 'aws-cdk-lib';
 import { DynamoDBConstruct } from './constructs/dynamoDbConstruct';
@@ -19,6 +20,7 @@ import { AppSyncConstruct } from './constructs/appSyncConstruct';
 import { WorkerConstruct } from './constructs/workerConstruct';
 import { DynamoEventsConstruct } from './constructs/dynamoEventsConstruct';
 import { S3Construct } from './constructs/s3Construct';
+import { UserPool, UserPoolOperation } from 'aws-cdk-lib/aws-cognito';
 // import { CognitoConstruct } from './constructs/cognitoConstruct';
 // import { EventBusConstruct } from './constructs/eventBusConstruct';
 // import { AppSyncConstruct } from './constructs/appSyncConstruct';
@@ -49,37 +51,36 @@ export class CdkStack extends Stack {
     super(scope, id, props);
 
     const dynamoDbConstruct = new DynamoDBConstruct(this, 'DB', props)
-    const eventBusConstruct = new EventBusConstruct(this, `Events`, {...props, ...dynamoDbConstruct})
-    const cognitoConstruct = new CognitoConstruct(this, `Auth`, { ...props, eventBusConstruct })
+    const eventBusConstruct = new EventBusConstruct(this, `Events`, { ...props, ...dynamoDbConstruct })
+    const cognitoConstruct = new CognitoConstruct(this, `Auth`, { ...props, eventBusConstruct, dynamoDbConstruct })
     const s3Construct = new S3Construct(this, `Buckets`, props)
 
-    // dynamoDbConstruct.grantAccess(eventBusConstruct.controller)
-    // dynamoDbConstruct.grantAccess(eventBusConstruct.cognitoTrigger)
-
     eventBusConstruct.controller.addEnvironment("USERPOOLID", cognitoConstruct.userPool.userPoolId)
+
     cognitoConstruct.superUserRole.assumeRolePolicy!.addStatements(new iam.PolicyStatement({
       actions: ['sts:AssumeRole'],
       effect: iam.Effect.ALLOW,
       principals: [new iam.ArnPrincipal(eventBusConstruct.controller.role!.roleArn)],//new iam.ServicePrincipal('lambda.amazonaws.com')
     }))
 
+    // ----------------------
+    new WorkerConstruct(this, 'Worker', {
+      ...props,
+      ...dynamoDbConstruct,
+      ...eventBusConstruct,
+      ...s3Construct
+    })
+    // ----------------------
+
+    //-----------------------
+    new DynamoEventsConstruct(this, 'DBStreams', { ...props, ...eventBusConstruct, ...dynamoDbConstruct })
+    //-----------------------
+
     const appSyncConstruct = new AppSyncConstruct(this, `AppSync`, {
       ...props,
       ...cognitoConstruct,
       lambdaDs: eventBusConstruct.controller
     })
-
-    //-----------------------
-    new DynamoEventsConstruct(this, 'DBStreams', {...props, ...eventBusConstruct, ...dynamoDbConstruct})
-    //-----------------------
-
-    // ----------------------
-    new WorkerConstruct(this, 'Worker', {
-      ...props,
-      ...dynamoDbConstruct,
-      ...eventBusConstruct
-    })
-    // ----------------------
 
     // const appSyncLambdaDatasourceConstruct = new AppSyncLambdaDataSourceConstruct(this, "Mutation", {
     //   lambdaFunction: eventBusConstruct.controller,
@@ -175,13 +176,13 @@ export class CdkStack extends Stack {
       description: "aws_appsync_api_id",
       value: appSyncConstruct.graphQLApi.apiId
     })
-      new CfnOutput(this, "aws_s3_bucket_operations", {
-        description: "aws_s3_bucket_operations",
-        value: s3Construct && s3Construct.operationsBucket && s3Construct.operationsBucket.bucketName
-      })
-      new CfnOutput(this, "aws_s3_bucket_resources", {
-        description: "aws_s3_bucket_resources",
-        value: s3Construct && s3Construct.operationsBucket && s3Construct.resourceBucket.bucketName
-      })
+    new CfnOutput(this, "aws_s3_bucket_operations", {
+      description: "aws_s3_bucket_operations",
+      value: s3Construct && s3Construct.operationsBucket && s3Construct.operationsBucket.bucketName
+    })
+    new CfnOutput(this, "aws_s3_bucket_resources", {
+      description: "aws_s3_bucket_resources",
+      value: s3Construct && s3Construct.operationsBucket && s3Construct.resourceBucket.bucketName
+    })
   }
 }

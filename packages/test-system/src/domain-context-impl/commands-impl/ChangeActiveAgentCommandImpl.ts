@@ -2,7 +2,7 @@ import { IClaims, IIdentity, _sep1, versionString } from "@incta/ddb-model";
 import { ChangeActiveAgent } from "../../domain-context/items/commandItems/ChangeActiveAgent";
 import { AdminUpdateUserAttributesCommand, CognitoIdentityProviderClient, CognitoIdentityProviderClientConfig } from "@aws-sdk/client-cognito-identity-provider";
 import { ValidationError, logdebug } from "@incta/common-utils";
-import { getItems, patchItem, updateItem } from "@incta/ddb-actions";
+import { getItems, patchItem, queryItems, searchItems, updateItem } from "@incta/ddb-actions";
 import { User } from "../../domain-context/items/dataItems/User";
 import { ChangeActiveAgentDto } from "../../domain-context/items/commandItems/dtos/ChangeActiveAgentDto";
 
@@ -18,7 +18,13 @@ export const start = async (changeActiveAgent: ChangeActiveAgent, identity: Part
           }
   }, identity)).items[0]
 
+  const userPrivateAgents = (await searchItems<User>({
+    privateData: true,
+    __typename: "Agent"
+    }, {...identity, claims: {active_agent: undefined}})).items
+
   logdebug('LOADED USER is ', user)
+  logdebug('LOADED USER PRIVATE AGENTS are ', userPrivateAgents)
 
   const config: CognitoIdentityProviderClientConfig = {}
   const client = new CognitoIdentityProviderClient(config);
@@ -41,17 +47,22 @@ export const start = async (changeActiveAgent: ChangeActiveAgent, identity: Part
   if (changeActiveAgent.new_active_agent) {
       // -----------------------------> 
     // validate requested new active agent is part of user's visible agents
-    if (!user || !user.agents) {
+    if (!user) {
+      throw new ValidationError('user not found')
+    } else if (!user.agents && !userPrivateAgents.length) {
       throw new ValidationError('user does not have any agents assigned')
+    }
+    else if (
+      //new_active_agent is either not part of active_agents (public ones)
+      (Array.isArray(user.agents) && user.agents.indexOf(String(changeActiveAgent.new_active_agent)) === -1)
+      // or new_active_agent is not some private agent for this user, previously created
+    || !userPrivateAgents.filter(agt => agt.id === changeActiveAgent.new_active_agent).length) {
+        throw new ValidationError('user agents does not include requested new agent')
+    }
+    else {
+      // proceed
+    }        
   }
-  else if (Array.isArray(user.agents) && user.agents.indexOf(String(changeActiveAgent.new_active_agent)) === -1) {
-      throw new ValidationError('user agents does not include requested new agent')
-  }
-  else if (typeof user.agents === 'string' && user.agents === String(changeActiveAgent.new_active_agent)) {
-      throw new ValidationError('user has a single agent assigned and it is not matching the requested newagent')
-  }
-      
-}
     
 
     const response = await client.send(command);

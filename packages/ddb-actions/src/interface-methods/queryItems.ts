@@ -1,9 +1,9 @@
 'use strict'
 // TODO keys (HASH / RANGE) as separate params, and a string for the update expression?
 // https://github.com/aws/aws-sdk-js/blob/master/ts/dynamodb.ts
-import { dynamoDbClient, fromAttributeMapArray, DB_NAME, toAttributeMap, fromAttributeMap } from '../DynamoDbClient';
+import { dynamoDbClient, fromAttributeMapArray, DB_NAME, toAttributeMap } from '../DynamoDbClient';
 import { ensureProjectionExpressionRequiredKeys, getItems, populatePeerKeys } from './getItems';
-import { DdbItem, GsiProjectionType, IClaims, IIdentity, __tableModel, _nGSIKeyPrefix, _sGSIKeyPrefix, _sep1, _sep2, withPrefix } from '@incta/ddb-model';
+import { DdbItem, GsiProjectionType, IClaims, IIdentity, __itemMetadata, __tableModel, _nGSIKeyPrefix, _sGSIKeyPrefix, _sep1, _sep2, calculatePrivateOrPublicData, withPrefix } from '@incta/ddb-model';
 import { AttributeValue, QueryCommand, QueryInput } from '@aws-sdk/client-dynamodb';
 import { ValidationError, decodeBase64ToJSON, encodeJSONToBase64, logdebug, ppjson } from '@incta/common-utils';
 
@@ -38,7 +38,8 @@ export interface DdbQueryInput {
     keysOnly?: boolean
     limit?: number
     searchBackward?: boolean
-    searchPublicData?: boolean
+    publicData?: boolean
+    privateData?: boolean
     loadPeersInput?: DdbLoadPeersInput
     __typename?: string
 }
@@ -180,7 +181,7 @@ const stripSystemKeys = <T extends DdbItem =DdbItem>(item: Record<string, any>) 
 export const queryItems = async <T extends DdbItem = DdbItem>(args: DdbQueryInput, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<T>> => {
 
     let ddbQueryPayload = args || {}
-
+    let _item_metadata = __itemMetadata(args)
     if (!ddbQueryPayload.hashKey) {
         throw new ValidationError("attempt to query without a hashKey ")
     }
@@ -223,11 +224,11 @@ export const queryItems = async <T extends DdbItem = DdbItem>(args: DdbQueryInpu
     }
 
     const dexpressionAttributeNames = { [`#${primaryKeyName}`]: primaryKeyName }
-    const dexpressionAttributeValues = { [`:${primaryKeyName}`]: toAttributeMap({ primaryKeyValue: withPrefix(String(Object.values(ddbQueryPayload.hashKey)[0].eq), !!ddbQueryPayload.searchPublicData, identity) }).primaryKeyValue }
+    const dexpressionAttributeValues = { [`:${primaryKeyName}`]: toAttributeMap({ primaryKeyValue: withPrefix(String(Object.values(ddbQueryPayload.hashKey)[0].eq), calculatePrivateOrPublicData(ddbQueryPayload, _item_metadata), identity) }).primaryKeyValue }
 
     // TODO BUG - how to plugin __prefix here
     if (!!ddbQueryPayload.rangeKey) {
-        dkeyConditionExpression += ` and ${ddbConditionExpression(ddbQueryPayload.rangeKey, dexpressionAttributeNames, dexpressionAttributeValues, identity, !!ddbQueryPayload.searchPublicData)}`
+        dkeyConditionExpression += ` and ${ddbConditionExpression(ddbQueryPayload.rangeKey, dexpressionAttributeNames, dexpressionAttributeValues, identity, calculatePrivateOrPublicData(ddbQueryPayload, _item_metadata))}`
     }
 
     //#region Analyse payload and add any additional filters
@@ -253,7 +254,7 @@ export const queryItems = async <T extends DdbItem = DdbItem>(args: DdbQueryInpu
                         && Array.isArray(ddbIndexConfig.Projection.NonKeyAttributes)
                         && ddbIndexConfig.Projection.NonKeyAttributes.includes(filterKey)))) {
 
-                tmpDfilterExpressionArr.push(ddbConditionExpression({ [filterKey]: ddbQueryPayload.filter[filterKey] }, dexpressionAttributeNames, dexpressionAttributeValues, null, !!ddbQueryPayload.searchPublicData)) // TODO should we pass identity as well, should we consider metadata? and pass identity only if the filter is to be replaced with some sGSI key?
+                tmpDfilterExpressionArr.push(ddbConditionExpression({ [filterKey]: ddbQueryPayload.filter[filterKey] }, dexpressionAttributeNames, dexpressionAttributeValues, null, calculatePrivateOrPublicData(ddbQueryPayload, _item_metadata))) // TODO should we pass identity as well, should we consider metadata? and pass identity only if the filter is to be replaced with some sGSI key?
             } else {
                 excludedFromFilter.push(filterKey)
             }
@@ -292,7 +293,7 @@ export const queryItems = async <T extends DdbItem = DdbItem>(args: DdbQueryInpu
     logdebug("[queryItems] <==DDB QueryOutput: ", dynamoResult)
 
     let output: Result<T> = {
-        items: (fromAttributeMapArray<T>(dynamoResult.Items) || []).map<T>(item => stripSystemKeys<T>(item)),
+        items: (fromAttributeMapArray<T>(dynamoResult.Items) || []),
         count: dynamoResult.Count ?? 0,
         pageToken: encodeJSONToBase64(dynamoResult.LastEvaluatedKey)
     }

@@ -13,7 +13,7 @@ import {
   IDdbItemBaseProps,
   IDdbItemKey,
   IDdbItemStaticMetadata,
-  newPK, staticImplements, withPrefix, withoutPrefix, _sep1
+  newPK, staticImplements, withPrefix, withoutPrefix, _sep1, calculatePrivateOrPublicData
 } from '{{importLibraryToUseInGeneratedFiles}}'
 
 {# @staticImplements<IDdbItemStaticMetadata<{{__typename}}>>() #}
@@ -100,8 +100,8 @@ export class {{__typename}} implements IDdbItemBaseProps {
       pk = newPK({{__parent_typename}}.__typename, {{__typename}}.__typename)
     }
     this.__typename = {{__typename}}.__typename
-    this.HASH = withPrefix(pk.HASH, {{__typename}}.isPublicItem || !!args?.isPublic, identity),
-    this.RANGE = withPrefix(pk.RANGE, {{__typename}}.isPublicItem || !!args?.isPublic, identity),
+    this.HASH = withPrefix(pk.HASH, calculatePrivateOrPublicData(args, {{__typename}}), identity),
+    this.RANGE = withPrefix(pk.RANGE, calculatePrivateOrPublicData(args, {{__typename}}), identity),
     this.id = `${this.HASH}${_sep2}${this.RANGE}`
     this.date_created = timestamp
     this.date_updated = timestamp

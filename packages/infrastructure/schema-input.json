@@ -14,10 +14,15 @@
                     ]
                 },
                 "email": {
+                    "__meta": {
+                        "__desc": "Corresponds to email with which user has registered in cognito"
+                    },
                     "__type": "string",
                     "__gsiKeys": [
                         "sGSI1"
-                    ]
+                    ],
+                    "unique": true,
+                    "required": true
                 },
                 "sub": {
                     "__type": "string",
@@ -26,6 +31,11 @@
                     "__gsiKeys": [
                         "sGSI2"
                     ]
+                },
+                "idpId": {
+                    "__type": "string",
+                    "__required": true,
+                    "__unique": true
                 },
                 "preferredIamRole": {
                     "__type": "string"
@@ -470,6 +480,39 @@
         },
         "inItemStringEnums": {},
         "__typename": "Order"
+    },
+    "UserEmail": {
+        "itemDef": {
+            "__meta": {
+                "__desc": "Backs up cognito users, enriching them with additional information. WARNING __REF1 is already in use by the cognito userbase item.",
+                "__parent_typename": "User",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "agent": {
+                    "__type": "string",
+                    "__peer": "Agent"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "inItemJSONs": {},
+        "inItemStringEnums": {},
+        "__typename": "UserEmail"
     },
     "Country": {
         "itemDef": {

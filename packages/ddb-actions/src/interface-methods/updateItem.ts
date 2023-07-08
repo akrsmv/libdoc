@@ -2,7 +2,7 @@
 
 import { AttributeValue, TransactWriteItem, TransactWriteItemsCommand, TransactWriteItemsInput } from '@aws-sdk/client-dynamodb'
 import { DB_NAME, toAttributeMap, preparePkforUniqueItemKey, ddbRequest } from '../DynamoDbClient';
-import { DdbItem, __itemMetadata, getRegularKeyForSystemKey, isUniqueKey, withPrefix, versionString, IIdentity, _sep1, IClaims, _nGSIKeyPrefix, _sGSIKeyPrefix } from '@incta/ddb-model';
+import { DdbItem, __itemMetadata, getRegularKeyForSystemKey, isUniqueKey, withPrefix, versionString, IIdentity, _sep1, IClaims, _nGSIKeyPrefix, _sGSIKeyPrefix, calculatePrivateOrPublicData } from '@incta/ddb-model';
 import { ValidationError, convertDatesToIsoDateStrings, get_correlation_token, logdebug } from '@incta/common-utils';
 import { getItems, inferItemKeys } from './getItems';
 import { syncItemSystemKeys } from '../utils/syncItemSystemKeys';
@@ -65,7 +65,7 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
     const dexistingItem = toAttributeMap(existingItem);
     const _item_metadata = __itemMetadata(existingItem)
 
-    const dexistingItemkey = { HASH: { S: withPrefix(itemUpdates.HASH, !!(_item_metadata.isPublicItem || itemUpdates.isPublic || existingItem.isPublic), identity) }, RANGE: { S: withPrefix(itemUpdates.RANGE, !!(_item_metadata.isPublicItem || itemUpdates.isPublic || existingItem.isPublic), identity) } };
+    const dexistingItemkey = { HASH: { S: withPrefix(itemUpdates.HASH, calculatePrivateOrPublicData(existingItem, _item_metadata), identity) }, RANGE: { S: withPrefix(itemUpdates.RANGE, calculatePrivateOrPublicData(existingItem, _item_metadata), identity) } };
     const drevUpdates = toAttributeMap({ "inc_revision": 1, "start_revision": 0, "rev": itemUpdates.rev })
 
     //#region check for any refs loaded and unload them before updating starts
@@ -161,7 +161,7 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
                     _systemKeysForUpdate.reduce<{ [key: string]: AttributeValue }>((accum, key) => {
                         const regularKeyName = String(getRegularKeyForSystemKey(key, _item_metadata))
                         if (_item_metadata.keys.get(regularKeyName) === 'string') {
-                            accum[`:${key}`] = { S: withPrefix(String(ditemUpdates[regularKeyName].S), !!(_item_metadata.isPublicItem || itemUpdates.isPublic || existingItem.isPublic), identity) }
+                            accum[`:${key}`] = { S: withPrefix(String(ditemUpdates[regularKeyName].S), calculatePrivateOrPublicData(existingItem, _item_metadata), identity) }
                         } else {
                             accum[`:${key}`] = ditemUpdates[regularKeyName]
                         }
@@ -171,7 +171,7 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
                     systemKeysForRestore.reduce<{ [key: string]: AttributeValue }>((accum, key) => {
                         const regularKeyName = String(getRegularKeyForSystemKey(key, _item_metadata))
                         if (_item_metadata.keys.get(regularKeyName) === 'string') {
-                            accum[`:${key}`] = { S: withPrefix(String(dexistingItem[regularKeyName].S), !!(_item_metadata.isPublicItem || itemUpdates.isPublic || existingItem.isPublic), identity) }
+                            accum[`:${key}`] = { S: withPrefix(String(dexistingItem[regularKeyName].S), calculatePrivateOrPublicData(existingItem, _item_metadata), identity) }
                         } else {
                             accum[`:${key}`] = dexistingItem[regularKeyName]
                         }
@@ -184,7 +184,7 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
                     }, { //always mark when update happened and who did it:
                         ':date_updated': { S: date_updated.toISOString() },
                         ':user_updated': { S: String(identity?.sub) },
-                        ':TITEM': { S: withPrefix(`${_item_metadata.__typename}${_sep1}${date_updated.toISOString().slice(0, 10)}`, !!(_item_metadata.isPublicItem || itemUpdates.isPublic || existingItem.isPublic), identity) }
+                        ':TITEM': { S: withPrefix(`${_item_metadata.__typename}${_sep1}${date_updated.toISOString().slice(0, 10)}`, calculatePrivateOrPublicData(existingItem, _item_metadata), identity) }
                     })
                 ),
                 UpdateExpression: "set #rev = if_not_exists(#rev, :start_revision) + :inc_revision"
@@ -229,7 +229,7 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
             _uniqueKeysToDelete.reduce<TransactWriteItem[]>((accum, key) => {
                 accum.push({
                     Delete: {
-                        Key: toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(existingItem, key), !!(_item_metadata.isPublicItem || existingItem.isPublic), identity), RANGE: withPrefix(`${existingItem[key]}`, !!(_item_metadata.isPublicItem || existingItem.isPublic), identity) }),
+                        Key: toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(existingItem, key), calculatePrivateOrPublicData(existingItem, _item_metadata), identity), RANGE: withPrefix(`${existingItem[key]}`, calculatePrivateOrPublicData(existingItem, _item_metadata), identity) }),
                         TableName: DB_NAME(),
                         ReturnValuesOnConditionCheckFailure: "ALL_OLD"
                     }
@@ -240,7 +240,7 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
             _uniqueKeysToCreate.reduce<TransactWriteItem[]>((accum, key) => {
                 accum.push({
                     Put: {
-                        Item: toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(existingItem, key), !!(_item_metadata.isPublicItem || itemUpdates.isPublic || existingItem.isPublic), identity), RANGE: withPrefix(`${itemUpdates[key]}`, !!(_item_metadata.isPublicItem || itemUpdates.isPublic || existingItem.isPublic), identity) }),
+                        Item: toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(existingItem, key), calculatePrivateOrPublicData(existingItem, _item_metadata), identity), RANGE: withPrefix(`${itemUpdates[key]}`, calculatePrivateOrPublicData(existingItem, _item_metadata), identity) }),
                         TableName: DB_NAME(),
                         ReturnValuesOnConditionCheckFailure: "ALL_OLD",
                         ConditionExpression: "(attribute_not_exists(#HASH) and attribute_not_exists(#RANGE))",

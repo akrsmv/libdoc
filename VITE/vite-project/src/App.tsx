@@ -3,13 +3,15 @@ import { Amplify, Hub, Storage } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 
 import * as awsConfig from './aws-exports.json';
-import { GraphiqlEditor } from './components/GraphiqlEditor';
+import { GraphiqlEditor } from './pages/GraphiqlEditor';
 import profileIcon from './assets/react.svg';
 import { useUserVisibleAgentsStore } from './stores/VisibleAgentsStore';
 import { UserAgentsBox } from './components/UserAgentsBox';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-import UploadFile from './components/UploadFile';
-import ListS3Objects from './components/S3ListObjects';
+import UploadFile from './pages/UploadFile';
+import ListS3Objects from './pages/S3ListObjects';
+import UserEmails from './pages/UserEmails';
+import UserAgents from './pages/UserAgents';
 
 Amplify.configure({
   Auth: {
@@ -68,6 +70,7 @@ function App() {
                 <NavLink to="graphiql" > graphiql </NavLink>
                 <NavLink to="documents-upload" > upload </NavLink>
                 <NavLink to="documents-view" > view </NavLink>
+              
               </div>
 
               {/* <!-- Main Content --> */}
@@ -81,6 +84,8 @@ function App() {
                   <div>
                     {/* <!-- Navigation Links --> */}
                     the user activeagent is: {userAgentsStore.userObject?.active_agent}
+                    <NavLink to="settings/user-emails" > Emails </NavLink>
+                    <NavLink to="settings/agents" > Agents </NavLink>
                     <UserAgentsBox />
                   </div>
                   <div>
@@ -96,6 +101,8 @@ function App() {
                     <Route path="/graphiql/*" element={<GraphiqlEditor />} />
                     <Route path="/documents-upload/*" element={<UploadFile />} />
                     <Route path="/documents-view/*" element={<ListS3Objects/>} />
+                    <Route path="/settings/user-emails/*" element={<UserEmails/>} />
+                    <Route path="/settings/agents/*" element={<UserAgents/>} />
                   </Routes>
                 </div>
               </div>

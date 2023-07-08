@@ -1,4 +1,4 @@
-import { IIdentity, __domain, _sep1, _sep2, versionString, IClaims, IInctaUserItem } from "@incta/ddb-cqd-model"
+import { IIdentity, __domain, _sep1, _sep2, versionString, IClaims, IInctaUserItem, _default_agent_id } from "@incta/ddb-cqd-model"
 import { DispatchActionInput, VALID_INPUT_ACTIONS } from "./interface/DispatchActionInput"
 import { NotAuthenticatedError, NotAuthorizedError, firstCaseUpper } from "@incta/common-utils"
 import { createItem, deleteItem, getItems, patchItem, queryItems, searchItems, updateItem } from "@incta/ddb-actions"
@@ -11,7 +11,7 @@ export const dispatchAction = async (input: DispatchActionInput, identity: Parti
         throw new NotAuthenticatedError("No Identity")
     }
     if (!identity.claims) {
-        throw new NotAuthorizedError("No Active Agent")
+        throw new NotAuthorizedError("No Identity Caims")
     }
 
     const __typenameObject = __domain().domainsMap?.get(input.meta.__typename)

@@ -1,7 +1,7 @@
 'use strict'
 
 import { DB_NAME, toAttributeMap, deletedVersionString, preparePkforUniqueItemKey, ddbRequest } from '../DynamoDbClient';
-import { IClaims, IDdbItemKey, IIdentity, __itemMetadata, withoutPrefix } from '@incta/ddb-model';
+import { IClaims, IDdbItemKey, IIdentity, __itemMetadata, calculatePrivateOrPublicData, withoutPrefix } from '@incta/ddb-model';
 import { getItems, inferIdentityOfExitingkey, inferItemKeys } from './getItems';
 import { _sep1, withPrefix } from '@incta/ddb-model';
 import { get_correlation_token, logdebug } from '@incta/common-utils';
@@ -48,7 +48,7 @@ export const deleteItem = async (dto: Required<IDdbItemKey>, identity: Partial<I
             uqConstraints.push(
                 {
                     Delete: {
-                        Key: { HASH: { S: withPrefix(preparePkforUniqueItemKey(existingItem, String(_key)), _item_metadata.isPublicItem || !!existingItem.isPublic, existingItemKeyIdentity) }, RANGE: { S: withPrefix(String(existingItem[_key]), _item_metadata.isPublicItem || !!existingItem.isPublic, existingItemKeyIdentity) } },
+                        Key: { HASH: { S: withPrefix(preparePkforUniqueItemKey(existingItem, String(_key)), calculatePrivateOrPublicData(existingItem, _item_metadata), existingItemKeyIdentity) }, RANGE: { S: withPrefix(String(existingItem[_key]), calculatePrivateOrPublicData(existingItem, _item_metadata), existingItemKeyIdentity) } },
                         TableName: DB_NAME(),
                         ReturnValuesOnConditionCheckFailure: "ALL_OLD"
                     }

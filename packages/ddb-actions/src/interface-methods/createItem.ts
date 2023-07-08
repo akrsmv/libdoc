@@ -1,7 +1,7 @@
 'use strict'
 
 import { DB_NAME, toAttributeMap, preparePkforUniqueItemKey, ddbRequest, dbConfig } from '../DynamoDbClient';
-import { DdbItem, IClaims, IIdentity, __createItem, __domain, __itemMetadata, _sep1, withPrefix } from '@incta/ddb-model'
+import { DdbItem, IClaims, IIdentity, __createItem, __domain, __itemMetadata, _sep1, calculatePrivateOrPublicData, withPrefix } from '@incta/ddb-model'
 import { convertDatesToIsoDateStrings, logdebug, removeEmpty } from '@incta/common-utils';
 import { AttributeValue, TransactWriteItem, TransactWriteItemsCommand, TransactWriteItemsInput } from '@aws-sdk/client-dynamodb';
 
@@ -38,7 +38,7 @@ export const createItem = async <T extends DdbItem>(dto: Partial<T>, identity: P
         if (_item_metadata.gsiKeys.has(key)) {
             for (const xGSI of _item_metadata.gsiKeys.get(key) || []) {
                 if ("S" in ditem[key]) {
-                    accum[xGSI] = { S: withPrefix(`${ditem[key].S}`, _item_metadata.isPublicItem || !!item.isPublic, identity) }
+                    accum[xGSI] = { S: withPrefix(`${ditem[key].S}`, calculatePrivateOrPublicData(item, _item_metadata), identity) }
                 } else {
                     accum[xGSI] = ditem[key]
                 }
@@ -49,14 +49,14 @@ export const createItem = async <T extends DdbItem>(dto: Partial<T>, identity: P
     //#endregion
 
     // set the system TITEM key
-    ditem['TITEM'] = { S: withPrefix(`${item.__typename}${_sep1}${item.date_updated.toISOString().slice(0, 10)}`, _item_metadata.isPublicItem || !!item.isPublic, identity) }
+    ditem['TITEM'] = { S: withPrefix(`${item.__typename}${_sep1}${item.date_updated.toISOString().slice(0, 10)}`, calculatePrivateOrPublicData(item, _item_metadata), identity) }
     // set the NSHARD key
-    ditem['NSHARD'] = { S: withPrefix(`${~~(Math.random() * Number((await dbConfig()).NSHARD))}`, _item_metadata.isPublicItem || !!item.isPublic, identity) }
+    ditem['NSHARD'] = { S: withPrefix(`${~~(Math.random() * Number((await dbConfig()).NSHARD))}`, calculatePrivateOrPublicData(item, _item_metadata), identity) }
 
-    // put item request for each unique key defined in metadata
+    // put item request for each unique key defined in metadataz
     const allTransactWriteItemList = Object.keys(ditem).reduce<TransactWriteItem[]>((accum, key) => {
         if (_item_metadata.uniqueKeys.includes(key)) {
-            const duniqueItem = toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(item, key), _item_metadata.isPublicItem || !!item.isPublic, identity), RANGE: withPrefix(item[key], _item_metadata.isPublicItem || !!item.isPublic, identity) })
+            const duniqueItem = toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(item, key), calculatePrivateOrPublicData(item, _item_metadata), identity), RANGE: withPrefix(item[key], calculatePrivateOrPublicData(item, _item_metadata), identity) })
             accum.push({
                 Put: {
                     Item: duniqueItem,
@@ -74,7 +74,7 @@ export const createItem = async <T extends DdbItem>(dto: Partial<T>, identity: P
                 Update: {
                     TableName: DB_NAME(),
                     ReturnValuesOnConditionCheckFailure: "ALL_OLD",
-                    Key: { HASH: { S: withPrefix(String(ditem.HASH.S), _item_metadata.isPublicItem || !!item.isPublic, identity)}, RANGE: { S: withPrefix(String(ditem.RANGE.S), _item_metadata.isPublicItem || !!item.isPublic, identity)} },
+                    Key: { HASH: { S: withPrefix(String(ditem.HASH.S), calculatePrivateOrPublicData(item, _item_metadata), identity)}, RANGE: { S: withPrefix(String(ditem.RANGE.S), calculatePrivateOrPublicData(item, _item_metadata), identity)} },
                     UpdateExpression: `set ${Object.keys(ditem).filter(key => key !== "HASH" && key !== "RANGE").map(key => `#${key} = :${key}`).join(", ")}`,
                     ExpressionAttributeNames: Object.keys(ditem).reduce<{ [key: string]: string }>((accum, key) => {
                         accum[`#${key}`] = key;

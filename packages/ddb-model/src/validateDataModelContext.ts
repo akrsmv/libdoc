@@ -310,10 +310,10 @@ export const validateDataModelContext = async (context?: generateModelProps): Pr
     for (const gsi of dataModelJson.GlobalSecondaryIndexes) {
         // validate input is correct
         const [hashKeyName, rangeKeyName] = gsi.IndexName.split('-')
-        if (hashKeyName !== 'NSHARD' && !gsiKeysToRegularKeysMap.has(hashKeyName)) {
+        if (hashKeyName !== 'NSHARD' && hashKeyName !== 'RANGE' && hashKeyName !== 'HASH' && !gsiKeysToRegularKeysMap.has(hashKeyName)) {
             throw new Error(`${hashKeyName} of custom index ${gsi.IndexName} is invalid as it does not participate in map of keys to regular keys`);
         }
-        if (rangeKeyName && rangeKeyName !== 'TITEM' && !gsiKeysToRegularKeysMap.has(rangeKeyName)) {
+        if (rangeKeyName && rangeKeyName !== 'TITEM' && hashKeyName !== 'RANGE' && hashKeyName !== 'HASH' && !gsiKeysToRegularKeysMap.has(rangeKeyName)) {
             throw new Error(`${rangeKeyName} of custom index ${gsi.IndexName} is invalid as it does not participate in map of keys to regular keys`);
         }
         globalSecondaryIndexesToCreate.push(gsi)
