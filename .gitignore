@@ -21,4 +21,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 coverage
+**.tsbuildinfo
+generated
+domain-context
 #amplify-do-not-edit-end
