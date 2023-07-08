@@ -12,8 +12,9 @@
     "@incta/common-utils": "^1.0.0",
     "@incta/ddb-model": "^1.0.0",
     "@incta/dispatch-action": "^1.0.0",
-    "aws-cdk-lib": "2.65.0",
-    "constructs": "^10.0.0",
+    "@types/node": "^20.3.3",
+    "aws-cdk-lib": "2.86.0",
+    "constructs": "^10.2.67",
     "nunjucks": "^3.2.4",
     "pluralize": "^8.0.0"
   }

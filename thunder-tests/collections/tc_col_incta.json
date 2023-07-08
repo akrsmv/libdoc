@@ -1,0 +1,110 @@
+{
+    "_id": "f54d8cc9-e2e0-44c4-a9bd-d30a12f866fc",
+    "colName": "incta",
+    "created": "2023-02-20T12:55:39.260Z",
+    "sortNum": 10000,
+    "folders": [
+        {
+            "_id": "b21029e6-4de3-453f-afc8-8c0d6ab8c2d8",
+            "name": "ddb-actions",
+            "containerId": "",
+            "created": "2023-02-20T12:55:39.262Z",
+            "sortNum": 10000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "a093a8b9-b758-4aa4-97c9-224b598492b9",
+            "colId": "f54d8cc9-e2e0-44c4-a9bd-d30a12f866fc",
+            "containerId": "b21029e6-4de3-453f-afc8-8c0d6ab8c2d8",
+            "name": "localdebug-api:ddbTransactPutItem",
+            "url": "localhost:3000/lambda/invoke/ddb-actions/ddbTransactPutItem",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-02-20T12:55:39.263Z",
+            "modified": "2023-04-19T18:18:32.539Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"__typename\":\"Airplane\",\n  \"capacity\": 567,\n  \"nr_seats_class_vip\":90,\n  \"nr_seats_class1\": 90,\n  \"nr_seats_class2\": 80,\n  \"code\": \"{{#number}}\",\n  \"asdasd\":554,\n  \"model\": 32,\n  \"model1\": {\n    \"id\": 123,\n    \"code\": \"{{#number}}\",\n    \"model\": \"{{#number}}\",\n    \"manifacturer\": {\n      \"__typename\": \"Manifacturer\",\n      \"name\": \"Soyuz\",\n      \"country\": {\n        \"__typename\": \"Country\",\n        \"name\": \"Russia\",\n        \"code\": \"RU\"\n      }\n    },\n    \"__typename\": \"AirplaneModel\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "040a591d-2014-4179-8fae-f17945f119a9",
+            "colId": "f54d8cc9-e2e0-44c4-a9bd-d30a12f866fc",
+            "containerId": "b21029e6-4de3-453f-afc8-8c0d6ab8c2d8",
+            "name": "localdebug-api:ddbTransactDeleteItem",
+            "url": "localhost:3000/lambda/invoke/ddb-actions/ddbTransactDeleteItem",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-02-20T12:55:39.264Z",
+            "modified": "2023-02-20T13:03:40.981Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "[{\n  \"id\":\"{{parent_type}}|{{parent_guid}}\",\n  \"meta\":\"v_0|{{item_type}}|{{item_guid}}\",\n  \"revisions\": {{revisions}}\n}]",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6593de87-b154-4e70-8688-c5f8737cffec",
+            "colId": "f54d8cc9-e2e0-44c4-a9bd-d30a12f866fc",
+            "containerId": "b21029e6-4de3-453f-afc8-8c0d6ab8c2d8",
+            "name": "localdebug-api:ddbBatchGetItem",
+            "url": "localhost:3000/lambda/invoke/ddb-actions/ddbBatchGetItem",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-02-20T15:45:37.599Z",
+            "modified": "2023-02-22T05:21:16.274Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"pks\": [\n    {\n      \"id\": \"{{parent_type}}|{{parent_guid}}\",\n      \"meta\": \"v_0|{{item_type}}|{{item_guid}}\"\n    }\n  ],\n  \"loadPeersInput\": {\n        \"loadPeersLevel\": 1,\n        \"peersPropsToLoad\": [\"model\"],\n        \"projectionExpression\": \"code,model\"\n    }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a5aa74e3-64a4-4011-a2c2-752291fba784",
+            "colId": "f54d8cc9-e2e0-44c4-a9bd-d30a12f866fc",
+            "containerId": "b21029e6-4de3-453f-afc8-8c0d6ab8c2d8",
+            "name": "healthcheck",
+            "url": "http://localhost:3000",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-03-31T16:14:09.535Z",
+            "modified": "2023-03-31T16:14:17.682Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0caa7c11-6572-4a7b-81a6-d40d7339f8fd",
+            "colId": "f54d8cc9-e2e0-44c4-a9bd-d30a12f866fc",
+            "containerId": "",
+            "name": "TEST GRAPHQL",
+            "url": "localhost:3000/lambda/invoke/graphql/query",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-05-02T20:17:58.117Z",
+            "modified": "2023-05-14T07:00:55.132Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "graphql",
+                "raw": "",
+                "form": [],
+                "graphql": {
+                    "query": "mutation MyMutation {\n  create(params: {target: \"{{item_type}}\", payload:{name: \"Bosna{{#number}}\", currency: \"BSN{{#number}}\", code:\"BBB{{#number}}\"}}) {\n  items { \n    ... on {{item_type}} {\n      id\n      name\n      __typename\n      checksum\n      code\n      currency\n      date_created\n      date_updated\n      item_state\n    }\n    }\n  }\n}"
+                }
+            },
+            "tests": []
+        }
+    ]
+}

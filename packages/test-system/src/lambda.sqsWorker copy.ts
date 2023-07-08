@@ -1,30 +1,27 @@
 import { logdebug, logerror, loginfo, set_correlation_token } from "@incta/common-utils"
 import { __domain, _sep1, _sep2, versionString } from "@incta/ddb-model"
-import { createItem, getItems, patchItem, queryItems, searchItems } from "@incta/ddb-actions"
+import { createItem, getItems, patchItem } from "@incta/ddb-actions"
 import { User } from "./domain-context/items/dataItems/User"
 import { _injectDataItems } from "./domain-context/items/dataItems/_injectDataItems"
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { join } from "path"
 import { MailParser } from 'mailparser'
-import { Readable, Stream } from "stream"
+import { PassThrough, Readable, Stream } from "stream"
 import { SdkStream } from "@aws-sdk/types"
 import { Upload } from "@aws-sdk/lib-storage";
-import { UserEmail } from "./domain-context/items/dataItems/UserEmail"
+import { error } from "console"
+
 
 // Create an S3 client
 const s3Client = new S3Client({ region: process.env.AWS_REGION });
 
-const uploadStreamToS3 = async (stream: Readable, bucketName: string, objectKey: string, emailHeaders: Map<string, any> ) => {
+const uploadStreamToS3 = (stream: Readable, bucketName: string, objectKey: string) => {
 	logdebug('[uploadStreamToS3] entering')
-	logdebug('[uploadStreamToS3] will need to identify email address ', emailHeaders.get('from').value[0].address)
-	const result = await queryItems({__typename: UserEmail.__typename, dbIndexName: "RANGE-TITEM", hashKey: {RANGE: {eq: `v_0|UserEmail|${emailHeaders.get('from').value[0].address}`}}, rangeKey: {TITEM: {begins_with: "UserEmail|"}}, loadPeersInput: {loadPeersLevel: 1, peersPropsToLoad:["agent"]}}, null)
-	logdebug('The located user is ', result)
-	logdebug('The located user is ', result.items[0])
 	try {
 		const parallelUploads3 = new Upload({
 			client: s3Client,
-			tags: [], // optional tags
+			//   tags: [...], // optional tags
 			//   queueSize: 4, // optional concurrency configuration
 			//   partSize: 5MB, // optional size of each part
 			leavePartsOnError: false, // optional manually handle dropped parts
@@ -45,46 +42,54 @@ const uploadStreamToS3 = async (stream: Readable, bucketName: string, objectKey:
 	}
 };
 
-const extractAttachmentsAndUploadToS3 = (stream: SdkStream<Readable | ReadableStream<any> | Blob | undefined> | undefined): Promise<any[]> => {
+const parseEmailFromStream = async (stream: SdkStream<Readable | ReadableStream<any> | Blob | undefined> | undefined) => {
 	return new Promise((resolve, reject) => {
 		const mailParser = new MailParser();
-		let emailHeaders: Map<string, any>
-		let emailText: any = {
-			
-		}	
 
-		mailParser.on('headers', headers => {
-			logdebug('email headers parsed', headers)
-			emailHeaders = headers
-		});
-
-		mailParser.on('data', async data => {
-			if (data.type === 'text') {
-				logdebug('email text parsed', data)
-				emailText = {...emailText, ...data}
-			}
+		mailParser.on('data', data => {
 			if (data.type === 'attachment') {
 				console.log(data.filename);
-				uploadStreamToS3(data.content, process.env.OPERATIONS_BUCKET!, join('processed', data.filename), emailHeaders)
-					.then((obj) => {
-						logdebug('releasing data content: ', obj)
-						data.release()
-					})
+				const streamCopy = new PassThrough();
+				const a = uploadStreamToS3(streamCopy, process.env.OPERATIONS_BUCKET!, join('processed', data.filename))
+				logdebug('start piping the attachment data to s3 ')
+				data.content.pipe(streamCopy)
+				a.then((obj) => {
+					logdebug('releasing data content: ', obj)
+					data.release()
+				})
+				// .then((obj: any) => {
+				// 	logdebug('start piping the attachment data to s3: ', obj)
+				// 	data.content.pipe(streamCopy)
+				// })
+				// .then(() => {
+				// 	logdebug('releasing data content')
+				// 	data.release()
+				// })
+
+
+				// })
+
 				data.content.on('end', () => logdebug('data content: on end'));
+
 			}
 		});
+
 
 		mailParser.on('error', (error: any) => {
 			reject(error);
 		});
 
-		mailParser.on('end', () => resolve([emailHeaders, emailText]));
+		mailParser.on('end', resolve);
 
-		(stream as Stream).pipe(mailParser)
+		//@ts-ignore
+		stream.pipe(mailParser)
+		// stream?.transformToWebStream().pipeThrough(mailParser as unknown as ReadableWritablePair<unknown, any>);
 	});
 };
 
 /**
+ * TODO excerpt in separate npm package
+ * TODO should have access to GET ITEMS ONLY FOR TENANTUSERCONFIG
  * @param evnt 
  * @param context 
  * @param callback 
@@ -93,7 +98,6 @@ const extractAttachmentsAndUploadToS3 = (stream: SdkStream<Readable | ReadableSt
 export const handler = async (evnt: any, context?: any, callback?: Function): Promise<any> => {
 	logdebug('SQS LAMBDA WORKER TRIGGERED', { evnt, context })
 	const failedMessages = []
-	_injectDataItems() // load metadata for items, we need only the user item here
 
 	for (var message of evnt.Records) {
 		logdebug("processing SQS Record", message)
@@ -105,6 +109,7 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 				Bucket: messageBody.receipt.action.bucketName,
 				Key: messageBody.receipt.action.objectKey,
 			});
+			let str
 
 			const responseGet = await s3Client.send(command);
 			// The Body object also has 'transformToByteArray' and 'transformToWebStream' methods.
@@ -114,16 +119,29 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 			//#endregion
 
 			//#region extract attachments
-			const [emailHeaders, emailText] = await extractAttachmentsAndUploadToS3(responseGet.Body)
-				.catch(error => {
-					logerror('[parseEmailFromStream] async error: ', error)
-					throw new Error(error.stack)
-				})
-
-			logdebug('headers parsed are', emailHeaders)
-			logdebug('email text parsed are', emailText)
+			const parsedEmail = await parseEmailFromStream(responseGet.Body).catch(error => {logerror('[parseEmailFromStream] async error: ',error)})
+			logdebug('parsed email is', parsedEmail)
+			// const parser = new MailParser()
+			// parser.on('data', (data: any) => {
+			// 	if (data.type === 'attachment') {
+			// 		console.log(data.filename);
+			// 		data.content.pipe(process.stdout);
+			// 		data.content.on('end', () => data.release());
+			// 	}
+			// });
+			// parser.
 			//#endregion
 
+			//#region upload to s3
+			// const putCommand = new PutObjectCommand({
+			// 	Bucket: process.env.OPERATIONS_BUCKET,
+			// 	Key: join('processed/', (messageBody.receipt.action.objectKey).split('/').pop()),
+			// 	Body: str,
+			// });
+
+			// const responsePut = await s3Client.send(putCommand);
+			// loginfo('Uploaded a file ', responsePut);
+			//#endregion
 		} catch (err: any) {
 			logerror(err);
 			failedMessages.push({ itemIdentifier: message.messageId })
@@ -169,6 +187,9 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 	// }
 	//-----------------------------------------------------------
 	//#endregion
+
+
+
 
 	return { batchItemFailures: failedMessages }
 

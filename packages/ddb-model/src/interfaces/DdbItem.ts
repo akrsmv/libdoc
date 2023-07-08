@@ -6,6 +6,7 @@ export const _sGSIKeyPrefix = "sGSI"
 export const _nGSIKeyPrefix = "nGSI"
 export const _sep1 = "|"
 export const _sep2 = "#"
+export const _default_agent_id = `Agent${_sep1}DEFAULT${_sep2}v_0|Agent|DEFAULT`
 
 /**
  * Prepends `__prefix` to `str` ONLY IF `__prefix` is truthy AND str is of type string
@@ -18,8 +19,8 @@ export const withPrefix = <T = string | number>(str: T, dontApplyPrefix: boolean
     if (!dontApplyPrefix) {
         if (identity) {
             if (typeof str === 'string') {
-                const __prefix = `${identity?.sub}${_sep1}-${_sep1}${identity?.claims?.active_agent}`
-                if (__prefix !== `${_sep1}-${_sep1}`) {// i.e empty prefix
+                const __prefix = `${identity?.sub}${_sep1}-${_sep1}${!identity?.claims?.active_agent || identity?.claims?.active_agent === 'undefined' ? _default_agent_id : identity?.claims?.active_agent}`
+                if (__prefix !== `${_sep1}-${_sep1}${_default_agent_id}`) {// i.e empty prefix
                     return str.startsWith('^' + __prefix + '^') ? str : '^' + __prefix + '^' + str
                 }
             }
@@ -116,6 +117,9 @@ export interface IDdbItemBaseProps extends IDdbItemKey {
     user_updated?: string
     __usr?: string
     __agt?: string
+
+    privateData?: boolean
+    publicData?: boolean
 
     ringToken?: string
     item_state?: string

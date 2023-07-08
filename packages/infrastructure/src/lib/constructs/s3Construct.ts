@@ -94,5 +94,28 @@ export class S3Construct extends Construct {
                     ]
                 })
 
+        // Define the resource policy for the S3 bucket
+        const resourcePolicy = new s3.BucketPolicy(this, 's3OperationsPolicy', {
+            bucket: this.operationsBucket,
+        });
+
+        // Add a policy statement with conditions to the resource policy
+        const statement = new iam.PolicyStatement({
+            effect: iam.Effect.ALLOW,
+            actions: ['s3:PutObject'],
+            principals: [new iam.ServicePrincipal('ses.amazonaws.com')],
+            resources: [`${this.operationsBucket.bucketArn}/*`],
+            conditions: {
+                StringEquals: {
+                    'AWS:SourceAccount': process.env.AWS_ACCOUNT_NUMBER,
+                },
+                StringLike: {
+                    'AWS:SourceArn': 'arn:aws:ses:*',
+                },
+            }
+        })
+
+        resourcePolicy.document.addStatements(statement);
+
     }
 }

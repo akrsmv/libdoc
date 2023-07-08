@@ -3,13 +3,15 @@ import { devtools, persist, subscribeWithSelector } from 'zustand/middleware'
 import { toast } from 'react-toastify'
 import { API } from 'aws-amplify'
 import { GraphQLQuery } from "@aws-amplify/api"
-import { ChangeActiveAgent } from '../graphql/generated/mutations'
 import { getUserVisibleAgents } from '../graphql/queries'
+import { ChangeActiveAgent } from '../graphql/mutations'
+import * as graphqlTypes from '../graphql/API'
 
 interface UserVisibleAgentsStore {
-    userObject: Record<string, any> | null | undefined
+    userObject: graphqlTypes.User | null | undefined
     setUserObject: (sub: string) => void
     resetUserObject: () => void
+    createPrivateAgentForUser: (sub?: string | null) => void
     changeActiveAgent: (newActiveAgentId: string, sub: string) => void
 }
 
@@ -29,14 +31,21 @@ export const useUserVisibleAgentsStore = create<UserVisibleAgentsStore>()(
                 (set) => {
                     return {
                         userObject: null,
+                        createPrivateAgentForUser: async (sub) => {
+                            if (sub) {
+                                console.log('will create new agent for user: ', sub)
+                            } else {
+                                console.log('user sub is undefined')
+                            }
+                        },
                         setUserObject: async (sub) => {
                             const userObject = await loadUser(sub)
                             set(() => ({ userObject }))
                         },
-                        resetUserObject: () => set({userObject: null}),
+                        resetUserObject: () => set({ userObject: null }),
                         changeActiveAgent: async (newActiveAgentId: string, sub: string) => {
                             try {
-                                const result = await API.graphql<GraphQLQuery<any>>({
+                                const result = await API.graphql<GraphQLQuery<graphqlTypes.ChangeActiveAgent>>({
                                     query: ChangeActiveAgent,
                                     variables: { input: { new_active_agent: newActiveAgentId } }
                                 }).catch((data: any) => {
@@ -70,7 +79,7 @@ const loadUser = async (sub: string) => {
     try {
         result = await API.graphql<GraphQLQuery<any>>({
             query: getUserVisibleAgents,
-            variables: {id: [`User|${sub}#v_0|User|${sub}`] } 
+            variables: { id: [`User|${sub}#v_0|User|${sub}`] }
         }).catch((data: any) => {
             console.log('AAASSSYYYNNNNCCC  EEERRRROOOORRR', data)
             toast.error(data?.errors); return data

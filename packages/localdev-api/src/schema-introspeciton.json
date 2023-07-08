@@ -610,6 +610,68 @@
             "args" : [ ]
           } ]
         }, {
+          "name" : "searchUserEmails",
+          "description" : null,
+          "args" : [ {
+            "name" : "input",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "INPUT_OBJECT",
+                "name" : "SearchUserEmailsInput",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "UserEmailsResultConnection",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ {
+            "name" : "aws_iam",
+            "args" : [ ]
+          }, {
+            "name" : "aws_cognito_user_pools",
+            "args" : [ ]
+          } ]
+        }, {
+          "name" : "queryUserEmails",
+          "description" : null,
+          "args" : [ {
+            "name" : "input",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "INPUT_OBJECT",
+                "name" : "QueryUserEmailsInput",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "UserEmailsResultConnection",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ {
+            "name" : "aws_iam",
+            "args" : [ ]
+          }, {
+            "name" : "aws_cognito_user_pools",
+            "args" : [ ]
+          } ]
+        }, {
           "name" : "searchCountries",
           "description" : null,
           "args" : [ {
@@ -1963,6 +2025,10 @@
           "ofType" : null
         }, {
           "kind" : "OBJECT",
+          "name" : "UserEmail",
+          "ofType" : null
+        }, {
+          "kind" : "OBJECT",
           "name" : "Country",
           "ofType" : null
         }, {
@@ -2064,6 +2130,10 @@
         }, {
           "kind" : "OBJECT",
           "name" : "OrderHistory",
+          "ofType" : null
+        }, {
+          "kind" : "OBJECT",
+          "name" : "UserEmailHistory",
           "ofType" : null
         }, {
           "kind" : "OBJECT",
@@ -2206,6 +2276,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -2224,6 +2318,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2267,6 +2385,18 @@
           "directives" : [ ]
         }, {
           "name" : "sub",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "idpId",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2470,6 +2600,16 @@
         "possibleTypes" : null,
         "directives" : null
       }, {
+        "kind" : "SCALAR",
+        "name" : "Boolean",
+        "description" : "Built-in Boolean",
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : null
+      }, {
         "kind" : "OBJECT",
         "name" : "Person",
         "description" : null,
@@ -2480,6 +2620,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "Int",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2504,6 +2668,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2634,6 +2822,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2773,6 +2985,10 @@
           "ofType" : null
         }, {
           "kind" : "OBJECT",
+          "name" : "UserEmail",
+          "ofType" : null
+        }, {
+          "kind" : "OBJECT",
           "name" : "AirplaneManifacturer",
           "ofType" : null
         }, {
@@ -2865,6 +3081,10 @@
           "ofType" : null
         }, {
           "kind" : "OBJECT",
+          "name" : "UserEmailHistory",
+          "ofType" : null
+        }, {
+          "kind" : "OBJECT",
           "name" : "CountryHistory",
           "ofType" : null
         }, {
@@ -2954,6 +3174,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -2972,6 +3216,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3216,6 +3484,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -3234,6 +3526,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3373,6 +3689,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -3391,6 +3731,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3579,6 +3943,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -3597,6 +3985,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3761,6 +4173,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -3779,6 +4215,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3919,6 +4379,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -3937,6 +4421,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4127,16 +4635,6 @@
         "possibleTypes" : null,
         "directives" : [ ]
       }, {
-        "kind" : "SCALAR",
-        "name" : "Boolean",
-        "description" : "Built-in Boolean",
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null,
-        "directives" : null
-      }, {
         "kind" : "OBJECT",
         "name" : "CityCityDetailDto",
         "description" : null,
@@ -4257,6 +4755,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -4275,6 +4797,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4483,6 +5029,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -4501,6 +5071,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4727,6 +5321,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -4745,6 +5363,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4858,7 +5500,7 @@
         "directives" : [ ]
       }, {
         "kind" : "OBJECT",
-        "name" : "AirplaneManifacturer",
+        "name" : "UserEmail",
         "description" : null,
         "fields" : [ {
           "name" : "rev",
@@ -4867,6 +5509,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "Int",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4891,6 +5557,212 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "agent",
+          "description" : " specific props",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "Agent",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "Agent",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "date_created",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "AWSDateTime",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "date_updated",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "AWSDateTime",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "user_created",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "user_updated",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "id",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ {
+          "kind" : "INTERFACE",
+          "name" : "Item",
+          "ofType" : null
+        } ],
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : [ ]
+      }, {
+        "kind" : "OBJECT",
+        "name" : "AirplaneManifacturer",
+        "description" : null,
+        "fields" : [ {
+          "name" : "rev",
+          "description" : "  interface Item props",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "TITEM",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "checksum",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5031,6 +5903,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -5049,6 +5945,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5248,6 +6168,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -5266,6 +6210,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5474,6 +6442,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -5492,6 +6484,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -5738,6 +6754,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -5756,6 +6796,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -6124,6 +7188,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -6142,6 +7230,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -6340,6 +7452,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -6358,6 +7494,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -6570,6 +7730,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -6588,6 +7772,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -6870,6 +8078,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -6888,6 +8120,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7112,6 +8368,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -7130,6 +8410,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7246,6 +8550,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -7264,6 +8592,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7368,6 +8720,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -7386,6 +8762,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7514,6 +8914,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -7532,6 +8956,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7636,6 +9084,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -7654,6 +9126,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7758,6 +9254,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "HASH",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "TITEM",
           "description" : null,
           "args" : [ ],
@@ -7776,6 +9296,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7884,8 +9428,32 @@
         "name" : "UserHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -7920,6 +9488,30 @@
           "deprecationReason" : null,
           "directives" : [ ]
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
           "name" : "public_data_ref",
           "description" : " specific props",
           "args" : [ ],
@@ -7945,6 +9537,18 @@
           "directives" : [ ]
         }, {
           "name" : "sub",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "idpId",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -8114,8 +9718,32 @@
         "name" : "PersonHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -8144,6 +9772,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -8248,8 +9900,32 @@
         "name" : "CompanyHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -8278,6 +9954,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -8370,8 +10070,32 @@
         "name" : "AirportHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -8400,6 +10124,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -8540,8 +10288,32 @@
         "name" : "InvoiceHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -8570,6 +10342,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -8750,8 +10546,32 @@
         "name" : "AirtoursTicketPriceConfigHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -8780,6 +10600,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -8896,8 +10740,32 @@
         "name" : "CityHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -8926,6 +10794,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -9054,8 +10946,32 @@
         "name" : "OrderHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -9084,6 +11000,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -9213,11 +11153,35 @@
         "directives" : [ ]
       }, {
         "kind" : "OBJECT",
-        "name" : "CountryHistory",
+        "name" : "UserEmailHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -9246,6 +11210,200 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "agent",
+          "description" : " specific props",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "date_created",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "AWSDateTime",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "date_updated",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "AWSDateTime",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "user_created",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "user_updated",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "id",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ {
+          "kind" : "INTERFACE",
+          "name" : "Item",
+          "ofType" : null
+        } ],
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : [ ]
+      }, {
+        "kind" : "OBJECT",
+        "name" : "CountryHistory",
+        "description" : null,
+        "fields" : [ {
+          "name" : "HASH",
+          "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "TITEM",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "checksum",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -9362,8 +11520,32 @@
         "name" : "AirplaneManifacturerHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -9392,6 +11574,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -9508,8 +11714,32 @@
         "name" : "AirplaneModelHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -9538,6 +11768,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -9694,8 +11948,32 @@
         "name" : "RegionHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -9724,6 +12002,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -9876,8 +12178,32 @@
         "name" : "AgentHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -9906,6 +12232,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -10126,8 +12476,32 @@
         "name" : "TouristHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -10156,6 +12530,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -10404,8 +12802,32 @@
         "name" : "AirplaneHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -10434,6 +12856,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -10598,8 +13044,32 @@
         "name" : "PaymentHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -10628,6 +13098,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -10780,8 +13274,32 @@
         "name" : "FlightHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -10810,6 +13328,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -10986,8 +13528,32 @@
         "name" : "ContinentHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -11016,6 +13582,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -11120,8 +13710,32 @@
         "name" : "TouristSeasonHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -11150,6 +13764,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -11290,8 +13928,32 @@
         "name" : "LocationHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -11320,6 +13982,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -11472,8 +14158,32 @@
         "name" : "queryBeHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -11502,6 +14212,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -11606,8 +14340,32 @@
         "name" : "GetGraphqlSchemaHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -11636,6 +14394,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -11728,8 +14510,32 @@
         "name" : "GenerateAirtoursTestDataHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -11758,6 +14564,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -11874,8 +14704,32 @@
         "name" : "GenerateAirtoursPublicTestDataHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -11904,6 +14758,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -11996,8 +14874,32 @@
         "name" : "ChangeActiveAgentHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -12026,6 +14928,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -12118,8 +15044,32 @@
         "name" : "SetUserAgentsHistory",
         "description" : null,
         "fields" : [ {
-          "name" : "rev",
+          "name" : "HASH",
           "description" : "  interface Item props ",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "rev",
+          "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -12148,6 +15098,30 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -12321,6 +15295,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "rev",
           "description" : null,
           "type" : {
@@ -12385,6 +15368,15 @@
           "defaultValue" : null
         }, {
           "name" : "sub",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "idpId",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -12619,6 +15611,15 @@
           "defaultValue" : null
         }, {
           "name" : "status",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "agent",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -13527,6 +16528,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "idpId",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "preferredIamRole",
           "description" : null,
           "type" : {
@@ -13735,6 +16745,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "public_data_ref",
           "description" : null,
           "type" : {
@@ -13754,6 +16773,15 @@
           "defaultValue" : null
         }, {
           "name" : "sub",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "idpId",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -14240,6 +17268,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "fname",
           "description" : null,
           "type" : {
@@ -14692,6 +17729,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -15170,6 +18216,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -15710,6 +18765,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "invoice_due_date",
           "description" : null,
           "type" : {
@@ -16233,6 +19297,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "class_vip",
           "description" : null,
           "type" : {
@@ -16712,6 +19785,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -17207,6 +20289,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "public_data_ref",
           "description" : null,
           "type" : {
@@ -17226,6 +20317,466 @@
           "defaultValue" : null
         }, {
           "name" : "status",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "date_created",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "date_updated",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "user_created",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "user_updated",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "id",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : [ ]
+      }, {
+        "kind" : "OBJECT",
+        "name" : "UserEmailsResultConnection",
+        "description" : null,
+        "fields" : [ {
+          "name" : "items",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "LIST",
+              "name" : null,
+              "ofType" : {
+                "kind" : "NON_NULL",
+                "name" : null,
+                "ofType" : {
+                  "kind" : "OBJECT",
+                  "name" : "UserEmail",
+                  "ofType" : null
+                }
+              }
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "pageToken",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "count",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "selectionSetList",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "errors",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "OBJECT",
+              "name" : "ServerError",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "excludedFromFilter",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        }, {
+          "name" : "correlation_id",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ ]
+        } ],
+        "inputFields" : null,
+        "interfaces" : [ ],
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : [ {
+          "name" : "aws_iam",
+          "args" : [ ]
+        }, {
+          "name" : "aws_cognito_user_pools",
+          "args" : [ ]
+        } ]
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "SearchUserEmailsInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "limit",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "pageToken",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "keysOnly",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "searchBackward",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "filter",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "QueryUserEmailsFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : [ ]
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "QueryUserEmailsFilterInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "HASH",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "agent",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "date_created",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "date_updated",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "user_created",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "user_updated",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "id",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "_and",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "QueryUserEmailsFilterInput",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "_or",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "INPUT_OBJECT",
+              "name" : "QueryUserEmailsFilterInput",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : [ ]
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "QueryUserEmailsInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "hashKey",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "QueryUserEmailsOnlyFieldsInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "rangeKey",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "QueryUserEmailsOnlyFieldsInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "dbIndexName",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "limit",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "pageToken",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "keysOnly",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "searchBackward",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "filter",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "QueryUserEmailsFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : [ ]
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "QueryUserEmailsOnlyFieldsInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "HASH",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "agent",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -17677,6 +21228,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -18155,6 +21715,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -18660,6 +22229,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -19183,6 +22761,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -19742,6 +23329,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -20390,6 +23986,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "public_data_ref",
           "description" : null,
           "type" : {
@@ -21012,6 +24617,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "code",
           "description" : null,
           "type" : {
@@ -21554,6 +25168,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -22112,6 +25735,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "from_airport",
           "description" : null,
           "type" : {
@@ -22617,6 +26249,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "name",
           "description" : null,
           "type" : {
@@ -23087,6 +26728,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -23618,6 +27268,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "phone1",
           "description" : null,
           "type" : {
@@ -24123,6 +27782,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "code",
           "description" : null,
           "type" : {
@@ -24575,6 +28243,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -25052,6 +28729,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "forUser",
           "description" : null,
           "type" : {
@@ -25521,6 +29207,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "prop1",
           "description" : null,
           "type" : {
@@ -25972,6 +29667,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "TITEM",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "new_active_agent",
           "description" : null,
           "type" : {
@@ -26415,6 +30119,15 @@
           "defaultValue" : null
         }, {
           "name" : "RANGE",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "StringQueryInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "TITEM",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -27020,6 +30733,37 @@
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
                 "name" : "OrderInput",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "CommandResult",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ {
+            "name" : "aws_iam",
+            "args" : [ ]
+          }, {
+            "name" : "aws_cognito_user_pools",
+            "args" : [ ]
+          } ]
+        }, {
+          "name" : "createUserEmail",
+          "description" : null,
+          "args" : [ {
+            "name" : "input",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "INPUT_OBJECT",
+                "name" : "UserEmailInput",
                 "ofType" : null
               }
             },
@@ -27889,6 +31633,46 @@
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
                 "name" : "OrderInput",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "rev",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "CommandResult",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ {
+            "name" : "aws_iam",
+            "args" : [ ]
+          }, {
+            "name" : "aws_cognito_user_pools",
+            "args" : [ ]
+          } ]
+        }, {
+          "name" : "updateUserEmail",
+          "description" : null,
+          "args" : [ {
+            "name" : "input",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "INPUT_OBJECT",
+                "name" : "UserEmailInput",
                 "ofType" : null
               }
             },
@@ -28958,6 +32742,46 @@
             "args" : [ ]
           } ]
         }, {
+          "name" : "patchUserEmail",
+          "description" : null,
+          "args" : [ {
+            "name" : "input",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "INPUT_OBJECT",
+                "name" : "UserEmailInput",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "rev",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "CommandResult",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null,
+          "directives" : [ {
+            "name" : "aws_iam",
+            "args" : [ ]
+          }, {
+            "name" : "aws_cognito_user_pools",
+            "args" : [ ]
+          } ]
+        }, {
           "name" : "patchCountry",
           "description" : null,
           "args" : [ {
@@ -29817,6 +33641,15 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "idpId",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "preferredIamRole",
           "description" : null,
           "type" : {
@@ -30131,6 +33964,15 @@
               "name" : "OrderItemDtoInput",
               "ofType" : null
             }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "agent",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
@@ -31063,6 +34905,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "public_data_ref",
           "description" : null,
           "type" : {
@@ -31082,6 +34942,15 @@
           "defaultValue" : null
         }, {
           "name" : "sub",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "idpId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -31175,6 +35044,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "fname",
           "description" : null,
           "type" : {
@@ -31212,6 +35099,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "name",
           "description" : null,
           "type" : {
@@ -31236,6 +35141,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -31300,6 +35223,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -31399,6 +35340,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "class_vip",
           "description" : null,
           "type" : {
@@ -31441,6 +35400,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -31500,6 +35477,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "public_data_ref",
           "description" : null,
           "type" : {
@@ -31546,6 +35541,52 @@
         "directives" : [ ]
       }, {
         "kind" : "INPUT_OBJECT",
+        "name" : "UserEmailInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "id",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "agent",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null,
+        "directives" : [ ]
+      }, {
+        "kind" : "INPUT_OBJECT",
         "name" : "CountryInput",
         "description" : null,
         "fields" : null,
@@ -31555,6 +35596,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -31605,6 +35664,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "code",
           "description" : null,
           "type" : {
@@ -31647,6 +35724,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -31728,6 +35823,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "name",
           "description" : null,
           "type" : {
@@ -31797,6 +35910,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -31923,6 +36054,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -32072,6 +36221,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "code",
           "description" : null,
           "type" : {
@@ -32154,6 +36321,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "invoice_number",
           "description" : null,
           "type" : {
@@ -32223,6 +36408,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -32318,6 +36521,24 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
           "name" : "name",
           "description" : null,
           "type" : {
@@ -32351,6 +36572,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -32415,6 +36654,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "ID",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "privateData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "publicData",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -32526,56 +36783,6 @@
         "directives" : [ ]
       }, {
         "kind" : "ENUM",
-        "name" : "AllActionsEnum",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : [ {
-          "name" : "start",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "stop",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "create",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "update",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "patch",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "delete",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "query",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "get",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
-        "possibleTypes" : null,
-        "directives" : [ ]
-      }, {
-        "kind" : "ENUM",
         "name" : "AllItemTypesEnum",
         "description" : null,
         "fields" : null,
@@ -32618,6 +36825,11 @@
           "deprecationReason" : null
         }, {
           "name" : "Order",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "UserEmail",
           "description" : null,
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -32752,6 +36964,11 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "UserEmailHistory",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "CountryHistory",
           "description" : null,
           "isDeprecated" : false,
@@ -32838,6 +37055,56 @@
           "deprecationReason" : null
         }, {
           "name" : "SetUserAgentsHistory",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
+        "possibleTypes" : null,
+        "directives" : [ ]
+      }, {
+        "kind" : "ENUM",
+        "name" : "AllActionsEnum",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "start",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "stop",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "create",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "update",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "patch",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "delete",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "query",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "get",
           "description" : null,
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -33717,23 +37984,27 @@
         "onFragment" : false,
         "onField" : true
       }, {
-        "name" : "aws_auth",
-        "description" : "Directs the schema to enforce authorization on a field",
-        "locations" : [ "FIELD_DEFINITION" ],
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
         "args" : [ {
-          "name" : "cognito_groups",
-          "description" : "List of cognito user pool groups which have access on this field",
+          "name" : "reason",
+          "description" : null,
           "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
           },
-          "defaultValue" : null
+          "defaultValue" : "\"No longer supported\""
         } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_iam",
+        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
@@ -33767,19 +38038,18 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_oidc",
+        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
@@ -33805,26 +38075,23 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_iam",
-        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_oidc",
-        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_api_key",
-        "description" : "Tells the service this field/object has access authorized by an API key.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
+        "name" : "aws_auth",
+        "description" : "Directs the schema to enforce authorization on a field",
+        "locations" : [ "FIELD_DEFINITION" ],
+        "args" : [ {
+          "name" : "cognito_groups",
+          "description" : "List of cognito user pool groups which have access on this field",
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

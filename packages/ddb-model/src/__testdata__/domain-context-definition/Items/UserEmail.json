@@ -1,0 +1,13 @@
+{
+    "__meta": {
+        "__desc": "Backs up cognito users, enriching them with additional information. WARNING __REF1 is already in use by the cognito userbase item.",
+        "__parent_typename": "User",
+        "__isPublicItem": true
+    },
+    "__attributes": {
+        "agent": {
+            "__type": "string",
+            "__peer": "Agent"
+        }
+    }
+}

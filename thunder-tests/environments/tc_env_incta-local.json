@@ -1,0 +1,58 @@
+{
+    "_id": "03410990-9a69-482f-9ef6-cdf5de05c10e",
+    "name": "incta-local",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2023-02-20T12:58:13.581Z",
+    "modified": "2023-02-20T12:58:13.581Z",
+    "data": [
+        {
+            "name": "revision",
+            "value": "0"
+        },
+        {
+            "name": "item_guid",
+            "value": "1"
+        },
+        {
+            "name": "item_type",
+            "value": "AirplaneModel"
+        },
+        {
+            "name": "parent_guid",
+            "value": "1"
+        },
+        {
+            "name": "parent_type",
+            "value": "AirplaneManifacturer"
+        },
+        {
+            "name": "__usr",
+            "value": "62e5c4f4-c091-7064-0ffc-f551ce2e2455"
+        },
+        {
+            "name": "__agt",
+            "value": "Agent|5#v_0|Agent|5"
+        },
+        {
+            "name": "__agt_6",
+            "value": "Agent|6#v_0|Agent|6"
+        },
+        {
+            "name": "__agt_4",
+            "value": "Agent|4#v_0|Agent|4"
+        },
+        {
+            "name": "__agt_3",
+            "value": "Agent|3#v_0|Agent|3"
+        },
+        {
+            "name": "__agt_2",
+            "value": "Agent|2#v_0|Agent|2"
+        },
+        {
+            "name": "__agt_1",
+            "value": "Agent|1#v_0|Agent|1"
+        }
+    ]
+}

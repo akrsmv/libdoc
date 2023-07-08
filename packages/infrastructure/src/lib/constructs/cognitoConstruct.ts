@@ -1,8 +1,9 @@
-import { aws_cognito as cognito, RemovalPolicy, aws_lambda as lambda, aws_lambda_nodejs as nodejs } from 'aws-cdk-lib';
+import { aws_cognito as cognito, RemovalPolicy, aws_lambda as lambda, aws_lambda_nodejs as nodejs, Duration } from 'aws-cdk-lib';
 import { aws_iam as iam } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CdkStackProps } from '../cdk-stack';
 import { EventBusConstruct } from './eventBusConstruct';
+import { DynamoDBConstruct } from './dynamoDbConstruct';
 import { join } from 'path';
 
 // based on https://stackoverflow.com/questions/55784746/how-to-create-cognito-identitypool-with-cognito-userpool-as-one-of-the-authentic
@@ -14,17 +15,22 @@ export class CognitoConstruct extends Construct {
     public readonly unauthenticatedRole: iam.Role
     public readonly authenticatedRole: iam.Role
     public readonly superUserRole: iam.Role
+    public readonly cognitoTrigger: lambda.Function
 
-    constructor(scope: Construct, id: string, props: CdkStackProps & { eventBusConstruct: EventBusConstruct }) {
+
+    constructor(scope: Construct, id: string, props: CdkStackProps & { eventBusConstruct: EventBusConstruct } & { dynamoDbConstruct: DynamoDBConstruct }) {
         super(scope, id);
-
-        // const cognitoLambdaTest = new nodejs.NodejsFunction(this, 'CognitoTriggerLambda', {
-        //     runtime: lambda.Runtime.NODEJS_18_X,
-        //     entry: join(props.clientAppDirName, 'packages', 'test-system', 'src', 'lambda.cognitoTrigger.ts'),
-        //     environment: {
-        //         "LOGLEVEL": "DEBUG"
-        //     }
-        // })
+        this.cognitoTrigger = new nodejs.NodejsFunction(this, 'CognitoTriggerLambda', {
+            runtime: lambda.Runtime.NODEJS_18_X,
+            functionName: `lam-${props.envName}-${props.clientAppName}-cog-trigger`,
+            entry: join(props.clientAppDirName, 'packages', 'test-system', 'src', 'lambda.cognitoTrigger.ts'),
+            environment: {
+                "LOGLEVEL": "DEBUG",
+                'DB_NAME': props.dynamoDbConstruct.table.tableName
+            }
+        });
+        this.cognitoTrigger.node.addDependency(props.dynamoDbConstruct.table)
+        props.dynamoDbConstruct.table.grantFullAccess(this.cognitoTrigger)
 
         const userPool = new cognito.UserPool(this, `UserPool`, {
             userPoolName: `${props.clientAppName}UserPool`,
@@ -51,17 +57,18 @@ export class CognitoConstruct extends Construct {
             signInCaseSensitive: false,
             selfSignUpEnabled: true,
             lambdaTriggers: {
-                // postConfirmation: props.eventBusConstruct.cognitoTrigger
-                // postConfirmation: cognitoLambdaTest,
+                postConfirmation: this.cognitoTrigger,
+
+
                 // postAuthentication: cognitoLambdaTest
 
-                // postAuthentication: props.eventBusConstruct.cognitoTrigger,
-                preTokenGeneration: props.eventBusConstruct.cognitoTrigger // for syncing users with db
+                postAuthentication: this.cognitoTrigger,  // for syncing users with db
+                // preTokenGeneration: this.cognitoTrigger // for syncing users with db
             }
         })
 
         // userPool.grant(props.eventBusConstruct.cognitoTrigger, "cognito-idp:AdminAddUserToGroup" ,"cognito-idp:GetGroup", "cognito-idp:CreateGroup")
-        userPool.grant(props.eventBusConstruct.controller, "cognito-idp:AdminAddUserToGroup" ,"cognito-idp:GetGroup", "cognito-idp:CreateGroup", "cognito-idp:AdminUpdateUserAttributes")
+        userPool.grant(props.eventBusConstruct.controller, "cognito-idp:AdminAddUserToGroup", "cognito-idp:GetGroup", "cognito-idp:CreateGroup", "cognito-idp:AdminUpdateUserAttributes")
 
         const cfnUserPool = userPool.node.defaultChild as cognito.CfnUserPool;
         cfnUserPool.policies = {
@@ -77,7 +84,10 @@ export class CognitoConstruct extends Construct {
             generateSecret: false,
             userPool: userPool,
             userPoolClientName: `UserPoolClientName`,
-            preventUserExistenceErrors: true
+            preventUserExistenceErrors: true,
+            accessTokenValidity: Duration.days(1),
+            refreshTokenValidity: Duration.days(1),
+            idTokenValidity: Duration.days(1)
         });
         const identityPool = new cognito.CfnIdentityPool(this, `IdentityPool`, {
             identityPoolName: `${props.clientAppName}IdentityPool`,
@@ -156,6 +166,8 @@ export class CognitoConstruct extends Construct {
             }
         });
 
+        
+
         //#region add user pool groups
         // TODO define roles for each group and test
         const superuserRole = new iam.Role(this, `SuperUserRole`, {
@@ -189,6 +201,8 @@ export class CognitoConstruct extends Construct {
             groupName: 'admin',
         });
         //#endregion
+
+
 
         //#region
         // create initial superuser

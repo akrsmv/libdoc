@@ -12,3 +12,18 @@ export const ChangeActiveAgent = /* GraphQL */ `
     }
   }
 `;
+
+export const createUserEmail = /* GraphQL */ `
+  mutation CreateUserEmail($input: UserEmailInput!) {
+    createUserEmail(input: $input) {
+      status
+      errors {
+        errorType
+        message
+        errorStack
+        __typename
+      }
+      __typename
+    }
+  }
+`;

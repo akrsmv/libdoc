@@ -11,10 +11,15 @@
             },
             "__attributes": {
                 "email": {
+                    "__meta": {
+                        "__desc": "Corresponds to email with which user has registered in cognito"
+                    },
                     "__type": "string",
                     "__gsiKeys": [
                         "sGSI1"
-                    ]
+                    ],
+                    "unique": true,
+                    "required": true
                 },
                 "sub": {
                     "__type": "string",
@@ -23,6 +28,11 @@
                     "__gsiKeys": [
                         "sGSI2"
                     ]
+                },
+                "idpId": {
+                    "__type": "string",
+                    "__required": true,
+                    "__unique": true
                 },
                 "preferredIamRole": {
                     "__type": "string"

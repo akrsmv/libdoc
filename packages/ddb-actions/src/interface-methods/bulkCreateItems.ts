@@ -1,9 +1,9 @@
 'use strict'
 
-import { DB_NAME, toAttributeMap, preparePkforUniqueItemKey, ddbRequest, dbConfig, dynamoDbClient } from '../DynamoDbClient';
-import { DdbItem, IClaims, IIdentity, __createItem, __domain, __itemMetadata, _sep1, withPrefix } from '@incta/ddb-model'
+import { DB_NAME, toAttributeMap, preparePkforUniqueItemKey, dbConfig, dynamoDbClient } from '../DynamoDbClient';
+import { DdbItem, IClaims, IIdentity, __createItem, __domain, __itemMetadata, _sep1, calculatePrivateOrPublicData, withPrefix } from '@incta/ddb-model'
 import { chunks, convertDatesToIsoDateStrings, logdebug, removeEmpty } from '@incta/common-utils';
-import { AttributeValue, BatchWriteItemCommand, TransactWriteItem, TransactWriteItemsCommand, TransactWriteItemsInput, WriteRequest } from '@aws-sdk/client-dynamodb';
+import { AttributeValue, BatchWriteItemCommand, WriteRequest } from '@aws-sdk/client-dynamodb';
 
 export const bulkCreateItems = async <T extends DdbItem>(dtos: Partial<T>[], identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
     const allWriteRequests = []
@@ -39,7 +39,7 @@ export const bulkCreateItems = async <T extends DdbItem>(dtos: Partial<T>[], ide
             if (_item_metadata.gsiKeys.has(key)) {
                 for (const xGSI of _item_metadata.gsiKeys.get(key) || []) {
                     if ("S" in ditem[key]) {
-                        accum[xGSI] = { S: withPrefix(`${ditem[key].S}`, _item_metadata.isPublicItem || !!item.isPublic, identity) }
+                        accum[xGSI] = { S: withPrefix(`${ditem[key].S}`, calculatePrivateOrPublicData(item, _item_metadata), identity) }
                     } else {
                         accum[xGSI] = ditem[key]
                     }
@@ -50,14 +50,14 @@ export const bulkCreateItems = async <T extends DdbItem>(dtos: Partial<T>[], ide
         //#endregion
 
         // set the system TITEM key
-        ditem['TITEM'] = { S: withPrefix(`${item.__typename}${_sep1}${new Date().toISOString().slice(0, 10)}`, _item_metadata.isPublicItem || !!item.isPublic, identity) }
+        ditem['TITEM'] = { S: withPrefix(`${item.__typename}${_sep1}${new Date().toISOString().slice(0, 10)}`, calculatePrivateOrPublicData(item, _item_metadata), identity) }
         // set the NSHARD key
-        ditem['NSHARD'] = { S: withPrefix(`${~~(Math.random() * Number((await dbConfig()).NSHARD))}`, _item_metadata.isPublicItem || !!item.isPublic, identity) }
+        ditem['NSHARD'] = { S: withPrefix(`${~~(Math.random() * Number((await dbConfig()).NSHARD))}`, calculatePrivateOrPublicData(item, _item_metadata), identity) }
 
         // put item request for each unique key defined in metadata
         allWriteRequests.push(...Object.keys(ditem).reduce<WriteRequest[]>((accum, key) => {
             if (_item_metadata.uniqueKeys.includes(key)) {
-                const duniqueItem = toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(item, key), _item_metadata.isPublicItem || !!item.isPublic, identity), RANGE: withPrefix(item[key], _item_metadata.isPublicItem || !!item.isPublic, identity) })
+                const duniqueItem = toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(item, key), calculatePrivateOrPublicData(item, _item_metadata), identity), RANGE: withPrefix(item[key], calculatePrivateOrPublicData(item, _item_metadata), identity) })
                 accum.push({
                     PutRequest: {
                         Item: duniqueItem

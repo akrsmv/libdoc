@@ -1,0 +1,20 @@
+{
+    "IndexName": "RANGE-TITEM",
+    "KeySchema": [
+        {
+            "AttributeName": "RANGE",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "TITEM",
+            "KeyType": "RANGE"
+        }
+    ],
+    "Projection": {
+        "ProjectionType": "KEYS_ONLY"
+    },
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 100,
+        "WriteCapacityUnits": 100
+    }
+}

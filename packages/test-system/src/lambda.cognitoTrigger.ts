@@ -1,12 +1,41 @@
-import { logdebug } from "@incta/common-utils"
+import { logdebug, logerror } from "@incta/common-utils"
 import { __domain, _sep1, _sep2, versionString } from "@incta/ddb-model"
 import { createItem, getItems, patchItem } from "@incta/ddb-actions"
 import { User } from "./domain-context/items/dataItems/User"
 import { _injectDataItems } from "./domain-context/items/dataItems/_injectDataItems"
 
+
+import { CognitoIdentityClient, GetIdCommand, ListIdentitiesCommand } from '@aws-sdk/client-cognito-identity'
+
+const getUserIdentityIdNew = (username: string) => new Promise((resolve, reject) => {
+
+	// Create an instance of the CognitoIdentityClient
+	const cognitoIdentityClient = new CognitoIdentityClient({ region: process.env.AWS_REGION });
+	const filterBySub = username;
+	const filterByUsername = username;
+	// Create the ListIdentitiesCommand with the Identity Pool ID
+	const listIdentitiesCommand = new ListIdentitiesCommand({
+		IdentityPoolId: String(process.env.COGNITO_IDENTITY_POOL_ID), MaxResults: 10,
+		// @ts-ignore
+		Filter: filterBySub ? `sub = "${filterBySub}"` : `cognito:username = "${filterByUsername}"`,
+	});
+
+	// Call the ListIdentitiesCommand to list the identities
+	cognitoIdentityClient.send(listIdentitiesCommand)
+		.then(data => {
+			logdebug('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB', data)
+			const identityIds = data.Identities?.filter(identity => identity.Logins![0] !== 'DISABLED').map(identity => identity.IdentityId);
+			logdebug('Identity IDs:', identityIds);
+			resolve(identityIds && identityIds[0])
+		})
+		.catch(error => {
+			logerror(error);
+			reject(error)
+		});
+})
+
+
 /**
- * TODO excerpt in separate npm package
- * TODO should have access to GET ITEMS ONLY FOR TENANTUSERCONFIG
  * @param evnt 
  * @param context 
  * @param callback 
@@ -24,6 +53,37 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 
 	// 	return (!!callback && callback(null, evnt)) || evnt
 	// }
+
+	if ("triggerSource" in evnt && evnt["triggerSource"] === "PostAuthentication_Authentication") {
+		_injectDataItems() // load metadata for items, we need only the user item here
+		// load user from db
+		const existingUser = (await getItems({
+			id: `${User.__typename}${_sep1}${evnt.request.userAttributes.sub}${_sep2}${versionString(0)}${_sep1}${User.__typename}${_sep1}${evnt.request.userAttributes.sub}`
+		}, null)).items[0]
+
+		const cognitoUserPayload = {
+			id: `${User.__typename}${_sep1}${evnt.request.userAttributes.sub}${_sep2}${versionString(0)}${_sep1}${User.__typename}${_sep1}${evnt.request.userAttributes.sub}`,
+			rev: existingUser?.rev || 0,
+			__typename: User.__typename,
+			sub: evnt.request.userAttributes.sub,
+			userPoolId: evnt.userPoolId,
+		}
+
+		if (existingUser && !existingUser.idpId) {
+			const idpId = await getUserIdentityIdNew(evnt.request.userAttributes.sub)
+			await patchItem({ ...cognitoUserPayload, idpId }, null)
+		} else if (!existingUser){
+			const idpId = await getUserIdentityIdNew(evnt.request.userAttributes.sub)
+			await createItem({ ...cognitoUserPayload, idpId }, null)
+		}
+
+		const reloadedUser = (await getItems<User>({
+			id: `${User.__typename}${_sep1}${evnt.request.userAttributes.sub}${_sep2}${versionString(0)}${_sep1}${User.__typename}${_sep1}${evnt.request.userAttributes.sub}`
+		}, null)).items[0]
+
+		logdebug('[handler] [PostAuthentication_Authentication] reloaderUser', reloadedUser)
+
+	}
 
 	if ("triggerSource" in evnt && (evnt["triggerSource"] === "TokenGeneration_Authentication"
 		|| evnt["triggerSource"] === "TokenGeneration_RefreshTokens")) {
@@ -48,6 +108,9 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 		}
 
 		if (existingUser) {
+			// do not ask Codnito IDP for the identity ID again, because: 
+			// - by above code, assume it was taken first time user authenticated and handled above in PostAuthentication_Authentication event
+			// - by AWS docs, Identity ID never changes for a user
 			await patchItem(cognitoUserPayload, null)
 		} else {
 			await createItem(cognitoUserPayload, null)
@@ -57,16 +120,16 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 			id: `${User.__typename}${_sep1}${evnt.request.userAttributes.sub}${_sep2}${versionString(0)}${_sep1}${User.__typename}${_sep1}${evnt.request.userAttributes.sub}`
 		}, null)).items[0]
 
-		logdebug('[handler] reloaderUser', reloadedUser)
+		logdebug(`[handler] [${evnt["triggerSource"]}] reloaderUser`, reloadedUser)
 
-		evnt.response = {
-			claimsOverrideDetails: {
-				claimsToAddOrOverride: {
-					'agents': JSON.stringify(reloadedUser.agents || []),
-					'active_agent': reloadedUser.active_agent
-				}
-			}
-		};
+		// evnt.response = {
+		// 	claimsOverrideDetails: {
+		// 		claimsToAddOrOverride: {
+		// 			'agents': JSON.stringify(reloadedUser.agents || []),
+		// 			'active_agent': reloadedUser.active_agent
+		// 		}
+		// 	}
+		// };
 
 		// 	// catch events of payload:
 		// 	//{ "version": "1", "triggerSource": "TokenGeneration_Authentication", "region": "eu-west-1", "userPoolId": "eu-west-1_5fFubCk74", "userName": "76c46c18-0aa8-4786-a1eb-ae50b880f7f7", "callerContext": { "awsSdkVersion": "aws-sdk-unknown-unknown", "clientId": "5og3ldap1shskk164029tg9a8s" }, "request": { "userAttributes": { "sub": "76c46c18-0aa8-4786-a1eb-ae50b880f7f7", "email_verified": "true", "cognito:user_status": "FORCE_CHANGE_PASSWORD", "email": "akrsmv@gmail.com" }, "groupConfiguration": { "groupsToOverride": [], "iamRolesToOverride": [], "preferredRole": null } }, "response": { "claimsOverrideDetails": null } }

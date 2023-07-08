@@ -126,31 +126,31 @@ export class AppSyncLambdaDataSourceConstruct extends Construct {
             }`)
             });
             // get{{item}} resolvers WILL BE REMOVING THOSE in favour of the generic get resolver above
-//             lds.createResolver(`get${plural(itemKey)}Resolver`, {
-//                 fieldName: `get${plural(itemKey)}`,
-//                 typeName: `Query`,
-//                 responseMappingTemplate: appsync.MappingTemplate.fromString("$util.toJson($context.result)"),
-//                 requestMappingTemplate:
-//                     appsync.MappingTemplate.fromString(`
-// #set($args = {})
-// #set($args.id = $context.arguments.id)
-// {
-//     "version": "2017-02-28",
-//     "operation": "Invoke",
-//     "payload": {
-//         "meta": {
-//             "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
-//             "action": "get",
-//             "__typename": "${itemKey}"
-//         },                    
-//         "arguments": $utils.toJson($args),
-//         "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
-//         "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
-//         "identity": $utils.toJson($context.identity),
-//         "test_entire_vtl_ctx": $utils.toJson($context)
-//     }
-// }`)
-//             });
+            lds.createResolver(`get${plural(itemKey)}Resolver`, {
+                fieldName: `get${plural(itemKey)}`,
+                typeName: `Query`,
+                responseMappingTemplate: appsync.MappingTemplate.fromString("$util.toJson($context.result)"),
+                requestMappingTemplate:
+                    appsync.MappingTemplate.fromString(`
+#set($args = {})
+#set($args.id = $context.arguments.id)
+{
+    "version": "2017-02-28",
+    "operation": "Invoke",
+    "payload": {
+        "meta": {
+            "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
+            "action": "get",
+            "__typename": "${itemKey}"
+        },                    
+        "arguments": $utils.toJson($args),
+        "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
+        "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
+        "identity": $utils.toJson($context.identity),
+        "test_entire_vtl_ctx": $utils.toJson($context)
+    }
+}`)
+            });
             // update{{item}} resolvers
             lds.createResolver(`update${itemKey}Resolver`, {
                 fieldName: `update${itemKey}`,

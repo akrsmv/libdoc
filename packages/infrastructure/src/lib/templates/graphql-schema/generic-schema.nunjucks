@@ -72,6 +72,8 @@ input StringQueryInput {
 {# ##### BEGIN ITEM TYPES #### #}
 interface Item {
     id: ID
+    HASH: String
+    RANGE: String
     
     rev: Int
     date_created: AWSDateTime
@@ -92,6 +94,8 @@ type ItemIdentifier @aws_iam @aws_cognito_user_pools {
 input {{itemKey}}Input {
     {# note id is part of all the fields, however it gets filtered by except_system_fields thus the definition outside loop #}
     id: ID
+    privateData: Boolean
+    publicData: Boolean
     {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes | except_system_fields %}
         {{ getGraphqlSingleKeyAndInputType (attr.__typename, attr_itemKey, attr_attr)}}
     {%- endfor %}
@@ -119,9 +123,12 @@ type {{itemKey}} implements Item {
     # interface Item props
     
     rev: Int
-
+    HASH: String
+    RANGE: String
     TITEM: String
     checksum: String
+    privateData: Boolean
+    publicData: Boolean
 
         {# 
     id: ID
@@ -144,9 +151,14 @@ type {{itemKey}} implements Item {
 }
 type {{itemKey}}History implements Item {
     # interface Item props 
+    HASH: String
+    RANGE: String
     rev: Int
     TITEM: String
     checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
 
     {# 
     id: ID
@@ -244,7 +256,7 @@ type Query {
     {%- for itemKey, attr in allItems %}
     search{{itemKey | plural}}(input: Search{{itemKey | plural}}Input!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools
     query{{itemKey | plural}}(input: Query{{itemKey | plural}}Input!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools
-    {# get{{itemKey | plural}}(id: [ID!]!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools #}
+    get{{itemKey | plural}}(id: [ID!]!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools
     {%- endfor %}
     {%- for itemKey, attr in allQueries %}
         {# TODO do we want every data model query to have also ResultType in data model and alsohere or we can go with AllItemsUnion? #}
@@ -286,6 +298,7 @@ type {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools {
 input QueryInputAllItemsFields {
     HASH: StringQueryInput
     RANGE: StringQueryInput
+    TITEM: StringQueryInput
     rev: Int
     limit: Int
     pageToken: String
@@ -327,6 +340,7 @@ input Query{{itemKey | plural}}FilterInput {
 input Query{{itemKey | plural}}OnlyFieldsInput {
     HASH: StringQueryInput
     RANGE: StringQueryInput
+    TITEM: StringQueryInput
     {# user_created: String --.these and also date_created / date_updated should be removed from the Input
     user_updated: String #}
         {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes %}
