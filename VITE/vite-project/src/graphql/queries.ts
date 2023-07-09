@@ -1,6 +1,6 @@
 export const getUserVisibleAgents = /* GraphQL */ `
 query GetUsers($id: [ID!]!) {
-    get(id: $id) {
+    getUsers(id: $id) {
       items {
         ... on User {
           email

@@ -1,15 +1,9 @@
 'use strict'
 import { AttributeValue, BatchGetItemCommand, BatchGetItemInput, BatchGetItemOutput } from '@aws-sdk/client-dynamodb'
 import { dynamoDbClient, fromAttributeMapArray, DB_NAME, toAttributeMapArray } from '../DynamoDbClient';
-import { IDdbItemKey, DdbItem, __itemMetadata, _sep2, withPrefix, IIdentity, _sep1, withoutPrefix, prefixPattern, IClaims, _nGSIKeyPrefix, _sGSIKeyPrefix } from '@incta/ddb-model';
+import { IDdbItemKey, DdbItem, __itemMetadata, _sep2, withPrefix, IIdentity, _sep1, withoutPrefix, prefixPattern, IClaims, _nGSIKeyPrefix, _sGSIKeyPrefix, DdbLoadPeersInput, GetItemProps, Result } from '@incta/ddb-model';
 import { ValidationError, chunks, delay, logdebug } from '@incta/common-utils';
-import { DdbLoadPeersInput, EMPTY_LOAD_PEERS_INPUT, Result } from './queryItems';
-
-export type ddbBatchGetItemProps = {
-    id: IDdbItemKey[] | string[] | string,
-    loadPeersInput?: DdbLoadPeersInput,
-    isPublic?: boolean
-}
+import { EMPTY_LOAD_PEERS_INPUT } from './queryItems';
 
 /**
  * Ensures mimum required keys in a projection expression are present
@@ -119,7 +113,7 @@ const stripSystemKeys = <T extends DdbItem = DdbItem>(item: Record<string, any>)
  * @param params 
  * @returns 
  */
-export const getItems = async <T extends DdbItem = DdbItem>(params: ddbBatchGetItemProps, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<T>> => {
+export const getItems = async <T extends DdbItem = DdbItem>(params: GetItemProps, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<T>> => {
     const infrredKeys = inferItemKeys(params, false) // do not remove any prefixes found
     // if identity is passed this means we want to verify access only to certain keys, that are wih same identity
     if (!!identity) {

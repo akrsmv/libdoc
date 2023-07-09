@@ -1,6 +1,7 @@
 import { ValidationError, uuid } from "@incta/common-utils";
 import { JSONDataModel, GsiKey } from "./DataModel";
 import { JSONTableModel } from "./TableModel";
+import { GetItemProps, Result } from "./interface-method-payloads";
 
 export const _sGSIKeyPrefix = "sGSI"
 export const _nGSIKeyPrefix = "nGSI"
@@ -147,16 +148,11 @@ export interface IDdbItemStaticMetadata<T> {
  */
 export interface IDdbDomain<T extends DdbItem> {
     [action: string]: any // (item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null) => Promise<void>
-    validateGet(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    validateQuery(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    validateCreate(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    validateUpdate(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    validatePatch(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    validateDelete(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    onCreate(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    onUpdate(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    onPatch(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
-    onDelete(item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
+    get(params: GetItemProps, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<T>  | undefined>
+    create(item: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
+    update(item: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
+    patch(item: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
+    del(dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
 }
 export interface IDdbCommand<T extends DdbCommandItem> extends IDdbDomain<T> {
     [action: string]: any // (item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null) => Promise<void>

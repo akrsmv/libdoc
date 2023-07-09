@@ -3,7 +3,7 @@
 // https://github.com/aws/aws-sdk-js/blob/master/ts/dynamodb.ts
 import { dynamoDbClient, fromAttributeMapArray, DB_NAME, toAttributeMap } from '../DynamoDbClient';
 import { ensureProjectionExpressionRequiredKeys, getItems, populatePeerKeys } from './getItems';
-import { DdbItem, GsiProjectionType, IClaims, IIdentity, __itemMetadata, __tableModel, _nGSIKeyPrefix, _sGSIKeyPrefix, _sep1, _sep2, calculatePrivateOrPublicData, withPrefix } from '@incta/ddb-model';
+import { DdbItem, DdbLoadPeersInput, GsiProjectionType, IClaims, IIdentity, Result, __itemMetadata, __tableModel, _nGSIKeyPrefix, _sGSIKeyPrefix, _sep1, _sep2, calculatePrivateOrPublicData, withPrefix } from '@incta/ddb-model';
 import { AttributeValue, QueryCommand, QueryInput } from '@aws-sdk/client-dynamodb';
 import { ValidationError, decodeBase64ToJSON, encodeJSONToBase64, logdebug, ppjson } from '@incta/common-utils';
 
@@ -44,27 +44,11 @@ export interface DdbQueryInput {
     __typename?: string
 }
 
-export interface Result<TItem = any> {
-    items: TItem[]
-    count: number
-    pageToken?: string
-    excludedFromFilter?: string[]
-    selectionSetList?: string[]
-}
-
 export const EMPTY_LOAD_PEERS_INPUT: { loadPeersInput: DdbLoadPeersInput } = {
     loadPeersInput: {
         loadPeersLevel: 0,
         peersPropsToLoad: []
     }
-}
-
-export interface DdbLoadPeersInput {
-    loadPeersLevel?: number
-    peersPropsToLoad?: string[]
-    projectionExpression?: string
-    selectionSetGraphQL?: string
-    selectionSetList?: string
 }
 
 export type RangeKeyPredicate = "gt" |
@@ -179,6 +163,7 @@ const stripSystemKeys = <T extends DdbItem =DdbItem>(item: Record<string, any>) 
         , {}) as T
 
 export const queryItems = async <T extends DdbItem = DdbItem>(args: DdbQueryInput, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<T>> => {
+    logdebug("[queryItems] args ", args)
 
     let ddbQueryPayload = args || {}
     let _item_metadata = __itemMetadata(args)

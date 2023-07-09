@@ -2292,7 +2292,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-06-17T04:30:35.005Z",
-            "modified": "2023-07-06T17:57:48.128Z",
+            "modified": "2023-07-09T04:33:06.764Z",
             "headers": [],
             "params": [
                 {
@@ -2308,7 +2308,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"id\": \"User|{{__usr}}#v_0|User|{{__usr}}\",\n  \"__typename\": \"User\",\n  \"public_data_ref\": \"public_data_ref{{#number}}\",\n  \"email\": \"email{{#number}}\",\n  \"sub\": \"{{__usr}}\",\n  \"preferredIamRole\": \"preferredIamRole{{#number}}\",\n  \"iamRoles\": [\"iamRoles{{#number}}\"],\n  \"cognitoGroups\": [\"cognitoGroups{{#number}}\"],\n  \"userPoolId\": \"userPoolId{{#number}}\",\n  \"active_agent\": \"{{__agt}}\",\n  \"agents\": [\"{{__agt}}\",\"{{__agt_1}}\",\"{{__agt_2}}\"]\n}",
+                "raw": "{\n  \"id\": \"User|{{__usr}}#v_0|User|{{__usr}}\",\n  \"__typename\": \"User\",\n  \"idpId\": \"13\",\n  \"public_data_ref\": \"public_data_ref{{#number}}\",\n  \"email\": \"email{{#number}}\",\n  \"sub\": \"{{__usr}}\",\n  \"preferredIamRole\": \"preferredIamRole{{#number}}\",\n  \"iamRoles\": [\"iamRoles{{#number}}\"],\n  \"cognitoGroups\": [\"cognitoGroups{{#number}}\"],\n  \"userPoolId\": \"userPoolId{{#number}}\",\n  \"active_agent\": \"{{__agt}}\",\n  \"agents\": [\"{{__agt}}\",\"{{__agt_1}}\",\"{{__agt_2}}\"]\n}",
                 "form": []
             },
             "tests": []
@@ -2512,12 +2512,23 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-06-17T04:30:35.016Z",
-            "modified": "2023-06-17T04:30:35.016Z",
+            "modified": "2023-07-09T04:07:03.627Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "__usr",
+                    "value": "{{__usr}}",
+                    "isPath": false
+                },
+                {
+                    "name": "__agt",
+                    "value": "{{__agt}}",
+                    "isPath": false
+                }
+            ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n  \"__typename\": \"Agent\",\n  \"public_data_ref\": \"public_data_ref{{#number}}\",\n  \"location1\": \"location1{{#number}}\",\n  \"location2\": \"location2{{#number}}\",\n  \"location3\": \"location3{{#number}}\",\n  \"location4\": \"location4{{#number}}\",\n  \"location5\": \"location5{{#number}}\",\n  \"code\": \"code{{#number}}\",\n  \"name\": \"name{{#number}}\",\n  \"child_agents\": [\"child_agents{{#number}}\"],\n  \"parent_agents\": [\"parent_agents{{#number}}\"],\n  \"agt_data_visibility_conf\": \"ALL\"\n}",
+                "raw": "{\n  \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n  \"__typename\": \"Agent\",\n  \"public_data_ref\": \"public_data_ref{{#number}}\",\n  \"location1\": \"location1{{#number}}\",\n  \"location2\": \"location2{{#number}}\",\n  \"location3\": \"location3{{#number}}\",\n  \"location4\": \"location4{{#number}}\",\n  \"location5\": \"location5{{#number}}\",\n  \"code\": \"code{{#number}}\",\n  \"name\": \"name{{#number}}\",\n  \"child_agents\": [\"child_agents{{#number}}\"],\n  \"parent_agents\": [\"parent_agents{{#number}}\"],\n  \"agt_data_visibility_conf\": \"ALL\",\n  \"privateData\": true\n}",
                 "form": []
             },
             "tests": []
@@ -8025,12 +8036,23 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-06-17T04:30:35.307Z",
-            "modified": "2023-06-17T04:30:35.307Z",
+            "modified": "2023-07-09T04:43:06.605Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "__usr",
+                    "value": "{{__usr}}",
+                    "isPath": false
+                },
+                {
+                    "name": "__agt",
+                    "value": "{{__agt}}",
+                    "isPath": false
+                }
+            ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"meta\":{\n    \"target\":\"User\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [\"public_data_ref\", \"active_agent\", \"agents\"],\n      \"projectionExpression\": \"public_data_ref, email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"User\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"User|{{__usr}}#v_0|User|{{__usr}}\"\n      }\n    ]\n  },\n  \"loadPeersInput\":{\n      \"loadPeersLevel\": 2,\n      \"peersPropsToLoad\": [\"public_data_ref\", \"active_agent\", \"agents\"],\n      \"projectionExpression\": \"public_data_ref, email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n    }\n}",
                 "form": []
             },
             "tests": []
@@ -9339,12 +9361,23 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-06-17T04:30:35.375Z",
-            "modified": "2023-06-17T04:30:35.375Z",
+            "modified": "2023-07-09T04:19:51.281Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "__usr",
+                    "value": "{{__usr}}",
+                    "isPath": false
+                },
+                {
+                    "name": "__agt",
+                    "value": "{{__agt}}",
+                    "isPath": false
+                }
+            ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"meta\":{\n    \"target\":\"Agent\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n    \"__typename\": \"Agent\",\n    \"public_data_ref\": \"public_data_ref{{#number}}\",\n    \"location1\": \"location1{{#number}}\",\n    \"location2\": \"location2{{#number}}\",\n    \"location3\": \"location3{{#number}}\",\n    \"location4\": \"location4{{#number}}\",\n    \"location5\": \"location5{{#number}}\",\n    \"code\": \"code{{#number}}\",\n    \"name\": \"name{{#number}}\",\n    \"child_agents\": [\"child_agents{{#number}}\"],\n    \"parent_agents\": [\"parent_agents{{#number}}\"],\n    \"agt_data_visibility_conf\": \"ALL\"\n  }\n}",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"Agent\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n    \"__typename\": \"Agent\",\n    \"public_data_ref\": \"public_data_ref{{#number}}\",\n    \"location1\": \"location1{{#number}}\",\n    \"location2\": \"location2{{#number}}\",\n    \"location3\": \"location3{{#number}}\",\n    \"location4\": \"location4{{#number}}\",\n    \"location5\": \"location5{{#number}}\",\n    \"code\": \"code{{#number}}\",\n    \"name\": \"name{{#number}}\",\n    \"child_agents\": [\"child_agents{{#number}}\"],\n    \"parent_agents\": [\"parent_agents{{#number}}\"],\n    \"agt_data_visibility_conf\": \"ALL\",\n    \"privateData\": true\n  }\n}",
                 "form": []
             },
             "tests": []

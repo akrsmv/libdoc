@@ -1,6 +1,7 @@
 import { loginfo } from "@incta/common-utils"
-import { DdbLoadPeersInput, EMPTY_LOAD_PEERS_INPUT } from "@incta/ddb-actions"
+import { EMPTY_LOAD_PEERS_INPUT } from "@incta/ddb-actions"
 import { DispatchActionInput } from "./interface/DispatchActionInput"
+import { DdbLoadPeersInput } from "@incta/ddb-cqd-model"
 
 /**
  * 
