@@ -1,47 +1,33 @@
-import { IClaims, IIdentity, IDdbDomain, staticImplements } from "{{importLibraryToUseInGeneratedFiles}}";
+import { IClaims, IIdentity, IDdbDomain, staticImplements, GetItemProps, IDdbItemKey, Result} from "{{importLibraryToUseInGeneratedFiles}}";
 import { {{__typename}} } from "../items/{{itemNameSuffix | firstCaseLower}}Items/{{__typename}}";
 
 @staticImplements<IDdbDomain<{{__typename}}>>()
 export class {{__typename}}{{itemNameSuffix}}Domain {
+
+    public static async get(params: GetItemProps, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<{{__typename}}>> {
+        const {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        if ({{__typename | firstCaseLower}}DomainImpl && {{__typename | firstCaseLower}}DomainImpl.get && typeof {{__typename | firstCaseLower}}DomainImpl.get === 'function') {
+            try {
+                return await {{__typename | firstCaseLower}}DomainImpl.get(params, identity)
+            } catch (error) {
+                throw error
+            }
+        }
+        throw new Error("No implmentation found for {{__typename}}.get")
+    }
+    public static async create(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        const {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        if ({{__typename | firstCaseLower}}DomainImpl && {{__typename | firstCaseLower}}DomainImpl.create && typeof {{__typename | firstCaseLower}}DomainImpl.create === 'function') {
+            try {
+                return await {{__typename | firstCaseLower}}DomainImpl.create(item, identity)
+            } catch (error) {
+                throw error
+            }
+        }
+        throw new Error("No implmentation found for create {{__typename}}.create")
+    }
+    public static async update(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>{}
+    public static async patch(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>{}
+    public static async del(dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>{}
     
-    public static async validateGet({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-
-    public static async validateQuery({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-
-    public static async validateCreate({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-    
-    public static async validateUpdate({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-    
-    public static async validatePatch({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-
-    public static async validateDelete({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-
-    public static async onCreate({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-    
-    public static async onUpdate({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-    
-    public static async onPatch({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-
-    public static async onDelete({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        
-    }
-
 }

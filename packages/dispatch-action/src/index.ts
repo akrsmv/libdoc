@@ -39,11 +39,21 @@ export const dispatchAction = async (input: DispatchActionInput, identity: Parti
     // ************************************************************************************
     // return await __domain().domainsMap?.get(input.meta.__typename)![input.meta.action](input.arguments, `${__usr}${_sep1}${__agt}`)
     switch (input.meta.action) {
-        case 'create': return await createItem(input.arguments, identity)
+        case 'create':
+            if (__typenameObject && typeof __typenameObject.create === 'function') {
+                return await __typenameObject.create(input.arguments, identity)
+            } else {
+                await await createItem(input.arguments, identity)
+            }
         case 'update': return await updateItem(input.arguments, identity)
         case 'patch': return await patchItem(input.arguments, identity)
         case 'delete': return await deleteItem(input.arguments, identity)
-        case 'get': return await getItems({ ...input.arguments, ...transformGraphQLSelection(input) }, identity)
+        case 'get':
+            if (__typenameObject && typeof __typenameObject.get === 'function') {
+                return await __typenameObject.get({ ...input.arguments, ...transformGraphQLSelection(input) }, identity)
+            } else {
+                await await getItems({ ...input.arguments, ...transformGraphQLSelection(input) }, identity)
+            }
         case 'query': return await queryItems({ ...input.arguments, ...transformGraphQLSelection(input) }, identity)
         case 'search': return await searchItems({ ...input.arguments, ...transformGraphQLSelection(input) }, identity)
         case 'start': return __typenameObject && await __typenameObject['start'](input.arguments, identity)

@@ -1,7 +1,7 @@
 import { locateQueryStrategyFromQueryArguments } from "../query-strategy-utils/locateQueryStrategyFromQueryArguments";
-import { DdbItem, IClaims, IIdentity, __domain, __itemMetadata, __tableModel, _sep1, _sep2, getRegularKeyForSystemKey, withPrefix } from "@incta/ddb-model";
-import { DdbQueryInput, KeyPredicateValueTripple, PrimaryKey, Result, queryItems } from "../../interface-methods/queryItems";
-import { ValidationError, decodeBase64ToJSON, encodeJSONToBase64, logerror } from "@incta/common-utils";
+import { DdbItem, IClaims, IIdentity, Result, __domain, __itemMetadata, __tableModel, _sep1, _sep2, getRegularKeyForSystemKey, withPrefix } from "@incta/ddb-model";
+import { DdbQueryInput, KeyPredicateValueTripple, PrimaryKey, queryItems } from "../../interface-methods/queryItems";
+import { ValidationError, decodeBase64ToJSON, encodeJSONToBase64, logdebug, logerror } from "@incta/common-utils";
 import { dbConfig } from "../../DynamoDbClient";
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
@@ -51,6 +51,7 @@ const queryItemsInShard = async <T extends DdbItem>(
  */
 export const searchItems = async <T extends DdbItem>(params: DdbQueryInput, identity: Partial<IIdentity<Partial<IClaims>>> | null):
     Promise<Result<T>> => {
+        logdebug(`[searchItems] params `, params)
 
     // - if hashKey is provided - assume query strategy is specified by the client and forward to queryItems (if missing indeg or incorrect hashKey it will handle accordingly)
     // - if no __typename is provided, we cannot get metadata, thus only query is possible

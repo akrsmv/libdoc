@@ -4,7 +4,7 @@ import { join, sep, dirname } from "path";
 import { readFileSync, existsSync } from "fs";
 import { DataModelObject } from '@incta/ddb-model';
 import { firstCaseLower, firstCaseUpper, loginfo, logwarn } from '@incta/common-utils';
-import { singular } from 'pluralize';
+import { singular, plural } from 'pluralize';
 
 export const generateCQDImpl = async (
     itemsModel: { [x: string]: DataModelObject },
@@ -20,6 +20,7 @@ export const generateCQDImpl = async (
     await mkdir(dirToUse, { recursive: true })
     const nunjucksEnv = nunjucks.configure({ autoescape: false, noCache: true })
     nunjucksEnv.addFilter('firstCaseLower', firstCaseLower)
+    nunjucksEnv.addFilter('plural', plural)
 
     const fileNameSffuix = itemNameSuffix === `${firstCaseUpper(singular(subRootDirName.replace('-impl', '')))}` ? itemNameSuffix
         : `${firstCaseUpper(singular(subRootDirName.replace('-impl', '')))}`

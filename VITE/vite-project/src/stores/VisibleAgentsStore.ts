@@ -92,7 +92,7 @@ const loadUser = async (sub: string) => {
         // if (!result.data) {
         //     toast.error(result.data.getAerrors[0]?.message)
         // }
-        return result.data.get?.items[0]
+        return result.data.getUsers?.items[0]
     } catch (err: any) {
         console.log('EEERRRROOOORRR', err)
 

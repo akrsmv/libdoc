@@ -1,44 +1,25 @@
-import { IClaims, IIdentity } from "@incta/ddb-model";
+import { GetItemProps, IClaims, IDdbItemKey, IIdentity, Result } from "@incta/ddb-model";
+import { createItem, deleteItem, getItems, patchItem, updateItem } from "@incta/ddb-actions";
 import { Agent } from "../../domain-context/items/dataItems/Agent";
 
-
-export const validateGet = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
+export const get = async(params: GetItemProps, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<Agent>> => {
+    const agents = await getItems(params, identity)
+    /* Any additional custom logic */
+    return agents 
 }
-
-export const validateQuery = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
+export const create = async(item: Partial<Agent>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    if ("privateData" in item && item["privateData"] === true) {
+        delete identity?.claims?.active_agent
+    }
+    await createItem(item, identity)
 }
-
-export const validateCreate = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
+export const update = async(item: Partial<Agent>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    await updateItem(item, identity)
 }
-
-export const validateUpdate = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
+export const patch = async(item: Partial<Agent>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    await patchItem(item, identity)
 }
-
-export const validatePatch = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}
-
-export const validateDelete = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}
-
-export const onCreate = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}
-
-export const onUpdate = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}
-
-export const onPatch = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}
-
-export const onDelete = async (agent: Agent, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
+export const del = async(dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    await deleteItem(dto, identity)
 }
 

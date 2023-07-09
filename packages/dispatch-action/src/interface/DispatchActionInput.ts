@@ -1,4 +1,5 @@
-import { DdbLoadPeersInput } from "@incta/ddb-actions"
+import { DdbLoadPeersInput } from "@incta/ddb-cqd-model"
+
 
 export interface DispatchActionInput {
     meta: {
