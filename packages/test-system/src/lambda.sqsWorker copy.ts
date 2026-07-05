@@ -159,7 +159,7 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 
 	// const command = new SendEmailCommand({
 	// 	Destination: {
-	// 		ToAddresses: ["office@inctasoft.com"],
+	// 		ToAddresses: ["office@localhost:3000"],
 	// 	},
 	// 	Message: {
 	// 		Body: {
@@ -168,7 +168,7 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 
 	// 		Subject: { Data: "Hello from AWS SES" },
 	// 	},
-	// 	Source: "office@inctasoft.com",
+	// 	Source: "office@localhost:3000",
 	// });
 
 	// try {

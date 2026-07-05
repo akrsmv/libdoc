@@ -17,7 +17,6 @@
     ]
   },
   "context": {
-    "exisingTableArn": "arn:aws:dynamodb:eu-west-1:216788398771:table/test2023",
     "debug-mode": "1",
     "tableName": "test2023",
     "operations-bucket": "test2023",

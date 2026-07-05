@@ -7,7 +7,7 @@ export const _sGSIKeyPrefix = "sGSI"
 export const _nGSIKeyPrefix = "nGSI"
 export const _sep1 = "|"
 export const _sep2 = "#"
-export const _default_agent_id = `Agent${_sep1}DEFAULT${_sep2}v_0|Agent|DEFAULT`
+export const _default_agent_id = `Agent|DEFAULT#v_0|Agent|DEFAULT`
 
 /**
  * Prepends `__prefix` to `str` ONLY IF `__prefix` is truthy AND str is of type string
@@ -108,23 +108,15 @@ export interface IDdbItemBaseProps extends IDdbItemKey {
     [x: string]: any
     id: string
     __typename: string
+    
     date_created: Date
     date_updated: Date
-
-    TITEM?: string
-    checksum?: string
-
     user_created?: string
     user_updated?: string
-    __usr?: string
-    __agt?: string
 
+    TITEM?: string
     privateData?: boolean
     publicData?: boolean
-
-    ringToken?: string
-    item_state?: string
-    __proc?: string
 }
 
 /**
@@ -149,7 +141,7 @@ export interface IDdbItemStaticMetadata<T> {
 export interface IDdbDomain<T extends DdbItem> {
     [action: string]: any // (item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null) => Promise<void>
     get(params: GetItemProps, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<T>  | undefined>
-    create(item: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
+    create(item: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<T>
     update(item: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
     patch(item: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
     del(dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>
@@ -157,9 +149,9 @@ export interface IDdbDomain<T extends DdbItem> {
 export interface IDdbCommand<T extends DdbCommandItem> extends IDdbDomain<T> {
     [action: string]: any // (item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null) => Promise<void>
     start(command: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>;
-    validateStart(command: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>;
-    onCommandCompleted(command: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>;
-    onCommandErrored(command: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>;
+    // validateStart(command: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>;
+    // onCommandCompleted(command: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>;
+    // onCommandErrored(command: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>;
 }
 export interface IDdbAsyncCommand<T extends DdbAsyncCommandItem> extends IDdbDomain<T> {
     [action: string]: any // (item: T, identity: Partial<IIdentity<Partial<IClaims>>> | null) => Promise<void>
@@ -202,7 +194,7 @@ export type DomainPropertyMetadata<T> = {
     unique?: boolean
     HASH?: boolean
     required?: boolean
-    type: "object" | "object[]" | "string" | "string[]" | "number" | "enum" | "isodatestring"
+    type: "object" | "object[]" | "string" | "string[]" | "number" | "enum" | "isodatestring" | "boolean"
     enumValues?: string[]
     objectTypeDtoName?: string
 }
@@ -278,17 +270,17 @@ export const setDomainContext = (ctx: Partial<IDomainContext>) => {
     _domain = Object.assign(_domain || {}, ctx)
 }
 
-export const __createItem = (item: Record<string, any>, identity: Partial<IIdentity<Partial<IClaims>>> | null): DdbItem => {
+export const __createItem = <T extends DdbItem>(item: Record<string, any>, identity: Partial<IIdentity<Partial<IClaims>>> | null): T => {
     if (!item.__typename) {
         throw new ValidationError("[__createItem] atempt to prepare dynamo item without specifying __typename")
     }
     const domain = __domain()
-    if (!domain.dataItemsMap?.has(String(item.__typename))) {
-        throw new ValidationError("[__createItem] invalid __typename");
+    if (!domain.dataItemsMap?.has(String(item.__typename)) && !domain.commandItemsMap?.has(String(item.__typename)) && !domain.queryItemsMap?.has(String(item.__typename))) {
+        throw new ValidationError(`[__createItem] invalid __typename ${String(item.__typename)}`);
     }
     try {
         const ctr = _domain.dataItemsMap?.get(item.__typename) || _domain.queryItemsMap?.get(item.__typename) || _domain.commandItemsMap?.get(item.__typename)
-        return new ctr!({ args: item, identity })
+        return new ctr!({ args: item, identity }) as T
     } catch (error) {
         throw error
     }
@@ -296,7 +288,7 @@ export const __createItem = (item: Record<string, any>, identity: Partial<IIdent
 
 export const __itemMetadata = (item: Record<string, any> | string | undefined): IDdbItemStaticMetadata<DdbItem> => {
     if (typeof item === "object" && "__typename" in item) {
-        return _domain.dataItemsMap?.get(item.__typename) || EMPTY_ITEM_METADATA
+        return _domain.dataItemsMap?.get(item.__typename) || _domain.commandItemsMap?.get(item.__typename) || _domain.queryItemsMap?.get(item.__typename) || EMPTY_ITEM_METADATA
     } else if (typeof item === "string") {
         return _domain.dataItemsMap?.get(item) || EMPTY_ITEM_METADATA
     } else {
@@ -381,4 +373,10 @@ export interface DdbQueryItem extends IDdbQueryItemBaseProps {
 export type DomainQueryItemsMap = Map<string, IDdbItemStaticMetadata<DdbQueryItem>>
 export type DdbQueryItemPropertiesMetadataMap<T> = Map<keyof IDdbQueryItemBaseProps | keyof T, DomainPropertyMetadata<T>>
 
-// ===================================================
+export const calculatePrivateOrPublicData = (payload: any, _item_metadata?: IDdbItemStaticMetadata<DdbItem>) => {
+    if ("privateData" in payload && payload.privateData === true) {
+        return !payload.privateData //TODO need to reverse it since the method withPrefix has the parameter dontApplyPrefix!!!
+    } else {
+        return (_item_metadata && _item_metadata.isPublicItem) || !!payload.publicData
+    }
+}

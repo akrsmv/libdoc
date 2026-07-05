@@ -1,13 +1,21 @@
 'use strict'
-
+/*
+######################
+######################
+######################
+TODO
+-------------------------------------------------------------------------------
+use getCreateItemTransactWriteArray and later convert it to batch write request
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*/
 import { DB_NAME, toAttributeMap, preparePkforUniqueItemKey, ddbRequest, dbConfig } from '../DynamoDbClient';
 import { DdbItem, IClaims, IIdentity, __createItem, __domain, __itemMetadata, _sep1, calculatePrivateOrPublicData, withPrefix } from '@incta/ddb-model'
 import { convertDatesToIsoDateStrings, logdebug, removeEmpty } from '@incta/common-utils';
 import { AttributeValue, TransactWriteItem, TransactWriteItemsCommand, TransactWriteItemsInput } from '@aws-sdk/client-dynamodb';
 
-export const createItem = async <T extends DdbItem>(dto: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-    const item = __createItem(removeEmpty(dto), identity)
+export const getCreateItemTransactWriteArray = async <T extends DdbItem>(dto: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<[T, TransactWriteItem[]]> => {
+
+    const item = __createItem<T>(removeEmpty(dto), identity)
     const _item_metadata = __itemMetadata(item)
     const ditem = toAttributeMap({
         user_created: identity?.sub,
@@ -54,9 +62,12 @@ export const createItem = async <T extends DdbItem>(dto: Partial<T>, identity: P
     ditem['NSHARD'] = { S: withPrefix(`${~~(Math.random() * Number((await dbConfig()).NSHARD))}`, calculatePrivateOrPublicData(item, _item_metadata), identity) }
 
     // put item request for each unique key defined in metadataz
-    const allTransactWriteItemList = Object.keys(ditem).reduce<TransactWriteItem[]>((accum, key) => {
+    return [item, Object.keys(ditem).reduce<TransactWriteItem[]>((accum, key) => {
         if (_item_metadata.uniqueKeys.includes(key)) {
-            const duniqueItem = toAttributeMap({ HASH: withPrefix(preparePkforUniqueItemKey(item, key), calculatePrivateOrPublicData(item, _item_metadata), identity), RANGE: withPrefix(item[key], calculatePrivateOrPublicData(item, _item_metadata), identity) })
+            const duniqueItem = toAttributeMap({
+                HASH: withPrefix(preparePkforUniqueItemKey(item, key), calculatePrivateOrPublicData(item, _item_metadata), identity),
+                RANGE: withPrefix(item[key], calculatePrivateOrPublicData(item, _item_metadata), identity)
+            })
             accum.push({
                 Put: {
                     Item: duniqueItem,
@@ -74,7 +85,7 @@ export const createItem = async <T extends DdbItem>(dto: Partial<T>, identity: P
                 Update: {
                     TableName: DB_NAME(),
                     ReturnValuesOnConditionCheckFailure: "ALL_OLD",
-                    Key: { HASH: { S: withPrefix(String(ditem.HASH.S), calculatePrivateOrPublicData(item, _item_metadata), identity)}, RANGE: { S: withPrefix(String(ditem.RANGE.S), calculatePrivateOrPublicData(item, _item_metadata), identity)} },
+                    Key: { HASH: { S: withPrefix(String(ditem.HASH.S), calculatePrivateOrPublicData(item, _item_metadata), identity) }, RANGE: { S: withPrefix(String(ditem.RANGE.S), calculatePrivateOrPublicData(item, _item_metadata), identity) } },
                     UpdateExpression: `set ${Object.keys(ditem).filter(key => key !== "HASH" && key !== "RANGE").map(key => `#${key} = :${key}`).join(", ")}`,
                     ExpressionAttributeNames: Object.keys(ditem).reduce<{ [key: string]: string }>((accum, key) => {
                         accum[`#${key}`] = key;
@@ -88,14 +99,11 @@ export const createItem = async <T extends DdbItem>(dto: Partial<T>, identity: P
                 }
             }
         ]
-    )
-    const params: TransactWriteItemsInput = {
-        TransactItems: allTransactWriteItemList,
-        ReturnConsumedCapacity: "TOTAL",
-        ReturnItemCollectionMetrics: "SIZE",
-        // ClientRequestToken: correlation_id // TODO
-    }
-    logdebug(`[createItem] ==>DDB TransactWriteItemsInput:`, params)
-    const result = await ddbRequest(new TransactWriteItemsCommand(params))
-    logdebug("[createItem] <==DDB TransactWriteItemsOutput: ", result)
+    )]
+}
+
+export const createItem = async <T extends DdbItem>(dto: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<T> => {
+    const [item, allTransactWriteItemListForItem] = await getCreateItemTransactWriteArray(dto, identity)
+    await ddbRequest(allTransactWriteItemListForItem)
+    return item
 }

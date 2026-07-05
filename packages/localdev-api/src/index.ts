@@ -3,8 +3,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import JSON5 from 'json5'
 import * as ddbActions from '@incta/ddb-actions';
-import { loginfo, logwarn } from '@incta/common-utils';
-// import { generateAirtoursTestData } from './____test-data-generators/___generateAirtoursTestData';
 import { __dataModel, __domain, _sep1 } from '@incta/ddb-model';
 import { dispatchAction } from '@incta/dispatch-action';
 import { handleErrors } from './errorHandling';
@@ -13,8 +11,6 @@ import { createHandler } from 'graphql-http/lib/use/express';
 import { generatedSchema } from './generatedSchema';
 import { buildSchema } from 'graphql';
 import * as schemaIntrospection from './schema-introspeciton.json'
-import { loadDomainContext } from '@incta/ddb-cqd-model';
-import { resolve } from 'path';
 
 dotenv.config();
 
@@ -27,58 +23,6 @@ app.use(express.urlencoded())
 app.use(express.json())
 app.use(express.text())
 app.use(cors())
-
-// // ----------- INJECT DOMAIN CONTEXT INTO CURRENT PROCESS
-// const _injectDataItems = require('./test-ddb-model-generator-output/items/dataItems/_injectDataItems');
-// const _injectCommandItems = require('./test-ddb-model-generator-output/items/commandItems/_injectCommandItems');
-// const _injectQueryItems = require('./test-ddb-model-generator-output/items/queryItems/_injectQueryItems');
-// const _injectCommands = require('./test-ddb-model-generator-output/commands/_injectCommands');
-// const _injectQueries = require('./test-ddb-model-generator-output/queries/_injectQueries');
-// const _injectDomains = require('./test-ddb-model-generator-output/domains/_injectDomains');
-
-// if (_injectCommandItems && _injectCommandItems._injectCommandItems) {
-//     _injectCommandItems._injectCommandItems()
-//     loginfo(`Loaded ${__domain().commandItemsMap?.size} command payload definitions`)
-// } else {
-//     logwarn(`No Command Items loaded`)
-// }
-
-// if (_injectCommands && _injectCommands._injectCommands) {
-//     _injectCommands._injectCommands()
-//     loginfo(`Loaded ${__domain().commandsMap?.size} commands`)
-
-// } else {
-//     logwarn(`No Commands loaded`)
-// }
-
-// if (_injectQueryItems && _injectQueryItems._injectQueryItems) {
-//     _injectQueryItems._injectQueryItems()
-//     loginfo(`Loaded ${__domain().queryItemsMap?.size} query payload definitions`)
-// } else {
-//     logwarn(`No Query Items loaded`)
-// }
-
-// if (_injectQueries && _injectQueries._injectQueries) {
-//     _injectQueries._injectQueries()
-//     loginfo(`Loaded ${__domain().queriesMap?.size} queries`)
-// } else {
-//     logwarn(`No Queries loaded`)
-// }
-
-// if (_injectDataItems && _injectDataItems._injectDataItems) {
-//     _injectDataItems._injectDataItems()
-//     loginfo(`Loaded ${__domain().dataItemsMap?.size} data items`)
-
-// } else {
-//     logwarn(`No Data Items loaded`)
-// }
-
-// if (_injectDomains && _injectDomains._injectDomains) {
-//     _injectDomains._injectDomains()
-//     loginfo(`Loaded ${__domain().domainsMap?.size} domains`)
-// } else {
-//     logwarn(`No Domains loaded`)
-// }
 
 //----------------------
 injectDomainContext()

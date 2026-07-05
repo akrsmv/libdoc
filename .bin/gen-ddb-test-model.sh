@@ -5,7 +5,7 @@ THIS_SCRIPT_PATH="$(realpath "$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2
 cd $THIS_SCRIPT_PATH/../packages/ddb-model
 npm run build
 
-cd $THIS_SCRIPT_PATH/../packages/ddb-model/dist
+# cd $THIS_SCRIPT_PATH/../packages/ddb-model/dist
 
 #generate for test-system-ddb-model TODO separate test-system project that only uses ddb-model
 # cd dist
@@ -16,8 +16,8 @@ cd $THIS_SCRIPT_PATH/../packages/ddb-model/dist
 # cd -
 
 # generate for test suits
-cd dist
-node ./_exec_generateDataModel.js \
+# cd dist
+ts-node ./src/_exec_generateDataModel.ts \
 --dataModelsDir /home/akrsmv/inctasoft/incta/packages/ddb-model/src/__testdata__/domain-context-definition \
 --dataModelFilesOutDir /home/akrsmv/inctasoft/incta/packages/ddb-model/src/__testdata__/generated \
 --importLibraryToUseInGeneratedFiles ../../../../interfaces/DdbItem 

@@ -20,7 +20,9 @@ export class EventBusConstruct extends Construct {
 
     constructor(scope: Construct, id: string, props: CdkStackProps & DynamoDBConstruct) {
         super(scope, id);
-        this.eventBus = new sns.Topic(this, 'Bus')
+        this.eventBus = new sns.Topic(this, 'Bus', {
+            topicName: `sns-${props.envName}-${props.clientAppName}-events`
+        })
         this.controller = new nodejs.NodejsFunction(this, 'DispatchEventLambda', {
             runtime: lambda.Runtime.NODEJS_18_X,
             functionName: `lam-${props.envName}-${props.clientAppName}-dispatch-event`,
@@ -31,7 +33,7 @@ export class EventBusConstruct extends Construct {
                 'DB_NAME': props.table.tableName
             }
         });
-        this.controller.node.addDependency(props.table)
+        // this.controller.node.addDependency(props.table)
         props.table.grantFullAccess(this.controller)
 
 

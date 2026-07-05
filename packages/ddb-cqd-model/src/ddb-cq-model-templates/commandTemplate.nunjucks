@@ -2,8 +2,22 @@ import { IClaims, IIdentity, IDdbCommand, staticImplements } from "{{importLibra
 import { {{__typename}}CommandDomain } from "../domains/{{__typename}}CommandDomain";
 import { {{__typename}} } from "../items/commandItems/{{__typename}}";
 import { logdebug } from "@incta/common-utils";
-
 @staticImplements<IDdbCommand<{{__typename}}>>()
+export class {{__typename}}Command extends {{__typename}}CommandDomain {
+    public static async start({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        const {{__typename | firstCaseLower}}Impl = require('../../domain-context-impl/commands-impl/{{__typename}}CommandImpl')
+        if ({{__typename | firstCaseLower}}Impl && {{__typename | firstCaseLower}}Impl.start && typeof {{__typename | firstCaseLower}}Impl.start === 'function') {
+            try {
+                await {{__typename | firstCaseLower}}Impl.start({{__typename | firstCaseLower}}, identity)
+            } catch (error){
+                throw error
+            }
+        } else {
+            throw new Error('Command implementation not found for {{__typename}}')
+        }
+    }
+}
+{# @staticImplements<IDdbCommand<{{__typename}}>>()
 export class {{__typename}}Command extends {{__typename}}CommandDomain {
     public static async start({{__typename | firstCaseLower}}: {{__typename}}, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
         await this.validateStart({{__typename | firstCaseLower}}, identity)
@@ -46,4 +60,4 @@ export class {{__typename}}Command extends {{__typename}}CommandDomain {
             logdebug('No onCommandErrored implementation found for {{__typename}}')
         }
     }
-}
+} #}

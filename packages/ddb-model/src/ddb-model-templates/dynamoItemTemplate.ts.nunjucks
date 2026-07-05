@@ -15,6 +15,9 @@ import {
   IDdbItemStaticMetadata,
   newPK, staticImplements, withPrefix, withoutPrefix, _sep1, calculatePrivateOrPublicData
 } from '{{importLibraryToUseInGeneratedFiles}}'
+{%- for key in __referredItems %} 
+import { {{ key }} } from '../dataItems/{{key}}'
+{%- endfor %}
 
 {# @staticImplements<IDdbItemStaticMetadata<{{__typename}}>>() #}
 export class {{__typename}} implements IDdbItemBaseProps {
@@ -70,7 +73,7 @@ export class {{__typename}} implements IDdbItemBaseProps {
   public date_created: Date
   public date_updated: Date
   //#endregion
-  constructor({ args, identity }: { args?: {{__typename}}Dto & IDdbItemKey & { isPublic?: boolean }, identity: Partial<IIdentity<Partial<IClaims>>> | null}) {
+  constructor({ args, identity }: { args?: Partial<{{__typename}}Dto & IDdbItemKey & { isPublic?: boolean }>, identity: Partial<IIdentity<Partial<IClaims>>> | null}) {
       
     Object.assign(this, args)
 //     // commenting below - do not apply restrictions on what can be added in dynamo and need to be present in data model

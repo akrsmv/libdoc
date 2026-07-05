@@ -1,5 +1,5 @@
 
-import { GetItemCommand, PutItemCommand, TransactWriteItemsOutput } from "@aws-sdk/client-dynamodb";
+import { GetItemCommand, PutItemCommand, TransactWriteItem, TransactWriteItemsInput, TransactWriteItemsOutput } from "@aws-sdk/client-dynamodb";
 import { BatchGetItemOutput } from "@aws-sdk/client-dynamodb";
 import { QueryOutput } from "@aws-sdk/client-dynamodb";
 import { BatchWriteItemOutput } from "@aws-sdk/client-dynamodb";
@@ -18,14 +18,14 @@ const DDB_LOCAL_URL = (): string => process.env.DDB_LOCAL_URL as string
 
 // TODO if you want a STS based dynamo client create it on later stage 
 // NOTE with latest ideas - sts credentials are only set when synchronous lambda invocations i.e from controller
-// And if a controller wants a dynamoDB client - it will have already the sts credentials set, otherwise (if a worker wnats a client), sts credentials 
+// And if a controller wants a dynamoDB client - it will have already the sts credentials set, otherwise (if a worker wants a client), sts credentials 
 // will not be set thus it will use the lambda execution role 
 let _dynamoDbClient: DynamoDBClient
 let _dbConfig: DbConfig
 export const dbConfig = async () => {
     if (!_dbConfig) {
         // - initialize temp dbConfig  based on domain context
-        const tempDbConfig: DbConfig = { HASH: '__InctaConfig', RANGE: '__DbConfig', NSHARD: `${__domain().dataItemsMap?.size || 0 }` }
+        const tempDbConfig: DbConfig = { HASH: '__InctaConfig', RANGE: '__DbConfig', NSHARD: `${__domain().dataItemsMap?.size || 0 }`, isHistoryOn: false }
         // load DbConfig from dynamo
         const dbResult = await dynamoDbClient().send(new GetItemCommand({
             TableName: DB_NAME(),
@@ -129,11 +129,26 @@ export const fromAttributeMapArray = <T>(attrMapArray: Record<string, any>[] | u
         return accum
     }, [])
 
-export const ddbRequest = async <T extends TransactWriteItemsCommand>(
+export const ddbRequest = async <T extends TransactWriteItemsCommand | TransactWriteItem[]>(
     input: T
 ) => {
+    let _cmd : TransactWriteItemsCommand
+    if (Array.isArray(input)) {
+        const params: TransactWriteItemsInput = {
+            TransactItems: input,
+            ReturnConsumedCapacity: "TOTAL",
+            ReturnItemCollectionMetrics: "SIZE",
+            // ClientRequestToken: correlation_id ? // TODO
+        }
+        _cmd = new TransactWriteItemsCommand(params)
+    } else {
+        _cmd = input
+    }
     try {
-        return await dynamoDbClient().send(input)
+        logdebug(`[update] ==>DDB TransactWriteItemsCommand`, _cmd)
+        const result = await dynamoDbClient().send(_cmd)
+        logdebug(`[update] <==DDB TransactWriteItemsOutput: `, result)
+        return result
     } catch (error: any) {
         let uniquePropertiesViolations: string[] = []
         let ddbValidationErrors: string[] = []

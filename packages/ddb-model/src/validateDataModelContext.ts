@@ -25,20 +25,19 @@ export const validateDataModelContext = async (context?: generateModelProps): Pr
     const gsiKeysToRegularKeysMap = new Map<string, string[]>()
     const generateHollowImplFiles = !! (context?.generateHollowImplFiles ?? tryGetProcessParam("generateHollowImplFiles"))
     const dataModelsDir = context?.dataModelsDir ?? tryGetProcessParam("dataModelsDir")
-    const dataModelFilesOutDir = context?.dataModelFilesOutDir ?? tryGetProcessParam("dataModelFilesOutDir")
+    const dataModelFilesOutDir = context?.dataModelFilesOutDir || tryGetProcessParam("dataModelFilesOutDir")
     const importLibraryToUseInGeneratedFiles = context?.importLibraryToUseInGeneratedFiles
         || tryGetProcessParam("importLibraryToUseInGeneratedFiles") || "@incta/ddb-model"
 
     let dataModelJson: JSONDataModel = { Items: {}, Commands: {}, Queries: {}, GlobalSecondaryIndexes: [] };
 
-    const errors = []
 
     if (!dataModelFilesOutDir) {
-        errors.push("ERROR: missing dataModelFilesOutDir context param")
+        throw new Error("ERROR: missing dataModelFilesOutDir context param")
     }
 
-    if (dataModelJsonPath && dataModelsDir) {
-        errors.push("ERROR: cannot specify both `dataModelJsonPath` and `dataModelsDir`")
+    if (!!dataModelJsonPath && !!dataModelsDir) {
+        throw new Error(`ERROR: cannot specify both dataModelJsonPath(=${dataModelJsonPath}) and dataModelsDir(=${dataModelsDir})`)
     } else if (dataModelJsonPath) {
         // user passed a complete data-model.json file
 
@@ -249,16 +248,24 @@ export const validateDataModelContext = async (context?: generateModelProps): Pr
             throw new Error(`${modelItemKey} defines a peer but its type is not "string" or "string[]": [${modelIemsWithBadPeers.join(", ")}]. Items with peers can only be of type "string" or "string[]"`)
         }
     }
-
-    // only valid options for __type of type string are  "string", "string[]", "enum", "number", "isodatestring" 
-    const onlyValid__type_StringValues = ["string", "string[]", "enum", "number", "isodatestring"]
+    // only valid string types:
+    const onlyValid__type_StringValues = ["string", "string[]", "enum", "number", "isodatestring", "boolean", "any"]
     for (const [modelItemKey, modelItemObject] of allDataModelItems) {
         // gather all system keys in an array
         const modelIemsWithBadStringTypes = Object.entries((modelItemObject as DataModelObject).__attributes)
             .reduce((modelIemsWithBadStringTypes: string[], dataModelObjectEntry: any) => {
                 const [modelItemObjectKey, modelItemObject] = dataModelObjectEntry
-                if (typeof modelItemObject.__type === "string" && !onlyValid__type_StringValues.includes(modelItemObject.__type)) {
+                if (typeof modelItemObject.__type === "string" && !modelItemObject.__type.startsWith("#") && !onlyValid__type_StringValues.includes(modelItemObject.__type)) {
                     modelIemsWithBadStringTypes.push(`${modelItemKey}/${modelItemObjectKey}: ${modelItemObject.__type}`)
+                }
+                if (typeof modelItemObject.__type === "string" && modelItemObject.__type.startsWith("#")) {
+                    // so __type refers to another Item. If referred Item indeed exists, replace referring __type with its properties
+                    const referredItem = allDataModelItems.filter(entry => entry[0] === modelItemObject.__type.replace('#',''))
+                    if (referredItem.length) {
+                        
+                    } else {
+                        modelIemsWithBadStringTypes.push(`${modelItemKey}/${modelItemObjectKey}: ${modelItemObject.__type}`)
+                    }
                 }
                 return modelIemsWithBadStringTypes
             }, [])
@@ -327,13 +334,6 @@ export const validateDataModelContext = async (context?: generateModelProps): Pr
         //         globalSecondaryIndexesToCreate.push(`TITEM-${rangeKeyName}`)
         //     }
         // }
-    }
-
-    if (errors.length) {
-        errors.forEach(e => logerror(e))
-        logwarn("EXAMPLE: \n" +
-            "node ./dist/_exec_generateDataModel.js < --dataModelJsonPath <path to data-model.json>|--dataModelsDir <path to dir with models> > --dataModelFilesOutDir <path-to-outudir>")
-        throw new Error(errors.join("\\\n"))
     }
 
     return {

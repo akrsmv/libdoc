@@ -14,5 +14,35 @@
             "name": "Attach to Dev Server",
             "port": 9229
         },
+        {
+            "name": "CDK SYNTH",
+            "type": "node",
+            "request": "launch",
+            "program": "/home/akrsmv/.nvm/versions/node/v18.14.0/bin/cdk",
+            "args": [
+                "synth"
+            ],
+            "cwd": "${workspaceFolder}/packages/infrastructure",
+            "sourceMaps": true,
+            "stopOnEntry": false
+        },
+        {
+            "name": "CQD",
+            "type": "node",
+            "request": "launch",
+            "program": "node_modules/ts-node/dist/bin.js",
+            "args": [
+                "packages/ddb-cqd-model/src/_exec_generateCQDataModel.ts",
+                "--generateHollowImplFiles",
+                "true",
+                "--dataModelsDir",
+                "/home/akrsmv/inctasoft/incta/packages/ddb-model/src/__testdata__/domain-context-definition",
+                "--dataModelFilesOutDir",
+                "/home/akrsmv/inctasoft/incta/packages/test-system/src/domain-context"
+            ],
+            "cwd": "${workspaceFolder}",
+            "sourceMaps": true,
+            "stopOnEntry": false
+        }
     ]
 }

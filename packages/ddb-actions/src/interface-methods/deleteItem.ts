@@ -1,6 +1,6 @@
 'use strict'
 
-import { DB_NAME, toAttributeMap, deletedVersionString, preparePkforUniqueItemKey, ddbRequest } from '../DynamoDbClient';
+import { DB_NAME, toAttributeMap, deletedVersionString, preparePkforUniqueItemKey, ddbRequest, dbConfig } from '../DynamoDbClient';
 import { IClaims, IDdbItemKey, IIdentity, __itemMetadata, calculatePrivateOrPublicData, withoutPrefix } from '@incta/ddb-model';
 import { getItems, inferIdentityOfExitingkey, inferItemKeys } from './getItems';
 import { _sep1, withPrefix } from '@incta/ddb-model';
@@ -10,6 +10,9 @@ import { EMPTY_LOAD_PEERS_INPUT } from './queryItems';
 
 
 export const deleteItem = async (dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+    await ddbRequest(await getDeleteItemTransactWriteArray(dto, identity))
+}
+export const getDeleteItemTransactWriteArray = async (dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<TransactWriteItem[]> => {
 
     dto = {
         ...inferItemKeys(dto, false)[0],
@@ -64,8 +67,12 @@ export const deleteItem = async (dto: Required<IDdbItemKey>, identity: Partial<I
                 TableName: DB_NAME(),
                 ReturnValuesOnConditionCheckFailure: "ALL_OLD"
             }
-        },
-        { // create a history record
+        }
+    ]
+
+    if ((await dbConfig()).isHistoryOn) {
+        // create a history record
+        itemTransactWriteItemList.push({
             Update: {
                 TableName: DB_NAME(),
                 ReturnValuesOnConditionCheckFailure: "ALL_OLD",
@@ -100,23 +107,14 @@ export const deleteItem = async (dto: Required<IDdbItemKey>, identity: Partial<I
                     }, {
                         ":TITEM": { S: `_D|${dexistingItem["TITEM"].S}` },
                         ":__typename": { S: `${existingItem.__typename}History` },
-                        ":id": { S: `${String(dexistingItemkey.HASH.S)}#${historyRecordRANGE}`}
+                        ":id": { S: `${String(dexistingItemkey.HASH.S)}#${historyRecordRANGE}` }
                     })
                 ),
             }
-        }
-    ]
+        })
+    }
 
     itemTransactWriteItemList.push(...uqItems)
 
-    const params: TransactWriteItemsInput = {
-        TransactItems: itemTransactWriteItemList,
-        ReturnConsumedCapacity: "TOTAL",
-        ReturnItemCollectionMetrics: "SIZE",
-        // ClientRequestToken: ringToken // TODO
-    }
-
-    logdebug("[deleteItem] ==>DDB TransactWriteItemsInput: ", params)
-    const result = await ddbRequest(new TransactWriteItemsCommand(params))
-    logdebug("[deleteItem] <==DDB TransactWriteItemsOutput: ", result)
+    return itemTransactWriteItemList
 }

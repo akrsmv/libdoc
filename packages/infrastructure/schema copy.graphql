@@ -1,0 +1,4656 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+
+union AllItemsUnion = ItemIdentifier | User | 
+Person | 
+Company | 
+Airport | 
+Invoice | 
+AirtoursTicketPriceConfig | 
+City | 
+Order | 
+Country | 
+AirplaneManifacturer | 
+AirplaneModel | 
+Region | 
+Agent | 
+Tourist | 
+Airplane | 
+Payment | 
+Flight | 
+Continent | 
+TouristSeason | 
+Location | 
+UserEmail | 
+queryBe | 
+GetGraphqlSchema | 
+GenerateAirtoursTestData | 
+GenerateAirtoursPublicTestData | 
+CreateCognitoUser | 
+ChangeActiveAgent | 
+SetUserAgents
+ | UserHistory | 
+PersonHistory | 
+CompanyHistory | 
+AirportHistory | 
+InvoiceHistory | 
+AirtoursTicketPriceConfigHistory | 
+CityHistory | 
+OrderHistory | 
+CountryHistory | 
+AirplaneManifacturerHistory | 
+AirplaneModelHistory | 
+RegionHistory | 
+AgentHistory | 
+TouristHistory | 
+AirplaneHistory | 
+PaymentHistory | 
+FlightHistory | 
+ContinentHistory | 
+TouristSeasonHistory | 
+LocationHistory | 
+UserEmailHistory | 
+queryBeHistory | 
+GetGraphqlSchemaHistory | 
+GenerateAirtoursTestDataHistory | 
+GenerateAirtoursPublicTestDataHistory | 
+CreateCognitoUserHistory | 
+ChangeActiveAgentHistory | 
+SetUserAgentsHistory
+
+
+
+enum AllActionsEnum {
+    start
+    stop
+    create
+    update
+    patch
+    delete
+    query
+    get
+}
+
+
+
+enum AllItemTypesEnum {
+User
+Person
+Company
+Airport
+Invoice
+AirtoursTicketPriceConfig
+City
+Order
+Country
+AirplaneManifacturer
+AirplaneModel
+Region
+Agent
+Tourist
+Airplane
+Payment
+Flight
+Continent
+TouristSeason
+Location
+UserEmail
+queryBe
+GetGraphqlSchema
+GenerateAirtoursTestData
+GenerateAirtoursPublicTestData
+CreateCognitoUser
+ChangeActiveAgent
+SetUserAgents
+
+UserHistory
+PersonHistory
+CompanyHistory
+AirportHistory
+InvoiceHistory
+AirtoursTicketPriceConfigHistory
+CityHistory
+OrderHistory
+CountryHistory
+AirplaneManifacturerHistory
+AirplaneModelHistory
+RegionHistory
+AgentHistory
+TouristHistory
+AirplaneHistory
+PaymentHistory
+FlightHistory
+ContinentHistory
+TouristSeasonHistory
+LocationHistory
+UserEmailHistory
+queryBeHistory
+GetGraphqlSchemaHistory
+GenerateAirtoursTestDataHistory
+GenerateAirtoursPublicTestDataHistory
+CreateCognitoUserHistory
+ChangeActiveAgentHistory
+SetUserAgentsHistory
+
+}
+
+
+
+input BooleanQueryInput {
+    ne: Boolean
+    eq: Boolean
+    attribute_exists: Boolean
+    attribute_not_exists: Boolean
+}
+input FloatQueryInput {
+    ne: Float
+    eq: Float
+    le: Float
+    lt: Float
+    ge: Float
+    gt: Float
+    between: [Float]
+    attribute_exists: Boolean
+    attribute_not_exists: Boolean
+}
+input StringQueryInput {
+    ne: String
+    eq: String
+    le: String
+    lt: String
+    ge: String
+    gt: String
+    contains: String
+    not_contains: String
+    between: [String]
+    begins_with: String
+    attribute_exists: Boolean
+    attribute_not_exists: Boolean
+}
+
+
+
+interface Item {
+    id: ID
+    HASH: String
+    RANGE: String
+    
+    rev: Int
+    date_created: AWSDateTime
+    date_updated: AWSDateTime
+
+    TITEM: String
+    checksum: String
+
+    user_created: String
+    user_updated: String
+
+}
+type ItemIdentifier @aws_iam @aws_cognito_user_pools @auth{
+    HASH: String
+    RANGE: String
+}
+input UserInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        public_data_ref: String
+        email: String
+        sub: String
+        preferredIamRole: String
+        iamRoles: [String]
+        cognitoGroups: [String]
+        userPoolId: String
+        active_agent: String
+        agents: [String]
+}
+input PersonInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        fname: String
+        lname: String
+}
+input CompanyInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        name: String
+}
+input AirportInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        name: String
+        city: String
+        country: String
+        continent: String
+        airpotDetails: AirportAirpotDetailDtoInput
+}
+input InvoiceInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        invoice_due_date: AWSDateTime
+        invoice_issued_date: AWSDateTime
+        invoice_number: String
+        orders: [String]
+        total_net: Float
+        total_gross: Float
+        total_vat: Float
+        vat_percent: Float
+}
+input AirtoursTicketPriceConfigInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        class_vip: Float
+        class_1: Float
+        class_2: Float
+}
+input CityInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        name: String
+        country: String
+        continent: String
+        cityDetails: CityCityDetailDtoInput
+}
+input OrderInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        public_data_ref: String
+        person: String
+        status: String
+        items: [OrderItemDtoInput]
+}
+input CountryInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        name: String
+        continent: String
+        countryDetails: CountryCountryDetailDtoInput
+}
+input AirplaneManifacturerInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        code: String
+        name: String
+        country: String
+}
+input AirplaneModelInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        capacity: Float
+        country: String
+        name: String
+        code: String
+        manifacturers: [String]
+        baseAirplaneModel: String
+}
+input RegionInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        name: String
+        airport: String
+        city: String
+        country: String
+        continent: String
+        regionDetails: RegionRegionDetailDtoInput
+}
+input AgentInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        public_data_ref: String
+        location1: String
+        location2: String
+        location3: String
+        location4: String
+        location5: String
+        code: String
+        name: String
+        child_agents: [String]
+        parent_agents: [String]
+        agt_data_visibility_conf: AgentAgt_data_visibility_confEnum
+}
+input TouristInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        public_data_ref: String
+        person: String
+        fname: String
+        lname: String
+        id_card: String
+        iban: String
+        tourist_season: String
+        ticket_type: String
+        airplane: String
+        flight: String
+        from_airport: String
+        to_airport: String
+        from_country: String
+        to_country: String
+}
+input AirplaneInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        code: String
+        nr_seats_class_vip: Float
+        nr_seats_class1: Float
+        nr_seats_class2: Float
+        model: String
+        manifacturer: String
+        country: String
+}
+input PaymentInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        invoice_number: String
+        invoice: String
+        sender_company: String
+        sender_person: String
+        recipient_person: String
+        recipient_company: String
+}
+input FlightInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        from_airport: String
+        to_airport: String
+        start_date: AWSDateTime
+        end_date: AWSDateTime
+        duration_hours: Float
+        tickets_price: FlightTickets_priceDtoInput
+        touristSeason: String
+        airplane: String
+}
+input ContinentInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        name: String
+        continentDetails: ContinentContinentDetailDtoInput
+}
+input TouristSeasonInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        price_flight_per_hour: Float
+        start_date: AWSDateTime
+        end_date: AWSDateTime
+        code: String
+        discounts: TouristSeasonDiscountDtoInput
+}
+input LocationInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        phone1: String
+        phone2: String
+        address1: String
+        address2: String
+        name: String
+        type: LocationTypeEnum
+}
+input UserEmailInput {
+    
+    id: ID
+    privateData: Boolean
+    publicData: Boolean
+        agent: String
+        user: String
+}
+input GenerateAirtoursTestDataInput {
+        forUser: String
+        forAgent: String
+        test_data_date: AWSDateTime
+}
+input GenerateAirtoursPublicTestDataInput {
+        prop1: String
+}
+input CreateCognitoUserInput {
+        agent: AgentInput
+}
+input ChangeActiveAgentInput {
+        new_active_agent: String
+}
+input SetUserAgentsInput {
+        user: String
+        agents: [String]
+}
+input queryBeInput {
+        code: String
+        name: String
+}
+input GetGraphqlSchemaInput {
+        definition: String
+}
+type User implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        public_data_ref: String
+        
+            Public_data_ref: Person
+        
+        
+        email: String
+        
+        
+        sub: String
+        
+        
+        preferredIamRole: String
+        
+        
+        iamRoles: [String]
+        
+        
+        cognitoGroups: [String]
+        
+        
+        userPoolId: String
+        
+        
+        active_agent: String
+        
+            Active_agent: Agent
+        
+        
+        agents: [String]
+        
+        
+            Agents: [Agent]
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type UserHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            public_data_ref: String
+            email: String
+            sub: String
+            preferredIamRole: String
+            iamRoles: [String]
+            cognitoGroups: [String]
+            userPoolId: String
+            active_agent: String
+            agents: [String]
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type Person implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        fname: String
+        
+        
+        lname: String
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type PersonHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            fname: String
+            lname: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type Company implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        name: String
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type CompanyHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            name: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type Airport implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        name: String
+        
+        
+        city: String
+        
+            City: City
+        
+        
+        country: String
+        
+            Country: Country
+        
+        
+        continent: String
+        
+            Continent: Continent
+        
+        
+        airpotDetails: AirportAirpotDetailDto
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type AirportHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            name: String
+            city: String
+            country: String
+            continent: String
+            airpotDetails: AirportAirpotDetailDto
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type AirportAirpotDetailDto @aws_iam @aws_cognito_user_pools @auth{
+                size_square_km: Float
+                nr_of_tracks: Float
+}
+input AirportAirpotDetailDtoInput @aws_iam @aws_cognito_user_pools @auth{
+                size_square_km: Float
+                
+                nr_of_tracks: Float
+                
+}
+    
+type Invoice implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        invoice_due_date: AWSDateTime
+        
+        
+        invoice_issued_date: AWSDateTime
+        
+        
+        invoice_number: String
+        
+        
+        orders: [String]
+        
+        
+            Orders: [Order]
+        
+        total_net: Float
+        
+        
+        total_gross: Float
+        
+        
+        total_vat: Float
+        
+        
+        vat_percent: Float
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type InvoiceHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            invoice_due_date: AWSDateTime
+            invoice_issued_date: AWSDateTime
+            invoice_number: String
+            orders: [String]
+            total_net: Float
+            total_gross: Float
+            total_vat: Float
+            vat_percent: Float
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type AirtoursTicketPriceConfig implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        class_vip: Float
+        
+        
+        class_1: Float
+        
+        
+        class_2: Float
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type AirtoursTicketPriceConfigHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            class_vip: Float
+            class_1: Float
+            class_2: Float
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type City implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        name: String
+        
+        
+        country: String
+        
+            Country: Country
+        
+        
+        continent: String
+        
+            Continent: Continent
+        
+        
+        cityDetails: CityCityDetailDto
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type CityHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            name: String
+            country: String
+            continent: String
+            cityDetails: CityCityDetailDto
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type CityCityDetailDto @aws_iam @aws_cognito_user_pools @auth{
+                isNearSea: Boolean
+                hasAirport: Boolean
+                hasAirtoursOffice: Boolean
+                isCapital: Boolean
+                population: Float
+}
+input CityCityDetailDtoInput @aws_iam @aws_cognito_user_pools @auth{
+                isNearSea: Boolean
+                
+                hasAirport: Boolean
+                
+                hasAirtoursOffice: Boolean
+                
+                isCapital: Boolean
+                
+                population: Float
+                
+}
+    
+type Order implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        public_data_ref: String
+        
+            Public_data_ref: Person
+        
+        
+        person: String
+        
+            Person: Person
+        
+        
+        status: String
+        
+        
+        items: [OrderItemDto]
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type OrderHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            public_data_ref: String
+            person: String
+            status: String
+            items: [OrderItemDto]
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type OrderItemDto @aws_iam @aws_cognito_user_pools @auth{
+                description: String
+                type: String
+                quantity: Float
+                price_no_vat: Float
+}
+input OrderItemDtoInput @aws_iam @aws_cognito_user_pools @auth{
+                description: String
+                
+                type: String
+                
+                quantity: Float
+                
+                price_no_vat: Float
+                
+}
+    
+type Country implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        name: String
+        
+        
+        continent: String
+        
+            Continent: Continent
+        
+        
+        countryDetails: CountryCountryDetailDto
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type CountryHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            name: String
+            continent: String
+            countryDetails: CountryCountryDetailDto
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type CountryCountryDetailDto @aws_iam @aws_cognito_user_pools @auth{
+                hasSeaBorder: Boolean
+                currency: String
+                code: String
+                population: Float
+}
+input CountryCountryDetailDtoInput @aws_iam @aws_cognito_user_pools @auth{
+                hasSeaBorder: Boolean
+                
+                currency: String
+                
+                code: String
+                
+                population: Float
+                
+}
+    
+type AirplaneManifacturer implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        code: String
+        
+        
+        name: String
+        
+        
+        country: String
+        
+            Country: Location
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type AirplaneManifacturerHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            code: String
+            name: String
+            country: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type AirplaneModel implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        capacity: Float
+        
+        
+        country: String
+        
+            Country: Location
+        
+        
+        name: String
+        
+        
+        code: String
+        
+        
+        manifacturers: [String]
+        
+        
+            Manifacturers: [AirplaneManifacturer]
+        
+        baseAirplaneModel: String
+        
+            BaseAirplaneModel: AirplaneModel
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type AirplaneModelHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            capacity: Float
+            country: String
+            name: String
+            code: String
+            manifacturers: [String]
+            baseAirplaneModel: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type Region implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        name: String
+        
+        
+        airport: String
+        
+            Airport: Airport
+        
+        
+        city: String
+        
+            City: City
+        
+        
+        country: String
+        
+            Country: Country
+        
+        
+        continent: String
+        
+            Continent: Continent
+        
+        
+        regionDetails: RegionRegionDetailDto
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type RegionHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            name: String
+            airport: String
+            city: String
+            country: String
+            continent: String
+            regionDetails: RegionRegionDetailDto
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type RegionRegionDetailDto @aws_iam @aws_cognito_user_pools @auth{
+                size_square_km: Float
+                nr_of_countries: Float
+}
+input RegionRegionDetailDtoInput @aws_iam @aws_cognito_user_pools @auth{
+                size_square_km: Float
+                
+                nr_of_countries: Float
+                
+}
+    
+type Agent implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        public_data_ref: String
+        
+            Public_data_ref: Company
+        
+        
+        location1: String
+        
+        
+        location2: String
+        
+        
+        location3: String
+        
+        
+        location4: String
+        
+        
+        location5: String
+        
+        
+        code: String
+        
+        
+        name: String
+        
+        
+        child_agents: [String]
+        
+        
+        parent_agents: [String]
+        
+        
+        agt_data_visibility_conf: AgentAgt_data_visibility_confEnum
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type AgentHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            public_data_ref: String
+            location1: String
+            location2: String
+            location3: String
+            location4: String
+            location5: String
+            code: String
+            name: String
+            child_agents: [String]
+            parent_agents: [String]
+            agt_data_visibility_conf: AgentAgt_data_visibility_confEnum
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+enum AgentAgt_data_visibility_confEnum {
+                ALL
+                NONE
+                ONLY_CHILDREN
+                ONLY_PRENTS
+                SELECT
+} 
+    
+type Tourist implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        public_data_ref: String
+        
+            Public_data_ref: Person
+        
+        
+        person: String
+        
+            Person: Person
+        
+        
+        fname: String
+        
+        
+        lname: String
+        
+        
+        id_card: String
+        
+        
+        iban: String
+        
+        
+        tourist_season: String
+        
+            Tourist_season: TouristSeason
+        
+        
+        ticket_type: String
+        
+        
+        airplane: String
+        
+            Airplane: Airplane
+        
+        
+        flight: String
+        
+            Flight: Flight
+        
+        
+        from_airport: String
+        
+            From_airport: Location
+        
+        
+        to_airport: String
+        
+            To_airport: Location
+        
+        
+        from_country: String
+        
+            From_country: Location
+        
+        
+        to_country: String
+        
+            To_country: Location
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type TouristHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            public_data_ref: String
+            person: String
+            fname: String
+            lname: String
+            id_card: String
+            iban: String
+            tourist_season: String
+            ticket_type: String
+            airplane: String
+            flight: String
+            from_airport: String
+            to_airport: String
+            from_country: String
+            to_country: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type Airplane implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        code: String
+        
+        
+        nr_seats_class_vip: Float
+        
+        
+        nr_seats_class1: Float
+        
+        
+        nr_seats_class2: Float
+        
+        
+        model: String
+        
+            Model: AirplaneModel
+        
+        
+        manifacturer: String
+        
+            Manifacturer: AirplaneManifacturer
+        
+        
+        country: String
+        
+            Country: Country
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type AirplaneHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            code: String
+            nr_seats_class_vip: Float
+            nr_seats_class1: Float
+            nr_seats_class2: Float
+            model: String
+            manifacturer: String
+            country: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type Payment implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        invoice_number: String
+        
+        
+        invoice: String
+        
+            Invoice: Invoice
+        
+        
+        sender_company: String
+        
+            Sender_company: Company
+        
+        
+        sender_person: String
+        
+            Sender_person: Person
+        
+        
+        recipient_person: String
+        
+            Recipient_person: Person
+        
+        
+        recipient_company: String
+        
+            Recipient_company: Company
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type PaymentHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            invoice_number: String
+            invoice: String
+            sender_company: String
+            sender_person: String
+            recipient_person: String
+            recipient_company: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type Flight implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        from_airport: String
+        
+            From_airport: Location
+        
+        
+        to_airport: String
+        
+            To_airport: Location
+        
+        
+        start_date: AWSDateTime
+        
+        
+        end_date: AWSDateTime
+        
+        
+        duration_hours: Float
+        
+        
+        tickets_price: FlightTickets_priceDto
+        
+        
+        touristSeason: String
+        
+            TouristSeason: TouristSeason
+        
+        
+        airplane: String
+        
+            Airplane: Airplane
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type FlightHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            from_airport: String
+            to_airport: String
+            start_date: AWSDateTime
+            end_date: AWSDateTime
+            duration_hours: Float
+            tickets_price: FlightTickets_priceDto
+            touristSeason: String
+            airplane: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type FlightTickets_priceDto @aws_iam @aws_cognito_user_pools @auth{
+                class_vip: Float
+                class_1: Float
+                class_2: Float
+}
+input FlightTickets_priceDtoInput @aws_iam @aws_cognito_user_pools @auth{
+                class_vip: Float
+                
+                class_1: Float
+                
+                class_2: Float
+                
+}
+    
+type Continent implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        name: String
+        
+        
+        continentDetails: ContinentContinentDetailDto
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type ContinentHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            name: String
+            continentDetails: ContinentContinentDetailDto
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type ContinentContinentDetailDto @aws_iam @aws_cognito_user_pools @auth{
+                population: Float
+}
+input ContinentContinentDetailDtoInput @aws_iam @aws_cognito_user_pools @auth{
+                population: Float
+                
+}
+    
+type TouristSeason implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        price_flight_per_hour: Float
+        
+        
+        start_date: AWSDateTime
+        
+        
+        end_date: AWSDateTime
+        
+        
+        code: String
+        
+        
+        discounts: TouristSeasonDiscountDto
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type TouristSeasonHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            price_flight_per_hour: Float
+            start_date: AWSDateTime
+            end_date: AWSDateTime
+            code: String
+            discounts: TouristSeasonDiscountDto
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type TouristSeasonDiscountDto @aws_iam @aws_cognito_user_pools @auth{
+                vip: Float
+                class_1: Float
+                class_2: Float
+}
+input TouristSeasonDiscountDtoInput @aws_iam @aws_cognito_user_pools @auth{
+                vip: Float
+                
+                class_1: Float
+                
+                class_2: Float
+                
+}
+    
+type Location implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        phone1: String
+        
+        
+        phone2: String
+        
+        
+        address1: String
+        
+        
+        address2: String
+        
+        
+        name: String
+        
+        
+        type: LocationTypeEnum
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type LocationHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            phone1: String
+            phone2: String
+            address1: String
+            address2: String
+            name: String
+            type: LocationTypeEnum
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+enum LocationTypeEnum {
+                city
+                country
+                continent
+                region
+                airport
+} 
+    
+type UserEmail implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        agent: String
+        
+            Agent: Agent
+        
+        
+        user: String
+        
+            User: User
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type UserEmailHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            agent: String
+            user: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type queryBe implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        code: String
+        
+        
+        name: String
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type queryBeHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            code: String
+            name: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type GetGraphqlSchema implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        definition: String
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type GetGraphqlSchemaHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            definition: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type GenerateAirtoursTestData implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        forUser: String
+        
+        
+        forAgent: String
+        
+        
+        test_data_date: AWSDateTime
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type GenerateAirtoursTestDataHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            forUser: String
+            forAgent: String
+            test_data_date: AWSDateTime
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type GenerateAirtoursPublicTestData implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        prop1: String
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type GenerateAirtoursPublicTestDataHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            prop1: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type CreateCognitoUser implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        agent: AgentInput
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type CreateCognitoUserHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            agent: AgentInput
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type ChangeActiveAgent implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        new_active_agent: String
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type ChangeActiveAgentHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            new_active_agent: String
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+type SetUserAgents implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props
+    
+    rev: Int
+    HASH: String
+    RANGE: String
+    TITEM: String
+    checksum: String
+    privateData: Boolean
+    publicData: Boolean
+
+        
+
+    #specific props
+        user: String
+        
+        
+        agents: [String]
+        
+        
+        date_created: AWSDateTime
+        
+        
+        date_updated: AWSDateTime
+        
+        
+        user_created: String
+        
+        
+        user_updated: String
+        
+        
+        id: ID
+        
+        
+}
+type SetUserAgentsHistory implements Item @aws_iam @aws_cognito_user_pools @auth{
+    # interface Item props 
+    HASH: String
+    RANGE: String
+    rev: Int
+    TITEM: String
+    checksum: String
+
+    privateData: Boolean
+    publicData: Boolean
+
+    
+
+    #specific props
+            user: String
+            agents: [String]
+            date_created: AWSDateTime
+            date_updated: AWSDateTime
+            user_created: String
+            user_updated: String
+            id: ID
+}
+
+    
+type Mutation {
+    start(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    create(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    update(input: AllItemsKeysInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patch(input: AllItemsKeysInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    del(id: ID!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+        GenerateAirtoursTestData(input: GenerateAirtoursTestDataInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+        GenerateAirtoursPublicTestData(input: GenerateAirtoursPublicTestDataInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+        CreateCognitoUser(input: CreateCognitoUserInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+        ChangeActiveAgent(input: ChangeActiveAgentInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+        SetUserAgents(input: SetUserAgentsInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createUser(input: UserInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createPerson(input: PersonInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createCompany(input: CompanyInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createAirport(input: AirportInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createInvoice(input: InvoiceInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createAirtoursTicketPriceConfig(input: AirtoursTicketPriceConfigInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createCity(input: CityInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createOrder(input: OrderInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createCountry(input: CountryInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createAirplaneManifacturer(input: AirplaneManifacturerInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createAirplaneModel(input: AirplaneModelInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createRegion(input: RegionInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createAgent(input: AgentInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createTourist(input: TouristInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createAirplane(input: AirplaneInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createPayment(input: PaymentInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createFlight(input: FlightInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createContinent(input: ContinentInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createTouristSeason(input: TouristSeasonInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createLocation(input: LocationInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createUserEmail(input: UserEmailInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createqueryBe(input: queryBeInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createGetGraphqlSchema(input: GetGraphqlSchemaInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createGenerateAirtoursTestData(input: GenerateAirtoursTestDataInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createGenerateAirtoursPublicTestData(input: GenerateAirtoursPublicTestDataInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createCreateCognitoUser(input: CreateCognitoUserInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createChangeActiveAgent(input: ChangeActiveAgentInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    createSetUserAgents(input: SetUserAgentsInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateUser(input: UserInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updatePerson(input: PersonInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateCompany(input: CompanyInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateAirport(input: AirportInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateInvoice(input: InvoiceInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateAirtoursTicketPriceConfig(input: AirtoursTicketPriceConfigInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateCity(input: CityInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateOrder(input: OrderInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateCountry(input: CountryInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateAirplaneManifacturer(input: AirplaneManifacturerInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateAirplaneModel(input: AirplaneModelInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateRegion(input: RegionInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateAgent(input: AgentInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateTourist(input: TouristInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateAirplane(input: AirplaneInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updatePayment(input: PaymentInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateFlight(input: FlightInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateContinent(input: ContinentInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateTouristSeason(input: TouristSeasonInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateLocation(input: LocationInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateUserEmail(input: UserEmailInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updatequeryBe(input: queryBeInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateGetGraphqlSchema(input: GetGraphqlSchemaInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateGenerateAirtoursTestData(input: GenerateAirtoursTestDataInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateGenerateAirtoursPublicTestData(input: GenerateAirtoursPublicTestDataInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateCreateCognitoUser(input: CreateCognitoUserInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateChangeActiveAgent(input: ChangeActiveAgentInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    updateSetUserAgents(input: SetUserAgentsInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchUser(input: UserInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchPerson(input: PersonInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchCompany(input: CompanyInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchAirport(input: AirportInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchInvoice(input: InvoiceInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchAirtoursTicketPriceConfig(input: AirtoursTicketPriceConfigInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchCity(input: CityInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchOrder(input: OrderInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchCountry(input: CountryInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchAirplaneManifacturer(input: AirplaneManifacturerInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchAirplaneModel(input: AirplaneModelInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchRegion(input: RegionInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchAgent(input: AgentInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchTourist(input: TouristInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchAirplane(input: AirplaneInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchPayment(input: PaymentInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchFlight(input: FlightInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchContinent(input: ContinentInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchTouristSeason(input: TouristSeasonInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchLocation(input: LocationInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchUserEmail(input: UserEmailInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchqueryBe(input: queryBeInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchGetGraphqlSchema(input: GetGraphqlSchemaInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchGenerateAirtoursTestData(input: GenerateAirtoursTestDataInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchGenerateAirtoursPublicTestData(input: GenerateAirtoursPublicTestDataInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchCreateCognitoUser(input: CreateCognitoUserInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchChangeActiveAgent(input: ChangeActiveAgentInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patchSetUserAgents(input: SetUserAgentsInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+type CommandResult @aws_iam @aws_cognito_user_pools @auth {
+    status: Int
+    errors: [ServerError]
+}
+type ServerError @aws_iam @aws_cognito_user_pools @auth {
+    errorType: String
+    message: String
+    errorStack: String
+}
+
+
+    
+
+
+
+    
+type Query {
+    get(id: [ID!]!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
+    query(input: QueryInputAllItemsFields!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
+    search(input: QueryInputAllItemsFields!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchUsers(input: SearchUsersInput!): UsersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryUsers(input: QueryUsersInput!): UsersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getUsers(id: [ID!]!): UsersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchPeople(input: SearchPeopleInput!): PeopleResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryPeople(input: QueryPeopleInput!): PeopleResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getPeople(id: [ID!]!): PeopleResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchCompanies(input: SearchCompaniesInput!): CompaniesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryCompanies(input: QueryCompaniesInput!): CompaniesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getCompanies(id: [ID!]!): CompaniesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchAirports(input: SearchAirportsInput!): AirportsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryAirports(input: QueryAirportsInput!): AirportsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getAirports(id: [ID!]!): AirportsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchInvoices(input: SearchInvoicesInput!): InvoicesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryInvoices(input: QueryInvoicesInput!): InvoicesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getInvoices(id: [ID!]!): InvoicesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchAirtoursTicketPriceConfigs(input: SearchAirtoursTicketPriceConfigsInput!): AirtoursTicketPriceConfigsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryAirtoursTicketPriceConfigs(input: QueryAirtoursTicketPriceConfigsInput!): AirtoursTicketPriceConfigsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getAirtoursTicketPriceConfigs(id: [ID!]!): AirtoursTicketPriceConfigsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchCities(input: SearchCitiesInput!): CitiesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryCities(input: QueryCitiesInput!): CitiesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getCities(id: [ID!]!): CitiesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchOrders(input: SearchOrdersInput!): OrdersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryOrders(input: QueryOrdersInput!): OrdersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getOrders(id: [ID!]!): OrdersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchCountries(input: SearchCountriesInput!): CountriesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryCountries(input: QueryCountriesInput!): CountriesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getCountries(id: [ID!]!): CountriesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchAirplaneManifacturers(input: SearchAirplaneManifacturersInput!): AirplaneManifacturersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryAirplaneManifacturers(input: QueryAirplaneManifacturersInput!): AirplaneManifacturersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getAirplaneManifacturers(id: [ID!]!): AirplaneManifacturersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchAirplaneModels(input: SearchAirplaneModelsInput!): AirplaneModelsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryAirplaneModels(input: QueryAirplaneModelsInput!): AirplaneModelsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getAirplaneModels(id: [ID!]!): AirplaneModelsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchRegions(input: SearchRegionsInput!): RegionsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryRegions(input: QueryRegionsInput!): RegionsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getRegions(id: [ID!]!): RegionsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchAgents(input: SearchAgentsInput!): AgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryAgents(input: QueryAgentsInput!): AgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getAgents(id: [ID!]!): AgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchTourists(input: SearchTouristsInput!): TouristsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryTourists(input: QueryTouristsInput!): TouristsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getTourists(id: [ID!]!): TouristsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchAirplanes(input: SearchAirplanesInput!): AirplanesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryAirplanes(input: QueryAirplanesInput!): AirplanesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getAirplanes(id: [ID!]!): AirplanesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchPayments(input: SearchPaymentsInput!): PaymentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryPayments(input: QueryPaymentsInput!): PaymentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getPayments(id: [ID!]!): PaymentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchFlights(input: SearchFlightsInput!): FlightsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryFlights(input: QueryFlightsInput!): FlightsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getFlights(id: [ID!]!): FlightsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchContinents(input: SearchContinentsInput!): ContinentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryContinents(input: QueryContinentsInput!): ContinentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getContinents(id: [ID!]!): ContinentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchTouristSeasons(input: SearchTouristSeasonsInput!): TouristSeasonsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryTouristSeasons(input: QueryTouristSeasonsInput!): TouristSeasonsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getTouristSeasons(id: [ID!]!): TouristSeasonsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchLocations(input: SearchLocationsInput!): LocationsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryLocations(input: QueryLocationsInput!): LocationsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getLocations(id: [ID!]!): LocationsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchUserEmails(input: SearchUserEmailsInput!): UserEmailsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryUserEmails(input: QueryUserEmailsInput!): UserEmailsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getUserEmails(id: [ID!]!): UserEmailsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchqueryBes(input: SearchqueryBesInput!): queryBesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryqueryBes(input: QueryqueryBesInput!): queryBesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getqueryBes(id: [ID!]!): queryBesResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchGetGraphqlSchemas(input: SearchGetGraphqlSchemasInput!): GetGraphqlSchemasResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryGetGraphqlSchemas(input: QueryGetGraphqlSchemasInput!): GetGraphqlSchemasResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getGetGraphqlSchemas(id: [ID!]!): GetGraphqlSchemasResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchGenerateAirtoursTestData(input: SearchGenerateAirtoursTestDataInput!): GenerateAirtoursTestDataResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryGenerateAirtoursTestData(input: QueryGenerateAirtoursTestDataInput!): GenerateAirtoursTestDataResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getGenerateAirtoursTestData(id: [ID!]!): GenerateAirtoursTestDataResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchGenerateAirtoursPublicTestData(input: SearchGenerateAirtoursPublicTestDataInput!): GenerateAirtoursPublicTestDataResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryGenerateAirtoursPublicTestData(input: QueryGenerateAirtoursPublicTestDataInput!): GenerateAirtoursPublicTestDataResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getGenerateAirtoursPublicTestData(id: [ID!]!): GenerateAirtoursPublicTestDataResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchCreateCognitoUsers(input: SearchCreateCognitoUsersInput!): CreateCognitoUsersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryCreateCognitoUsers(input: QueryCreateCognitoUsersInput!): CreateCognitoUsersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getCreateCognitoUsers(id: [ID!]!): CreateCognitoUsersResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchChangeActiveAgents(input: SearchChangeActiveAgentsInput!): ChangeActiveAgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    queryChangeActiveAgents(input: QueryChangeActiveAgentsInput!): ChangeActiveAgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getChangeActiveAgents(id: [ID!]!): ChangeActiveAgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    searchSetUserAgents(input: SearchSetUserAgentsInput!): SetUserAgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    querySetUserAgents(input: QuerySetUserAgentsInput!): SetUserAgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+    getSetUserAgents(id: [ID!]!): SetUserAgentsResultConnection @aws_iam @aws_cognito_user_pools @auth
+        
+        queryBe(input: QueryqueryBesInput!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
+        
+        GetGraphqlSchema(input: QueryGetGraphqlSchemasInput!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
+}
+
+
+    
+type AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [AllItemsUnion!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type UsersResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [User!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type PeopleResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Person!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type CompaniesResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Company!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type AirportsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Airport!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type InvoicesResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Invoice!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type AirtoursTicketPriceConfigsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [AirtoursTicketPriceConfig!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type CitiesResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [City!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type OrdersResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Order!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type CountriesResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Country!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type AirplaneManifacturersResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [AirplaneManifacturer!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type AirplaneModelsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [AirplaneModel!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type RegionsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Region!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type AgentsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Agent!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type TouristsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Tourist!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type AirplanesResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Airplane!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type PaymentsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Payment!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type FlightsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Flight!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type ContinentsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Continent!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type TouristSeasonsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [TouristSeason!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type LocationsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [Location!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type UserEmailsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [UserEmail!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type queryBesResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [queryBe!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type GetGraphqlSchemasResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [GetGraphqlSchema!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type GenerateAirtoursTestDataResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [GenerateAirtoursTestData!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type GenerateAirtoursPublicTestDataResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [GenerateAirtoursPublicTestData!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type CreateCognitoUsersResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [CreateCognitoUser!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type ChangeActiveAgentsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [ChangeActiveAgent!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+type SetUserAgentsResultConnection @aws_iam @aws_cognito_user_pools @auth{
+    items: [SetUserAgents!]!
+    pageToken: String
+    count: Int
+    selectionSetList: [String]
+    errors: [ServerError]
+    excludedFromFilter: [String]
+    correlation_id: String
+}
+
+    
+
+    
+
+
+input QueryInputAllItemsFields {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    rev: Int
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    
+    public_data_ref: StringQueryInput
+email: StringQueryInput
+sub: StringQueryInput
+preferredIamRole: StringQueryInput
+
+userPoolId: StringQueryInput
+active_agent: StringQueryInput
+date_created: StringQueryInput
+date_updated: StringQueryInput
+user_created: StringQueryInput
+user_updated: StringQueryInput
+id: StringQueryInput
+fname: StringQueryInput
+lname: StringQueryInput
+name: StringQueryInput
+city: StringQueryInput
+country: StringQueryInput
+continent: StringQueryInput
+invoice_due_date: StringQueryInput
+invoice_issued_date: StringQueryInput
+invoice_number: StringQueryInput
+total_net: FloatQueryInput
+total_gross: FloatQueryInput
+total_vat: FloatQueryInput
+vat_percent: FloatQueryInput
+class_vip: FloatQueryInput
+class_1: FloatQueryInput
+class_2: FloatQueryInput
+person: StringQueryInput
+status: StringQueryInput
+code: StringQueryInput
+capacity: FloatQueryInput
+baseAirplaneModel: StringQueryInput
+airport: StringQueryInput
+location1: StringQueryInput
+location2: StringQueryInput
+location3: StringQueryInput
+location4: StringQueryInput
+location5: StringQueryInput
+agt_data_visibility_conf: AgentAgt_data_visibility_confEnum
+id_card: StringQueryInput
+iban: StringQueryInput
+tourist_season: StringQueryInput
+ticket_type: StringQueryInput
+airplane: StringQueryInput
+flight: StringQueryInput
+from_airport: StringQueryInput
+to_airport: StringQueryInput
+from_country: StringQueryInput
+to_country: StringQueryInput
+nr_seats_class_vip: FloatQueryInput
+nr_seats_class1: FloatQueryInput
+nr_seats_class2: FloatQueryInput
+model: StringQueryInput
+manifacturer: StringQueryInput
+invoice: StringQueryInput
+sender_company: StringQueryInput
+sender_person: StringQueryInput
+recipient_person: StringQueryInput
+recipient_company: StringQueryInput
+start_date: StringQueryInput
+end_date: StringQueryInput
+duration_hours: FloatQueryInput
+touristSeason: StringQueryInput
+price_flight_per_hour: FloatQueryInput
+phone1: StringQueryInput
+phone2: StringQueryInput
+address1: StringQueryInput
+address2: StringQueryInput
+type: LocationTypeEnum
+agent: StringQueryInput
+user: StringQueryInput
+definition: StringQueryInput
+forUser: StringQueryInput
+forAgent: StringQueryInput
+test_data_date: StringQueryInput
+prop1: StringQueryInput
+agent: AgentInput
+new_active_agent: StringQueryInput
+    _and: [QueryInputAllItemsFields]
+    _or: [QueryInputAllItemsFields]
+}
+input AllItemsKeysInput {
+    HASH: String
+    RANGE: String
+    rev: Int
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    
+    public_data_ref: String
+email: String
+sub: String
+preferredIamRole: String
+iamRoles: [String]
+cognitoGroups: [String]
+userPoolId: String
+active_agent: String
+agents: [String]
+date_created: AWSDateTime
+date_updated: AWSDateTime
+user_created: String
+user_updated: String
+id: ID
+fname: String
+lname: String
+name: String
+city: String
+country: String
+continent: String
+airpotDetails: AirportAirpotDetailDtoInput
+invoice_due_date: AWSDateTime
+invoice_issued_date: AWSDateTime
+invoice_number: String
+orders: [String]
+total_net: Float
+total_gross: Float
+total_vat: Float
+vat_percent: Float
+class_vip: Float
+class_1: Float
+class_2: Float
+cityDetails: CityCityDetailDtoInput
+person: String
+status: String
+items: [OrderItemDtoInput]
+countryDetails: CountryCountryDetailDtoInput
+code: String
+capacity: Float
+manifacturers: [String]
+baseAirplaneModel: String
+airport: String
+regionDetails: RegionRegionDetailDtoInput
+location1: String
+location2: String
+location3: String
+location4: String
+location5: String
+child_agents: [String]
+parent_agents: [String]
+agt_data_visibility_conf: AgentAgt_data_visibility_confEnum
+id_card: String
+iban: String
+tourist_season: String
+ticket_type: String
+airplane: String
+flight: String
+from_airport: String
+to_airport: String
+from_country: String
+to_country: String
+nr_seats_class_vip: Float
+nr_seats_class1: Float
+nr_seats_class2: Float
+model: String
+manifacturer: String
+invoice: String
+sender_company: String
+sender_person: String
+recipient_person: String
+recipient_company: String
+start_date: AWSDateTime
+end_date: AWSDateTime
+duration_hours: Float
+tickets_price: FlightTickets_priceDtoInput
+touristSeason: String
+continentDetails: ContinentContinentDetailDtoInput
+price_flight_per_hour: Float
+discounts: TouristSeasonDiscountDtoInput
+phone1: String
+phone2: String
+address1: String
+address2: String
+type: LocationTypeEnum
+agent: String
+user: String
+definition: String
+forUser: String
+forAgent: String
+test_data_date: AWSDateTime
+prop1: String
+agent: AgentInput
+new_active_agent: String
+}
+input QueryUsersFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            public_data_ref: StringQueryInput
+            email: StringQueryInput
+            sub: StringQueryInput
+            preferredIamRole: StringQueryInput
+            
+            
+            userPoolId: StringQueryInput
+            active_agent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryUsersFilterInput]
+    _or: [QueryUsersFilterInput]
+}
+input QueryPeopleFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            fname: StringQueryInput
+            lname: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryPeopleFilterInput]
+    _or: [QueryPeopleFilterInput]
+}
+input QueryCompaniesFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            name: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryCompaniesFilterInput]
+    _or: [QueryCompaniesFilterInput]
+}
+input QueryAirportsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            name: StringQueryInput
+            city: StringQueryInput
+            country: StringQueryInput
+            continent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryAirportsFilterInput]
+    _or: [QueryAirportsFilterInput]
+}
+input QueryInvoicesFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            invoice_due_date: StringQueryInput
+            invoice_issued_date: StringQueryInput
+            invoice_number: StringQueryInput
+            
+            total_net: FloatQueryInput
+            total_gross: FloatQueryInput
+            total_vat: FloatQueryInput
+            vat_percent: FloatQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryInvoicesFilterInput]
+    _or: [QueryInvoicesFilterInput]
+}
+input QueryAirtoursTicketPriceConfigsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            class_vip: FloatQueryInput
+            class_1: FloatQueryInput
+            class_2: FloatQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryAirtoursTicketPriceConfigsFilterInput]
+    _or: [QueryAirtoursTicketPriceConfigsFilterInput]
+}
+input QueryCitiesFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            name: StringQueryInput
+            country: StringQueryInput
+            continent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryCitiesFilterInput]
+    _or: [QueryCitiesFilterInput]
+}
+input QueryOrdersFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            public_data_ref: StringQueryInput
+            person: StringQueryInput
+            status: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryOrdersFilterInput]
+    _or: [QueryOrdersFilterInput]
+}
+input QueryCountriesFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            name: StringQueryInput
+            continent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryCountriesFilterInput]
+    _or: [QueryCountriesFilterInput]
+}
+input QueryAirplaneManifacturersFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            code: StringQueryInput
+            name: StringQueryInput
+            country: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryAirplaneManifacturersFilterInput]
+    _or: [QueryAirplaneManifacturersFilterInput]
+}
+input QueryAirplaneModelsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            capacity: FloatQueryInput
+            country: StringQueryInput
+            name: StringQueryInput
+            code: StringQueryInput
+            
+            baseAirplaneModel: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryAirplaneModelsFilterInput]
+    _or: [QueryAirplaneModelsFilterInput]
+}
+input QueryRegionsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            name: StringQueryInput
+            airport: StringQueryInput
+            city: StringQueryInput
+            country: StringQueryInput
+            continent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryRegionsFilterInput]
+    _or: [QueryRegionsFilterInput]
+}
+input QueryAgentsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            public_data_ref: StringQueryInput
+            location1: StringQueryInput
+            location2: StringQueryInput
+            location3: StringQueryInput
+            location4: StringQueryInput
+            location5: StringQueryInput
+            code: StringQueryInput
+            name: StringQueryInput
+            
+            
+            agt_data_visibility_conf: AgentAgt_data_visibility_confEnum
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryAgentsFilterInput]
+    _or: [QueryAgentsFilterInput]
+}
+input QueryTouristsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            public_data_ref: StringQueryInput
+            person: StringQueryInput
+            fname: StringQueryInput
+            lname: StringQueryInput
+            id_card: StringQueryInput
+            iban: StringQueryInput
+            tourist_season: StringQueryInput
+            ticket_type: StringQueryInput
+            airplane: StringQueryInput
+            flight: StringQueryInput
+            from_airport: StringQueryInput
+            to_airport: StringQueryInput
+            from_country: StringQueryInput
+            to_country: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryTouristsFilterInput]
+    _or: [QueryTouristsFilterInput]
+}
+input QueryAirplanesFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            code: StringQueryInput
+            nr_seats_class_vip: FloatQueryInput
+            nr_seats_class1: FloatQueryInput
+            nr_seats_class2: FloatQueryInput
+            model: StringQueryInput
+            manifacturer: StringQueryInput
+            country: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryAirplanesFilterInput]
+    _or: [QueryAirplanesFilterInput]
+}
+input QueryPaymentsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            invoice_number: StringQueryInput
+            invoice: StringQueryInput
+            sender_company: StringQueryInput
+            sender_person: StringQueryInput
+            recipient_person: StringQueryInput
+            recipient_company: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryPaymentsFilterInput]
+    _or: [QueryPaymentsFilterInput]
+}
+input QueryFlightsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            from_airport: StringQueryInput
+            to_airport: StringQueryInput
+            start_date: StringQueryInput
+            end_date: StringQueryInput
+            duration_hours: FloatQueryInput
+            
+            touristSeason: StringQueryInput
+            airplane: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryFlightsFilterInput]
+    _or: [QueryFlightsFilterInput]
+}
+input QueryContinentsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            name: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryContinentsFilterInput]
+    _or: [QueryContinentsFilterInput]
+}
+input QueryTouristSeasonsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            price_flight_per_hour: FloatQueryInput
+            start_date: StringQueryInput
+            end_date: StringQueryInput
+            code: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryTouristSeasonsFilterInput]
+    _or: [QueryTouristSeasonsFilterInput]
+}
+input QueryLocationsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            phone1: StringQueryInput
+            phone2: StringQueryInput
+            address1: StringQueryInput
+            address2: StringQueryInput
+            name: StringQueryInput
+            type: LocationTypeEnum
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryLocationsFilterInput]
+    _or: [QueryLocationsFilterInput]
+}
+input QueryUserEmailsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            agent: StringQueryInput
+            user: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryUserEmailsFilterInput]
+    _or: [QueryUserEmailsFilterInput]
+}
+input QueryqueryBesFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            code: StringQueryInput
+            name: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryqueryBesFilterInput]
+    _or: [QueryqueryBesFilterInput]
+}
+input QueryGetGraphqlSchemasFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            definition: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryGetGraphqlSchemasFilterInput]
+    _or: [QueryGetGraphqlSchemasFilterInput]
+}
+input QueryGenerateAirtoursTestDataFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            forUser: StringQueryInput
+            forAgent: StringQueryInput
+            test_data_date: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryGenerateAirtoursTestDataFilterInput]
+    _or: [QueryGenerateAirtoursTestDataFilterInput]
+}
+input QueryGenerateAirtoursPublicTestDataFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            prop1: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryGenerateAirtoursPublicTestDataFilterInput]
+    _or: [QueryGenerateAirtoursPublicTestDataFilterInput]
+}
+input QueryCreateCognitoUsersFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            agent: AgentInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryCreateCognitoUsersFilterInput]
+    _or: [QueryCreateCognitoUsersFilterInput]
+}
+input QueryChangeActiveAgentsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            new_active_agent: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QueryChangeActiveAgentsFilterInput]
+    _or: [QueryChangeActiveAgentsFilterInput]
+}
+input QuerySetUserAgentsFilterInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    
+            user: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+    _and: [QuerySetUserAgentsFilterInput]
+    _or: [QuerySetUserAgentsFilterInput]
+}
+input QueryUsersOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            public_data_ref: StringQueryInput
+            email: StringQueryInput
+            sub: StringQueryInput
+            preferredIamRole: StringQueryInput
+            
+            
+            userPoolId: StringQueryInput
+            active_agent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryPeopleOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            fname: StringQueryInput
+            lname: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryCompaniesOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            name: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryAirportsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            name: StringQueryInput
+            city: StringQueryInput
+            country: StringQueryInput
+            continent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryInvoicesOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            invoice_due_date: StringQueryInput
+            invoice_issued_date: StringQueryInput
+            invoice_number: StringQueryInput
+            
+            total_net: FloatQueryInput
+            total_gross: FloatQueryInput
+            total_vat: FloatQueryInput
+            vat_percent: FloatQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryAirtoursTicketPriceConfigsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            class_vip: FloatQueryInput
+            class_1: FloatQueryInput
+            class_2: FloatQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryCitiesOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            name: StringQueryInput
+            country: StringQueryInput
+            continent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryOrdersOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            public_data_ref: StringQueryInput
+            person: StringQueryInput
+            status: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryCountriesOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            name: StringQueryInput
+            continent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryAirplaneManifacturersOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            code: StringQueryInput
+            name: StringQueryInput
+            country: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryAirplaneModelsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            capacity: FloatQueryInput
+            country: StringQueryInput
+            name: StringQueryInput
+            code: StringQueryInput
+            
+            baseAirplaneModel: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryRegionsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            name: StringQueryInput
+            airport: StringQueryInput
+            city: StringQueryInput
+            country: StringQueryInput
+            continent: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryAgentsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            public_data_ref: StringQueryInput
+            location1: StringQueryInput
+            location2: StringQueryInput
+            location3: StringQueryInput
+            location4: StringQueryInput
+            location5: StringQueryInput
+            code: StringQueryInput
+            name: StringQueryInput
+            
+            
+            agt_data_visibility_conf: AgentAgt_data_visibility_confEnum
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryTouristsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            public_data_ref: StringQueryInput
+            person: StringQueryInput
+            fname: StringQueryInput
+            lname: StringQueryInput
+            id_card: StringQueryInput
+            iban: StringQueryInput
+            tourist_season: StringQueryInput
+            ticket_type: StringQueryInput
+            airplane: StringQueryInput
+            flight: StringQueryInput
+            from_airport: StringQueryInput
+            to_airport: StringQueryInput
+            from_country: StringQueryInput
+            to_country: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryAirplanesOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            code: StringQueryInput
+            nr_seats_class_vip: FloatQueryInput
+            nr_seats_class1: FloatQueryInput
+            nr_seats_class2: FloatQueryInput
+            model: StringQueryInput
+            manifacturer: StringQueryInput
+            country: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryPaymentsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            invoice_number: StringQueryInput
+            invoice: StringQueryInput
+            sender_company: StringQueryInput
+            sender_person: StringQueryInput
+            recipient_person: StringQueryInput
+            recipient_company: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryFlightsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            from_airport: StringQueryInput
+            to_airport: StringQueryInput
+            start_date: StringQueryInput
+            end_date: StringQueryInput
+            duration_hours: FloatQueryInput
+            
+            touristSeason: StringQueryInput
+            airplane: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryContinentsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            name: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryTouristSeasonsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            price_flight_per_hour: FloatQueryInput
+            start_date: StringQueryInput
+            end_date: StringQueryInput
+            code: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryLocationsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            phone1: StringQueryInput
+            phone2: StringQueryInput
+            address1: StringQueryInput
+            address2: StringQueryInput
+            name: StringQueryInput
+            type: LocationTypeEnum
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryUserEmailsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            agent: StringQueryInput
+            user: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryqueryBesOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            code: StringQueryInput
+            name: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryGetGraphqlSchemasOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            definition: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryGenerateAirtoursTestDataOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            forUser: StringQueryInput
+            forAgent: StringQueryInput
+            test_data_date: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryGenerateAirtoursPublicTestDataOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            prop1: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryCreateCognitoUsersOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            agent: AgentInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryChangeActiveAgentsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            new_active_agent: StringQueryInput
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QuerySetUserAgentsOnlyFieldsInput {
+    HASH: StringQueryInput
+    RANGE: StringQueryInput
+    TITEM: StringQueryInput
+    
+            user: StringQueryInput
+            
+            date_created: StringQueryInput
+            date_updated: StringQueryInput
+            user_created: StringQueryInput
+            user_updated: StringQueryInput
+            id: StringQueryInput
+}
+input QueryUsersInput {
+    hashKey: QueryUsersOnlyFieldsInput
+    rangeKey: QueryUsersOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryUsersFilterInput
+}
+input SearchUsersInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryUsersFilterInput
+}
+input QueryPeopleInput {
+    hashKey: QueryPeopleOnlyFieldsInput
+    rangeKey: QueryPeopleOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryPeopleFilterInput
+}
+input SearchPeopleInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryPeopleFilterInput
+}
+input QueryCompaniesInput {
+    hashKey: QueryCompaniesOnlyFieldsInput
+    rangeKey: QueryCompaniesOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryCompaniesFilterInput
+}
+input SearchCompaniesInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryCompaniesFilterInput
+}
+input QueryAirportsInput {
+    hashKey: QueryAirportsOnlyFieldsInput
+    rangeKey: QueryAirportsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirportsFilterInput
+}
+input SearchAirportsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirportsFilterInput
+}
+input QueryInvoicesInput {
+    hashKey: QueryInvoicesOnlyFieldsInput
+    rangeKey: QueryInvoicesOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryInvoicesFilterInput
+}
+input SearchInvoicesInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryInvoicesFilterInput
+}
+input QueryAirtoursTicketPriceConfigsInput {
+    hashKey: QueryAirtoursTicketPriceConfigsOnlyFieldsInput
+    rangeKey: QueryAirtoursTicketPriceConfigsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirtoursTicketPriceConfigsFilterInput
+}
+input SearchAirtoursTicketPriceConfigsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirtoursTicketPriceConfigsFilterInput
+}
+input QueryCitiesInput {
+    hashKey: QueryCitiesOnlyFieldsInput
+    rangeKey: QueryCitiesOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryCitiesFilterInput
+}
+input SearchCitiesInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryCitiesFilterInput
+}
+input QueryOrdersInput {
+    hashKey: QueryOrdersOnlyFieldsInput
+    rangeKey: QueryOrdersOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryOrdersFilterInput
+}
+input SearchOrdersInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryOrdersFilterInput
+}
+input QueryCountriesInput {
+    hashKey: QueryCountriesOnlyFieldsInput
+    rangeKey: QueryCountriesOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryCountriesFilterInput
+}
+input SearchCountriesInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryCountriesFilterInput
+}
+input QueryAirplaneManifacturersInput {
+    hashKey: QueryAirplaneManifacturersOnlyFieldsInput
+    rangeKey: QueryAirplaneManifacturersOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirplaneManifacturersFilterInput
+}
+input SearchAirplaneManifacturersInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirplaneManifacturersFilterInput
+}
+input QueryAirplaneModelsInput {
+    hashKey: QueryAirplaneModelsOnlyFieldsInput
+    rangeKey: QueryAirplaneModelsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirplaneModelsFilterInput
+}
+input SearchAirplaneModelsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirplaneModelsFilterInput
+}
+input QueryRegionsInput {
+    hashKey: QueryRegionsOnlyFieldsInput
+    rangeKey: QueryRegionsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryRegionsFilterInput
+}
+input SearchRegionsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryRegionsFilterInput
+}
+input QueryAgentsInput {
+    hashKey: QueryAgentsOnlyFieldsInput
+    rangeKey: QueryAgentsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAgentsFilterInput
+}
+input SearchAgentsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAgentsFilterInput
+}
+input QueryTouristsInput {
+    hashKey: QueryTouristsOnlyFieldsInput
+    rangeKey: QueryTouristsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryTouristsFilterInput
+}
+input SearchTouristsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryTouristsFilterInput
+}
+input QueryAirplanesInput {
+    hashKey: QueryAirplanesOnlyFieldsInput
+    rangeKey: QueryAirplanesOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirplanesFilterInput
+}
+input SearchAirplanesInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryAirplanesFilterInput
+}
+input QueryPaymentsInput {
+    hashKey: QueryPaymentsOnlyFieldsInput
+    rangeKey: QueryPaymentsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryPaymentsFilterInput
+}
+input SearchPaymentsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryPaymentsFilterInput
+}
+input QueryFlightsInput {
+    hashKey: QueryFlightsOnlyFieldsInput
+    rangeKey: QueryFlightsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryFlightsFilterInput
+}
+input SearchFlightsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryFlightsFilterInput
+}
+input QueryContinentsInput {
+    hashKey: QueryContinentsOnlyFieldsInput
+    rangeKey: QueryContinentsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryContinentsFilterInput
+}
+input SearchContinentsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryContinentsFilterInput
+}
+input QueryTouristSeasonsInput {
+    hashKey: QueryTouristSeasonsOnlyFieldsInput
+    rangeKey: QueryTouristSeasonsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryTouristSeasonsFilterInput
+}
+input SearchTouristSeasonsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryTouristSeasonsFilterInput
+}
+input QueryLocationsInput {
+    hashKey: QueryLocationsOnlyFieldsInput
+    rangeKey: QueryLocationsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryLocationsFilterInput
+}
+input SearchLocationsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryLocationsFilterInput
+}
+input QueryUserEmailsInput {
+    hashKey: QueryUserEmailsOnlyFieldsInput
+    rangeKey: QueryUserEmailsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryUserEmailsFilterInput
+}
+input SearchUserEmailsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryUserEmailsFilterInput
+}
+input QueryqueryBesInput {
+    hashKey: QueryqueryBesOnlyFieldsInput
+    rangeKey: QueryqueryBesOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryqueryBesFilterInput
+}
+input SearchqueryBesInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryqueryBesFilterInput
+}
+input QueryGetGraphqlSchemasInput {
+    hashKey: QueryGetGraphqlSchemasOnlyFieldsInput
+    rangeKey: QueryGetGraphqlSchemasOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryGetGraphqlSchemasFilterInput
+}
+input SearchGetGraphqlSchemasInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryGetGraphqlSchemasFilterInput
+}
+input QueryGenerateAirtoursTestDataInput {
+    hashKey: QueryGenerateAirtoursTestDataOnlyFieldsInput
+    rangeKey: QueryGenerateAirtoursTestDataOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryGenerateAirtoursTestDataFilterInput
+}
+input SearchGenerateAirtoursTestDataInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryGenerateAirtoursTestDataFilterInput
+}
+input QueryGenerateAirtoursPublicTestDataInput {
+    hashKey: QueryGenerateAirtoursPublicTestDataOnlyFieldsInput
+    rangeKey: QueryGenerateAirtoursPublicTestDataOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryGenerateAirtoursPublicTestDataFilterInput
+}
+input SearchGenerateAirtoursPublicTestDataInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryGenerateAirtoursPublicTestDataFilterInput
+}
+input QueryCreateCognitoUsersInput {
+    hashKey: QueryCreateCognitoUsersOnlyFieldsInput
+    rangeKey: QueryCreateCognitoUsersOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryCreateCognitoUsersFilterInput
+}
+input SearchCreateCognitoUsersInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryCreateCognitoUsersFilterInput
+}
+input QueryChangeActiveAgentsInput {
+    hashKey: QueryChangeActiveAgentsOnlyFieldsInput
+    rangeKey: QueryChangeActiveAgentsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryChangeActiveAgentsFilterInput
+}
+input SearchChangeActiveAgentsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QueryChangeActiveAgentsFilterInput
+}
+input QuerySetUserAgentsInput {
+    hashKey: QuerySetUserAgentsOnlyFieldsInput
+    rangeKey: QuerySetUserAgentsOnlyFieldsInput
+    dbIndexName: String
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QuerySetUserAgentsFilterInput
+}
+input SearchSetUserAgentsInput {
+    limit: Int
+    pageToken: String
+    keysOnly: Boolean
+    searchBackward: Boolean
+    filter: QuerySetUserAgentsFilterInput
+}
+
+
+

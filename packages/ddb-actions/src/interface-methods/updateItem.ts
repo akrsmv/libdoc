@@ -1,7 +1,7 @@
 'use strict'
 
 import { AttributeValue, TransactWriteItem, TransactWriteItemsCommand, TransactWriteItemsInput } from '@aws-sdk/client-dynamodb'
-import { DB_NAME, toAttributeMap, preparePkforUniqueItemKey, ddbRequest } from '../DynamoDbClient';
+import { DB_NAME, toAttributeMap, preparePkforUniqueItemKey, ddbRequest, dbConfig } from '../DynamoDbClient';
 import { DdbItem, __itemMetadata, getRegularKeyForSystemKey, isUniqueKey, withPrefix, versionString, IIdentity, _sep1, IClaims, _nGSIKeyPrefix, _sGSIKeyPrefix, calculatePrivateOrPublicData } from '@incta/ddb-model';
 import { ValidationError, convertDatesToIsoDateStrings, get_correlation_token, logdebug } from '@incta/common-utils';
 import { getItems, inferItemKeys } from './getItems';
@@ -30,14 +30,22 @@ const stripSystemKeys = (item: Record<string, any>) => Object.keys(item)
         , {})
 
 export const updateItem = async <T extends DdbItem>(itemUpdates: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    return await __updateOrPatchItem('update', itemUpdates, identity)
+    await ddbRequest(await __getUpdateOrPatchItemTransactWriteArray('update', itemUpdates, identity))
 }
 
 export const patchItem = async <T extends DdbItem>(itemUpdates: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    return await __updateOrPatchItem('patch', itemUpdates, identity)
+    const result = await ddbRequest(await __getUpdateOrPatchItemTransactWriteArray('patch', itemUpdates, identity))
 }
 
-const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' | 'patch', itemUpdates: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
+export const getUpdateItemTransactWriteArray = async <T extends DdbItem>(itemUpdates: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<TransactWriteItem[]> => {
+    return await __getUpdateOrPatchItemTransactWriteArray('update', itemUpdates, identity)
+}
+
+export const getPatchItemTransactWriteArray = async <T extends DdbItem>(itemUpdates: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<TransactWriteItem[]> => {
+    return await __getUpdateOrPatchItemTransactWriteArray('patch', itemUpdates, identity)
+}
+
+const __getUpdateOrPatchItemTransactWriteArray = async <T extends DdbItem>(actionToPerform: 'update' | 'patch', itemUpdates: Partial<T>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<TransactWriteItem[]> => {
     itemUpdates = {
         ...inferItemKeys(itemUpdates, false)[0],
         ...itemUpdates
@@ -142,10 +150,10 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
         "#user_updated" in ExpressionAttributeNames &&
         "#rev" in ExpressionAttributeNames) {
         // avoid empty updates
-        return
+        return []
     }
     const date_updated = new Date()
-    const itemTransactWriteItemList: TransactWriteItem[] = ([
+    return ([
         {
             Update: {
                 ConditionExpression: `(attribute_not_exists(#rev) OR #rev = :rev)`,
@@ -197,34 +205,35 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
                     + (keysForDelete.length > 0 ? ` remove ${Array.from(keysForDelete).map(key => `#${key}`).join(", ")}` : ''),
                 ReturnValuesOnConditionCheckFailure: "ALL_OLD"
             }
-        },
-        { // update (which actually will create) the history record
-            Update: {
-                TableName: DB_NAME(),
-                ReturnValuesOnConditionCheckFailure: "ALL_OLD",
-                Key: Object.assign({
-                    HASH: { S: dexistingItemkey.HASH.S },
-                    RANGE: { S: existingItem.RANGE.replace(/v_\d+/, versionString((existingItem.rev || 0) + 1)) }
-                }),
-                UpdateExpression: `set ${_historyItemRegularKeysToCreate.map(uk => `#${uk} = :${uk}`).join(", ")}, #__typename = :__typename`,
-                ExpressionAttributeNames: _historyItemRegularKeysToCreate
-                    .reduce<{ [key: string]: string }>((accum, key) => {
-                        accum[`#${key}`] = key
-                        return accum
-                    }, {
-                        '#__typename': '__typename' // always needed as graphql mappers need to know the type
-                    }),
-                ExpressionAttributeValues:
-                    _historyItemRegularKeysToCreate
-                        .reduce<{ [key: string]: AttributeValue }>((accum, key) => {
-                            accum[`:${key}`] = dexistingItem[key] || { NULL: true }  // value may not existed in item being updated
-                            return accum
-                        }, {// always needed as graphql mappers need to know the type 
-                            ":__typename": { S: `${existingItem.__typename}History` }
-                        })
-            }
         }
     ] as TransactWriteItem[])
+        .concat((await dbConfig()).isHistoryOn ? // ONLY IF HISTORY IS CONFIGURED TO BE RECORDED
+            [{ // update (which actually will create) the history record
+                Update: {
+                    TableName: DB_NAME(),
+                    ReturnValuesOnConditionCheckFailure: "ALL_OLD",
+                    Key: Object.assign({
+                        HASH: { S: dexistingItemkey.HASH.S },
+                        RANGE: { S: existingItem.RANGE.replace(/v_\d+/, versionString((existingItem.rev || 0) + 1)) }
+                    }),
+                    UpdateExpression: `set ${_historyItemRegularKeysToCreate.map(uk => `#${uk} = :${uk}`).join(", ")}, #__typename = :__typename`,
+                    ExpressionAttributeNames: _historyItemRegularKeysToCreate
+                        .reduce<{ [key: string]: string }>((accum, key) => {
+                            accum[`#${key}`] = key
+                            return accum
+                        }, {
+                            '#__typename': '__typename' // always needed as graphql mappers need to know the type
+                        }),
+                    ExpressionAttributeValues:
+                        _historyItemRegularKeysToCreate
+                            .reduce<{ [key: string]: AttributeValue }>((accum, key) => {
+                                accum[`:${key}`] = dexistingItem[key] || { NULL: true }  // value may not existed in item being updated
+                                return accum
+                            }, {// always needed as graphql mappers need to know the type 
+                                ":__typename": { S: `${existingItem.__typename}History` }
+                            })
+                }
+            }] : [])
         .concat(
             _uniqueKeysToDelete.reduce<TransactWriteItem[]>((accum, key) => {
                 accum.push({
@@ -249,16 +258,4 @@ const __updateOrPatchItem = async <T extends DdbItem>(actionToPerform: 'update' 
                 })
                 return accum
             }, []));
-
-    const params: TransactWriteItemsInput = {
-        TransactItems: itemTransactWriteItemList,
-        ReturnConsumedCapacity: "TOTAL",
-        ReturnItemCollectionMetrics: "SIZE",
-        // ClientRequestToken: correlation_id ? // TODO
-    }
-
-    logdebug(`[${actionToPerform}] ==>DDB TransactWriteItemsInput`, params)
-    // const result = await dynamoDbClient().send(new TransactWriteItemsCommand(params));
-    const result = await ddbRequest(new TransactWriteItemsCommand(params))
-    logdebug(`[${actionToPerform}] <==DDB TransactWriteItemsOutput: `, result)
 }

@@ -1,0 +1,84 @@
+{
+    "$id": "http://localhost:3000/ddb-orm/system/item.json",
+    "title": "Item",
+    "description": "Basic ddb-orm item",
+    "required": [
+        "id",
+        "pk",
+        "sk",
+        "__typename",
+        "rev",
+        "created",
+        "modified",
+        "nshard"
+    ],
+    "properties": {
+        "id": {
+            "$ref": "http://localhost:3000/ddb-orm/system/keys/id.json"
+        },
+        "pk": {
+            "$ref": "http://localhost:3000/ddb-orm/system/keys/hash.json"
+        },
+        "sk": {
+            "$ref": "http://localhost:3000/ddb-orm/system/keys/range.json"
+        },
+        "__typename": {
+            "$ref": "http://localhost:3000/ddb-orm/system/keys/__typename.json"
+        },
+        "rev": {
+            "$ref": "http://localhost:3000/ddb-orm/system/keys/rev.json"
+        },
+        "created": {
+            "$ref": "http://localhost:3000/ddb-orm/system/keys/date.json"
+        },
+        "modified": {
+            "$ref": "http://localhost:3000/ddb-orm/system/keys/date.json"
+        },
+        "nshard": {
+            "description": "The shard in which item is located",
+            "type": "number"
+        },
+        "sgsi1": {
+            "description": "String index metadata for an item. Should an item be indexed by a number property`sngsi[N`] properties are used. Supported up to 5 numeric indexes for a single item",
+            "type": "string"
+        },
+        "sgsi2": {
+            "description": "String index metadata for an item. Should an item be indexed by a number property`sngsi[N`] properties are used. Supported up to 5 numeric indexes for a single item",
+            "type": "string"
+        },
+        "sgsi3": {
+            "description": "String index metadata for an item. Should an item be indexed by a number property `sgsi[N]` properties are used. Supported up to 5 numeric indexes for a single item.",
+            "type": "string"
+        },
+        "sgsi4": {
+            "description": "String index metadata for an item. Should an item be indexed by a number property `sgsi[N]` properties are used. Supported up to 5 numeric indexes for a single item.",
+            "type": "string"
+        },
+        "sgsi5": {
+            "description": "String index metadata for an item. Should an item be indexed by a number property `sgsi[N]` properties are used. Supported up to 5 numeric indexes for a single item.",
+            "type": "string"
+        },
+        "ngsi1": {
+            "description": "Numeric index metadata for an item. Should an item be indexed by a number property `ngsi[N]` properties are used. Supported up to 5 numeric indexes for a single item.",
+            "type": "number"
+        },
+        "ngsi2": {
+            "description": "Numeric index metadata for an item. Should an item be indexed by a number property `ngsi[N]` properties are used. Supported up to 5 numeric indexes for a single item.",
+            "type": "number"
+        },
+        "ngsi3": {
+            "description": "Numeric index metadata for an item. Should an item be indexed by a number property `ngsi[N]` properties are used. Supported up to 5 numeric indexes for a single item.",
+            "type": "number"
+        },
+        "ngsi4": {
+            "description": "Numeric index metadata for an item. Should an item be indexed by a number property `ngsi[N]` properties are used. Supported up to 5 numeric indexes for a single item.",
+            "type": "number"
+        },
+        "ngsi5": {
+            "description": "Numeric index metadata for an item. Should an item be indexed by a number property `ngsi[N]` properties are used. Supported up to 5 numeric indexes for a single item.",
+            "type": "number"
+        }
+    },
+    "type": "object",
+    "additionalProperties": true
+}

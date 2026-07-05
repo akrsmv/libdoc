@@ -32,6 +32,9 @@ const getGraphqlSingleKeyAndQueryInputType = (__typename: string, key: string, a
         const singularKey = pluralize.singular(key)
         return `${key}: ${__typename[0].toUpperCase() + __typename.slice(1)}${singularKey[0].toUpperCase() + singularKey.slice(1)}Enum`
     }
+    else if (attrs.__type.startsWith('#')) {
+        return `${key}: ${attrs.__type.replace('#','')}Input`
+    }
     switch (attrs.__type) {
         case "isodatestring": return `${key}: StringQueryInput`;
         case "string": return `${key}: StringQueryInput`;
@@ -60,6 +63,9 @@ const getGraphqlSingleKeyAndInputType = (__typename: string, key: string, attrs:
         const singularKey = pluralize.singular(key)
         return `${key}: ${__typename[0].toUpperCase() + __typename.slice(1)}${singularKey[0].toUpperCase() + singularKey.slice(1)}Enum`
     }
+    else if (attrs.__type.startsWith('#')) {
+        return `${key}: ${attrs.__type.replace('#','')}Input`
+    }
     switch (attrs.__type) {
         case "isodatestring": return `${key}: AWSDateTime`;
         case "string": return `${key}: String`;
@@ -86,6 +92,9 @@ const getGraphqlType = (__typename: string, key: string, attrs: any): string => 
     else if (attrs.__type === 'enum') {
         const singularKey = pluralize.singular(key)
         return `${__typename[0].toUpperCase() + __typename.slice(1)}${singularKey[0].toUpperCase() + singularKey.slice(1)}Enum`
+    }
+    else if (attrs.__type.startsWith('#')) {
+        return `${attrs.__type.replace('#','')}`
     }
     switch (attrs.__type) {
         case "isodatestring": return "AWSDateTime";
@@ -141,8 +150,12 @@ export class AppSyncConstruct extends Construct {
                 allDtos,
                 allQueries,
                 allCommands,
-                allItemsUniqueKeysQueryInputDefinitions: Array.from(allItemsUniqueKeysQueryInputs).join('\n'),
-                AllItemsKeysInputDefinitions: Array.from(allItemsKeysInput).join('\n')
+                allItemsUniqueKeysQueryInputDefinitions: Array.from(allItemsUniqueKeysQueryInputs)
+                // filter out other items refs:
+                .filter(item => !item.startsWith('#')).join('\n'),
+                AllItemsKeysInputDefinitions: Array.from(allItemsKeysInput)
+                // filter out other items refs:
+                .filter(item => !item.startsWith('#')).join('\n')
             })
 
         // debugpurposes later make it always write and bindschema to the written file

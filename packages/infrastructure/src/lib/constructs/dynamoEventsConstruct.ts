@@ -59,7 +59,7 @@ export class DynamoEventsConstruct extends Construct {
         }))
 
         if (!!props.eventBus) {
-            this.dynamoEventsAggregation.node.addDependency(props.eventBus)
+            // this.dynamoEventsAggregation.node.addDependency(props.eventBus)
             props.eventBus.grantPublish(this.dynamoEventsAggregation)
             this.dynamoEventsAggregation.addEnvironment('EVENT_BUS_TOPIC_ARN', props.eventBus.topicArn)
         }
@@ -99,7 +99,7 @@ export class DynamoEventsConstruct extends Construct {
         // }))
 
         // if (!!props.eventBusConstruct) {
-        //     this.dynamoEventsCallback.node.addDependency(props.eventBusConstruct.eventBus)
+            // this.dynamoEventsCallback.node.addDependency(props.eventBusConstruct.eventBus)
         //     props.eventBusConstruct.grantAccess(this.dynamoEventsCallback)
         // }
     }

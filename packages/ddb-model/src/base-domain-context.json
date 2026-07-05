@@ -29,11 +29,6 @@
                         "sGSI2"
                     ]
                 },
-                "idpId": {
-                    "__type": "string",
-                    "__required": true,
-                    "__unique": true
-                },
                 "preferredIamRole": {
                     "__type": "string"
                 },
@@ -81,11 +76,61 @@
                     "__values": "ALL|NONE|ONLY_CHILDREN|ONLY_PRENTS|SELECT"
                 }
             }
+        },
+        "UserEmailRule": {
+            "__meta": {
+                "__desc": "Defines an email is ownership of some user and some agent. Also defines a keyword for which if found inside a body of email, any attachments will be saved under this agent",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "agent": {
+                    "__type": "string",
+                    "__peer": "Agent",
+                    "__required": true
+                },
+                "user": {
+                    "__type": "string",
+                    "__peer": "User",
+                    "__required": true
+                },
+                "email": {
+                    "__type": "string",
+                    "__required": true,
+                    "__id": true,
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "sub": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "match_pattern": {
+                    "__type": "string"
+                },
+                "disabled": {
+                    "__type": "boolean"
+                }
+            }
         }
     },
     "Commands": {
         "__meta": {
             "__desc": ""
+        },
+        "CreateCognitoUser": {
+            "__meta": {
+                "__desc": "Creates a user in dynamo and an initial, default agent for this user. Also creates the UserEmail record linking the default agent with the user login email. I.e emails sent from this users login email will be processed for the default agent"
+            },
+            "__attributes": {
+                "userItem": {
+                    "__type": "#User",
+                    "__required": true
+                }
+            }
         },
         "ChangeActiveAgent": {
             "__meta": {
@@ -98,9 +143,24 @@
                 }
             }
         },
+        "CreatePrivateAgentForUser": {
+            "__meta": {
+                "__desc": "Creates a private agent and assigns it to a user"
+            },
+            "__attributes": {
+                "user": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "agentItem": {
+                    "__type": "#Agent",
+                    "__required": true
+                }
+            }
+        },
         "SetUserAgents": {
             "__meta": {
-                "__desc": ""
+                "__desc": "MAY BECOME OBSOLATE: Adds or modifies custom:agents attribute on a cognito user. "
             },
             "__attributes": {
                 "user": {

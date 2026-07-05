@@ -1,0 +1,16 @@
+{
+    "$id": "http://localhost:3000/ddb-orm/items/user.json",
+    "title": "LibDocItem",
+    "description": "Combined schema for the libdoc project",
+    "oneOf": [
+        {
+            "$ref": "http://localhost:3000/ddb-orm/items/user.json"
+        },
+        {
+            "$ref": "http://localhost:3000/ddb-orm/items/user-email-rule.json"
+        },
+        {
+            "$ref": "http://localhost:3000/ddb-orm/items/agent.json"
+        }
+    ]
+}

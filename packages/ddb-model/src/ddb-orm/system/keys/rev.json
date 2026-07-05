@@ -1,0 +1,6 @@
+{
+  "$id": "http://localhost:3000/ddb-orm/system/keys/rev.json",
+  "title": "rev",
+  "description": "The total number of modifications for an Entity",
+  "type": "integer"
+}

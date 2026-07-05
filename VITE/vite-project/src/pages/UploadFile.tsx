@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import { Storage } from 'aws-amplify';
 import { useUserVisibleAgentsStore } from '../stores/VisibleAgentsStore';
-import Accordion from '../components/Accordion';
 
 const UploadFile: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -37,11 +36,11 @@ const UploadFile: React.FC = () => {
         console.log('shoud use this datePortion: ', datePortionOfS3Key)
       }
       const result = await Storage.put(
-        `${userAgentsStore?.userObject?.sub}/${datePortionOfS3Key}/${userAgentsStore?.userObject?.active_agent}/${selectedFile.name}`,
+        `${userAgentsStore?.userObject?.sub}/${userAgentsStore?.userObject?.active_agent || 'Agent|DEFAULT#v_0|Agent|DEFAULT'}/${datePortionOfS3Key.slice(0,4)}/${datePortionOfS3Key.slice(5,7)}/${datePortionOfS3Key.slice(8,10)}/${selectedFile.name}`,
         selectedFile, {
         metadata: {
-          userId: userAgentsStore.userObject?.sub,
-          active_agent: userAgentsStore?.userObject?.active_agent
+          userId: String(userAgentsStore.userObject?.sub),
+          active_agent: userAgentsStore?.userObject?.active_agent || 'Agent|DEFAULT#v_0|Agent|DEFAULT'
         }
       });
       console.log('File uploaded successfully:', result);
@@ -61,6 +60,7 @@ const UploadFile: React.FC = () => {
   return (
     <div className="p-4">
       <label className="inline-flex items-center">
+        Upload for another month? 
         <input
           type="checkbox"
           className="form-checkbox h-5 w-5 text-blue-500"

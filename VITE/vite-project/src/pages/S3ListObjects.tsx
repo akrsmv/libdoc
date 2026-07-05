@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { Storage } from 'aws-amplify';
 import { useUserVisibleAgentsStore } from '../stores/VisibleAgentsStore';
+import { useBackendRequestsStore } from '../stores/BackendRequestsStore';
+import { useBlurringSpinnerStore } from '../stores/BlurringSpinnerStore';
 
-const getDaysInMonth = (year: number, month: number) => {
+export const getDaysInMonth = (year: number, month: number) => {
     return new Date(year, month, 0).getDate();
 }
 
-const getCurrentYear = () => {
+export const getCurrentYear = () => {
     return Number(new Date().toISOString().slice(0, 4));
 }
 
-const getCurrentMonth = () => {
+export const getCurrentDay = () => {
+    return Number(new Date().toISOString().slice(8, 10));
+}
+
+export const getCurrentMonth = () => {
     return Number(new Date().toISOString().slice(5, 7));
 }
 
 const ListS3Objects: React.FC = () => {
-    const [s3Objects, setS3Objects] = useState<{ [dateString: string]: string[] } | undefined>({});
+    const backendStore = useBackendRequestsStore()
+    const loadingStore = useBlurringSpinnerStore()
+    const [s3Objects, setS3Objects] = useState<any[] | undefined>([]);
     const [isNotForCurrentMonth, setIsNotForCurrentMonth] = useState<boolean>(false);
     const userAgentsStore = useUserVisibleAgentsStore()
     const [selectedDate, setSelectedDate] = useState('');
@@ -27,38 +35,31 @@ const ListS3Objects: React.FC = () => {
 
     useEffect(() => {
         console.log('useEffect called')
-        async function fetchS3ObjectsForDate(dateString: string): Promise<{ [x: string]: string[] } | undefined> {
+        async function loadS3ObjectsForDateRange(yearStringYYYY: string, monthStringMM: string): Promise<void> {
+            if (backendStore.isSigningOut) {
+                setS3Objects([]);
+                return
+            }
+            loadingStore.setLoading(true)
             try {
-                const objects = await Storage.list(`${userAgentsStore.userObject?.sub}/${dateString}/${userAgentsStore.userObject?.active_agent}`, { pageSize: 25, level: 'private' });
-                return { [dateString]: objects.results.map(result => result.key!) }
+                const objects = await Storage.list(`${userAgentsStore.userObject?.sub}/${userAgentsStore.userObject?.active_agent || 'Agent|DEFAULT#v_0|Agent|DEFAULT'}/${yearStringYYYY}/${monthStringMM}/`, { pageSize: 25 });
+                loadingStore.setLoading(false)
+                console.log(objects)
+                setS3Objects(objects.results);
             } catch (error) {
                 console.error('Error fetching S3 objects:', error);
+                loadingStore.setLoading(false)
             }
-        }
-
-        async function fetchS3ObjectsForMonth(year: number, month: number) {
-            const daysOfRequestedMonth = getDaysInMonth(year, month)
-            const fetchRequests = []
-            for (let day = 1; day <= daysOfRequestedMonth; day++) {
-                const dateString = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-                fetchRequests.push(fetchS3ObjectsForDate(dateString))
-            }
-            const allDaysResults: ({ [dateString: string]: string[] } | undefined)[] = await Promise.all(fetchRequests)
-            console.log('AT FINAL ', allDaysResults)
-            setS3Objects(allDaysResults.reduce((accum, next) => {
-                return { ...accum, ...next }
-            }, {}));
         }
 
         if (!isNotForCurrentMonth) {
-            fetchS3ObjectsForMonth(getCurrentYear(), getCurrentMonth())
+            loadS3ObjectsForDateRange(String(getCurrentYear()).padStart(2, '0'), String(getCurrentMonth()).padStart(2, '0'))
         } else {
             if (!selectedDate) {
                 console.error("you need to select date if you dont want to see the current month objects")
             } else {
-                const selectedYear = Number(new Date(selectedDate).toISOString().slice(0, 4))
-                const selectedMonth = Number(new Date(selectedDate).toISOString().slice(5, 7))
-                fetchS3ObjectsForMonth(selectedYear, selectedMonth)
+                console.log('selectedDate is', selectedDate)
+                loadS3ObjectsForDateRange(String(new Date(selectedDate).toISOString().slice(0, 4)), String(new Date(selectedDate).toISOString().slice(5, 7)))
             }
         }
 
@@ -73,6 +74,7 @@ const ListS3Objects: React.FC = () => {
     return (
         <div className="p-4">
             <label className="inline-flex items-center">
+                Load for another month?
                 <input
                     type="checkbox"
                     className="form-checkbox h-5 w-5 text-blue-500"
@@ -91,22 +93,48 @@ const ListS3Objects: React.FC = () => {
                 </div>
             </div>)}
 
-            <h1 className="text-2xl font-bold mb-4">S3 Objects List</h1>
-            {s3Objects && Object.keys(s3Objects).length === 0 ? (
-                <p>No objects found in S3.</p>
+
+            {s3Objects && s3Objects.length === 0 && Array.isArray(s3Objects) ? (
+                <h1 className="text-2xl font-bold mb-4">No Files for this month</h1>
             ) : (
-                <ul className="list-disc list-inside">
-                    {s3Objects && Object.values(s3Objects).reduce((arr, next) => arr.concat(next)).map((object) => (
-                        <div key={object} className="flex justify-between">
-                            <div className="w-9/10"><li>{object}</li></div>
-                            <div className="w-1/10"><button
-                                onClick={async () => { console.log('IBASE'); await downloadObject(object) }}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                            >Download</button></div>
-                        </div>
-                    ))}
-                </ul>
+                <>
+                    <h1 className="text-2xl font-bold mb-4">S3 Objects List ({ s3Objects?.length })</h1>
+
+                    <div className="container mx-auto p-4">
+                        {s3Objects && s3Objects.map((s3Object) => (
+                            <div key={s3Object.key} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 grid-cols-4 gap-4">
+                                <div className="bg-blue-200 p-4">{s3Object.key.split('/').pop()}</div>
+                                <div className="bg-green-200 p-4">{Number(s3Object.size / 1024).toFixed(2)} Kb</div>
+                                <div className="bg-green-200 p-4">{s3Object.lastModified.toLocaleString()}</div>
+                                <div className="bg-yellow-200 p-4"><button
+                                    onClick={async () => { await downloadObject(s3Object.key) }}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                >Download</button></div>
+                            </div>
+                        ))}
+                    </div>
+                    {/* <div>
+                        <button
+                            onClick={() => s3Objects?.map((s3Obj) => downloadObject(s3Obj.key))}
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Download All
+                        </button>
+                    </div> */}
+                </>
             )
+            }
+            {s3Objects && s3Objects.length !== 0 && Array.isArray(s3Objects) ? (
+
+                <footer className="fixed bottom-0 left-0 w-full bg-gray-900 text-white p-4">
+                    <div className="container mx-auto">
+                        {/* Your summary content goes here */}
+                        <p>total size of documents is {Number(s3Objects?.reduce((totalSize: number, s3Obj: any) => totalSize + s3Obj.size, 0) / 1024 / 1024).toFixed(2)} MB</p>
+                    </div>
+                </footer>
+            )
+                :
+                <></>
             }
         </div >
     );

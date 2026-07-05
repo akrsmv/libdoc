@@ -1,0 +1,3031 @@
+
+{
+    "client": "Thunder Client",
+    "collectionName": "TEST",
+    "dateExported": "2023-09-17T09:50:05.338Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "name": "ddb-actions",
+            "containerId": "",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "426408fa-d715-4c0c-bfbc-9d7b84077a98",
+            "name": "cqd-actions",
+            "containerId": "",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "e38b2377-d6b6-49e2-ab81-56a4d1c0a99f",
+            "name": "items",
+            "containerId": "426408fa-d715-4c0c-bfbc-9d7b84077a98",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "5e3dc178-4dd4-4fea-b1e9-0f73338ed1e8",
+            "name": "commands",
+            "containerId": "426408fa-d715-4c0c-bfbc-9d7b84077a98",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "b7926009-913f-44e6-8d94-f294c694dfb7",
+            "name": "queries",
+            "containerId": "426408fa-d715-4c0c-bfbc-9d7b84077a98",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "44fcba6e-11cf-4c1f-b61a-e11af0be90fa",
+            "name": "User",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "6c28103b-c929-493d-945d-f0a9ff5f607f",
+            "name": "Agent",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "1fd46676-9a78-4977-9b1d-266a0fcd61fc",
+            "name": "UserEmailRule",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "759818ab-b68a-4e38-82c5-c6a2a3343940",
+            "name": "queryBe",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "374aee03-9f80-4b9c-a4c6-348ce8b6bc04",
+            "name": "GetGraphqlSchema",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "a4dbf907-9d51-439b-aaac-ff23939223b0",
+            "name": "InjestEmail",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "9425fd1e-abf6-4a5b-a805-cf1cbf436158",
+            "name": "CreateCognitoUser",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "6fb55e17-55c5-412d-9a4d-cb4c15f3ab77",
+            "name": "ChangeActiveAgent",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "06986a24-b15e-48cf-90f5-44f6b16d2477",
+            "name": "CreatePrivateAgentForUser",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "7e3b0cbe-4cf9-4a1f-82f0-7145773c97ca",
+            "name": "SetUserAgents",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "b5f95f61-0a57-49ea-b403-225f21e85248",
+            "name": "User Queries",
+            "containerId": "44fcba6e-11cf-4c1f-b61a-e11af0be90fa",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "2050c742-010c-47fa-a7dc-e9cfa4cd7a87",
+            "name": "Agent Queries",
+            "containerId": "6c28103b-c929-493d-945d-f0a9ff5f607f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "7e656f02-ca26-48aa-b7aa-42d1f7765b07",
+            "name": "UserEmailRule Queries",
+            "containerId": "1fd46676-9a78-4977-9b1d-266a0fcd61fc",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "d7491f0f-a19f-46d9-bf04-bc82c25eca0d",
+            "name": "queryBe Queries",
+            "containerId": "759818ab-b68a-4e38-82c5-c6a2a3343940",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "9ff212e7-43e5-4576-86f2-2e5cbbc37253",
+            "name": "GetGraphqlSchema Queries",
+            "containerId": "374aee03-9f80-4b9c-a4c6-348ce8b6bc04",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "c1cb8c0f-1259-4328-b0e3-6e5c28c702fd",
+            "name": "InjestEmail Queries",
+            "containerId": "a4dbf907-9d51-439b-aaac-ff23939223b0",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "18d64972-f878-4fe9-af7a-1d705aae2ea3",
+            "name": "CreateCognitoUser Queries",
+            "containerId": "9425fd1e-abf6-4a5b-a805-cf1cbf436158",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "b7f42506-59d3-417b-8b82-06d1fb728ed0",
+            "name": "ChangeActiveAgent Queries",
+            "containerId": "6fb55e17-55c5-412d-9a4d-cb4c15f3ab77",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "5d61aeab-6bd4-454a-82d0-d7817c28ed39",
+            "name": "CreatePrivateAgentForUser Queries",
+            "containerId": "06986a24-b15e-48cf-90f5-44f6b16d2477",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "5df3de6c-0fc2-424c-be7f-f17191922f71",
+            "name": "SetUserAgents Queries",
+            "containerId": "7e3b0cbe-4cf9-4a1f-82f0-7145773c97ca",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "e40965bb-3910-455d-b70c-323f5e49ffde",
+            "name": "User Queries by system keys",
+            "containerId": "b5f95f61-0a57-49ea-b403-225f21e85248",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "4ba485b0-fbba-48d4-83ea-ffb5f4d842d7",
+            "name": "Agent Queries by system keys",
+            "containerId": "2050c742-010c-47fa-a7dc-e9cfa4cd7a87",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "5cbccb36-8af0-4438-942f-1515e85fcdb1",
+            "name": "UserEmailRule Queries by system keys",
+            "containerId": "7e656f02-ca26-48aa-b7aa-42d1f7765b07",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "5f0e4ca6-8c5a-4bb3-96de-9137f253273c",
+            "name": "queryBe Queries by system keys",
+            "containerId": "d7491f0f-a19f-46d9-bf04-bc82c25eca0d",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "a4eb2295-c43c-4e68-97b9-e056c388f2a5",
+            "name": "GetGraphqlSchema Queries by system keys",
+            "containerId": "9ff212e7-43e5-4576-86f2-2e5cbbc37253",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "68c64eef-2629-42b9-9c76-060252bd85d8",
+            "name": "InjestEmail Queries by system keys",
+            "containerId": "c1cb8c0f-1259-4328-b0e3-6e5c28c702fd",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "f7bf626e-15b2-44ef-b6b9-10b0eed59c70",
+            "name": "CreateCognitoUser Queries by system keys",
+            "containerId": "18d64972-f878-4fe9-af7a-1d705aae2ea3",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "5ee82371-0744-4f1d-90f7-4535e47e740f",
+            "name": "ChangeActiveAgent Queries by system keys",
+            "containerId": "b7f42506-59d3-417b-8b82-06d1fb728ed0",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "ac664582-5570-4f8b-a3b4-f4c49c9891a9",
+            "name": "CreatePrivateAgentForUser Queries by system keys",
+            "containerId": "5d61aeab-6bd4-454a-82d0-d7817c28ed39",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "4180db86-7ae0-4632-a7ca-dd351e79fa52",
+            "name": "SetUserAgents Queries by system keys",
+            "containerId": "5df3de6c-0fc2-424c-be7f-f17191922f71",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "1d4ca060-41dd-4c22-8c29-de90efb45675",
+            "name": "User",
+            "containerId": "e38b2377-d6b6-49e2-ab81-56a4d1c0a99f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "8fc841f0-d935-4881-a769-1c3c97797934",
+            "name": "Agent",
+            "containerId": "e38b2377-d6b6-49e2-ab81-56a4d1c0a99f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "9b7bdab0-d438-4742-8832-06862a5ff65d",
+            "name": "UserEmailRule",
+            "containerId": "e38b2377-d6b6-49e2-ab81-56a4d1c0a99f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "c3d08bb8-556a-4be2-9da2-31cc6d8eaaf0",
+            "name": "InjestEmail",
+            "containerId": "5e3dc178-4dd4-4fea-b1e9-0f73338ed1e8",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "ee170d63-f8d5-4eb7-880d-d563a107bdc3",
+            "name": "CreateCognitoUser",
+            "containerId": "5e3dc178-4dd4-4fea-b1e9-0f73338ed1e8",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "bccc1b73-4988-422d-b9b6-05d04bf77be8",
+            "name": "ChangeActiveAgent",
+            "containerId": "5e3dc178-4dd4-4fea-b1e9-0f73338ed1e8",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "12b00560-a527-429d-afbd-37e8f673b6f3",
+            "name": "CreatePrivateAgentForUser",
+            "containerId": "5e3dc178-4dd4-4fea-b1e9-0f73338ed1e8",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "a601dc25-763e-4218-9568-c383b08df107",
+            "name": "SetUserAgents",
+            "containerId": "5e3dc178-4dd4-4fea-b1e9-0f73338ed1e8",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "b1715139-2308-4110-8e4e-8c3d846229e9",
+            "name": "queryBe",
+            "containerId": "b7926009-913f-44e6-8d94-f294c694dfb7",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "00b2dbc7-4e30-4b83-99fa-f92fc43d364b",
+            "name": "GetGraphqlSchema",
+            "containerId": "b7926009-913f-44e6-8d94-f294c694dfb7",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "2e76d6ad-e45b-4d1e-9fde-1790f4fb6aeb",
+            "name": "User Queries",
+            "containerId": "1d4ca060-41dd-4c22-8c29-de90efb45675",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "05902245-8e60-4dc5-84e7-f285af05ee1f",
+            "name": "Agent Queries",
+            "containerId": "8fc841f0-d935-4881-a769-1c3c97797934",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "b3475bb9-7a37-4c14-8dd3-46bfc2c58e13",
+            "name": "UserEmailRule Queries",
+            "containerId": "9b7bdab0-d438-4742-8832-06862a5ff65d",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "4527b02c-28f1-4fb6-a5ca-37a9e95fe8be",
+            "name": "User Queries by system keys",
+            "containerId": "2e76d6ad-e45b-4d1e-9fde-1790f4fb6aeb",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "d4ce68eb-bbe2-4bf4-88e0-4ed68e05c348",
+            "name": "Agent Queries by system keys",
+            "containerId": "05902245-8e60-4dc5-84e7-f285af05ee1f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "9096147e-aeed-4715-8cf6-0b504597fb21",
+            "name": "UserEmailRule Queries by system keys",
+            "containerId": "b3475bb9-7a37-4c14-8dd3-46bfc2c58e13",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "4cf313af-4c70-41e0-8dde-82b1b7e06fb1",
+            "name": "InjestEmail Queries",
+            "containerId": "c3d08bb8-556a-4be2-9da2-31cc6d8eaaf0",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "8262e585-6991-4f5e-b8a4-7cec39a3141f",
+            "name": "CreateCognitoUser Queries",
+            "containerId": "ee170d63-f8d5-4eb7-880d-d563a107bdc3",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "6b0e0a1e-0234-48c4-9dcc-e1ff0117270a",
+            "name": "ChangeActiveAgent Queries",
+            "containerId": "bccc1b73-4988-422d-b9b6-05d04bf77be8",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "ac7c1630-bc66-4aa0-971c-63a57a532b64",
+            "name": "CreatePrivateAgentForUser Queries",
+            "containerId": "12b00560-a527-429d-afbd-37e8f673b6f3",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "73f4f453-f858-4a48-b9b8-401f80655ab5",
+            "name": "SetUserAgents Queries",
+            "containerId": "a601dc25-763e-4218-9568-c383b08df107",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "b525016e-0dc7-475f-945d-dd149b8f502d",
+            "name": "InjestEmail Queries by system keys",
+            "containerId": "4cf313af-4c70-41e0-8dde-82b1b7e06fb1",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "e9a64fd5-7a03-4c17-8ec0-5070106305c2",
+            "name": "CreateCognitoUser Queries by system keys",
+            "containerId": "8262e585-6991-4f5e-b8a4-7cec39a3141f",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "6ddcdefc-aa39-45c5-8a2d-e239579d9073",
+            "name": "ChangeActiveAgent Queries by system keys",
+            "containerId": "6b0e0a1e-0234-48c4-9dcc-e1ff0117270a",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "82929fc5-dae1-4f0f-a83e-474e9f081b04",
+            "name": "CreatePrivateAgentForUser Queries by system keys",
+            "containerId": "ac7c1630-bc66-4aa0-971c-63a57a532b64",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "0c3967d5-8dc1-4c41-842d-bbb195274c79",
+            "name": "SetUserAgents Queries by system keys",
+            "containerId": "73f4f453-f858-4a48-b9b8-401f80655ab5",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "eb728c23-e887-42e1-8498-cc92edf2a60c",
+            "name": "queryBe Queries",
+            "containerId": "b1715139-2308-4110-8e4e-8c3d846229e9",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "d748dbbc-3684-43fc-81e5-578594a8085a",
+            "name": "GetGraphqlSchema Queries",
+            "containerId": "00b2dbc7-4e30-4b83-99fa-f92fc43d364b",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "c434d35b-51f7-4888-94c8-a3d7ba81d750",
+            "name": "queryBe Queries by system keys",
+            "containerId": "eb728c23-e887-42e1-8498-cc92edf2a60c",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }, 
+        {
+            "_id": "9cd0b67b-a24c-42c5-aa03-cf5e363613e6",
+            "name": "GetGraphqlSchema Queries by system keys",
+            "containerId": "d748dbbc-3684-43fc-81e5-578594a8085a",
+            "created": "2023-09-17T09:50:05.338Z",
+            "sortNum": 10000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "3e851269-fce9-4f83-a4ab-3b2dab1b14ba",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "name": "ddb-actions:generic:ddbBatchGetItem",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/ddbBatchGetItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"pks\": [\n    {\n      \"HASH\": \"{{parent_type}}|{{parent_guid}}\",\n      \"RANGE\": \"v_0|{{item_type}}|{{item_guid}}\"\n    }\n  ],\n  \"loadPeersInput\": {\n        \"loadPeersLevel\": 1,\n        \"peersPropsToLoad\": [\"model\"],\n        \"projectionExpression\": \"code,model\"\n    }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "dc9d3da4-0aed-45ad-bf21-ed25ebea0885",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "name": "ddb-actions:generic:ddbTransactDeleteItem",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/ddbTransactDeleteItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "[{\n  \"HASH\":\"{{parent_type}}|{{parent_guid}}\",\n  \"RANGE\":\"v_0|{{item_type}}|{{item_guid}}\",\n  \"rev\": {{rev}}\n}]",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "672beec0-07bb-40ff-b14c-102be67321de",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "5a7c9e25-3f2d-4515-a432-aa55a847d13f",
+            "name": "ddb-actions:generic:GEN TEST DATA",
+            "url": "localhost:5000/lambda/invoke/generate-testdata/airtours-test-data?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "549ffbed-b654-4aad-9e8d-bf3e2b50df5a",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "",
+            "name": "GETMETADATA",
+            "url": "localhost:5000/lambda/invoke/apimetadata?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"pks\": [\n    {\n      \"HASH\": \"{{parent_type}}|{{parent_guid}}\",\n      \"RANGE\": \"v_0|{{item_type}}|{{item_guid}}\"\n    }\n  ],\n  \"loadPeersInput\": {\n        \"loadPeersLevel\": 1,\n        \"peersPropsToLoad\": [\"model\"],\n        \"projectionExpression\": \"code,model\"\n    }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6a46beaa-4005-4a47-b8c5-d92425920c2b",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "44fcba6e-11cf-4c1f-b61a-e11af0be90fa",
+            "name": "get:User",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/getItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":[\n    {\n      \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\"\n    }\n  ],\n  \"loadPeersInput\":{\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "b2533568-203a-44b4-86e9-cd89146116dd",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "6c28103b-c929-493d-945d-f0a9ff5f607f",
+            "name": "get:Agent",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/getItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":[\n    {\n      \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\"\n    }\n  ],\n  \"loadPeersInput\":{\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "8983d88e-ecc2-4d98-aeb3-1c561aac9e54",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1fd46676-9a78-4977-9b1d-266a0fcd61fc",
+            "name": "get:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/getItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":[\n    {\n      \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\"\n    }\n  ],\n  \"loadPeersInput\":{\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "32fb5c2f-551e-4cf5-99e0-a3f41df015ed",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "44fcba6e-11cf-4c1f-b61a-e11af0be90fa",
+            "name": "delete:User",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/deleteItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n  \"rev\": {{revision}}\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "3063ee6a-ec03-478e-9536-c349153e4787",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "6c28103b-c929-493d-945d-f0a9ff5f607f",
+            "name": "delete:Agent",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/deleteItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n  \"rev\": {{revision}}\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "ba4ad9dc-0feb-459a-a19c-bf3c61b0d804",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1fd46676-9a78-4977-9b1d-266a0fcd61fc",
+            "name": "delete:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/deleteItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n  \"rev\": {{revision}}\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "63642dfd-6fc5-4ed8-9e9e-60ece56e395f",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "44fcba6e-11cf-4c1f-b61a-e11af0be90fa",
+            "name": "update:User",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/updateItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n  \"rev\": {{revision}},\n  \"__typename\": \"User\",\n  \"email\": \"email{{#number}}\",\n  \"sub\": \"sub{{#number}}\",\n  \"preferredIamRole\": \"preferredIamRole{{#number}}\",\n  \"iamRoles\": [\"iamRoles{{#number}}\"],\n  \"cognitoGroups\": [\"cognitoGroups{{#number}}\"],\n  \"userPoolId\": \"userPoolId{{#number}}\",\n  \"active_agent\": \"active_agent{{#number}}\",\n  \"agents\": [\"agents{{#number}}\"],\n  \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"user_created\": \"user_created{{#number}}\",\n  \"user_updated\": \"user_updated{{#number}}\",\n  \"id\": \"id{{#number}}\"\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6aa77682-b067-4ad6-a1ad-aca5d3479692",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "6c28103b-c929-493d-945d-f0a9ff5f607f",
+            "name": "update:Agent",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/updateItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n  \"rev\": {{revision}},\n  \"__typename\": \"Agent\",\n  \"public_data_ref\": \"public_data_ref{{#number}}\",\n  \"location1\": \"location1{{#number}}\",\n  \"location2\": \"location2{{#number}}\",\n  \"location3\": \"location3{{#number}}\",\n  \"location4\": \"location4{{#number}}\",\n  \"location5\": \"location5{{#number}}\",\n  \"code\": \"code{{#number}}\",\n  \"name\": \"name{{#number}}\",\n  \"child_agents\": [\"child_agents{{#number}}\"],\n  \"parent_agents\": [\"parent_agents{{#number}}\"],\n  \"agt_data_visibility_conf\": \"ALL\",\n  \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"user_created\": \"user_created{{#number}}\",\n  \"user_updated\": \"user_updated{{#number}}\",\n  \"id\": \"id{{#number}}\"\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "7ef01a2e-3703-450f-aac9-0f54b7cfd2cd",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1fd46676-9a78-4977-9b1d-266a0fcd61fc",
+            "name": "update:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/updateItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n  \"rev\": {{revision}},\n  \"__typename\": \"UserEmailRule\",\n  \"agent\": \"agent{{#number}}\",\n  \"user\": \"user{{#number}}\",\n  \"email\": \"email{{#number}}\",\n  \"sub\": \"sub{{#number}}\",\n  \"match_pattern\": \"match_pattern{{#number}}\",\n  \"disabled\": boolean,\n  \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"user_created\": \"user_created{{#number}}\",\n  \"user_updated\": \"user_updated{{#number}}\",\n  \"id\": \"id{{#number}}\"\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "a9fa8245-8f00-490b-841c-be80f77c2080",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "44fcba6e-11cf-4c1f-b61a-e11af0be90fa",
+            "name": "create:User",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/createItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n  \"__typename\": \"User\",\n  \"email\": \"email{{#number}}\",\n  \"sub\": \"sub{{#number}}\",\n  \"preferredIamRole\": \"preferredIamRole{{#number}}\",\n  \"iamRoles\": [\"iamRoles{{#number}}\"],\n  \"cognitoGroups\": [\"cognitoGroups{{#number}}\"],\n  \"userPoolId\": \"userPoolId{{#number}}\",\n  \"active_agent\": \"active_agent{{#number}}\",\n  \"agents\": [\"agents{{#number}}\"]\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "2de4aaa8-5b46-4feb-9142-9b807f2a500e",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "6c28103b-c929-493d-945d-f0a9ff5f607f",
+            "name": "create:Agent",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/createItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n  \"__typename\": \"Agent\",\n  \"public_data_ref\": \"public_data_ref{{#number}}\",\n  \"location1\": \"location1{{#number}}\",\n  \"location2\": \"location2{{#number}}\",\n  \"location3\": \"location3{{#number}}\",\n  \"location4\": \"location4{{#number}}\",\n  \"location5\": \"location5{{#number}}\",\n  \"code\": \"code{{#number}}\",\n  \"name\": \"name{{#number}}\",\n  \"child_agents\": [\"child_agents{{#number}}\"],\n  \"parent_agents\": [\"parent_agents{{#number}}\"],\n  \"agt_data_visibility_conf\": \"ALL\"\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "3b5bda28-8bb9-46c9-b68f-f9fbb62934bf",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1fd46676-9a78-4977-9b1d-266a0fcd61fc",
+            "name": "create:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/createItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n  \"__typename\": \"UserEmailRule\",\n  \"agent\": \"agent{{#number}}\",\n  \"user\": \"user{{#number}}\",\n  \"email\": \"email{{#number}}\",\n  \"sub\": \"sub{{#number}}\",\n  \"match_pattern\": \"match_pattern{{#number}}\",\n  \"disabled\": boolean\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "bf74fdf7-d8ba-4e7b-a8b9-b024906f5062",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "44fcba6e-11cf-4c1f-b61a-e11af0be90fa",
+            "name": "patch:User",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/patchItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n  \"rev\": {{revision}},\n  \"__typename\": \"User\",\n  \"email\": \"email{{#number}}\",\n  \"sub\": \"sub{{#number}}\",\n  \"preferredIamRole\": \"preferredIamRole{{#number}}\",\n  \"iamRoles\": [\"iamRoles{{#number}}\"],\n  \"cognitoGroups\": [\"cognitoGroups{{#number}}\"],\n  \"userPoolId\": \"userPoolId{{#number}}\",\n  \"active_agent\": \"active_agent{{#number}}\",\n  \"agents\": [\"agents{{#number}}\"],\n  \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"user_created\": \"user_created{{#number}}\",\n  \"user_updated\": \"user_updated{{#number}}\",\n  \"id\": \"id{{#number}}\"\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "72d5aa14-55a2-4300-b373-948e6d00b4f6",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "6c28103b-c929-493d-945d-f0a9ff5f607f",
+            "name": "patch:Agent",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/patchItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n  \"rev\": {{revision}},\n  \"__typename\": \"Agent\",\n  \"public_data_ref\": \"public_data_ref{{#number}}\",\n  \"location1\": \"location1{{#number}}\",\n  \"location2\": \"location2{{#number}}\",\n  \"location3\": \"location3{{#number}}\",\n  \"location4\": \"location4{{#number}}\",\n  \"location5\": \"location5{{#number}}\",\n  \"code\": \"code{{#number}}\",\n  \"name\": \"name{{#number}}\",\n  \"child_agents\": [\"child_agents{{#number}}\"],\n  \"parent_agents\": [\"parent_agents{{#number}}\"],\n  \"agt_data_visibility_conf\": \"ALL\",\n  \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"user_created\": \"user_created{{#number}}\",\n  \"user_updated\": \"user_updated{{#number}}\",\n  \"id\": \"id{{#number}}\"\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "b7aed5d0-46fe-4070-bbe1-f89889aba338",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1fd46676-9a78-4977-9b1d-266a0fcd61fc",
+            "name": "patch:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/patchItem?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n  \"rev\": {{revision}},\n  \"__typename\": \"UserEmailRule\",\n  \"agent\": \"agent{{#number}}\",\n  \"user\": \"user{{#number}}\",\n  \"email\": \"email{{#number}}\",\n  \"sub\": \"sub{{#number}}\",\n  \"match_pattern\": \"match_pattern{{#number}}\",\n  \"disabled\": boolean,\n  \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n  \"user_created\": \"user_created{{#number}}\",\n  \"user_updated\": \"user_updated{{#number}}\",\n  \"id\": \"id{{#number}}\"\n\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "d540be3f-a51f-4537-9715-c869bb416da5",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "e40965bb-3910-455d-b70c-323f5e49ffde",
+            "name": "query:User by custom index sGSI1-sGSI3",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"sGSI1\": {\n      \"eq\": \"User|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"sGSI3\": {\n      \"begins_with\": \"v_0|User\"\n    }\n  },\n\n  \"dbIndexName\": \"sGSI1-sGSI3\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "c54fa6d9-d2b7-4a64-8cc0-406f21452f15",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "e40965bb-3910-455d-b70c-323f5e49ffde",
+            "name": "query:User by custom index RANGE-TITEM",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"RANGE\": {\n      \"eq\": \"User|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"TITEM\": {\n      \"begins_with\": \"v_0|User\"\n    }\n  },\n\n  \"dbIndexName\": \"RANGE-TITEM\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "334dc96b-2b73-4efc-a4d4-0995c7206897",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "e40965bb-3910-455d-b70c-323f5e49ffde",
+            "name": "query:User by custom index sGSI1-sGSI2",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"sGSI1\": {\n      \"eq\": \"User|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"sGSI2\": {\n      \"begins_with\": \"v_0|User\"\n    }\n  },\n\n  \"dbIndexName\": \"sGSI1-sGSI2\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6a017b1c-c30a-42e3-91c7-6f33c70252ca",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4ba485b0-fbba-48d4-83ea-ffb5f4d842d7",
+            "name": "query:Agent by custom index sGSI1-sGSI3",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"sGSI1\": {\n      \"eq\": \"Agent|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"sGSI3\": {\n      \"begins_with\": \"v_0|Agent\"\n    }\n  },\n\n  \"dbIndexName\": \"sGSI1-sGSI3\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "928ac94d-03d3-4c27-98dd-d6e1af362b86",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4ba485b0-fbba-48d4-83ea-ffb5f4d842d7",
+            "name": "query:Agent by custom index RANGE-TITEM",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"RANGE\": {\n      \"eq\": \"Agent|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"TITEM\": {\n      \"begins_with\": \"v_0|Agent\"\n    }\n  },\n\n  \"dbIndexName\": \"RANGE-TITEM\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "415f8655-e1c2-4806-9d53-56b1e0016343",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4ba485b0-fbba-48d4-83ea-ffb5f4d842d7",
+            "name": "query:Agent by custom index sGSI1-sGSI2",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"sGSI1\": {\n      \"eq\": \"Agent|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"sGSI2\": {\n      \"begins_with\": \"v_0|Agent\"\n    }\n  },\n\n  \"dbIndexName\": \"sGSI1-sGSI2\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6f300355-f1e6-4f94-aaea-67679ba988df",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "5cbccb36-8af0-4438-942f-1515e85fcdb1",
+            "name": "query:UserEmailRule by custom index sGSI1-sGSI3",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"sGSI1\": {\n      \"eq\": \"UserEmailRule|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"sGSI3\": {\n      \"begins_with\": \"v_0|UserEmailRule\"\n    }\n  },\n\n  \"dbIndexName\": \"sGSI1-sGSI3\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "2bf33866-93c0-43a4-81cf-e794aa753db1",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "5cbccb36-8af0-4438-942f-1515e85fcdb1",
+            "name": "query:UserEmailRule by custom index RANGE-TITEM",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"RANGE\": {\n      \"eq\": \"UserEmailRule|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"TITEM\": {\n      \"begins_with\": \"v_0|UserEmailRule\"\n    }\n  },\n\n  \"dbIndexName\": \"RANGE-TITEM\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "e99c467c-e5f6-409d-9ab4-925b79092b70",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "5cbccb36-8af0-4438-942f-1515e85fcdb1",
+            "name": "query:UserEmailRule by custom index sGSI1-sGSI2",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"sGSI1\": {\n      \"eq\": \"UserEmailRule|{{parent_guid}}\"\n    }\n  },\n  \"rangeKey\": {\n    \"sGSI2\": {\n      \"begins_with\": \"v_0|UserEmailRule\"\n    }\n  },\n\n  \"dbIndexName\": \"sGSI1-sGSI2\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "beed7aea-a75e-4a02-97db-3941ecaa14eb",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b5f95f61-0a57-49ea-b403-225f21e85248",
+            "name": "query:User in Table",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"HASH\": {\n      \"eq\": \"User|{{parent_guid}}\"\n    }\n  },\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "445ec60e-e7f4-4608-9094-b26d16955272",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "2050c742-010c-47fa-a7dc-e9cfa4cd7a87",
+            "name": "query:Agent in Table",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"HASH\": {\n      \"eq\": \"Agent|{{parent_guid}}\"\n    }\n  },\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "0aa19937-1708-4efd-909e-6fe1436bdb6c",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "7e656f02-ca26-48aa-b7aa-42d1f7765b07",
+            "name": "query:UserEmailRule in Table",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"HASH\": {\n      \"eq\": \"UserEmailRule|{{parent_guid}}\"\n    }\n  },\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "ae8054f7-d142-4c59-bb21-38c27a76f547",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b5f95f61-0a57-49ea-b403-225f21e85248",
+            "name": "query:User in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"TITEM\": {\n      \"eq\": \"User|{{parent_guid}}\"\n    }\n  },\n\n  \"dbIndexName\": \"TITEM\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "61d2e2b2-45fd-4be9-b2d2-fbec1c935b93",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "2050c742-010c-47fa-a7dc-e9cfa4cd7a87",
+            "name": "query:Agent in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"TITEM\": {\n      \"eq\": \"Agent|{{parent_guid}}\"\n    }\n  },\n\n  \"dbIndexName\": \"TITEM\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "04b8264b-7cf0-4e99-aee9-ee9b3116183d",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "7e656f02-ca26-48aa-b7aa-42d1f7765b07",
+            "name": "query:UserEmailRule in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/queryItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"hashKey\": {\n    \"TITEM\": {\n      \"eq\": \"UserEmailRule|{{parent_guid}}\"\n    }\n  },\n\n  \"dbIndexName\": \"TITEM\",\n\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "83fd5d81-efbd-43d6-9e02-234ac2b60831",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b5f95f61-0a57-49ea-b403-225f21e85248",
+            "name": "SEARCH:User auto-infering Index",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/searchItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"__typename\": \"User\",\n  \"filter\": {},\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "91564da6-8269-4bc3-bf6c-dfb8e74de1f7",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "2050c742-010c-47fa-a7dc-e9cfa4cd7a87",
+            "name": "SEARCH:Agent auto-infering Index",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/searchItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"__typename\": \"Agent\",\n  \"filter\": {},\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "7449848d-7c21-4e17-a21d-b02e2a61edc1",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "7e656f02-ca26-48aa-b7aa-42d1f7765b07",
+            "name": "SEARCH:UserEmailRule auto-infering Index",
+            "url": "localhost:5000/lambda/invoke/ddb-actions/searchItems?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"__typename\": \"UserEmailRule\",\n  \"filter\": {},\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "ad3dd134-6d63-4c0e-8a5d-0424cf8c9302",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1d4ca060-41dd-4c22-8c29-de90efb45675",
+            "name": "get:User",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"User\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n      \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "19c923f1-83c3-4697-a9fd-1f67f7e1335d",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "8fc841f0-d935-4881-a769-1c3c97797934",
+            "name": "get:Agent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"Agent\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [],\n      \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "7f12c496-a6c4-449d-aeb7-1022f907819e",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "9b7bdab0-d438-4742-8832-06862a5ff65d",
+            "name": "get:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"UserEmailRule\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [\"agent\", \"user\"],\n      \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "46827d6e-3a41-4da5-b8f0-57e5e184f338",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1d4ca060-41dd-4c22-8c29-de90efb45675",
+            "name": "delete:User",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"User\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "204ed5db-78e5-4cef-a473-7722a8b70a87",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "8fc841f0-d935-4881-a769-1c3c97797934",
+            "name": "delete:Agent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"Agent\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "daca2b37-47b0-465f-a316-b71d6c06852d",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "9b7bdab0-d438-4742-8832-06862a5ff65d",
+            "name": "delete:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"UserEmailRule\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "20cd8ed2-e464-4595-bd8a-193fcf5a1427",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1d4ca060-41dd-4c22-8c29-de90efb45675",
+            "name": "update:User",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"User\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n    \"__typename\": \"User\",\n    \"rev\": {{revision}},\n    \"email\": \"email{{#number}}\",\n    \"sub\": \"sub{{#number}}\",\n    \"preferredIamRole\": \"preferredIamRole{{#number}}\",\n    \"iamRoles\": [\"iamRoles{{#number}}\"],\n    \"cognitoGroups\": [\"cognitoGroups{{#number}}\"],\n    \"userPoolId\": \"userPoolId{{#number}}\",\n    \"active_agent\": \"active_agent{{#number}}\",\n    \"agents\": [\"agents{{#number}}\"],\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "f880122c-7f30-4b76-a0eb-985944a72cdd",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "8fc841f0-d935-4881-a769-1c3c97797934",
+            "name": "update:Agent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"Agent\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n    \"__typename\": \"Agent\",\n    \"rev\": {{revision}},\n    \"public_data_ref\": \"public_data_ref{{#number}}\",\n    \"location1\": \"location1{{#number}}\",\n    \"location2\": \"location2{{#number}}\",\n    \"location3\": \"location3{{#number}}\",\n    \"location4\": \"location4{{#number}}\",\n    \"location5\": \"location5{{#number}}\",\n    \"code\": \"code{{#number}}\",\n    \"name\": \"name{{#number}}\",\n    \"child_agents\": [\"child_agents{{#number}}\"],\n    \"parent_agents\": [\"parent_agents{{#number}}\"],\n    \"agt_data_visibility_conf\": \"ALL\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "e12520ff-6365-4762-8ca7-ffddf04cc914",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "9b7bdab0-d438-4742-8832-06862a5ff65d",
+            "name": "update:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"UserEmailRule\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n    \"__typename\": \"UserEmailRule\",\n    \"rev\": {{revision}},\n    \"agent\": \"agent{{#number}}\",\n    \"user\": \"user{{#number}}\",\n    \"email\": \"email{{#number}}\",\n    \"sub\": \"sub{{#number}}\",\n    \"match_pattern\": \"match_pattern{{#number}}\",\n    \"disabled\": boolean,\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6fac5174-5c98-4e92-b1fb-d87942a1fcb5",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1d4ca060-41dd-4c22-8c29-de90efb45675",
+            "name": "create:User",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"User\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n    \"__typename\": \"User\",\n    \"email\": \"email{{#number}}\",\n    \"sub\": \"sub{{#number}}\",\n    \"preferredIamRole\": \"preferredIamRole{{#number}}\",\n    \"iamRoles\": [\"iamRoles{{#number}}\"],\n    \"cognitoGroups\": [\"cognitoGroups{{#number}}\"],\n    \"userPoolId\": \"userPoolId{{#number}}\",\n    \"active_agent\": \"active_agent{{#number}}\",\n    \"agents\": [\"agents{{#number}}\"]\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "63afbba3-e8f3-4212-8837-00a1078af4c1",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "8fc841f0-d935-4881-a769-1c3c97797934",
+            "name": "create:Agent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"Agent\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n    \"__typename\": \"Agent\",\n    \"public_data_ref\": \"public_data_ref{{#number}}\",\n    \"location1\": \"location1{{#number}}\",\n    \"location2\": \"location2{{#number}}\",\n    \"location3\": \"location3{{#number}}\",\n    \"location4\": \"location4{{#number}}\",\n    \"location5\": \"location5{{#number}}\",\n    \"code\": \"code{{#number}}\",\n    \"name\": \"name{{#number}}\",\n    \"child_agents\": [\"child_agents{{#number}}\"],\n    \"parent_agents\": [\"parent_agents{{#number}}\"],\n    \"agt_data_visibility_conf\": \"ALL\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "7dee8c56-fabf-4376-80a3-db71db9db6d8",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "9b7bdab0-d438-4742-8832-06862a5ff65d",
+            "name": "create:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"UserEmailRule\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n    \"__typename\": \"UserEmailRule\",\n    \"agent\": \"agent{{#number}}\",\n    \"user\": \"user{{#number}}\",\n    \"email\": \"email{{#number}}\",\n    \"sub\": \"sub{{#number}}\",\n    \"match_pattern\": \"match_pattern{{#number}}\",\n    \"disabled\": boolean\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "a511b481-a306-470f-ba7d-1fec1f26f8e6",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "1d4ca060-41dd-4c22-8c29-de90efb45675",
+            "name": "patch:User",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"User\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"User|{{parent_guid}}#v_0|User|{{item_guid}}\",\n    \"__typename\": \"User\",\n    \"rev\": {{revision}},\n    \"email\": \"email{{#number}}\",\n    \"sub\": \"sub{{#number}}\",\n    \"preferredIamRole\": \"preferredIamRole{{#number}}\",\n    \"iamRoles\": [\"iamRoles{{#number}}\"],\n    \"cognitoGroups\": [\"cognitoGroups{{#number}}\"],\n    \"userPoolId\": \"userPoolId{{#number}}\",\n    \"active_agent\": \"active_agent{{#number}}\",\n    \"agents\": [\"agents{{#number}}\"],\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "c9d918c8-afeb-4b58-8b52-9d7de9dc298c",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "8fc841f0-d935-4881-a769-1c3c97797934",
+            "name": "patch:Agent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"Agent\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"Agent|{{parent_guid}}#v_0|Agent|{{item_guid}}\",\n    \"__typename\": \"Agent\",\n    \"rev\": {{revision}},\n    \"public_data_ref\": \"public_data_ref{{#number}}\",\n    \"location1\": \"location1{{#number}}\",\n    \"location2\": \"location2{{#number}}\",\n    \"location3\": \"location3{{#number}}\",\n    \"location4\": \"location4{{#number}}\",\n    \"location5\": \"location5{{#number}}\",\n    \"code\": \"code{{#number}}\",\n    \"name\": \"name{{#number}}\",\n    \"child_agents\": [\"child_agents{{#number}}\"],\n    \"parent_agents\": [\"parent_agents{{#number}}\"],\n    \"agt_data_visibility_conf\": \"ALL\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "859c8cba-5728-456c-9f87-c27b1e3794b3",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "9b7bdab0-d438-4742-8832-06862a5ff65d",
+            "name": "patch:UserEmailRule",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"UserEmailRule\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"UserEmailRule|{{parent_guid}}#v_0|UserEmailRule|{{item_guid}}\",\n    \"__typename\": \"UserEmailRule\",\n    \"rev\": {{revision}},\n    \"agent\": \"agent{{#number}}\",\n    \"user\": \"user{{#number}}\",\n    \"email\": \"email{{#number}}\",\n    \"sub\": \"sub{{#number}}\",\n    \"match_pattern\": \"match_pattern{{#number}}\",\n    \"disabled\": boolean,\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "73a86435-ac4c-475c-80a9-82a550f3f95a",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4527b02c-28f1-4fb6-a5ca-37a9e95fe8be",
+            "name": "query:User by custom index (email) sGSI1-sGSI3",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"User\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"User|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI3\": {\n        \"begins_with\":\"v_0|User\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI3\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "ad723814-231c-4ad5-9190-2b019f439453",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4527b02c-28f1-4fb6-a5ca-37a9e95fe8be",
+            "name": "query:User by custom index (email) sGSI1-sGSI2",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"User\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"User|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI2\": {\n        \"begins_with\":\"v_0|User\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI2\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6bf30824-2301-4087-8f1e-bf264fca7b28",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4527b02c-28f1-4fb6-a5ca-37a9e95fe8be",
+            "name": "query:User by custom index sGSI1-sGSI2 (sub)",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"User\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"User|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI2\": {\n        \"begins_with\":\"v_0|User\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI2\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "c18355c5-4ed3-4b64-aafa-bfa655496310",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "d4ce68eb-bbe2-4bf4-88e0-4ed68e05c348",
+            "name": "query:Agent by custom index sGSI1-sGSI3 (public_data_ref)",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"Agent\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"Agent|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI3\": {\n        \"begins_with\":\"v_0|Agent\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI3\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "9e0f2290-412d-4c9e-8f8f-37181653e311",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "d4ce68eb-bbe2-4bf4-88e0-4ed68e05c348",
+            "name": "query:Agent by custom index (name) sGSI1-sGSI3",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"Agent\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"Agent|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI3\": {\n        \"begins_with\":\"v_0|Agent\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI3\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "cfeebe83-4d78-4f0d-9334-e6afdae8f951",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "d4ce68eb-bbe2-4bf4-88e0-4ed68e05c348",
+            "name": "query:Agent by custom index sGSI1-sGSI2 (public_data_ref)",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"Agent\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"Agent|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI2\": {\n        \"begins_with\":\"v_0|Agent\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI2\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "3590eb1d-21dd-4fd0-904a-bf870ebb39f1",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "d4ce68eb-bbe2-4bf4-88e0-4ed68e05c348",
+            "name": "query:Agent by custom index (name) sGSI1-sGSI2",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"Agent\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"Agent|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI2\": {\n        \"begins_with\":\"v_0|Agent\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI2\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "d232ddea-f79e-4fdb-9368-38a974203817",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "9096147e-aeed-4715-8cf6-0b504597fb21",
+            "name": "query:UserEmailRule by custom index (email) sGSI1-sGSI3",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"UserEmailRule\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"UserEmailRule|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI3\": {\n        \"begins_with\":\"v_0|UserEmailRule\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI3\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "dc48a30f-f7e8-4aeb-9396-2dd9c4a27d6d",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "9096147e-aeed-4715-8cf6-0b504597fb21",
+            "name": "query:UserEmailRule by custom index (email) sGSI1-sGSI2",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"UserEmailRule\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"UserEmailRule|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI2\": {\n        \"begins_with\":\"v_0|UserEmailRule\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI2\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "f2cdf33e-6221-495f-93cb-a4327306e443",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "9096147e-aeed-4715-8cf6-0b504597fb21",
+            "name": "query:UserEmailRule by custom index sGSI1-sGSI2 (sub)",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"UserEmailRule\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"UserEmailRule|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI2\": {\n        \"begins_with\":\"v_0|UserEmailRule\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI2\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "2eff275b-e912-4d8e-8b0f-305383b00131",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "2e76d6ad-e45b-4d1e-9fde-1790f4fb6aeb",
+            "name": "query:User in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"User\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"User|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "1d92d91c-262c-468e-9a7c-e182ea0c2ec8",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "05902245-8e60-4dc5-84e7-f285af05ee1f",
+            "name": "query:Agent in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"Agent\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"Agent|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "9f9bec8c-2175-4692-a06f-80e669d02cf1",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b3475bb9-7a37-4c14-8dd3-46bfc2c58e13",
+            "name": "query:UserEmailRule in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"UserEmailRule\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"UserEmailRule|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "255c89ee-2de9-4783-b529-70b02a390a14",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "2e76d6ad-e45b-4d1e-9fde-1790f4fb6aeb",
+            "name": "SEARCH:User by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"User\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "7ab73e47-d1d8-4b46-80bf-7709ee268731",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "05902245-8e60-4dc5-84e7-f285af05ee1f",
+            "name": "SEARCH:Agent by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"Agent\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "16f40bfa-58de-41a8-8a7b-547450e9872a",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b3475bb9-7a37-4c14-8dd3-46bfc2c58e13",
+            "name": "SEARCH:UserEmailRule by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"UserEmailRule\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "084d5e35-82a0-461a-b815-50c0d47b4de5",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "2e76d6ad-e45b-4d1e-9fde-1790f4fb6aeb",
+            "name": "query:User in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"User\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"User|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"active_agent\", \"agents\"],\n    \"projectionExpression\": \"email, sub, preferredIamRole, iamRoles, cognitoGroups, userPoolId, active_agent, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "90481767-1a3e-43e3-abd8-4f09c199b8a0",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "05902245-8e60-4dc5-84e7-f285af05ee1f",
+            "name": "query:Agent in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"Agent\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"Agent|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"public_data_ref, location1, location2, location3, location4, location5, code, name, child_agents, parent_agents, agt_data_visibility_conf, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "7f08b210-941d-414c-bddb-89a7bbae2fcb",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b3475bb9-7a37-4c14-8dd3-46bfc2c58e13",
+            "name": "query:UserEmailRule in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"UserEmailRule\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"UserEmailRule|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [\"agent\", \"user\"],\n    \"projectionExpression\": \"agent, user, email, sub, match_pattern, disabled, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "a089eae1-c50f-464a-946c-29a3752048a7",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c3d08bb8-556a-4be2-9da2-31cc6d8eaaf0",
+            "name": "get:InjestEmail",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"InjestEmail\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"InjestEmail|{{parent_guid}}#v_0|InjestEmail|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [],\n      \"projectionExpression\": \"messageBody, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "acc3e05f-1c22-45a5-aae1-74c0c2e5c36a",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ee170d63-f8d5-4eb7-880d-d563a107bdc3",
+            "name": "get:CreateCognitoUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreateCognitoUser\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"CreateCognitoUser|{{parent_guid}}#v_0|CreateCognitoUser|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [],\n      \"projectionExpression\": \"userItem, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "f0532cf6-3b5c-4720-ad0f-2f4455add0a3",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "bccc1b73-4988-422d-b9b6-05d04bf77be8",
+            "name": "get:ChangeActiveAgent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"ChangeActiveAgent\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"ChangeActiveAgent|{{parent_guid}}#v_0|ChangeActiveAgent|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [],\n      \"projectionExpression\": \"new_active_agent, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "47ca306f-766a-4ebf-b621-b6f14f13d2d0",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "12b00560-a527-429d-afbd-37e8f673b6f3",
+            "name": "get:CreatePrivateAgentForUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreatePrivateAgentForUser\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"CreatePrivateAgentForUser|{{parent_guid}}#v_0|CreatePrivateAgentForUser|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [],\n      \"projectionExpression\": \"user, agentItem, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "053c3edd-5f11-49dd-844b-c08096e9efb7",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "a601dc25-763e-4218-9568-c383b08df107",
+            "name": "get:SetUserAgents",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"SetUserAgents\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"SetUserAgents|{{parent_guid}}#v_0|SetUserAgents|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [],\n      \"projectionExpression\": \"user, agents, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "28af860f-8fef-46d0-9c73-6a03434b9d3c",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c3d08bb8-556a-4be2-9da2-31cc6d8eaaf0",
+            "name": "delete:InjestEmail",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"InjestEmail\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"InjestEmail|{{parent_guid}}#v_0|InjestEmail|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6909880a-7c63-4790-b44b-28ffcdbdd183",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ee170d63-f8d5-4eb7-880d-d563a107bdc3",
+            "name": "delete:CreateCognitoUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreateCognitoUser\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"CreateCognitoUser|{{parent_guid}}#v_0|CreateCognitoUser|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "1808462c-384a-49f1-b0dc-a061de1a9cb0",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "bccc1b73-4988-422d-b9b6-05d04bf77be8",
+            "name": "delete:ChangeActiveAgent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"ChangeActiveAgent\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"ChangeActiveAgent|{{parent_guid}}#v_0|ChangeActiveAgent|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "cec9506d-55e1-4403-9884-f80912b28b3f",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "12b00560-a527-429d-afbd-37e8f673b6f3",
+            "name": "delete:CreatePrivateAgentForUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreatePrivateAgentForUser\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"CreatePrivateAgentForUser|{{parent_guid}}#v_0|CreatePrivateAgentForUser|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "9472717a-3249-46bb-be8e-a5ad0dfdf472",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "a601dc25-763e-4218-9568-c383b08df107",
+            "name": "delete:SetUserAgents",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"SetUserAgents\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"SetUserAgents|{{parent_guid}}#v_0|SetUserAgents|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "d3cf99a6-8333-4c35-b533-2ff394aaf50d",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c3d08bb8-556a-4be2-9da2-31cc6d8eaaf0",
+            "name": "update:InjestEmail",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"InjestEmail\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"InjestEmail|{{parent_guid}}#v_0|InjestEmail|{{item_guid}}\",\n    \"__typename\": \"InjestEmail\",\n    \"rev\": {{revision}},\n    \"messageBody\": \"messageBody{{#number}}\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "28e1a48d-2d29-4c21-9fb5-5b3a246def14",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ee170d63-f8d5-4eb7-880d-d563a107bdc3",
+            "name": "update:CreateCognitoUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreateCognitoUser\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"CreateCognitoUser|{{parent_guid}}#v_0|CreateCognitoUser|{{item_guid}}\",\n    \"__typename\": \"CreateCognitoUser\",\n    \"rev\": {{revision}},\n    \"userItem\": #User,\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "c592c7af-983c-4bc7-b1c6-76af24b79b4f",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "bccc1b73-4988-422d-b9b6-05d04bf77be8",
+            "name": "update:ChangeActiveAgent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"ChangeActiveAgent\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"ChangeActiveAgent|{{parent_guid}}#v_0|ChangeActiveAgent|{{item_guid}}\",\n    \"__typename\": \"ChangeActiveAgent\",\n    \"rev\": {{revision}},\n    \"new_active_agent\": \"new_active_agent{{#number}}\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "b1c52969-e074-4882-a6dd-ad33f0690eb5",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "12b00560-a527-429d-afbd-37e8f673b6f3",
+            "name": "update:CreatePrivateAgentForUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreatePrivateAgentForUser\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"CreatePrivateAgentForUser|{{parent_guid}}#v_0|CreatePrivateAgentForUser|{{item_guid}}\",\n    \"__typename\": \"CreatePrivateAgentForUser\",\n    \"rev\": {{revision}},\n    \"user\": \"user{{#number}}\",\n    \"agentItem\": #Agent,\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "56505480-71f2-42c6-a367-7bbd454a75ef",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "a601dc25-763e-4218-9568-c383b08df107",
+            "name": "update:SetUserAgents",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"SetUserAgents\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"SetUserAgents|{{parent_guid}}#v_0|SetUserAgents|{{item_guid}}\",\n    \"__typename\": \"SetUserAgents\",\n    \"rev\": {{revision}},\n    \"user\": \"user{{#number}}\",\n    \"agents\": [\"agents{{#number}}\"],\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "df99054b-8418-4b41-a808-4e71aaab7d7a",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c3d08bb8-556a-4be2-9da2-31cc6d8eaaf0",
+            "name": "create:InjestEmail",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"InjestEmail\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"InjestEmail|{{parent_guid}}#v_0|InjestEmail|{{item_guid}}\",\n    \"__typename\": \"InjestEmail\",\n    \"messageBody\": \"messageBody{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "665d04b7-39ec-4960-a956-d4e37147bdc5",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ee170d63-f8d5-4eb7-880d-d563a107bdc3",
+            "name": "create:CreateCognitoUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreateCognitoUser\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"CreateCognitoUser|{{parent_guid}}#v_0|CreateCognitoUser|{{item_guid}}\",\n    \"__typename\": \"CreateCognitoUser\",\n    \"userItem\": #User\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "47b31677-c34f-4e86-918a-3029d11bc71f",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "bccc1b73-4988-422d-b9b6-05d04bf77be8",
+            "name": "create:ChangeActiveAgent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"ChangeActiveAgent\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"ChangeActiveAgent|{{parent_guid}}#v_0|ChangeActiveAgent|{{item_guid}}\",\n    \"__typename\": \"ChangeActiveAgent\",\n    \"new_active_agent\": \"new_active_agent{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "58182539-1872-4139-83c7-a7e7ece1c373",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "12b00560-a527-429d-afbd-37e8f673b6f3",
+            "name": "create:CreatePrivateAgentForUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreatePrivateAgentForUser\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"CreatePrivateAgentForUser|{{parent_guid}}#v_0|CreatePrivateAgentForUser|{{item_guid}}\",\n    \"__typename\": \"CreatePrivateAgentForUser\",\n    \"user\": \"user{{#number}}\",\n    \"agentItem\": #Agent\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "77143108-e286-4013-883e-45ff079c82a6",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "a601dc25-763e-4218-9568-c383b08df107",
+            "name": "create:SetUserAgents",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"SetUserAgents\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"SetUserAgents|{{parent_guid}}#v_0|SetUserAgents|{{item_guid}}\",\n    \"__typename\": \"SetUserAgents\",\n    \"user\": \"user{{#number}}\",\n    \"agents\": [\"agents{{#number}}\"]\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "a80106e4-05b5-4998-9428-7a13e18d6970",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c3d08bb8-556a-4be2-9da2-31cc6d8eaaf0",
+            "name": "start:InjestEmail",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"InjestEmail\",\n    \"action\":\"start\"\n  },\n  \"arguments\":{\n    \"id\": \"InjestEmail|{{parent_guid}}#v_0|InjestEmail|{{item_guid}}\",\n    \"__typename\": \"InjestEmail\",\n    \"messageBody\": \"messageBody{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "b4f53327-be1c-4cbc-9f8b-5927de7a9487",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ee170d63-f8d5-4eb7-880d-d563a107bdc3",
+            "name": "start:CreateCognitoUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreateCognitoUser\",\n    \"action\":\"start\"\n  },\n  \"arguments\":{\n    \"id\": \"CreateCognitoUser|{{parent_guid}}#v_0|CreateCognitoUser|{{item_guid}}\",\n    \"__typename\": \"CreateCognitoUser\",\n    \"userItem\": #User\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "c9862c70-8329-47d9-9e19-146b940418be",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "bccc1b73-4988-422d-b9b6-05d04bf77be8",
+            "name": "start:ChangeActiveAgent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"ChangeActiveAgent\",\n    \"action\":\"start\"\n  },\n  \"arguments\":{\n    \"id\": \"ChangeActiveAgent|{{parent_guid}}#v_0|ChangeActiveAgent|{{item_guid}}\",\n    \"__typename\": \"ChangeActiveAgent\",\n    \"new_active_agent\": \"new_active_agent{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "c024bb78-7751-41f4-9092-f4cfa1969b84",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "12b00560-a527-429d-afbd-37e8f673b6f3",
+            "name": "start:CreatePrivateAgentForUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreatePrivateAgentForUser\",\n    \"action\":\"start\"\n  },\n  \"arguments\":{\n    \"id\": \"CreatePrivateAgentForUser|{{parent_guid}}#v_0|CreatePrivateAgentForUser|{{item_guid}}\",\n    \"__typename\": \"CreatePrivateAgentForUser\",\n    \"user\": \"user{{#number}}\",\n    \"agentItem\": #Agent\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "b47a1db7-f8a8-4833-936b-d4dde9dff5b4",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "a601dc25-763e-4218-9568-c383b08df107",
+            "name": "start:SetUserAgents",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"SetUserAgents\",\n    \"action\":\"start\"\n  },\n  \"arguments\":{\n    \"id\": \"SetUserAgents|{{parent_guid}}#v_0|SetUserAgents|{{item_guid}}\",\n    \"__typename\": \"SetUserAgents\",\n    \"user\": \"user{{#number}}\",\n    \"agents\": [\"agents{{#number}}\"]\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "1b4c09d8-0c00-49e9-89e0-a8f5eed47f05",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c3d08bb8-556a-4be2-9da2-31cc6d8eaaf0",
+            "name": "patch:InjestEmail",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"InjestEmail\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"InjestEmail|{{parent_guid}}#v_0|InjestEmail|{{item_guid}}\",\n    \"__typename\": \"InjestEmail\",\n    \"rev\": {{revision}},\n    \"messageBody\": \"messageBody{{#number}}\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "85d77d54-1357-48c2-9dfa-b4c9c331838c",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ee170d63-f8d5-4eb7-880d-d563a107bdc3",
+            "name": "patch:CreateCognitoUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreateCognitoUser\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"CreateCognitoUser|{{parent_guid}}#v_0|CreateCognitoUser|{{item_guid}}\",\n    \"__typename\": \"CreateCognitoUser\",\n    \"rev\": {{revision}},\n    \"userItem\": #User,\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "4465ce84-b7dd-4f91-94e3-af3d11d40a85",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "bccc1b73-4988-422d-b9b6-05d04bf77be8",
+            "name": "patch:ChangeActiveAgent",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"ChangeActiveAgent\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"ChangeActiveAgent|{{parent_guid}}#v_0|ChangeActiveAgent|{{item_guid}}\",\n    \"__typename\": \"ChangeActiveAgent\",\n    \"rev\": {{revision}},\n    \"new_active_agent\": \"new_active_agent{{#number}}\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "0b5ad97c-8687-45a0-b8fd-19fbe956732a",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "12b00560-a527-429d-afbd-37e8f673b6f3",
+            "name": "patch:CreatePrivateAgentForUser",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"CreatePrivateAgentForUser\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"CreatePrivateAgentForUser|{{parent_guid}}#v_0|CreatePrivateAgentForUser|{{item_guid}}\",\n    \"__typename\": \"CreatePrivateAgentForUser\",\n    \"rev\": {{revision}},\n    \"user\": \"user{{#number}}\",\n    \"agentItem\": #Agent,\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "493d02ee-e177-424c-a44f-b275e5ca59cd",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "a601dc25-763e-4218-9568-c383b08df107",
+            "name": "patch:SetUserAgents",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"SetUserAgents\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"SetUserAgents|{{parent_guid}}#v_0|SetUserAgents|{{item_guid}}\",\n    \"__typename\": \"SetUserAgents\",\n    \"rev\": {{revision}},\n    \"user\": \"user{{#number}}\",\n    \"agents\": [\"agents{{#number}}\"],\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "e349d555-5a66-405b-890c-b174d76df958",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4cf313af-4c70-41e0-8dde-82b1b7e06fb1",
+            "name": "query:InjestEmail in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"InjestEmail\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"InjestEmail|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"messageBody, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "0519d3b6-b8f2-4d07-b75c-0f63bf8af3ac",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "8262e585-6991-4f5e-b8a4-7cec39a3141f",
+            "name": "query:CreateCognitoUser in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"CreateCognitoUser\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"CreateCognitoUser|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"userItem, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "ab1b963c-84f6-4ad4-b617-f3034c39a5d8",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "6b0e0a1e-0234-48c4-9dcc-e1ff0117270a",
+            "name": "query:ChangeActiveAgent in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"ChangeActiveAgent\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"ChangeActiveAgent|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"new_active_agent, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "4b8dc385-6783-41eb-b1a5-0936b87b40f6",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ac7c1630-bc66-4aa0-971c-63a57a532b64",
+            "name": "query:CreatePrivateAgentForUser in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"CreatePrivateAgentForUser\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"CreatePrivateAgentForUser|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"user, agentItem, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "9c139506-86fa-4956-b433-769a8b7f1626",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "73f4f453-f858-4a48-b9b8-401f80655ab5",
+            "name": "query:SetUserAgents in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"SetUserAgents\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"SetUserAgents|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"user, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "ffdca3b0-8229-4afe-8415-3f0175fbe601",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4cf313af-4c70-41e0-8dde-82b1b7e06fb1",
+            "name": "SEARCH:InjestEmail by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"InjestEmail\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"messageBody, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "5bf7ea8e-5a2b-4870-835c-255e54b94018",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "8262e585-6991-4f5e-b8a4-7cec39a3141f",
+            "name": "SEARCH:CreateCognitoUser by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"CreateCognitoUser\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"userItem, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "418c0812-923e-43f3-b1bd-5c6a769fe632",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "6b0e0a1e-0234-48c4-9dcc-e1ff0117270a",
+            "name": "SEARCH:ChangeActiveAgent by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"ChangeActiveAgent\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"new_active_agent, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "b9f47a20-f533-42a0-9942-e549c3bb75e6",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ac7c1630-bc66-4aa0-971c-63a57a532b64",
+            "name": "SEARCH:CreatePrivateAgentForUser by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"CreatePrivateAgentForUser\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"user, agentItem, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "60fb1986-c7b7-46b5-8ded-0cc9995e3055",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "73f4f453-f858-4a48-b9b8-401f80655ab5",
+            "name": "SEARCH:SetUserAgents by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"SetUserAgents\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"user, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "31326160-0793-45f9-928b-7b1ea27c0243",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "4cf313af-4c70-41e0-8dde-82b1b7e06fb1",
+            "name": "query:InjestEmail in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"InjestEmail\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"InjestEmail|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"messageBody, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6f163c8a-1684-4902-b165-b569f3c35305",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "8262e585-6991-4f5e-b8a4-7cec39a3141f",
+            "name": "query:CreateCognitoUser in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"CreateCognitoUser\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"CreateCognitoUser|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"userItem, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "db159613-a5e8-49ae-a7f1-b2a8cdbb8927",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "6b0e0a1e-0234-48c4-9dcc-e1ff0117270a",
+            "name": "query:ChangeActiveAgent in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"ChangeActiveAgent\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"ChangeActiveAgent|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"new_active_agent, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "158329e1-85cb-4c93-b84d-86cf3b8d8034",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "ac7c1630-bc66-4aa0-971c-63a57a532b64",
+            "name": "query:CreatePrivateAgentForUser in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"CreatePrivateAgentForUser\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"CreatePrivateAgentForUser|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"user, agentItem, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "d56ce9c3-1915-406d-9ad5-ad987bfe5fa8",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "73f4f453-f858-4a48-b9b8-401f80655ab5",
+            "name": "query:SetUserAgents in NSHARD-TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"SetUserAgents\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"SetUserAgents|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"user, agents, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "02b6b91c-9571-48f2-9600-0b200e04f18e",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b1715139-2308-4110-8e4e-8c3d846229e9",
+            "name": "get:queryBe",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"queryBe\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"queryBe|{{parent_guid}}#v_0|queryBe|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [],\n      \"projectionExpression\": \"code, name, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "5695f288-cb7c-426e-b957-4f6b75a4f5a0",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "00b2dbc7-4e30-4b83-99fa-f92fc43d364b",
+            "name": "get:GetGraphqlSchema",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"GetGraphqlSchema\",\n    \"action\":\"get\"\n  },\n  \"arguments\":{\n    \"id\":[\n      {\n        \"id\": \"GetGraphqlSchema|{{parent_guid}}#v_0|GetGraphqlSchema|{{item_guid}}\",\n        \"rev\": {{revision}}\n      }\n    ],\n    \"loadPeersInput\":{\n      \"loadPeersLevel\": 1,\n      \"peersPropsToLoad\": [],\n      \"projectionExpression\": \"definition, date_created, date_updated, user_created, user_updated, id\"\n    }\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "f7048169-ff39-4b3e-b5ff-a5c6d236cdc4",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b1715139-2308-4110-8e4e-8c3d846229e9",
+            "name": "delete:queryBe",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"queryBe\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"queryBe|{{parent_guid}}#v_0|queryBe|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "96dcf9e3-c69b-4772-a541-304b4ca0f98d",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "00b2dbc7-4e30-4b83-99fa-f92fc43d364b",
+            "name": "delete:GetGraphqlSchema",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"GetGraphqlSchema\",\n    \"action\":\"delete\"\n  },\n  \"arguments\":{\n    \"id\": \"GetGraphqlSchema|{{parent_guid}}#v_0|GetGraphqlSchema|{{item_guid}}\",\n    \"rev\": {{revision}}\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6cd00c2c-9895-4905-8398-2411d413d1a0",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b1715139-2308-4110-8e4e-8c3d846229e9",
+            "name": "update:queryBe",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"queryBe\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"queryBe|{{parent_guid}}#v_0|queryBe|{{item_guid}}\",\n    \"__typename\": \"queryBe\",\n    \"rev\": {{revision}},\n    \"code\": \"code{{#number}}\",\n    \"name\": \"name{{#number}}\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "7e7a87ec-b3c6-4757-91b6-4b54f790cd2c",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "00b2dbc7-4e30-4b83-99fa-f92fc43d364b",
+            "name": "update:GetGraphqlSchema",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"GetGraphqlSchema\",\n    \"action\":\"update\"\n  },\n  \"arguments\":{\n    \"id\": \"GetGraphqlSchema|{{parent_guid}}#v_0|GetGraphqlSchema|{{item_guid}}\",\n    \"__typename\": \"GetGraphqlSchema\",\n    \"rev\": {{revision}},\n    \"definition\": \"definition{{#number}}\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "5b33986b-9e25-4386-bc8a-3853e5b53082",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b1715139-2308-4110-8e4e-8c3d846229e9",
+            "name": "create:queryBe",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"queryBe\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"queryBe|{{parent_guid}}#v_0|queryBe|{{item_guid}}\",\n    \"__typename\": \"queryBe\",\n    \"code\": \"code{{#number}}\",\n    \"name\": \"name{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6b4356e9-674a-46d2-b33b-08510c353509",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "00b2dbc7-4e30-4b83-99fa-f92fc43d364b",
+            "name": "create:GetGraphqlSchema",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"GetGraphqlSchema\",\n    \"action\":\"create\"\n  },\n  \"arguments\":{\n    \"id\": \"GetGraphqlSchema|{{parent_guid}}#v_0|GetGraphqlSchema|{{item_guid}}\",\n    \"__typename\": \"GetGraphqlSchema\",\n    \"definition\": \"definition{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "7c3577aa-09dc-4af0-b5f0-a829d1bf4481",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "b1715139-2308-4110-8e4e-8c3d846229e9",
+            "name": "patch:queryBe",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"queryBe\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"queryBe|{{parent_guid}}#v_0|queryBe|{{item_guid}}\",\n    \"__typename\": \"queryBe\",\n    \"rev\": {{revision}},\n    \"code\": \"code{{#number}}\",\n    \"name\": \"name{{#number}}\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "ed0999e5-772d-4c8c-a197-d2e6887b55e1",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "00b2dbc7-4e30-4b83-99fa-f92fc43d364b",
+            "name": "patch:GetGraphqlSchema",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\":{\n    \"__typename\":\"GetGraphqlSchema\",\n    \"action\":\"patch\"\n  },\n  \"arguments\":{\n    \"id\": \"GetGraphqlSchema|{{parent_guid}}#v_0|GetGraphqlSchema|{{item_guid}}\",\n    \"__typename\": \"GetGraphqlSchema\",\n    \"rev\": {{revision}},\n    \"definition\": \"definition{{#number}}\",\n    \"date_created\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"date_updated\": \"{{#date, 'YYYY-MM-DD hh:mm:ss:fff'}}\",\n    \"user_created\": \"user_created{{#number}}\",\n    \"user_updated\": \"user_updated{{#number}}\",\n    \"id\": \"id{{#number}}\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "1f3bdee0-4f6e-4b5a-aa8b-306ab7f80aae",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c434d35b-51f7-4888-94c8-a3d7ba81d750",
+            "name": "query:queryBe by custom index (code) sGSI1-sGSI3",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"queryBe\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"queryBe|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI3\": {\n        \"begins_with\":\"v_0|queryBe\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI3\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"code, name, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "f879ffd9-177a-474a-806a-8057c8d50e54",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c434d35b-51f7-4888-94c8-a3d7ba81d750",
+            "name": "query:queryBe by custom index (code) sGSI1-sGSI2",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"queryBe\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"queryBe|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI2\": {\n        \"begins_with\":\"v_0|queryBe\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI2\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"code, name, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "91b7811a-135f-49b1-b3d8-f51aa1042162",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "c434d35b-51f7-4888-94c8-a3d7ba81d750",
+            "name": "query:queryBe by custom index sGSI1-sGSI2 (name)",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"queryBe\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"sGSI1\": {\n        \"eq\":\"queryBe|{{parent_guid}}\"\n      }\n    },\n    \"rangeKey\": {\n      \"sGSI2\": {\n        \"begins_with\":\"v_0|queryBe\"\n      }\n    },\n    \"dbIndexName\": \"sGSI1-sGSI2\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"code, name, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "6608d1fb-3a84-4966-a794-3ca41f959238",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "eb728c23-e887-42e1-8498-cc92edf2a60c",
+            "name": "query:queryBe in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"queryBe\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"queryBe|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"code, name, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "d5cf2f1b-0f64-439a-85eb-f5d4bbf7603d",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "d748dbbc-3684-43fc-81e5-578594a8085a",
+            "name": "query:GetGraphqlSchema in Table",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"GetGraphqlSchema\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"HASH\": {\n        \"eq\":\"GetGraphqlSchema|{{parent_guid}}\"\n      }\n    },\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"definition, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "cdece33d-0818-43cf-a315-370855b5f86d",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "eb728c23-e887-42e1-8498-cc92edf2a60c",
+            "name": "SEARCH:queryBe by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"queryBe\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"code, name, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "8bbb6c9c-2185-44ad-993b-5de9f8aa9342",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "d748dbbc-3684-43fc-81e5-578594a8085a",
+            "name": "SEARCH:GetGraphqlSchema by auto-infering index",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"GetGraphqlSchema\",\n    \"action\": \"search\"\n  },\n  \"arguments\": {\n    \"filter\":{},\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"definition, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "fe7e49c9-f389-47fa-9b4f-b0acb79bf787",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "eb728c23-e887-42e1-8498-cc92edf2a60c",
+            "name": "query:queryBe in TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"queryBe\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"queryBe|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"code, name, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }, 
+        {
+            "_id": "d6ede256-4e8a-4437-90a9-40096c9e31e8",
+            "colId": "c21fefe8-24e9-403d-b756-4df354629c01",
+            "containerId": "d748dbbc-3684-43fc-81e5-578594a8085a",
+            "name": "query:GetGraphqlSchema in TITEM",
+            "url": "localhost:5000/lambda/invoke/dispatch-action?__usr={{__usr}}&__agt={{__agt}}",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-09-17T09:50:05.338Z",
+            "modified": "2023-09-17T09:50:05.338Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"meta\": {\n    \"__typename\": \"GetGraphqlSchema\",\n    \"action\": \"query\"\n  },\n  \"arguments\": {\n    \"hashKey\":{\n      \"TITEM\": {\n        \"eq\":\"GetGraphqlSchema|{{parent_guid}}\"\n      }\n    },    \"dbIndexName\": \"TITEM\",\n  }\n  \"loadPeersInput\": {\n    \"loadPeersLevel\": 1,\n    \"peersPropsToLoad\": [],\n    \"projectionExpression\": \"definition, date_created, date_updated, user_created, user_updated, id\"\n  }\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

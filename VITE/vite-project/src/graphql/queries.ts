@@ -1,8 +1,9 @@
 export const getUserVisibleAgents = /* GraphQL */ `
-query GetUsers($id: [ID!]!) {
-    getUsers(id: $id) {
+query GetUsers($input: [ItemIdentifierInput]!) {
+  getUsers(input: $input) {
       items {
         ... on User {
+          id
           email
           sub
           active_agent
@@ -14,6 +15,7 @@ query GetUsers($id: [ID!]!) {
           Active_agent {
               name
               id
+              rev
           }
         }
       }
@@ -27,9 +29,9 @@ query GetUsers($id: [ID!]!) {
   }
 `;
 
-export const queryUserEmails = /* GraphQL */ `
-  query QueryUserEmails($input: QueryUserEmailsInput!) {
-    queryUserEmails(input: $input) {
+export const queryUserEmailRules = /* GraphQL */ `
+  query QueryUserEmailRules($input: QueryUserEmailRulesInput!) {
+    queryUserEmailRules(input: $input) {
       items {
         rev
         HASH
@@ -37,48 +39,6 @@ export const queryUserEmails = /* GraphQL */ `
         TITEM
         checksum
         agent
-        Agent {
-          rev
-          HASH
-          RANGE
-          TITEM
-          checksum
-          public_data_ref
-          Public_data_ref {
-            rev
-            HASH
-            RANGE
-            TITEM
-            checksum
-            name
-            date_created
-            date_updated
-            user_created
-            user_updated
-            id
-            __typename
-          }
-          location1
-          location2
-          location3
-          location4
-          location5
-          code
-          name
-          child_agents
-          parent_agents
-          agt_data_visibility_conf
-          date_created
-          date_updated
-          user_created
-          user_updated
-          id
-          __typename
-        }
-        date_created
-        date_updated
-        user_created
-        user_updated
         id
         __typename
       }

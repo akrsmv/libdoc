@@ -1,10 +1,12 @@
-import { aws_cognito as cognito, RemovalPolicy, aws_lambda as lambda, aws_lambda_nodejs as nodejs, Duration } from 'aws-cdk-lib';
+import { aws_cognito as cognito, RemovalPolicy, aws_lambda as lambda, aws_lambda_nodejs as nodejs, Duration, Fn } from 'aws-cdk-lib';
+import * as cfn from 'aws-cdk-lib/aws-cloudformation';
 import { aws_iam as iam } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CdkStackProps } from '../cdk-stack';
 import { EventBusConstruct } from './eventBusConstruct';
 import { DynamoDBConstruct } from './dynamoDbConstruct';
 import { join } from 'path';
+import { Function } from 'aws-cdk-lib/aws-lambda';
 
 // based on https://stackoverflow.com/questions/55784746/how-to-create-cognito-identitypool-with-cognito-userpool-as-one-of-the-authentic
 export class CognitoConstruct extends Construct {
@@ -20,16 +22,18 @@ export class CognitoConstruct extends Construct {
 
     constructor(scope: Construct, id: string, props: CdkStackProps & { eventBusConstruct: EventBusConstruct } & { dynamoDbConstruct: DynamoDBConstruct }) {
         super(scope, id);
+
         this.cognitoTrigger = new nodejs.NodejsFunction(this, 'CognitoTriggerLambda', {
             runtime: lambda.Runtime.NODEJS_18_X,
             functionName: `lam-${props.envName}-${props.clientAppName}-cog-trigger`,
             entry: join(props.clientAppDirName, 'packages', 'test-system', 'src', 'lambda.cognitoTrigger.ts'),
             environment: {
                 "LOGLEVEL": "DEBUG",
-                'DB_NAME': props.dynamoDbConstruct.table.tableName
+                'DB_NAME': props.dynamoDbConstruct.table.tableName,
+                'AWS_ACCOUNT_NUMBER': String(process.env.AWS_ACCOUNT_NUMBER)
             }
         });
-        this.cognitoTrigger.node.addDependency(props.dynamoDbConstruct.table)
+
         props.dynamoDbConstruct.table.grantFullAccess(this.cognitoTrigger)
 
         const userPool = new cognito.UserPool(this, `UserPool`, {
@@ -57,17 +61,26 @@ export class CognitoConstruct extends Construct {
             signInCaseSensitive: false,
             selfSignUpEnabled: true,
             lambdaTriggers: {
-                postConfirmation: this.cognitoTrigger,
+                // WARN if lambda trigger is passed here as cdk object it causes circular dependency
+                // WARN if lambda trigger is passed here as string ARN it cnnot find it (possible solution - create it in an initial stack)
 
+                // refer to lambda by hand crafted ARN to avoid circular dependency with the AppSync construct                
+                // postConfirmation: Function.fromFunctionArn(scope, 'PostConfirmationCognitoTrigger', `arn:aws:lambda:${process.env.AWS_ACCOUNT_REGION}:${process.env.AWS_ACCOUNT_NUMBER}:function:lam-${props.envName}-${props.clientAppName}-cog-trigger`), 
+                // postConfirmation: this.cognitoTrigger,
 
                 // postAuthentication: cognitoLambdaTest
 
-                postAuthentication: this.cognitoTrigger,  // for syncing users with db
-                // preTokenGeneration: this.cognitoTrigger // for syncing users with db
+                // postAuthentication: Function.fromFunctionArn(scope, 'PostAuthCognitoTrigger', `arn:aws:lambda:${process.env.AWS_ACCOUNT_REGION}:${process.env.AWS_ACCOUNT_NUMBER}:function:lam-${props.envName}-${props.clientAppName}-cog-trigger`),  // for syncing user identities with db (before successful auth first time there is no cognito identity yet)
+
+                // preTokenGeneration: Function.fromFunctionArn(scope, 'PreTokenCognitoTrigger', `arn:aws:lambda:${process.env.AWS_ACCOUNT_REGION}:${process.env.AWS_ACCOUNT_NUMBER}:function:lam-${props.envName}-${props.clientAppName}-cog-trigger`) // for syncing users with db
+                // preTokenGeneration: this.cognitoTrigger
             }
         })
 
-        // userPool.grant(props.eventBusConstruct.cognitoTrigger, "cognito-idp:AdminAddUserToGroup" ,"cognito-idp:GetGroup", "cognito-idp:CreateGroup")
+        // WARN if this is enabled it causes circular dependency
+        // userPool.node.addDependency(this.cognitoTrigger) 
+
+        userPool.grant(this.cognitoTrigger, "cognito-idp:AdminGetUser", "cognito-idp:AdminAddUserToGroup", "cognito-idp:GetGroup", "cognito-idp:CreateGroup")
         userPool.grant(props.eventBusConstruct.controller, "cognito-idp:AdminAddUserToGroup", "cognito-idp:GetGroup", "cognito-idp:CreateGroup", "cognito-idp:AdminUpdateUserAttributes")
 
         const cfnUserPool = userPool.node.defaultChild as cognito.CfnUserPool;
@@ -89,6 +102,7 @@ export class CognitoConstruct extends Construct {
             refreshTokenValidity: Duration.days(1),
             idTokenValidity: Duration.days(1)
         });
+        // L2 construct for identityPool is still in alpha: https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cognito-identitypool-alpha-readme.html
         const identityPool = new cognito.CfnIdentityPool(this, `IdentityPool`, {
             identityPoolName: `${props.clientAppName}IdentityPool`,
             allowUnauthenticatedIdentities: true,
@@ -98,6 +112,22 @@ export class CognitoConstruct extends Construct {
                 serverSideTokenCheck: true
             }]
         });
+        // comment out because not using L2 constructs...
+        // identityPool.grantFullAccess(this.cognitoTrigger)
+        // and instead grant 'manually':
+        const identityoolGetId = new iam.PolicyStatement({
+            actions: ["cognito-identity:GetId", "cognito-identity:GetCredentialsForIdentity"],
+            resources: ['*'], // Adjust the resource ARN if necessary
+            // resources: [`arn:aws:cognito-identity:${process.env.AWS_ACCOUNT_REGION}:${process.env.AWS_ACCOUNT_NUMBER}:identitypool/${identityPool.ref}`], // Adjust the resource ARN if necessary
+        });
+        this.cognitoTrigger.addToRolePolicy(identityoolGetId)
+
+        // Grant permission to Cognito to invoke the Lambda function
+        // (since we are not actually attaching the cognito trigger here this is needed. Otherwise the L2 construct for UserPool would have added this automatically)
+        this.cognitoTrigger.grantInvoke({
+            grantPrincipal: new iam.ServicePrincipal('cognito-idp.amazonaws.com')
+        });
+
         const unauthenticatedRole = new iam.Role(this, `DefaultUnauthenticatedRole`, {
             assumedBy: new iam.FederatedPrincipal('cognito-identity.amazonaws.com', {
                 "StringEquals": { "cognito-identity.amazonaws.com:aud": identityPool.ref },
@@ -166,7 +196,7 @@ export class CognitoConstruct extends Construct {
             }
         });
 
-        
+
 
         //#region add user pool groups
         // TODO define roles for each group and test
@@ -202,7 +232,9 @@ export class CognitoConstruct extends Construct {
         });
         //#endregion
 
-
+        // todo HOW to create this two environment variables
+        // this.cognitoTrigger.addEnvironment('COGNITO_IDENTITY_POOL_ID', identityPool.ref)
+        // this.cognitoTrigger.addEnvironment('COGNITO_USER_POOL_ID', userPool.userPoolId)
 
         //#region
         // create initial superuser

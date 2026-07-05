@@ -50,14 +50,14 @@ ${'CRIT'}   |${['logcrit']}
             // ASSERT logdebug
             if ((expectedLogMethods as string[]).includes('logdebug')) {
                 expect(console.log).toBeCalledTimes(1)
-                expect(console.log).toBeCalledWith('DEBUG', testCorrToken, inspect(testLogMessage, false, 10, true))
+                expect(console.log).toBeCalledWith({"0": `'${testLogMessage}'`, "correlation": "this is correlation token", "loglevel": "DEBUG"})
             } else {
                 expect(console.log).toBeCalledTimes(0)
             }
             // ASSERT loginfo
             if ((expectedLogMethods as string[]).includes('loginfo')) {
                 expect(console.info).toBeCalledTimes(1)
-                expect(console.info).toBeCalledWith('INFO', testCorrToken, testLogMessage)
+                expect(console.info).toBeCalledWith({"0": `'${testLogMessage}'`, "correlation": "this is correlation token", "loglevel": "INFO"})
             } else {
                 expect(console.info).toBeCalledTimes(0)
             }
@@ -65,7 +65,7 @@ ${'CRIT'}   |${['logcrit']}
             // ASSERT logwarn
             if ((expectedLogMethods as string[]).includes('logwarn')) {
                 expect(console.warn).toBeCalledTimes(1)
-                expect(console.warn).toBeCalledWith('WARN', testCorrToken, testLogMessage)
+                expect(console.warn).toBeCalledWith({"0": `'${testLogMessage}'`, "correlation": "this is correlation token", "loglevel": "WARN"})
             } else {
                 expect(console.warn).toBeCalledTimes(0)
             }
@@ -76,18 +76,18 @@ ${'CRIT'}   |${['logcrit']}
                 : (expectedLogMethods as string[]).includes('logerror') ? 1
                     : (expectedLogMethods as string[]).includes('logcrit') ? 1 : 0)
             if ((expectedLogMethods as string[]).includes('logerror')) {
-                expect(console.error).toBeCalledWith('ERROR', testCorrToken, testLogMessage)
+                expect(console.error).toBeCalledWith({"0": `'${testLogMessage}'`, "correlation": "this is correlation token", "loglevel": "ERROR"})
             }
             // ASSERT logcrit
             if ((expectedLogMethods as string[]).includes('logcrit')) {
-                expect(console.error).toBeCalledWith('CRIT', testCorrToken, testLogMessage)
+                expect(console.error).toBeCalledWith({"0": `'${testLogMessage}'`, "correlation": "this is correlation token", "loglevel": "CRIT"})
             }
         })
     test("if not set_correlation_token prior log* call 'UNDEFINED_CORR_ID' is used", () => {
         set_correlation_token(undefined)
         logwarn(testLogMessage)
         expect(console.warn).toBeCalledTimes(1)
-        expect(console.warn).lastCalledWith("WARN", "UNDEFINED_CORR_ID", testLogMessage)
+        expect(console.warn).lastCalledWith({"0": `'${testLogMessage}'`, "correlation": "UNDEFINED_CORR_ID", "loglevel": "WARN"})
     })
     test("if not LOGLEVEL default loglevel is WARN", () => {
         set_correlation_token(undefined)
@@ -103,8 +103,8 @@ ${'CRIT'}   |${['logcrit']}
         expect(console.log).toBeCalledTimes(0)
         expect(console.warn).toBeCalledTimes(1)
         expect(console.error).toBeCalledTimes(2) //1 for error, 1 for crit
-        expect(console.warn).nthCalledWith(1, "WARN", "UNDEFINED_CORR_ID", testLogMessage)
-        expect(console.error).nthCalledWith(1, "ERROR", "UNDEFINED_CORR_ID", testLogMessage)
-        expect(console.error).nthCalledWith(2, "CRIT", "UNDEFINED_CORR_ID", testLogMessage)
+        expect(console.warn).nthCalledWith(1, {"0": `'${testLogMessage}'`, "correlation": "UNDEFINED_CORR_ID", "loglevel": "WARN"})
+        expect(console.error).nthCalledWith(1, {"0": `'${testLogMessage}'`, "correlation": "UNDEFINED_CORR_ID", "loglevel": "ERROR"})
+        expect(console.error).nthCalledWith(2, {"0": `'${testLogMessage}'`, "correlation": "UNDEFINED_CORR_ID", "loglevel": "CRIT"})
     })
 });

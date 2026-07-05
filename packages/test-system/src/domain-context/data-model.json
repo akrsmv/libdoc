@@ -1,0 +1,505 @@
+{
+    "Items": {
+        "User": {
+            "__meta": {
+                "__desc": "Backs up cognito users, enriching them with additional information. WARNING __REF1 is already in use by the cognito userbase item.",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "email": {
+                    "__meta": {
+                        "__desc": "Corresponds to email with which user has registered in cognito"
+                    },
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ],
+                    "unique": true,
+                    "required": true
+                },
+                "sub": {
+                    "__type": "string",
+                    "__required": true,
+                    "__unique": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "preferredIamRole": {
+                    "__type": "string"
+                },
+                "iamRoles": {
+                    "__type": "string[]"
+                },
+                "cognitoGroups": {
+                    "__type": "string[]"
+                },
+                "userPoolId": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "active_agent": {
+                    "__type": "string",
+                    "__peer": "Agent"
+                },
+                "agents": {
+                    "__type": "string[]",
+                    "__peer": "Agent"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "Agent": {
+            "__meta": {
+                "__desc": "",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "public_data_ref": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI2",
+                        "sGSI3"
+                    ]
+                },
+                "location1": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI4"
+                    ]
+                },
+                "location2": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI5"
+                    ]
+                },
+                "location3": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI6"
+                    ]
+                },
+                "location4": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI7"
+                    ]
+                },
+                "location5": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI8"
+                    ]
+                },
+                "code": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI9"
+                    ],
+                    "__unique": true
+                },
+                "name": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "child_agents": {
+                    "__type": "string[]"
+                },
+                "parent_agents": {
+                    "__type": "string[]"
+                },
+                "agt_data_visibility_conf": {
+                    "__type": "enum",
+                    "__values": "ALL|NONE|ONLY_CHILDREN|ONLY_PRENTS|SELECT"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "__meta": {
+            "__desc": "",
+            "__attributes": {}
+        },
+        "UserEmailRule": {
+            "__meta": {
+                "__desc": "Defines an email is ownership of some user and some agent. Also defines a keyword for which if found inside a body of email, any attachments will be saved under this agent",
+                "__isPublicItem": true
+            },
+            "__attributes": {
+                "agent": {
+                    "__type": "string",
+                    "__peer": "Agent",
+                    "__required": true
+                },
+                "user": {
+                    "__type": "string",
+                    "__peer": "User",
+                    "__required": true
+                },
+                "email": {
+                    "__type": "string",
+                    "__required": true,
+                    "__id": true,
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ]
+                },
+                "sub": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "match_pattern": {
+                    "__type": "string"
+                },
+                "disabled": {
+                    "__type": "boolean"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        }
+    },
+    "Commands": {
+        "InjestEmail": {
+            "__meta": {
+                "__desc": "extracts attachments from email and saves them in s3 according to s mathing UserEmailRule"
+            },
+            "__attributes": {
+                "messageBody": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "__meta": {
+            "__desc": "",
+            "__attributes": {}
+        },
+        "CreateCognitoUser": {
+            "__meta": {
+                "__desc": "Creates a user in dynamo and an initial, default agent for this user. Also creates the UserEmail record linking the default agent with the user login email. I.e emails sent from this users login email will be processed for the default agent"
+            },
+            "__attributes": {
+                "userItem": {
+                    "__type": "#User",
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "ChangeActiveAgent": {
+            "__meta": {
+                "__desc": ""
+            },
+            "__attributes": {
+                "new_active_agent": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "CreatePrivateAgentForUser": {
+            "__meta": {
+                "__desc": "Creates a private agent and assigns it to a user"
+            },
+            "__attributes": {
+                "user": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "agentItem": {
+                    "__type": "#Agent",
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "SetUserAgents": {
+            "__meta": {
+                "__desc": "MAY BECOME OBSOLATE: Adds or modifies custom:agents attribute on a cognito user. "
+            },
+            "__attributes": {
+                "user": {
+                    "__type": "string",
+                    "__required": true
+                },
+                "agents": {
+                    "__type": "string[]",
+                    "__required": true
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        }
+    },
+    "Queries": {
+        "queryBe": {
+            "__meta": {
+                "__desc": "represents Airplane Manifacturers"
+            },
+            "__attributes": {
+                "code": {
+                    "__type": "string",
+                    "__gsiKeys": [
+                        "sGSI1"
+                    ],
+                    "__required": true,
+                    "__unique": true
+                },
+                "name": {
+                    "__type": "string",
+                    "__required": true,
+                    "__gsiKeys": [
+                        "sGSI2"
+                    ]
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        },
+        "__meta": {
+            "__desc": "",
+            "__attributes": {}
+        },
+        "GetGraphqlSchema": {
+            "__meta": {
+                "__desc": "returns the Graphql schema for the generated API"
+            },
+            "__attributes": {
+                "definition": {
+                    "__type": "string"
+                },
+                "date_created": {
+                    "__type": "isodatestring"
+                },
+                "date_updated": {
+                    "__type": "isodatestring"
+                },
+                "user_created": {
+                    "__type": "string"
+                },
+                "user_updated": {
+                    "__type": "string"
+                },
+                "id": {
+                    "__type": "string"
+                }
+            }
+        }
+    },
+    "GlobalSecondaryIndexes": [
+        {
+            "IndexName": "NSHARD-TITEM",
+            "KeySchema": [
+                {
+                    "AttributeName": "NSHARD",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "TITEM",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI1-sGSI3",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI1",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "sGSI3",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "RANGE-TITEM",
+            "KeySchema": [
+                {
+                    "AttributeName": "RANGE",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "TITEM",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        },
+        {
+            "IndexName": "sGSI1-sGSI2",
+            "KeySchema": [
+                {
+                    "AttributeName": "sGSI1",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "sGSI2",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "KEYS_ONLY"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 100,
+                "WriteCapacityUnits": 100
+            }
+        }
+    ],
+    "__meta": {}
+}

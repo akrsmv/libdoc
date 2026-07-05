@@ -8,13 +8,13 @@ export const get = async(params: GetItemProps, identity: Partial<IIdentity<Parti
     return {{__typename | plural | firstCaseLower}} 
 }
 export const create = async(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    await createItem(item, identity)
+    await createItem({...item, __typename: '{{__typename}}'}, identity)
 }
 export const update = async(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    await updateItem(item, identity)
+    await updateItem({...item, __typename: '{{__typename}}'}, identity)
 }
 export const patch = async(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    await patchItem(item, identity)
+    await patchItem({...item, __typename: '{{__typename}}'}, identity)
 }
 export const del = async(dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
     await deleteItem(dto, identity)

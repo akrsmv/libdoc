@@ -1,88 +1,14 @@
 import { logdebug, logerror, loginfo, set_correlation_token } from "@incta/common-utils"
-import { __domain, _sep1, _sep2, versionString } from "@incta/ddb-model"
-import { createItem, getItems, patchItem, queryItems, searchItems } from "@incta/ddb-actions"
-import { User } from "./domain-context/items/dataItems/User"
+import { __domain, _default_agent_id, _sep1, _sep2 } from "@incta/ddb-model"
+import { queryItems } from "@incta/ddb-actions"
 import { _injectDataItems } from "./domain-context/items/dataItems/_injectDataItems"
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
-import { S3Client, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
-import { join } from "path"
-import { MailParser } from 'mailparser'
-import { Readable, Stream } from "stream"
-import { SdkStream } from "@aws-sdk/types"
-import { Upload } from "@aws-sdk/lib-storage";
-import { UserEmail } from "./domain-context/items/dataItems/UserEmail"
-
-// Create an S3 client
-const s3Client = new S3Client({ region: process.env.AWS_REGION });
-
-const uploadStreamToS3 = async (stream: Readable, bucketName: string, objectKey: string, emailHeaders: Map<string, any> ) => {
-	logdebug('[uploadStreamToS3] entering')
-	logdebug('[uploadStreamToS3] will need to identify email address ', emailHeaders.get('from').value[0].address)
-	const result = await queryItems({__typename: UserEmail.__typename, dbIndexName: "RANGE-TITEM", hashKey: {RANGE: {eq: `v_0|UserEmail|${emailHeaders.get('from').value[0].address}`}}, rangeKey: {TITEM: {begins_with: "UserEmail|"}}, loadPeersInput: {loadPeersLevel: 1, peersPropsToLoad:["agent"]}}, null)
-	logdebug('The located user is ', result)
-	logdebug('The located user is ', result.items[0])
-	try {
-		const parallelUploads3 = new Upload({
-			client: s3Client,
-			tags: [], // optional tags
-			//   queueSize: 4, // optional concurrency configuration
-			//   partSize: 5MB, // optional size of each part
-			leavePartsOnError: false, // optional manually handle dropped parts
-			params: {
-				Bucket: bucketName,
-				Key: objectKey,
-				Body: stream // Body is stream which enables streaming
-			},
-		});
-		parallelUploads3.on("httpUploadProgress", (progress) => {
-			logdebug('[parallelUploads3] on httpUploadProgress: ', progress);
-		});
-		logdebug('returning from s3 upload')
-		return parallelUploads3.done().catch(logerror);
-	} catch (error) {
-		console.error('Error uploading stream to S3:', error);
-		throw error;
-	}
-};
-
-const extractAttachmentsAndUploadToS3 = (stream: SdkStream<Readable | ReadableStream<any> | Blob | undefined> | undefined): Promise<any[]> => {
-	return new Promise((resolve, reject) => {
-		const mailParser = new MailParser();
-		let emailHeaders: Map<string, any>
-		let emailText: any = {
-			
-		}	
-
-		mailParser.on('headers', headers => {
-			logdebug('email headers parsed', headers)
-			emailHeaders = headers
-		});
-
-		mailParser.on('data', async data => {
-			if (data.type === 'text') {
-				logdebug('email text parsed', data)
-				emailText = {...emailText, ...data}
-			}
-			if (data.type === 'attachment') {
-				console.log(data.filename);
-				uploadStreamToS3(data.content, process.env.OPERATIONS_BUCKET!, join('processed', data.filename), emailHeaders)
-					.then((obj) => {
-						logdebug('releasing data content: ', obj)
-						data.release()
-					})
-				data.content.on('end', () => logdebug('data content: on end'));
-			}
-		});
-
-		mailParser.on('error', (error: any) => {
-			reject(error);
-		});
-
-		mailParser.on('end', () => resolve([emailHeaders, emailText]));
-
-		(stream as Stream).pipe(mailParser)
-	});
-};
+import { GetObjectCommand } from '@aws-sdk/client-s3';
+import { join, sep } from "path"
+import { UserEmailRule } from "./domain-context/items/dataItems/UserEmailRule"
+import { extractAttachmentsAndUploadToS3, moveS3Object, s3Client } from "@incta/aws-utils-s3";
+import { getUserByEmail } from "./domain-context-impl/domains-impl/UserEmailRuleDomainImpl";
+import { injectDomainContext } from "./domain-context/injectDomainContext";
+import { start } from "./domain-context-impl/commands-impl/InjestIncominf";
 
 /**
  * @param evnt 
@@ -93,36 +19,123 @@ const extractAttachmentsAndUploadToS3 = (stream: SdkStream<Readable | ReadableSt
 export const handler = async (evnt: any, context?: any, callback?: Function): Promise<any> => {
 	logdebug('SQS LAMBDA WORKER TRIGGERED', { evnt, context })
 	const failedMessages = []
-	_injectDataItems() // load metadata for items, we need only the user item here
+	injectDomainContext() // load metadata for items, we need only the user item here
 
 	for (var message of evnt.Records) {
 		logdebug("processing SQS Record", message)
 		set_correlation_token(message.messageId)
+		
 		try {
 			const messageBody = JSON.parse(message.body)
-			//#region Download the file from S3
-			const command = new GetObjectCommand({
-				Bucket: messageBody.receipt.action.bucketName,
-				Key: messageBody.receipt.action.objectKey,
-			});
+			await start(messageBody, null)
 
-			const responseGet = await s3Client.send(command);
-			// The Body object also has 'transformToByteArray' and 'transformToWebStream' methods.
-			// str = await responseGet.Body?.transformToString();
-			// loginfo('file downloaded', str);
-			loginfo('file downloaded and response NOT converted to string yet');
-			//#endregion
+			// //#region Download the file from S3
+			// const command = new GetObjectCommand({
+			// 	Bucket: messageBody.receipt.action.bucketName,
+			// 	Key: messageBody.receipt.action.objectKey,
+			// });
 
-			//#region extract attachments
-			const [emailHeaders, emailText] = await extractAttachmentsAndUploadToS3(responseGet.Body)
-				.catch(error => {
-					logerror('[parseEmailFromStream] async error: ', error)
-					throw new Error(error.stack)
-				})
+			// const responseGet = await s3Client.send(command);
 
-			logdebug('headers parsed are', emailHeaders)
-			logdebug('email text parsed are', emailText)
-			//#endregion
+			// loginfo('file downloaded and response NOT converted to string yet');
+			// //#endregion
+
+			// const [emailHeaders, emailText, extractedAttachmentsKeys] = await extractAttachmentsAndUploadToS3(
+			// 	responseGet.Body, async (emailHeaders: Map<string, any>) => {
+			// 		// --- this is to be performed for every attachment - a bit redundant to query every time ddb and build the same emailRulesMap, but due to nature of async parsing...
+			// 		const senderEmail = emailHeaders.get('from').value[0].address
+			// 		logdebug('[extractAttachmentsAndUploadToS3] will identify email address ', senderEmail)
+
+			// 		const user = await getUserByEmail(emailHeaders.get('from').value[0].address)
+
+			// 		const todayDateString = new Date().toISOString()
+			// 		const s3DirectoryPath = join(
+			// 			'extracted_attachments',
+			// 			messageBody.receipt.action.objectKey,
+			// 			String(user.sub),
+			// 			_default_agent_id,
+			// 			todayDateString.slice(0, 4),
+			// 			todayDateString.slice(5, 7).padStart(2, '0'),
+			// 			todayDateString.slice(8, 10).padStart(2, '0'));
+			// 		return s3DirectoryPath
+			// 		//----------
+			// 	})
+			// 	.catch(error => {
+			// 		logerror('[parseEmailFromStream] async error: ', error)
+			// 		throw new Error(error.stack)
+			// 	})
+
+			// logdebug('[handler] email headers are', emailHeaders)
+			// logdebug('[handler] email text parsed are', emailText)
+			// logdebug('[handler] keys of extracted locations are', extractedAttachmentsKeys)
+			// //#endregion
+
+			// // --- this is to be performed for every attachment +1 (one more time here, after all attachments parsed) 
+			// // - a bit redundant to query every time ddb and build the same emailRulesMap, but due to nature of async parsing...
+			// const senderEmail = emailHeaders.get('from').value[0].address
+			// const result = await queryItems<UserEmailRule>({
+			// 	__typename: UserEmailRule.__typename,
+			// 	dbIndexName: 'sGSI1-sGSI2',
+			// 	hashKey: { sGSI1: { eq: emailHeaders.get('from').value[0].address } },
+			// 	loadPeersInput: { loadPeersLevel: 1, peersPropsToLoad: ["user", "agent"] /*, projectionExpression: "user,agent,idpId"*/ }
+			// }, null)
+			// logdebug(`[handler] there are  ${result.items.length} rules for ${senderEmail}. Building emailRulesMap to identify which are matching rules from `, result)
+			// //@ts-ignore
+			// const userId = String(result.items[0].User.sub)
+			// let defaultAgentInCaseOfNoRuleMatch: string
+			// const brokenEmailRulesMap = new Map<string, string>()
+			// const emailRulesMap = result.items.reduce<Map<string, string>>((emailRulesMap, userEmailRule) => {
+			// 	//@ts-ignore
+			// 	if (!userEmailRule.Agent) {
+			// 		brokenEmailRulesMap.set(userEmailRule.id, 'No Agent found for email rule')
+			// 		return emailRulesMap
+			// 	}
+			// 	//@ts-ignore
+			// 	const agentId = userEmailRule.Agent.id
+			// 	if (agentId.endsWith('v_0|Agent|DEFAULT')) {
+			// 		defaultAgentInCaseOfNoRuleMatch = agentId
+			// 	} else {
+			// 		emailRulesMap.set(String(userEmailRule.match_pattern), String(userEmailRule.agent))
+			// 	}
+			// 	return emailRulesMap
+			// }, new Map<string, string>())
+			// if (brokenEmailRulesMap.size) {
+			// 	logerror('There are broken email rules! Operation will continue but some documents may end up in a wrong location. ', brokenEmailRulesMap)
+			// }
+			// //----------
+			// logdebug('[handler] emailRulesMap is ', emailRulesMap)
+			// let specificAgentFound = false
+			// const text = emailText.text || emailText.html || emailText.textAsHtml
+			// const subject = emailHeaders.get('subject')
+			// logdebug(`[handler] will seek for mathces in this text: ${text}`)
+
+			// for (const [pattern, agentId] of emailRulesMap.entries()) {
+			// 	let isMatch = false
+			// 	// todo regex try match
+			// 	const regex = new RegExp(pattern);
+			// 	logdebug(`[handler] regex mathicng this pattern: ${regex}`)
+
+			// 	isMatch = regex.test(subject)
+			// 	if (!isMatch) { // if matched already in header do not proceed with text
+			// 		isMatch = regex.test(text);
+			// 	}
+
+			// 	console.log('Is there a match? ', isMatch);
+
+			// 	if (isMatch) {
+			// 		logdebug(`[handler] match found for `, agentId)
+			// 		specificAgentFound = true
+			// 		await Promise.all(extractedAttachmentsKeys.map((key: string) => moveS3Object(process.env.OPERATIONS_BUCKET!, key, join(userId, agentId, key.split(sep).slice(5).join(sep)))))
+			// 		break; // DONE for THIS SQS message from the received BATCH.
+			// 	}
+			// }
+			// logdebug('[handler] specificAgentFound: ', specificAgentFound)
+			// if (!specificAgentFound) {
+			// 	// if no mathcing at all, move attachments into the user's default agent
+			// 	await Promise.all(extractedAttachmentsKeys.map((key: string) => moveS3Object(process.env.OPERATIONS_BUCKET!, key, join(userId, defaultAgentInCaseOfNoRuleMatch, key.split(sep).slice(5).join(sep)))))
+			// }
+
+			// //#endregion
 
 		} catch (err: any) {
 			logerror(err);
@@ -141,7 +154,7 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 
 	// const command = new SendEmailCommand({
 	// 	Destination: {
-	// 		ToAddresses: ["office@inctasoft.com"],
+	// 		ToAddresses: ["office@localhost:3000"],
 	// 	},
 	// 	Message: {
 	// 		Body: {
@@ -150,7 +163,7 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 
 	// 		Subject: { Data: "Hello from AWS SES" },
 	// 	},
-	// 	Source: "office@inctasoft.com",
+	// 	Source: "office@localhost:3000",
 	// });
 
 	// try {
@@ -173,6 +186,3 @@ export const handler = async (evnt: any, context?: any, callback?: Function): Pr
 	return { batchItemFailures: failedMessages }
 
 };
-
-
-

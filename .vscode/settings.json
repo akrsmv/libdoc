@@ -15,5 +15,5 @@
   "thunder-client.saveToWorkspace": true,
   "js/ts.implicitProjectConfig.experimentalDecorators": false,
   "workbench.preferredLightColorTheme": "Visual Studio Light",
-  "workbench.colorTheme": "Quiet Light"
+  "workbench.colorTheme": "Default Light+"
 }

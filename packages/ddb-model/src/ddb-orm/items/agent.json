@@ -1,0 +1,45 @@
+{
+    "$id": "http://localhost:3000/ddb-orm/items/user.json",
+    "title": "Agent",
+    "description": "Agent is logical entity that has data on which you want to apply access restrictions. Examples of Agent are 'Company','Department','City','Airport' and so on. Users can be assigned to agents, which grants them access to agents data.",
+    "allOf": [
+        {
+            "$ref": "http://localhost:3000/ddb-orm/system/item.json"
+        },
+        {
+            "required": [
+                "name",
+                "code"
+            ],
+            "properties": {
+                "name": {
+                    "description": "The agent name",
+                    "type": "string"
+                },
+                "code": {
+                    "description": "The agent unique code",
+                    "type": "string",
+                    "minimum": 3
+                },
+                "childAgents": {
+                    "description": "The agent unique code",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": true
+                },
+                "prentAgents": {
+                    "description": "The agent unique code",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "type": "object",
+            "additionalProperties": true
+        }
+    ]
+}

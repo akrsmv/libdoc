@@ -1,6 +1,9 @@
 {%- for key, attr in __inItemJSONs %} 
 import { {{ key }}Dto } from './{{key}}Dto'
 {%- endfor %}
+{%- for key in __referredItems %} 
+import { {{ key }} } from '../../dataItems/{{key}}'
+{%- endfor %}
 
 export type {{__typename}}Dto = {  
   id?: string

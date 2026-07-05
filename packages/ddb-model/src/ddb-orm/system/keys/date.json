@@ -1,0 +1,7 @@
+{
+  "$id": "http://localhost:3000/ddb-orm/system/keys/date.json",
+  "title": "iso date string",
+  "description": "All date keys in ddb-orm",
+  "type": "string",
+  "format": "date-time"
+}

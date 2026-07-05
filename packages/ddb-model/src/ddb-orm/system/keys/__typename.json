@@ -1,0 +1,7 @@
+{
+  "$id": "http://localhost:3000/ddb-orm/system/keys/__typename.json",
+  "title": "typename",
+  "description": "The name of an Entity",
+  "type": "string",
+  "pattern": "^[a-zA-Z]+$"
+}

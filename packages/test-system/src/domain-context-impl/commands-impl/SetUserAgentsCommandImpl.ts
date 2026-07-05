@@ -3,7 +3,7 @@ import { SetUserAgents } from "../../domain-context/items/commandItems/SetUserAg
 import { AdminUpdateUserAttributesCommand, CognitoIdentityProviderClient, CognitoIdentityProviderClientConfig } from "@aws-sdk/client-cognito-identity-provider";
 import { logdebug } from "@incta/common-utils";
 
-export const start = async (setUserAgents: SetUserAgents, identity: IIdentity): Promise<void> => {
+export const start = async (setUserAgents: SetUserAgents, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
     logdebug('setUserAgents', setUserAgents)
     //// SETTING COGNITO USER attribute
     const config: CognitoIdentityProviderClientConfig = {}
@@ -27,18 +27,3 @@ export const start = async (setUserAgents: SetUserAgents, identity: IIdentity): 
     // //<-------------------------
 }
 
-export const validateStart = async (setUserAgents: SetUserAgents, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}
-
-export const onSingleCommandEventError = async (setUserAgents: SetUserAgents, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}
-
-export const onCommandCompleted = async (setUserAgents: SetUserAgents, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}
-
-export const onCommandErrored = async (setUserAgents: SetUserAgents, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    
-}

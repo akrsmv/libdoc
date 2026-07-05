@@ -7,6 +7,7 @@
     "resolveJsonModule": true
   },
   "include": [
+    "src/ddb-orm/**/*.json",
     "src/base-domain-context.json",
     "src/**/*.ts",
     "src/**/*.nunjucks"

@@ -86,7 +86,7 @@ interface Item {
     user_updated: String
 
 }
-type ItemIdentifier @aws_iam @aws_cognito_user_pools {
+type ItemIdentifier @aws_iam @aws_cognito_user_pools @auth{
     HASH: String
     RANGE: String
 }
@@ -96,6 +96,7 @@ input {{itemKey}}Input {
     id: ID
     privateData: Boolean
     publicData: Boolean
+    rev: Int
     {%- for attr_itemKey, attr_attr in attr.itemDef.__attributes | except_system_fields %}
         {{ getGraphqlSingleKeyAndInputType (attr.__typename, attr_itemKey, attr_attr)}}
     {%- endfor %}
@@ -119,7 +120,7 @@ input {{itemKey}}Input {
 {%- endfor %}
 
 {%- for itemKey, attr in allItems %}
-type {{itemKey}} implements Item {
+type {{itemKey}} implements Item @aws_iam @aws_cognito_user_pools @auth{
     # interface Item props
     
     rev: Int
@@ -149,7 +150,7 @@ type {{itemKey}} implements Item {
         {% endif%}
     {%- endfor %}
 }
-type {{itemKey}}History implements Item {
+type {{itemKey}}History implements Item @aws_iam @aws_cognito_user_pools @auth{
     # interface Item props 
     HASH: String
     RANGE: String
@@ -183,12 +184,12 @@ enum {{attr_inItemEnumKey}}Enum {
     {% endfor -%}
 
         {%- for attr_inItemJsonKey, inItemJsonDef in attr.inItemJSONs %}
-type {{attr_inItemJsonKey}}Dto {
+type {{attr_inItemJsonKey}}Dto @aws_iam @aws_cognito_user_pools @auth{
         {%- for inItemJsonDef_itemKey, inItemJsonDef_attr in inItemJsonDef.__attributes %}
                 {{inItemJsonDef_itemKey}}: {{ getGraphqlType(attr.__typename, inItemJsonDef_itemKey, inItemJsonDef_attr) }}
             {%- endfor %}
 }
-input {{attr_inItemJsonKey}}DtoInput {
+input {{attr_inItemJsonKey}}DtoInput @aws_iam @aws_cognito_user_pools @auth{
         {%- for inItemJsonDef_itemKey, inItemJsonDef_attr in inItemJsonDef.__attributes %}
                 {{getGraphqlSingleKeyAndInputType(attr.__typename, inItemJsonDef_itemKey, inItemJsonDef_attr)}}
                 {# {{inItemJsonDef_itemKey}}: {{ getGraphqlType(attr.__typename, inItemJsonDef_itemKey, inItemJsonDef_attr) }} #}
@@ -201,32 +202,32 @@ input {{attr_inItemJsonKey}}DtoInput {
 
     {# ### BEGIN MUTATION ###       #}
 type Mutation {
-    start(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools
-    create(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools
-    update(input: AllItemsKeysInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
-    patch(input: AllItemsKeysInput!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
-    del(id: ID!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
+    start(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    create(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    update(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    patch(input: AllItemsKeysInput!): CommandResult @aws_iam @aws_cognito_user_pools @auth
+    del(input: ItemIdentifierInput): CommandResult @aws_iam @aws_cognito_user_pools @auth
     {%- for itemKey, attr in allCommands %}
-        {{itemKey}}(input: {{itemKey}}Input!): CommandResult @aws_iam @aws_cognito_user_pools
+        {{itemKey}}(input: {{itemKey}}Input!): CommandResult @aws_iam @aws_cognito_user_pools @auth
     {%- endfor %}
     {%- for itemKey, attr in allItems %}
-    create{{itemKey}}(input: {{itemKey}}Input!): CommandResult @aws_iam @aws_cognito_user_pools
+    create{{itemKey}}(input: {{itemKey}}Input!): CommandResult @aws_iam @aws_cognito_user_pools @auth
     {%- endfor %}
     {%- for itemKey, attr in allItems %}
-    update{{itemKey}}(input: {{itemKey}}Input!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
+    update{{itemKey}}(input: {{itemKey}}Input!): CommandResult @aws_iam @aws_cognito_user_pools @auth
     {%- endfor %}
     {%- for itemKey, attr in allItems %}
-    patch{{itemKey}}(input: {{itemKey}}Input!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools
+    patch{{itemKey}}(input: {{itemKey}}Input!): CommandResult @aws_iam @aws_cognito_user_pools @auth
     {%- endfor %}
     {%- for itemKey, attr in allItems %}
-    {# delete{{itemKey}}(id: ID!, rev: Int): CommandResult @aws_iam @aws_cognito_user_pools #}
+    delete{{itemKey}}(input: ItemIdentifierInput): CommandResult @aws_iam @aws_cognito_user_pools @auth
     {%- endfor %}
 }
-type CommandResult {
+type CommandResult @aws_iam @aws_cognito_user_pools @auth {
     status: Int
     errors: [ServerError]
 }
-type ServerError {
+type ServerError @aws_iam @aws_cognito_user_pools @auth {
     errorType: String
     message: String
     errorStack: String
@@ -250,23 +251,23 @@ input StartInput {
 
     {# ### BEGIN QUERY ### #}
 type Query {
-    get(id: [ID!]!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools
-    query(input: QueryInputAllItemsFields!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools
-    search(input: QueryInputAllItemsFields!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools
+    get(input: [ItemIdentifierInput]!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
+    query(input: QueryInputAllItemsFields!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
+    search(input: QueryInputAllItemsFields!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
     {%- for itemKey, attr in allItems %}
-    search{{itemKey | plural}}(input: Search{{itemKey | plural}}Input!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools
-    query{{itemKey | plural}}(input: Query{{itemKey | plural}}Input!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools
-    get{{itemKey | plural}}(id: [ID!]!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools
+    search{{itemKey | plural}}(input: Search{{itemKey | plural}}Input!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools @auth
+    query{{itemKey | plural}}(input: Query{{itemKey | plural}}Input!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools @auth
+    get{{itemKey | plural}}(input: [ItemIdentifierInput]!): {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools @auth
     {%- endfor %}
     {%- for itemKey, attr in allQueries %}
         {# TODO do we want every data model query to have also ResultType in data model and alsohere or we can go with AllItemsUnion? #}
-        {{itemKey}}(input: Query{{itemKey | plural}}Input!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools
+        {{itemKey}}(input: Query{{itemKey | plural}}Input!): AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth
     {%- endfor %}
 }
 {# ### END QUERY ### #}
 
     {# ### BEGIN RESULT CONNECTION ### #}
-type AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools {
+type AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools @auth{
     items: [AllItemsUnion!]!
     pageToken: String
     count: Int
@@ -276,7 +277,7 @@ type AllItemsUnionResultConnection @aws_iam @aws_cognito_user_pools {
     correlation_id: String
 }
 {%- for itemKey, attr in allItems %}
-type {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools {
+type {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools @auth{
     items: [{{itemKey}}!]!
     pageToken: String
     count: Int
@@ -291,10 +292,10 @@ type {{itemKey | plural}}ResultConnection @aws_iam @aws_cognito_user_pools {
 
     {# ###### BEGIN QUERY INPUT ##### #}
 
-{# input ItemIdentifierInput {
-    id: ID
+input ItemIdentifierInput {
+    id: ID!
     rev: Int
-} #}
+}
 input QueryInputAllItemsFields {
     HASH: StringQueryInput
     RANGE: StringQueryInput

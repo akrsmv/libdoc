@@ -1,0 +1,7 @@
+{
+    "$id": "http://localhost:3000/ddb-orm/system/keys/id.json",
+    "title": "id",
+    "description": "Concatenation of `pk` and `sk` keys, pattern is `pk#sk`",
+    "type": "string",
+    "pattern": "^[a-zA-Z]+\\|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}#v_\\d+\\|[a-zA-Z]+\\|[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$"
+}

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
+    "test": "jest --coverage",
     "dev": "npm run dev -w @incta/localdev-api",
     "dev-brk": "npm run dev-brk -w @incta/localdev-api",
     "debug": "npm run debug -w @incta/localdev-api"
@@ -18,9 +19,8 @@
     "packages/ddb-model",
     "packages/ddb-actions",
     "packages/ddb-cqd-model",
+    "packages/aws-utils-s3",
     "packages/dispatch-action",
-    "packages/cli",
-    "packages/infra-ddb-table",
     "packages/lambda-dispatcher",
     "packages/test-system",
     "packages/localdev-api",

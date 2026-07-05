@@ -6,6 +6,8 @@ import { digestResult } from "@incta/common-utils"
 
 export const handler = async (evnt: any, context: any) => {
     logdebug("[handler] TEST SYSTEM RECEIVED EVENT", evnt)
+    logdebug("[handler] TEST SYSTEM RECEIVED CONTEXT", context)
+    logdebug("[handler] TEST SYSTEM JWT", evnt.test_entire_vtl_ctx.request.headers.authorization)
     
     injectDomainContext()
     set_correlation_token(evnt)

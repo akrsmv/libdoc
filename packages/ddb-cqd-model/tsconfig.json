@@ -8,6 +8,8 @@
   },
   "include": [
     "src/base-domain-context.json",
+    "src/**/data-model.json",
+    "src/**/aws-ddb-table-definition.json",
     "src/**/*.ts",
     "src/**/*.nunjucks"
   ],

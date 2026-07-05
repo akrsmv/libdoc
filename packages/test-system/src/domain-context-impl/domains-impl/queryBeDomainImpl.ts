@@ -8,13 +8,13 @@ export const get = async(params: GetItemProps, identity: Partial<IIdentity<Parti
     return queryBes 
 }
 export const create = async(item: Partial<queryBe>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    await createItem(item, identity)
+    await createItem({...item, __typename: 'queryBe'}, identity)
 }
 export const update = async(item: Partial<queryBe>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    await updateItem(item, identity)
+    await updateItem({...item, __typename: 'queryBe'}, identity)
 }
 export const patch = async(item: Partial<queryBe>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
-    await patchItem(item, identity)
+    await patchItem({...item, __typename: 'queryBe'}, identity)
 }
 export const del = async(dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> => {
     await deleteItem(dto, identity)

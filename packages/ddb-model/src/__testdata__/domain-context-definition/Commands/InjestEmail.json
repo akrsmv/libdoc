@@ -1,0 +1,11 @@
+{
+    "__meta": {
+        "__desc": "extracts attachments from email and saves them in s3 according to s mathing UserEmailRule"
+    },
+    "__attributes": {
+        "messageBody": {
+            "__type": "string",
+            "__required": true
+        }
+    }
+}

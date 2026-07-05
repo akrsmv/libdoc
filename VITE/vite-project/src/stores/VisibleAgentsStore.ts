@@ -1,18 +1,21 @@
 import { create } from 'zustand'
 import { devtools, persist, subscribeWithSelector } from 'zustand/middleware'
-import { toast } from 'react-toastify'
-import { API } from 'aws-amplify'
-import { GraphQLQuery } from "@aws-amplify/api"
 import { getUserVisibleAgents } from '../graphql/queries'
-import { ChangeActiveAgent } from '../graphql/mutations'
+import { ChangeActiveAgent, createPrivateAgentForUser, deleteAgent } from '../graphql/mutations'
 import * as graphqlTypes from '../graphql/API'
+import { useBackendRequestsStore } from './BackendRequestsStore'
+
+export const cognitoMaxLokupAttemptsGuard = 10
 
 interface UserVisibleAgentsStore {
     userObject: graphqlTypes.User | null | undefined
-    setUserObject: (sub: string) => void
+    isLoadingUserObject: boolean
+    unsuccessfulCognitoLookupAttempts: number
+    setUserObject: (sub: string, attemptsNr: number) => Promise<void>
     resetUserObject: () => void
-    createPrivateAgentForUser: (sub?: string | null) => void
-    changeActiveAgent: (newActiveAgentId: string, sub: string) => void
+    createPrivateAgentForUser: (sub?: string | null, agentName?: string | null, agentCode?: string | null) => Promise<void>
+    changeActiveAgent: (newActiveAgentId: string, sub: string) => Promise<void>
+    deleteAgent: (sub: string, agentId: string, agentRev: number) => Promise<void>
 }
 
 /**
@@ -31,41 +34,41 @@ export const useUserVisibleAgentsStore = create<UserVisibleAgentsStore>()(
                 (set) => {
                     return {
                         userObject: null,
-                        createPrivateAgentForUser: async (sub) => {
-                            if (sub) {
-                                console.log('will create new agent for user: ', sub)
+                        isLoadingUserObject: false,
+                        unsuccessfulCognitoLookupAttempts: 0,
+                        createPrivateAgentForUser: async (sub, agentName, agentCode) => {
+                            await useBackendRequestsStore.getState()
+                                .backendGraphqlCall<graphqlTypes.CreatePrivateAgentForUserInput, graphqlTypes.CreatePrivateAgentForUser>
+                                ({
+                                    user: `User|${sub}#v_0|User|${sub}`, agentItem: { name: agentName, code: agentCode }
+                                }, createPrivateAgentForUser)
+                            const userObject = await loadUser(String(sub))
+                            set(() => ({ userObject }))
+                        },
+                        setUserObject: async (sub, attemptsNr) => {
+                            console.log('[setUserObject] invoked with ', sub, attemptsNr)
+                            if ((!attemptsNr && attemptsNr !== 0) || attemptsNr > cognitoMaxLokupAttemptsGuard) {
+                                console.log(`Failed to get cognito user for more than ${cognitoMaxLokupAttemptsGuard} attempts. Please contact support`);
+                                return;
+                            }
+                            console.log("loading cognito user: " + attemptsNr + " attempt")
+                            const userObject = await loadUser(sub)
+                            if (!userObject) {
+                                set((state) => ({ userObject, unsuccessfulCognitoLookupAttempts: state.unsuccessfulCognitoLookupAttempts + 1 }))
                             } else {
-                                console.log('user sub is undefined')
+                                set(() => ({ userObject, unsuccessfulCognitoLookupAttempts: 0 }))
                             }
                         },
-                        setUserObject: async (sub) => {
-                            const userObject = await loadUser(sub)
-                            set(() => ({ userObject }))
-                        },
-                        resetUserObject: () => set({ userObject: null }),
+                        resetUserObject: () => set({ userObject: null, unsuccessfulCognitoLookupAttempts: 0 }),
                         changeActiveAgent: async (newActiveAgentId: string, sub: string) => {
-                            try {
-                                const result = await API.graphql<GraphQLQuery<graphqlTypes.ChangeActiveAgent>>({
-                                    query: ChangeActiveAgent,
-                                    variables: { input: { new_active_agent: newActiveAgentId } }
-                                }).catch((data: any) => {
-                                    toast.error(data?.errors); return data
-                                })
-
-                                if (result.data?.ChangeActiveAgent?.status !== 200) {
-                                    toast.error(result.data?.ChangeActiveAgent?.errorMessage)
-                                }
-
-                                if (!result.data) {
-                                    toast.error(result.errors[0]?.message)
-                                }
-                            } catch (err: any) {
-                                toast.error('CATCH ' + err?.errorMessage)
-                            }
-
+                            await useBackendRequestsStore.getState().backendGraphqlCall<graphqlTypes.ChangeActiveAgentInput, graphqlTypes.ChangeActiveAgent>({ new_active_agent: newActiveAgentId }, ChangeActiveAgent)
                             const userObject = await loadUser(sub)
-
                             set(() => ({ userObject }))
+                        },
+                        deleteAgent: async (sub, agentId, agentRev) => {
+                            await useBackendRequestsStore.getState().backendGraphqlCall<graphqlTypes.ItemIdentifierInput, { data: graphqlTypes.DeleteAgentMutation }>({ id: agentId, rev: agentRev || 0 }, deleteAgent)
+                            const userObject = await loadUser(sub)
+                            set((state) => ({ ...state, userObject }))
                         }
                     }
                 })
@@ -76,26 +79,6 @@ export const useUserVisibleAgentsStore = create<UserVisibleAgentsStore>()(
 
 const loadUser = async (sub: string) => {
     let result: { data: any }
-    try {
-        result = await API.graphql<GraphQLQuery<any>>({
-            query: getUserVisibleAgents,
-            variables: { id: [`User|${sub}#v_0|User|${sub}`] }
-        }).catch((data: any) => {
-            console.log('AAASSSYYYNNNNCCC  EEERRRROOOORRR', data)
-            toast.error(data?.errors); return data
-        })
-
-        // if (result.data?.getAgents?.status !== 200) {
-        //     toast.error(result.data?.getAgents?.errorMessage)
-        // }
-
-        // if (!result.data) {
-        //     toast.error(result.data.getAerrors[0]?.message)
-        // }
-        return result.data.getUsers?.items[0]
-    } catch (err: any) {
-        console.log('EEERRRROOOORRR', err)
-
-        toast.error('CATCH ' + err?.errorMessage)
-    }
+    result = await useBackendRequestsStore.getState().backendGraphqlCall<graphqlTypes.ItemIdentifierInput[], { data: graphqlTypes.GetUsersQuery }>([{ id: `User|${sub}#v_0|User|${sub}` }], getUserVisibleAgents)
+    return result.data.getUsers?.items[0]
 }

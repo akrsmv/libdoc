@@ -55,7 +55,7 @@ export class WorkerConstruct extends Construct {
                 queue: functionInputDeadletterQueue
             }
         })
-        functionInputQueue.node.addDependency(functionInputDeadletterQueue)
+        // functionInputQueue.node.addDependency(functionInputDeadletterQueue)
         // add a for future use subscription (i.e async commands)
         props.eventBus.addSubscription(new sns_subscriptions.SqsSubscription(functionInputQueue, {
             rawMessageDelivery: true,
@@ -91,7 +91,7 @@ export class WorkerConstruct extends Construct {
             }
         })
         // seems by time of writing `filterPolicyScope` was not present on L2 objects, so use L1 Cfn object
-        functionInboundMailQueue.node.addDependency(functionInboundMailDeadletterQueue)
+        // functionInboundMailQueue.node.addDependency(functionInboundMailDeadletterQueue)
         const subscriptionMail = new sns.CfnSubscription(this, 'InboundMailSubscription1', {
             topicArn: props.eventBus.topicArn,
             protocol: sns.SubscriptionProtocol.SQS,
@@ -99,8 +99,16 @@ export class WorkerConstruct extends Construct {
             rawMessageDelivery: true,
             filterPolicyScope: 'MessageBody',
             filterPolicy: {
-                "mail": [{ "exists": true }],
-                "notificationType": ["Received"]
+                "receipt": {
+                    "action": {
+                        "type": [
+                            "S3"
+                        ],
+                        "objectKeyPrefix": [
+                            "ses-action-ingesting/"
+                        ]
+                    }
+                }
                 // since using L1 object, pass the final json for the subscription filter and not below
                 // notificationType: sns.SubscriptionFilter.stringFilter({
                 //     allowlist: ['Received'],
@@ -155,14 +163,18 @@ export class WorkerConstruct extends Construct {
             events: [
                 new lambda_event_sources.SqsEventSource(functionInputQueue,
                     {
-                        batchSize: 100,//props.workerConfig.eventSourceBatchSize || 1
-                        maxBatchingWindow: Duration.minutes(5),
+                        // TODO swith settings: comment for dev for faster dev (not to wait 5 minutes), uncomment for production for cheaper cost
+                        // batchSize: 100,//props.workerConfig.eventSourceBatchSize || 1
+                        // maxBatchingWindow: Duration.minutes(5),
+
                         reportBatchItemFailures: true
                     }),
                 new lambda_event_sources.SqsEventSource(functionInboundMailQueue,
                     {
-                        batchSize: 10,//props.workerConfig.eventSourceBatchSize || 1
-                        maxBatchingWindow: Duration.minutes(5),
+                        // TODO swith settings: comment for dev for faster dev (not to wait 5 minutes), uncomment for production for cheaper cost
+                        // batchSize: 100,//props.workerConfig.eventSourceBatchSize || 1
+                        // maxBatchingWindow: Duration.minutes(5),
+
                         reportBatchItemFailures: true
                     }),
             ],
@@ -192,16 +204,16 @@ export class WorkerConstruct extends Construct {
         props.operationsBucket.grantReadWrite(this.function)
 
         if (!!props.eventBus) {
-            this.function.node.addDependency(props.eventBus)
+            // this.function.node.addDependency(props.eventBus)
             props.eventBus.grantPublish(this.function)
 
-            functionInputQueue.node.addDependency(props.eventBus)
-            functionInboundMailQueue.node.addDependency(props.eventBus)
+            // functionInputQueue.node.addDependency(props.eventBus)
+            // functionInboundMailQueue.node.addDependency(props.eventBus)
 
         }
 
         if (props.table) {
-            this.function.node.addDependency(props.table)
+            // this.function.node.addDependency(props.table)
             props.table.grantFullAccess(this.function)
         }
         // Grant the necessary SES permissions to the Lambda function

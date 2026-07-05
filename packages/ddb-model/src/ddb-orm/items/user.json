@@ -1,0 +1,66 @@
+{
+    "$id": "http://localhost:3000/ddb-orm/items/user.json",
+    "title": "User",
+    "description": "User account",
+    "allOf": [
+        {
+            "$ref": "http://localhost:3000/ddb-orm/system/item.json"
+        },
+        {
+            "required": [
+                "userId",
+                "email",
+                "activeAgent"
+            ],
+            "properties": {
+                "email": {
+                    "$ref": "http://localhost:3000/ddb-orm/system/keys/id.json"
+                },
+                "userPoolId": {
+                    "description": "Id of the IDP provider used to authenticate this user",
+                    "type": "string"
+                },
+                "userId": {
+                    "description": "The id assigned to the user by the IDP provider",
+                    "type": "string"
+                },
+                "activeRole": {
+                    "description": "The user's currently active role",
+                    "type": "string"
+                },
+                "roles": {
+                    "description": "The roles user is assigned",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": true,
+                    "minItems": 1
+                },
+                "groups": {
+                    "description": "The groups user is in",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": true
+                },
+                "agents": {
+                    "description": "The agents user has access to",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": true,
+                    "minItems": 1
+                },
+                "activeAgent": {
+                    "description": "The currently active agent for the user",
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "additionalProperties": true
+        }
+    ]
+}

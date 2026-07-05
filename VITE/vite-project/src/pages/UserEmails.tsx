@@ -1,113 +1,125 @@
-import React, { useState, useEffect } from 'react';
-import { Storage } from 'aws-amplify';
+import React, { useEffect, useState } from 'react';
 import { useUserVisibleAgentsStore } from '../stores/VisibleAgentsStore';
+import { useUserEmailRulesStore } from '../stores/UserEmailRulesStore';
+// import { useBackendRequestsStore } from '../stores/BackendRequestsStore';
 
-const getDaysInMonth = (year: number, month: number) => {
-    return new Date(year, month, 0).getDate();
-}
-
-const getCurrentYear = () => {
-    return Number(new Date().toISOString().slice(0, 4));
-}
-
-const getCurrentMonth = () => {
-    return Number(new Date().toISOString().slice(5, 7));
-}
 
 const UserEmails: React.FC = () => {
-    const [s3Objects, setS3Objects] = useState<{ [dateString: string]: string[] } | undefined>({});
-    const [isNotForCurrentMonth, setIsNotForCurrentMonth] = useState<boolean>(false);
+    // const loadingStore = useBackendRequestsStore()
     const userAgentsStore = useUserVisibleAgentsStore()
-    const [selectedDate, setSelectedDate] = useState('');
+    const userEmailRulesStore = useUserEmailRulesStore()
+    const [email, setEmail] = useState<string>('');
+    const [matchingPattern, setMatchingPattern] = useState<string>('');
 
-    const handleSelectedDateChange = (event: any) => {
-        setSelectedDate(event.target.value);
-        console.log('changed selected date to: ', selectedDate)
+    //=====
+    const [agentOptions, setAgentOptions] = useState<{ label: string | null | undefined, value: string | null | undefined }[]>(userAgentsStore.userObject?.Agents?.map((agt: any) => ({ label: agt!.name, value: agt!.id })) || [])
+    const [agent, setAgent] = useState<{ label: string | null | undefined, value: string | null | undefined }>({ label: userAgentsStore.userObject?.Active_agent?.name, value: userAgentsStore.userObject?.Active_agent?.id })
+
+    useEffect(() => {
+        console.log('use effect fired')
+        useUserVisibleAgentsStore.subscribe(
+            (state) => state.userObject, // zustand selector middleware, i.e subscribe only for changes on this property 
+            (userObject) => {
+                if (Array.isArray(userObject?.Agents)) {
+                    setAgentOptions(userObject!.Agents!.map(agt => ({ label: agt!.name, value: agt!.id })))
+                } else {
+                    setAgentOptions([])
+                }
+                if (userObject?.Active_agent?.id) {
+                    setAgent({ label: userObject?.Active_agent?.name, value: userObject?.Active_agent?.id })
+                }
+            }
+        )
+    }, []);
+    const handleAgentChange = async (event: any) => {
+        const selectedValue = event.target.value;
+        const selectedOption = agentOptions.find((option) => option.value === selectedValue);
+        selectedOption && setAgent(selectedOption);
+    };
+    //=====
+
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    };
+    const handleMatchingPatternChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setMatchingPattern(e.target.value);
+    };
+
+    const handleCreateNew = async () => {
+        // loadingStore.setLoading(true)
+        // Perform any action you want with the two string values
+        await userEmailRulesStore.createUserEmailRule(userAgentsStore.userObject?.id, userAgentsStore.userObject?.sub, agent.value, email, matchingPattern)//.then(() => loadingStore.setLoading(false))
+
+        // Reset the form after processing the values (optional)
+        setEmail('');
+        setMatchingPattern('');
     };
 
     useEffect(() => {
-        console.log('useEffect called')
-        async function fetchS3ObjectsForDate(dateString: string): Promise<{ [x: string]: string[] } | undefined> {
-            try {
-                const objects = await Storage.list(`${userAgentsStore.userObject?.sub}/${dateString}/${userAgentsStore.userObject?.active_agent}`, { pageSize: 25, level: 'private' });
-                return { [dateString]: objects.results.map(result => result.key!) }
-            } catch (error) {
-                console.error('Error fetching S3 objects:', error);
-            }
-        }
 
-        async function fetchS3ObjectsForMonth(year: number, month: number) {
-            const daysOfRequestedMonth = getDaysInMonth(year, month)
-            const fetchRequests = []
-            for (let day = 1; day <= daysOfRequestedMonth; day++) {
-                const dateString = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-                fetchRequests.push(fetchS3ObjectsForDate(dateString))
-            }
-            const allDaysResults: ({ [dateString: string]: string[] } | undefined)[] = await Promise.all(fetchRequests)
-            console.log('AT FINAL ', allDaysResults)
-            setS3Objects(allDaysResults.reduce((accum, next) => {
-                return { ...accum, ...next }
-            }, {}));
-        }
 
-        if (!isNotForCurrentMonth) {
-            fetchS3ObjectsForMonth(getCurrentYear(), getCurrentMonth())
-        } else {
-            if (!selectedDate) {
-                console.error("you need to select date if you dont want to see the current month objects")
-            } else {
-                const selectedYear = Number(new Date(selectedDate).toISOString().slice(0, 4))
-                const selectedMonth = Number(new Date(selectedDate).toISOString().slice(5, 7))
-                fetchS3ObjectsForMonth(selectedYear, selectedMonth)
-            }
-        }
-
-    }, [userAgentsStore.userObject, selectedDate]);
-
-    const downloadObject = async (object: string) => {
-        const objectUrl = await Storage.get(object, { expires: 10 }); // get a presigned link for download
-        console.log('from download: ', objectUrl)
-        window.open(objectUrl, '_blank'); // trigger download
-    }
+    }, [userAgentsStore.userObject]);
 
     return (
         <div className="p-4">
-            <label className="inline-flex items-center">
-                <input
-                    type="checkbox"
-                    className="form-checkbox h-5 w-5 text-blue-500"
-                    checked={isNotForCurrentMonth}
-                    onChange={() => setIsNotForCurrentMonth(!isNotForCurrentMonth)}
-                />
-            </label>
-            {isNotForCurrentMonth && (<div className="w-64">
-                <div className="w-64">
-                    <input
-                        type="date"
-                        className="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        value={selectedDate}
-                        onChange={handleSelectedDateChange}
-                    />
-                </div>
-            </div>)}
 
-            <h1 className="text-2xl font-bold mb-4">User Emails</h1>
-            {s3Objects && Object.keys(s3Objects).length === 0 ? (
-                <p>No User Emails configured</p>
+
+            <h1 className="text-2xl font-bold mb-4">User Agents</h1>
+            {!userEmailRulesStore.userEmailRules ||
+                !Array.isArray(userEmailRulesStore.userEmailRules) ||
+                userEmailRulesStore.userEmailRules.length === 0 ? (
+                <p>You have no email rules defined yet 123.</p>
             ) : (
                 <ul className="list-disc list-inside">
-                    {s3Objects && Object.values(s3Objects).reduce((arr, next) => arr.concat(next)).map((object) => (
-                        <div key={object} className="flex justify-between">
-                            <div className="w-9/10"><li>{object}</li></div>
-                            <div className="w-1/10"><button
-                                onClick={async () => { console.log('IBASE'); await downloadObject(object) }}
+                    {userEmailRulesStore.userEmailRules.map((rule) => (
+                        <div key={rule?.id} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 grid-cols-4 gap-4">
+                        <div className="bg-blue-200 p-4">{rule.email}</div>
+                        <div className="bg-green-200 p-4">{rule.agent} Kb</div>
+                        <div className="bg-green-200 p-4">{rule.match_pattern}</div>
+                        <div className="bg-yellow-200 p-4"><button
+                                onClick={async () => { await userAgentsStore.deleteAgent(String(userAgentsStore.userObject?.sub), String(rule?.id), Number(rule?.rev)) }}
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                            >Download</button></div>
-                        </div>
+                            >Delete</button></div>
+                    </div>
                     ))}
                 </ul>
             )
             }
+            <div className="p-4">
+                <select
+                    value={agent ? String(agent.value) : ''}
+                    onChange={handleAgentChange}
+                    className="border border-gray-300 px-2 py-1 rounded-md text-white bg-blue-500"
+                >
+                    {/* <option value="">Select an option</option> */}
+                    {agentOptions.map((option) => (
+                        <option className={String(agent.value) === option.value ? 'option text-black' : ''} key={option.value} value={String(option.value)}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+                <input
+                    type="text"
+                    placeholder="Enter Email"
+                    className="w-full p-2 border border-gray-300 rounded-md mb-2"
+                    value={email}
+                    onChange={handleEmailChange}
+                />
+                <input
+                    type="text"
+                    placeholder="Enter Matching pattern for rule to trigger"
+                    className="w-full p-2 border border-gray-300 rounded-md mb-2"
+                    value={matchingPattern}
+                    onChange={handleMatchingPatternChange}
+                />
+                <button
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+                    onClick={handleCreateNew}
+                >
+                    Create New
+                </button>
+            </div>
         </div >
     );
 };

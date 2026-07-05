@@ -10,7 +10,7 @@ import { plural } from "pluralize";
 
 
 export class AppSyncLambdaDataSourceConstruct extends Construct {
-    constructor(scope: Construct, id: string, props: AppSyncConstruct & CdkStackProps & {lambdaFunction: lambda.Function}) {
+    constructor(scope: Construct, id: string, props: AppSyncConstruct & CdkStackProps & { lambdaFunction: lambda.Function }) {
         super(scope, id)
         // LOCAL DATA SOURCE ------------->
         const locaNoneDS = new appsync.NoneDataSource(this, `None`, {
@@ -31,7 +31,8 @@ export class AppSyncLambdaDataSourceConstruct extends Construct {
             responseMappingTemplate: appsync.MappingTemplate.fromString("$util.toJson($context.result)"),
             requestMappingTemplate: appsync.MappingTemplate.fromString(`
 #set($args = {})
-#set($args.id = $context.arguments.id)
+#set($args.id = $context.arguments.input)
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
 {
 "version": "2017-02-28",
 "operation": "Invoke",
@@ -55,19 +56,17 @@ export class AppSyncLambdaDataSourceConstruct extends Construct {
             responseMappingTemplate: appsync.MappingTemplate.fromString("$util.toJson($context.result)"),
             requestMappingTemplate:
                 appsync.MappingTemplate.fromString(`
-#set($args = {})
-#set($args.id = $context.arguments.id)
-#set($args.rev = $context.arguments.rev)
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
 {    
-"version": "2017-02-28",
-"operation": "Invoke",
-"payload": {
-    "meta": {
-        "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
-        "action": "delete",
-        "__typename": ""
-    },                    
-    "arguments": $utils.toJson($args),
+    "version": "2017-02-28",
+    "operation": "Invoke",
+    "payload": {
+        "meta": {
+            "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
+            "action": "delete",
+            "__typename": ""
+        },                    
+    "arguments": $utils.toJson($context.arguments.input),
     "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
     "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
     "identity": $utils.toJson($context.identity),
@@ -85,22 +84,24 @@ export class AppSyncLambdaDataSourceConstruct extends Construct {
                 typeName: `Query`,
                 responseMappingTemplate: appsync.MappingTemplate.fromString("$util.toJson($context.result)"),
                 requestMappingTemplate:
-                    appsync.MappingTemplate.fromString(`{
-                "version": "2017-02-28",
-                "operation": "Invoke",
-                "payload": {
-                    "meta": {
-                        "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
-                        "action": "query",
-                        "__typename": "${itemKey}"
-                    },                    
-                    "arguments": $utils.toJson($context.arguments.input),
-                    "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
-                    "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
-                    "identity": $utils.toJson($context.identity),
-                    "test_entire_vtl_ctx": $utils.toJson($context)
-                }
-            }`)
+                    appsync.MappingTemplate.fromString(`
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
+{
+    "version": "2017-02-28",
+    "operation": "Invoke",
+    "payload": {
+        "meta": {
+            "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
+            "action": "query",
+            "__typename": "${itemKey}"
+        },                    
+        "arguments": $utils.toJson($context.arguments.input),
+        "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
+        "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
+        "identity": $utils.toJson($context.identity),
+        "test_entire_vtl_ctx": $utils.toJson($context)
+    }
+}`)
             });
             // search{{item}} fields
             lds.createResolver(`search${plural(itemKey)}Resolver`, {
@@ -108,22 +109,24 @@ export class AppSyncLambdaDataSourceConstruct extends Construct {
                 typeName: `Query`,
                 responseMappingTemplate: appsync.MappingTemplate.fromString("$util.toJson($context.result)"),
                 requestMappingTemplate:
-                    appsync.MappingTemplate.fromString(`{
-                "version": "2017-02-28",
-                "operation": "Invoke",
-                "payload": {
-                    "meta": {
-                        "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
-                        "action": "search",
-                        "__typename": "${itemKey}"
-                    },                    
-                    "arguments": $utils.toJson($context.arguments.input),
-                    "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
-                    "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
-                    "identity": $utils.toJson($context.identity),
-                    "test_entire_vtl_ctx": $utils.toJson($context)
-                }
-            }`)
+                    appsync.MappingTemplate.fromString(`
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
+{
+    "version": "2017-02-28",
+    "operation": "Invoke",
+    "payload": {
+        "meta": {
+            "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
+            "action": "search",
+            "__typename": "${itemKey}"
+        },                    
+        "arguments": $utils.toJson($context.arguments.input),
+        "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
+        "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
+        "identity": $utils.toJson($context.identity),
+        "test_entire_vtl_ctx": $utils.toJson($context)
+    }
+}`)
             });
             // get{{item}} resolvers WILL BE REMOVING THOSE in favour of the generic get resolver above
             lds.createResolver(`get${plural(itemKey)}Resolver`, {
@@ -133,7 +136,8 @@ export class AppSyncLambdaDataSourceConstruct extends Construct {
                 requestMappingTemplate:
                     appsync.MappingTemplate.fromString(`
 #set($args = {})
-#set($args.id = $context.arguments.id)
+#set($args.id = $context.arguments.input)
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
 {
     "version": "2017-02-28",
     "operation": "Invoke",
@@ -159,7 +163,7 @@ export class AppSyncLambdaDataSourceConstruct extends Construct {
                 requestMappingTemplate:
                     appsync.MappingTemplate.fromString(`
 $!{context.arguments.input.put("__typename", "${itemKey}")}
-$!{context.arguments.input.put("rev", $context.arguments.rev)}
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
 {
     "version": "2017-02-28",
     "operation": "Invoke",
@@ -185,7 +189,7 @@ $!{context.arguments.input.put("rev", $context.arguments.rev)}
                 requestMappingTemplate:
                     appsync.MappingTemplate.fromString(`
 $!{context.arguments.input.put("__typename", "${itemKey}")}
-$!{context.arguments.input.put("rev", $context.arguments.rev)}
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
 {
     "version": "2017-02-28",
     "operation": "Invoke",
@@ -204,32 +208,30 @@ $!{context.arguments.input.put("rev", $context.arguments.rev)}
 }`)
             });
             // delete{{item}} resolvers WILL BE REMOVING THOSE in favour of the generic del resolver above
-//             lds.createResolver(`delete${itemKey}Resolver`, {
-//                 fieldName: `delete${itemKey}`,
-//                 typeName: `Mutation`,
-//                 responseMappingTemplate: appsync.MappingTemplate.fromString("$util.toJson($context.result)"),
-//                 requestMappingTemplate:
-//                     appsync.MappingTemplate.fromString(`
-// #set($args = {})
-// #set($args.id = $context.arguments.id)
-// #set($args.rev = $context.arguments.rev)
-// {    
-//     "version": "2017-02-28",
-//     "operation": "Invoke",
-//     "payload": {
-//         "meta": {
-//             "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
-//             "action": "delete",
-//             "__typename": "${itemKey}"
-//         },                    
-//         "arguments": $utils.toJson($args),
-//         "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
-//         "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
-//         "identity": $utils.toJson($context.identity),
-//         "test_entire_vtl_ctx": $utils.toJson($context)
-//     }
-// }`)
-//             });
+            lds.createResolver(`delete${itemKey}Resolver`, {
+                fieldName: `delete${itemKey}`,
+                typeName: `Mutation`,
+                responseMappingTemplate: appsync.MappingTemplate.fromString("$util.toJson($context.result)"),
+                requestMappingTemplate:
+                    appsync.MappingTemplate.fromString(`
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
+{    
+    "version": "2017-02-28",
+    "operation": "Invoke",
+    "payload": {
+        "meta": {
+            "graphqlResolverFieldName": $utils.toJson($context.info.fieldName),
+            "action": "delete",
+            "__typename": "${itemKey}"
+        },                    
+        "arguments": $utils.toJson($context.arguments.input),
+        "selectionSetList": $utils.toJson($ctx.info.selectionSetList),
+        "selectionSetGraphQL": $utils.toJson($ctx.info.selectionSetGraphQL),
+        "identity": $utils.toJson($context.identity),
+        "test_entire_vtl_ctx": $utils.toJson($context)
+    }
+}`)
+            });
             // create{{item}} resolvers
             lds.createResolver(`create${itemKey}Resolver`, {
                 fieldName: `create${itemKey}`,
@@ -238,6 +240,7 @@ $!{context.arguments.input.put("rev", $context.arguments.rev)}
                 requestMappingTemplate:
                     appsync.MappingTemplate.fromString(`
 $!{context.arguments.input.put("__typename", "${itemKey}")}
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
 {
     "version": "2017-02-28",
     "operation": "Invoke",
@@ -267,6 +270,7 @@ $!{context.arguments.input.put("__typename", "${itemKey}")}
                 requestMappingTemplate:
                     appsync.MappingTemplate.fromString(`
 $!{context.arguments.input.put("__typename", "${itemKey}")}
+$!{context.identity.put("authorization", "$context.request.headers.authorization")}
 {
     "version": "2017-02-28",
     "operation": "Invoke",

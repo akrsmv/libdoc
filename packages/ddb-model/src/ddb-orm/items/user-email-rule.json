@@ -1,0 +1,33 @@
+{
+    "$id": "http://localhost:3000/ddb-orm/items/user.json",
+    "title": "UserEmailRule",
+    "description": "User defined rule for matching an email to specified agent",
+    "allOf": [
+        {
+            "$ref": "http://localhost:3000/ddb-orm/system/item.json"
+        },
+        {
+            "required": [
+                "agent",
+                "matchPattern",
+                "user"
+            ],
+            "properties": {
+                "agent": {
+                    "description": "The agent to which to redirect email if `matchPattern` regex succedes",
+                    "type": "string"
+                },
+                "matchPattern": {
+                    "description": "The regex rule for this `UserEmailRule`",
+                    "type": "string"
+                },
+                "user": {
+                    "description": "The user defining this `UserEmailRule`",
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "additionalProperties": true
+        }
+    ]
+}

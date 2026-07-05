@@ -2,13 +2,18 @@ import * as cdk from 'aws-cdk-lib';
 import { ITableModel } from '../lib/interfaces/ITableModel';
 import { ITableCofig } from '../lib/interfaces/ITableConfig';
 import { CdkStackProps } from '../lib/cdk-stack';
-import { JSONDataModel } from '@incta/ddb-model';
+import { JSONDataModel, tryGetProcessParam } from '@incta/ddb-model';
 
 export const validateContext = ((app: cdk.App): CdkStackProps => {
-  const tableName = app.node.tryGetContext("tableName")
-  const tableModelJsonPath = app.node.tryGetContext("tableModelJsonPath")
-  const tableConfigJsonPath = app.node.tryGetContext("tableConfigJsonPath")
-  const dataModelJsonPath = app.node.tryGetContext("dataModelJsonPath")
+  
+  const tableName = tryGetProcessParam("tableName")
+    || app.node.tryGetContext("tableName")
+  const tableModelJsonPath = tryGetProcessParam("tableModelJsonPath")
+    || app.node.tryGetContext("tableModelJsonPath")
+  const tableConfigJsonPath = tryGetProcessParam("tableConfigJsonPath")
+    || app.node.tryGetContext("tableConfigJsonPath")
+  const dataModelJsonPath = tryGetProcessParam("dataModelJsonPath")
+    || app.node.tryGetContext("dataModelJsonPath")
 
   const errors = []
   if (!tableName) {
@@ -16,18 +21,12 @@ export const validateContext = ((app: cdk.App): CdkStackProps => {
   }
   if (!tableModelJsonPath) {
     errors.push("ERROR: missing tableModelJsonPath context param")
-    // TODO more validations on table model json
   }
-  // tableConfigJsonPath made optional
-  // if (!tableConfigJsonPath) {
-  //   errors.push("ERROR: missing tableConfigJsonPath context param")
-  //   // TODO more validations on table model json
-  // }
 
   if (errors.length) {
     errors.forEach(e => console.error(e))
     console.error("EXAMPLE: \n" +
-      "cdk deploy -c tableName=my-table-name -c tableConfigJsonPath=<path-to-config-json> -c tableModelJsonPath=<path-to-model-json>")
+      "cdk deploy -c tableName=my-table-name -c dataModelJsonPath=<path-to-data-model-json> -c tableModelJsonPath=<path-to-aws-table-definition.json>")
     process.exit(1)
   }
 

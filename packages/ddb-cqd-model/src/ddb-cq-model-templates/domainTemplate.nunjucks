@@ -1,11 +1,16 @@
 import { IClaims, IIdentity, IDdbDomain, staticImplements, GetItemProps, IDdbItemKey, Result} from "{{importLibraryToUseInGeneratedFiles}}";
 import { {{__typename}} } from "../items/{{itemNameSuffix | firstCaseLower}}Items/{{__typename}}";
+import { createItem, updateItem, patchItem, deleteItem, getItems } from "@incta/ddb-actions";
+import { loginfo, logwarn } from "@incta/common-utils";
 
 @staticImplements<IDdbDomain<{{__typename}}>>()
 export class {{__typename}}{{itemNameSuffix}}Domain {
 
     public static async get(params: GetItemProps, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<Result<{{__typename}}>> {
-        const {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        let {{__typename | firstCaseLower}}DomainImpl
+        try {
+            {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        } catch { }
         if ({{__typename | firstCaseLower}}DomainImpl && {{__typename | firstCaseLower}}DomainImpl.get && typeof {{__typename | firstCaseLower}}DomainImpl.get === 'function') {
             try {
                 return await {{__typename | firstCaseLower}}DomainImpl.get(params, identity)
@@ -13,10 +18,14 @@ export class {{__typename}}{{itemNameSuffix}}Domain {
                 throw error
             }
         }
-        throw new Error("No implmentation found for {{__typename}}.get")
+        loginfo("No implmentation found for {{__typename}}.get. Using generic getItems method")
+        return await getItems(params, identity)
     }
-    public static async create(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
-        const {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+    public static async create(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<{{__typename}}> {
+        let {{__typename | firstCaseLower}}DomainImpl
+        try {
+            {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        } catch { }
         if ({{__typename | firstCaseLower}}DomainImpl && {{__typename | firstCaseLower}}DomainImpl.create && typeof {{__typename | firstCaseLower}}DomainImpl.create === 'function') {
             try {
                 return await {{__typename | firstCaseLower}}DomainImpl.create(item, identity)
@@ -24,10 +33,67 @@ export class {{__typename}}{{itemNameSuffix}}Domain {
                 throw error
             }
         }
-        throw new Error("No implmentation found for create {{__typename}}.create")
+        loginfo("No implmentation found for {{__typename}}.create. Using generic createItem method")
+        return await createItem(item, identity)
     }
-    public static async update(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>{}
-    public static async patch(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>{}
-    public static async del(dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void>{}
-    
+    public static async update(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        let {{__typename | firstCaseLower}}DomainImpl
+        try {
+            {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        } catch { }
+        if ({{__typename | firstCaseLower}}DomainImpl && {{__typename | firstCaseLower}}DomainImpl.update && typeof {{__typename | firstCaseLower}}DomainImpl.update === 'function') {
+            try {
+                return await {{__typename | firstCaseLower}}DomainImpl.update(item, identity)
+            } catch (error) {
+                throw error
+            }
+        }
+        loginfo("No implmentation found for {{__typename}}.update. Using generic updateItem method")
+        return await updateItem(item, identity)
+    }
+    public static async patch(item: Partial<{{__typename}}>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        let {{__typename | firstCaseLower}}DomainImpl
+        try {
+            {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        } catch { }
+        if ({{__typename | firstCaseLower}}DomainImpl && {{__typename | firstCaseLower}}DomainImpl.patch && typeof {{__typename | firstCaseLower}}DomainImpl.patch === 'function') {
+            try {
+                return await {{__typename | firstCaseLower}}DomainImpl.patch(item, identity)
+            } catch (error) {
+                throw error
+            }
+        }
+        loginfo("No implmentation found for {{__typename}}.patch. Using generic patchItem method")
+        return await patchItem(item, identity)
+    }
+    public static async del(dto: Required<IDdbItemKey>, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        let {{__typename | firstCaseLower}}DomainImpl
+        try {
+            {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        } catch { }
+        if ({{__typename | firstCaseLower}}DomainImpl && {{__typename | firstCaseLower}}DomainImpl.del && typeof {{__typename | firstCaseLower}}DomainImpl.del === 'function') {
+            try {
+                return await {{__typename | firstCaseLower}}DomainImpl.del(dto, identity)
+            } catch (error) {
+                throw error
+            }
+        }
+        loginfo("No implmentation found for {{__typename}}.del. Using generic deleteItem method")
+        return await deleteItem(dto, identity)
+    }
+
+    public static async invokeAction<T>(action: string, args: T, identity: Partial<IIdentity<Partial<IClaims>>> | null): Promise<void> {
+        let {{__typename | firstCaseLower}}DomainImpl
+        try {
+            {{__typename | firstCaseLower}}DomainImpl = require('../../domain-context-impl/domains-impl/{{__typename}}DomainImpl')
+        } catch { }
+        if ({{__typename | firstCaseLower}}DomainImpl && action in {{__typename | firstCaseLower}}DomainImpl && typeof {{__typename | firstCaseLower}}DomainImpl[action] === 'function') {
+            try {
+                return await {{__typename | firstCaseLower}}DomainImpl[action](args, identity)
+            } catch (error) {
+                throw error
+            }
+        }
+        throw new Error(`No implmentation found for {{__typename}}.${action} at '../../domain-context-impl/domains-impl/{{__typename}}DomainImpl'`)
+    }
 }

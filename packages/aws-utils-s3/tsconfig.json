@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "references": [
+    {
+      "path": "../ddb-model"
+    },
+    {
+      "path": "../ddb-actions"
+    },
+    {
+      "path": "../common-utils"
+    }
+  ],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "inlineSourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["**/*.ts"],
+  "exclude": [
+    "./dist"
+  ]
+}

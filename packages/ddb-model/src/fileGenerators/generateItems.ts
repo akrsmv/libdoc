@@ -52,6 +52,9 @@ export const generateItems = async (itemsModel: { [x: string]: DataModelObject }
             const singularKey = pluralize.singular(key)
             return `${__typename[0].toUpperCase() + __typename.slice(1)}${singularKey[0].toUpperCase() + singularKey.slice(1)}Dto`
         }
+        else if (typeof attrs.__type === 'string' && attrs.__type.startsWith('#')) {
+            return attrs.__type.replace('#','')
+        }
         switch (attrs.__type) {
             case "isodatestring": return "Date";
             case "enum": return `"${attrs.__values.split("|").join('"|"')}"`;
@@ -67,6 +70,9 @@ export const generateItems = async (itemsModel: { [x: string]: DataModelObject }
         else if (typeof attrs.__type === 'object') {
             const singularKey = pluralize.singular(key)
             return `type: 'object', objectTypeDtoName: '${__typename[0].toUpperCase() + __typename.slice(1)}${singularKey[0].toUpperCase() + singularKey.slice(1)}Dto',`
+        }
+        else if (typeof attrs.__type === 'string' && attrs.__type.startsWith('#')) {
+            return `type: 'object',`
         }
         switch (attrs.__type) {
             case "enum": return `type: 'enum', enumValues: ["${attrs.__values.split("|").join('","')}"],`;
@@ -101,7 +107,7 @@ export const generateItems = async (itemsModel: { [x: string]: DataModelObject }
                     const singularKey = pluralize.singular(key)
                     Object.assign(inItemJSONs, { [`${item[0].toUpperCase() + item.slice(1)}${singularKey[0].toUpperCase() + singularKey.slice(1)}`]: typedArray[0] })
                 } else {
-                    throw new Error("Expected sngle object in array type definition")
+                    throw new Error("Expected single object in array type definition")
                 }
             }
 
@@ -112,6 +118,16 @@ export const generateItems = async (itemsModel: { [x: string]: DataModelObject }
 
             return inItemJSONs;
         }, {});
+
+        // gnerate a lookup of all reffered items inside other items
+        const referredItems = Object.keys(itemsModel[item].__attributes).reduce((referredItems: any, key: string) => {
+
+            if (typeof itemsModel[item].__attributes[key].__type === 'string' && String(itemsModel[item].__attributes[key].__type).startsWith('#')) {
+                referredItems.push(String(itemsModel[item].__attributes[key].__type).replace('#', ''))
+            }
+
+            return referredItems;
+        }, []);
 
         for (const complexTypeName of Object.keys(inItemJSONs).filter(key => key !== '__meta')) {
             await writeFile(
@@ -128,7 +144,7 @@ export const generateItems = async (itemsModel: { [x: string]: DataModelObject }
             nunjucks.renderString(
                 readFileSync(join(__dirname.replace(`${sep}dist${sep}`, `${sep}src${sep}`), '..', './ddb-model-templates/dynamoItemTemplate.ts.nunjucks')).toString(),
                 // pass __typename to template engine (make __typename optional in the model json)
-                Object.assign({ importLibraryToUseInGeneratedFiles, __typename: item, __parent_typename: itemsModel[item].__meta?.__parent_typename ?? item, __inItemJSONs: inItemJSONs, __isPublicItem: !!itemsModel[item].__meta?.__isPublicItem  }, itemsModel[item])));
+                Object.assign({ importLibraryToUseInGeneratedFiles, __typename: item, __parent_typename: itemsModel[item].__meta?.__parent_typename ?? item, __inItemJSONs: inItemJSONs, __isPublicItem: !!itemsModel[item].__meta?.__isPublicItem, __referredItems: referredItems }, itemsModel[item])));
 
         // generate dto also for every item
         await writeFile(
@@ -136,7 +152,7 @@ export const generateItems = async (itemsModel: { [x: string]: DataModelObject }
             nunjucks.renderString(
                 readFileSync(join(__dirname.replace(`${sep}dist${sep}`, `${sep}src${sep}`), '..', './ddb-model-templates/itemDtoTemplate.nunjucks')).toString(),
                 // pass __typename to template engine (make __typename optional in the model json)
-                Object.assign({ __typename: item, __inItemJSONs: inItemJSONs }, itemsModel[item])));
+                Object.assign({ __typename: item, __inItemJSONs: inItemJSONs, __referredItems: referredItems }, itemsModel[item])));
     }
 }
 

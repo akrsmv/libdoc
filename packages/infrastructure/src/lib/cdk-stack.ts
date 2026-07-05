@@ -20,16 +20,6 @@ import { AppSyncConstruct } from './constructs/appSyncConstruct';
 import { WorkerConstruct } from './constructs/workerConstruct';
 import { DynamoEventsConstruct } from './constructs/dynamoEventsConstruct';
 import { S3Construct } from './constructs/s3Construct';
-import { UserPool, UserPoolOperation } from 'aws-cdk-lib/aws-cognito';
-// import { CognitoConstruct } from './constructs/cognitoConstruct';
-// import { EventBusConstruct } from './constructs/eventBusConstruct';
-// import { AppSyncConstruct } from './constructs/appSyncConstruct';
-// import { AppSyncLocalDatasourceConstruct } from './constructs/AppSyncLocalDatasourceConstruct';
-// import { AartsResolver, AppSyncLambdaDataSourceConstruct } from './constructs/appSyncLambdaDataSourceConstruct';
-// import { WorkerConstruct } from './constructs/workerConstruct';
-// import { DynamoEventsConstruct } from './constructs/dynamoEventsConstruct';
-// import { S3Construct } from './constructs/s3Construct';
-
 
 export interface CdkStackProps extends StackProps {
   envName: string,
@@ -76,81 +66,13 @@ export class CdkStack extends Stack {
     new DynamoEventsConstruct(this, 'DBStreams', { ...props, ...eventBusConstruct, ...dynamoDbConstruct })
     //-----------------------
 
+    //-----------------------
     const appSyncConstruct = new AppSyncConstruct(this, `AppSync`, {
       ...props,
       ...cognitoConstruct,
       lambdaDs: eventBusConstruct.controller
     })
-
-    // const appSyncLambdaDatasourceConstruct = new AppSyncLambdaDataSourceConstruct(this, "Mutation", {
-    //   lambdaFunction: eventBusConstruct.controller,
-    //   appSyncConstruct: appSyncConstruct,
-    //   mutateResolvers: new Set<AartsResolver>([
-    //     { fieldName: 'start', payloadSubstitues: { jobType: "long" } },
-    //     // { fieldName: 'stop', payloadSubstitues: { jobType: "long" } },
-    //     { fieldName: 'create' },
-    //     { fieldName: 'update' },
-    //     { fieldName: 'delete' },
-    //   ]),
-    //   queryResolvers: new Set<AartsResolver>(
-    //     Object.keys({...props.dataModelJson.Items, ...props.dataModelJson.Queries, ...props.dataModelJson.Commands}).reduce<AartsResolver[]>((resolversArray, itemName) => {
-    //       // WE DONT WANT 2xN RESOLVERS WHERE N is number of entities. Dont want to depend on that 
-    //       // resolversArray.push({ fieldName: `get${itemName}`, payloadSubstitues: { action: 'get', jobType: "short", __typename: itemName } })
-    //       // resolversArray.push({ fieldName: `list${itemName}`, payloadSubstitues: { action: 'query', jobType: "short", __typename: itemName } })
-    //       return resolversArray
-    //     }, [
-    //       // static 'admin queries', independant of model - > WE ONLY WANT SUCH, INDEPENDANT OF MODEL
-    //       { fieldName: 'get' },
-    //       { fieldName: 'query' },
-    //       // { fieldName: `getMetadata` },
-    //       // { fieldName: 'customQuery', payloadSubstitues: { action: 'query' } }
-    //     ]))
-    // })
-
-    //   const appSyncLocalDatasourceConstruct = new AppSyncLocalDatasourceConstruct(this, "Local", {
-    //     eventBusConstruct,
-    //     appSyncConstruct,
-    //     nodeModulesLayer,
-    //     feederConfig: aartsConfig.Lambda.Feeder
-    //   })
-
-    //   const dynamoEventsConstruct = new DynamoEventsConstruct(this, `${props.clientAppName}DynamoEvents`, {
-    //     eventBusConstruct, dynamoDbConstruct, nodeModulesLayer,
-    //     aggregationFunctionConfig: aartsConfig.Lambda.DynamoStreamsProcessors.Aggregation,
-    //     callbackFunctionConfig: aartsConfig.Lambda.DynamoStreamsProcessors.ItemCallbacks
-    //   })
-
-    //   for (const worker of aartsConfig.Lambda.Workers) {
-    //     const workerFunction = new WorkerConstruct(this, `${props.clientAppName}Worker${worker.name}`, {
-    //       workerName: `${props.clientAppName}Worker${worker.name}`,
-    //       workerConfig: worker,
-    //       functionHandler: "__bootstrap/index.worker",
-    //       functionImplementationPath: join(props.clientAppDirName, "dist", "src"),
-    //       functionRuntime: Runtime.NODEJS_18_X,
-    //       eventBusConstruct: eventBusConstruct,
-    //       dynamoDbConstruct: dynamoDbConstruct,
-    //       eventSource: `worker:input:${worker.name.toLowerCase()}`,
-    //       layers: [
-    //         nodeModulesLayer
-    //       ],
-    //     });
-    //     eventBusConstruct.controller.addEnvironment(`WORKER_${worker.name.toUpperCase()}`, workerFunction.function.functionName)
-    //     if (!!this.node.tryGetContext("debug-mode")) {
-    //       workerFunction.function.addEnvironment("DEBUGGER", "1")
-    //     }
-    //     //@ts-ignore
-    //     if (aartsConfig.AsyncPROC) {
-    //       workerFunction.function.addEnvironment(ENV_VARS__ASYNC_PROC, "1")
-    //     }
-    //   }
-
-    //   if (!!this.node.tryGetContext("debug-mode")) {
-    //     eventBusConstruct.controller.addEnvironment("DEBUGGER", "1")
-    //     eventBusConstruct.cognitoTrigger.addEnvironment("DEBUGGER", "1")
-    //     dynamoEventsConstruct.dynamoEventsAggregation.addEnvironment("DEBUGGER", "1")
-    //     dynamoEventsConstruct.dynamoEventsCallback.addEnvironment("DEBUGGER", "1")
-    //     appSyncLocalDatasourceConstruct.notifierFunctionConstruct.function.addEnvironment("DEBUGGER", "1")
-    //   }
+    //-----------------------
 
     new CfnOutput(this, "aws_project_region", {
       description: "aws_project_region",

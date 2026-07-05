@@ -6,7 +6,7 @@ export const allowedLogLevels = (logLevel: string | undefined) => logLevels.slic
 
 function withLevel(this: string, logFn: Function, ...data: any) {
     if (allowedLogLevels(process.env.LOGLEVEL).includes(String(this))) {
-        logFn.call(null, this, { loglevel: this, correlation: get_correlation_token(), logdata: [...data.map((d: any) => inspect(d, false, 10, false))] })
+        logFn.call(null, { loglevel: this, correlation: get_correlation_token(), ...data.map((d: any) => inspect(d, false, 10, false)) })
     }
 }
 
