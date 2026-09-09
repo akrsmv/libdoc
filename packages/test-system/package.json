@@ -18,7 +18,7 @@
     "@incta/common-utils": "^1.0.0",
     "@incta/ddb-actions": "^1.0.0",
     "@incta/dispatch-action": "^1.0.0",
-    "mailparser": "^3.6.5"
+    "mailparser": "^3.9.23"
   },
   "devDependencies": {
     "@aws-sdk/types": "^3.357.0",
