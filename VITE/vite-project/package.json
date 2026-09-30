@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@aws-amplify/ui-react": "5.0.2",
-    "@graphiql/plugin-explorer": "0.1.22",
+    "@graphiql/plugin-explorer": "5.1.5",
     "@graphiql/toolkit": "0.8.4",
     "aws-amplify": "5.3.1",
-    "graphiql": "3.0.0",
+    "graphiql": "3.9.0",
     "graphql": "16.7.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
